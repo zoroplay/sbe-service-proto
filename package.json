@@ -1,5 +1,5 @@
 {
-  "name": "service-protos",
+  "name": "sbe-service-proto",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
