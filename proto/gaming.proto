@@ -59,24 +59,28 @@ message StartGameResponse {
 }
 
 message Game {
-    string id = 1;
-    string game_id = 2;
+    int32 id = 1;
+    string gameId = 2;
     string title = 3;
     string description = 4;
     string url = 5;
-    string image_path = 6;
-    string banner_path = 7;
+    string imagePath = 6;
+    string bannerPath = 7;
     bool status = 8;
     string type = 9;
     Provider provider = 10;
-    string provider_id = 11;
+    string createdAt = 11;
+    string updatedAt = 12;
 }
 
 message Provider {
-    string id = 1;
+    int32 id = 1;
     string slug = 2;
     string name = 3;
     string description = 4;
-    string image_path = 5;
-    optional string parent_provider = 6;
+    string imagePath = 5;
+    optional Games games = 6;
+    optional string parentProvider = 7;
+    string createdAt = 8;
+    string updatedAt = 9;
 }
