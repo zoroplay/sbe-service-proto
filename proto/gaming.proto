@@ -32,8 +32,16 @@ message Games {
 };
 
 message UpdateGameDto {
-    string id = 1;
-    Provider provider = 2;
+    int32 id = 1;
+    string game_id = 2;
+    string title = 3;
+    string description = 4;
+    string url = 5;
+    string image_path = 6;
+    string banner_path = 7;
+    bool status = 8;
+    string type = 9;
+    int32 providerId = 10;
 }
 
 message CreateGameDto {
@@ -45,7 +53,7 @@ message CreateGameDto {
     string banner_path = 6;
     bool status = 7;
     string type = 8;
-    Provider provider = 9;
+    int32 providerId = 9;
 }
 
 message StartGameDto {
