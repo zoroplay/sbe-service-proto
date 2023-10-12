@@ -18,12 +18,14 @@ message UserData {
 //send otp
 message SendOtpRequest {
   string username = 1;
+  string type = 2;
 }
 
 message SendOtpResponse {
   int32 status = 1;
-  string message = 2;
-  string error = 3;
+  bool success = 2;
+  string message = 3;
+  string error = 4;
 }
 
 // Register
