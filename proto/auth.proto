@@ -7,6 +7,15 @@ service AuthService {
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc SendOTP (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc CreateClient (ClientRequest) returns (CommonResponse) {}
+  rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
+  rpc CreateRole (RoleRequest) returns (CommonResponse) {}
+  rpc FindAllPermissions (EmptyRequest) returns (CommonResponse) {}
+  rpc FindAllClients (EmptyRequest) returns (CommonResponse) {}
+  rpc FindAllRoles (EmptyRequest) returns (CommonResponse) {}
+  rpc RemoveClient (RemoveClientRequest) returns (CommonResponse) {}
+  rpc RemoveRole (RemoveRoleRequest) returns (CommonResponse) {}
+  rpc RemovePermission (RemovePermissionRequest) returns (CommonResponse) {}
 }
 // user
 message UserData {
@@ -64,3 +73,46 @@ message ValidateResponse {
   string error = 2;
   int32 userId = 3;
 }
+
+message ClientRequest {
+  string name = 1;
+  string country = 2;
+  string currency = 3;
+  string website = 4;
+  string contactNumber = 5;
+  string contactEmail = 6;
+  string clientID = 7;
+}
+
+message RemoveClientRequest {
+  string clientID = 1;
+}
+
+message RemoveRoleRequest {
+  string roleID = 1;
+}
+
+message RemovePermissionRequest {
+  string permissionID = 1;
+}
+
+message RoleRequest {
+  string name = 1;
+  string description = 2;
+  string roleID = 3;
+}
+
+message PermissionRequest {
+  string name = 1;
+  string description = 2;
+  string permissionID = 3;
+}
+
+message CommonResponse {
+  bool status = 1;
+  string message = 2;
+  repeated string data = 3;
+  string errors = 4;
+}
+
+message EmptyRequest {}
