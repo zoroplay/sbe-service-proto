@@ -3,37 +3,45 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc GetBalance (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc CreditUser (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc DebitUser (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc GetTransactions (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc InititateDeposit (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc Withdraw (SendOtpRequest) returns (SendOtpResponse) {}
-  rpc VerifyAccount (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc GetBalance (GetBalanceRequest) returns (GetBalanceResponse) {}
+  rpc CreditUser (CreditUserRequest) returns (GetBalanceResponse) {}
+  rpc DebitUser (DebitUserRequest) returns (GetBalanceResponse) {}
+  // rpc GetTransactions (SendOtpRequest) returns (SendOtpResponse) {}
+  // rpc InititateDeposit (SendOtpRequest) returns (SendOtpResponse) {}
+  // rpc Withdraw (SendOtpRequest) returns (SendOtpResponse) {}
+  // rpc VerifyAccount (SendOtpRequest) returns (SendOtpResponse) {}
 }
 
 
-//send otp
-message SendOtpRequest {
-  string username = 1;
+//get user balance
+message GetBalanceRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
 }
 
-message SendOtpResponse {
+message GetBalanceResponse {
   int32 status = 1;
   bool success = 2;
   string message = 3;
-  repeated string error = 4;
+  optional int32 balance = 4;
 }
 
-// confirm otp
-message ConfirmOtpRequest {
-  string otp = 1;
-  string username = 2;
+// credit user request payload
+message CreditUserRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 amount = 3;
+  string source = 4;
+  string description = 5;
+  string itemId = 6;
 }
 
-message ConfirmOtpResponse {
-  int32 status = 1;
-  bool success = 2;
-  string message = 3;
-  repeated string error = 4;
+// credit user request payload
+message DebitUserRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 amount = 3;
+  string source = 4;
+  string description = 5;
+  string itemId = 6;
 }

@@ -112,7 +112,7 @@ message CommonResponse {
   bool status = 1;
   string message = 2;
   repeated string data = 3;
-  string errors = 4;
+  optional string errors = 4;
 }
 
 message EmptyRequest {}
