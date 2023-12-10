@@ -3,16 +3,21 @@ syntax = "proto3";
 package notification;
 
 service NotificationService {
-  rpc SendOTP (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc SendSMS (SendOtpRequest) returns (SendSMSResponse) {}
 }
 
 
 //send otp
-message SendOtpRequest {
-  string username = 1;
+message SendSMSRequest {
+    string username = 1;
+    string pwd = 2;
+    string senderId = 3;
+    string phoneNo = 4;
+    string message = 5;
+    string responsetype = 6;
 }
 
-message SendOtpResponse {
+message SendSMSResponse {
   int32 status = 1;
   bool success = 2;
   string message = 3;
