@@ -5,6 +5,11 @@ package fixture;
 service FixtureService {
 
   /*
+  Gets a list of sports, categories, tournaments based on upcoming fixtures for a period
+   */
+  rpc GetSportsMenu (GetSportMenuRequest) returns (AvailableSportMenuResponse){}
+
+  /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
   rpc GetMarkets (FilterBySportID) returns (AllMarketResponse){}
@@ -21,6 +26,9 @@ service FixtureService {
   //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetHighlights (GetHighlightsRequest) returns (GetHighlightsResponse){}
 
+  //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
+  rpc GetFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
+
   //GetLiveHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for live games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetLiveHighlights (GetHighlightsRequest) returns (GetHighlightsResponse){}
 
@@ -30,6 +38,68 @@ service FixtureService {
   //UpdateMarketPriority - Update market priority, this will affect the order of markets in GetFixtureWithOdds method
   rpc UpdateMarketPriority (UpdateMarketRequest) returns (ResponseString){}
 
+  rpc CreateOutcomeAlias (CreateOutcomeAliasRequest) returns (CreateOutcomeAliasResponse){}
+  rpc UpdateOutcomeAlias (CreateOutcomeAliasRequest) returns (CreateOutcomeAliasResponse){}
+  rpc GetAllOutcomeAlias (GetAllOutcomeAliasRequest) returns (GetAllOutcomeAliasResponse){}
+  rpc DeleteOutcomeAlias (CreateOutcomeAliasRequest) returns (CreateOutcomeAliasResponse){}
+
+  rpc CreateMarketGroup (CreateMarketGroupRequest) returns (CreateOutcomeAliasResponse){}
+  rpc UpdateMarketGroup (CreateMarketGroupRequest) returns (CreateOutcomeAliasResponse){}
+  rpc DeleteMarketGroup (DeleteMarketGroupRequest) returns (CreateOutcomeAliasResponse){}
+  rpc GetAllMarketGroup (FilterByClientIDRequest) returns (MarketGroupResponse){}
+  rpc AddMarketGroupSpecifier (AddSpecifierRequest) returns (CreateOutcomeAliasResponse){}
+  rpc UpdateMarketGroupSpecifier (AddSpecifierRequest) returns (CreateOutcomeAliasResponse){}
+  rpc DeleteMarketGroupSpecifier (DeleteSpecifierRequest) returns (CreateOutcomeAliasResponse){}
+
+  rpc CreateDefaultSportMarket(DefaultSportMarketDTO) returns (ResponseString){}
+  rpc UpdateDefaultSportMarket(DefaultSportMarketDTO) returns (ResponseString){}
+  rpc DeleteDefaultSportMarket(ID) returns (ResponseString){}
+  rpc GetDefaultSportMarket(Empty) returns (DefaultSportMarketsDTO){}
+
+
+}
+
+message CreateMarketGroupRequest {
+  int32 clientID = 1;
+  string groupName = 2;
+  int32 priority = 3;
+}
+
+message DeleteMarketGroupRequest {
+  int32 id = 1;
+}
+
+message FilterByClientIDRequest {
+  int32 clientID = 1;
+}
+
+message AddSpecifierRequest {
+  int32 marketGroupID = 1;
+  string name = 2;
+  int32 marketID = 3;
+  string specifier = 4;
+}
+
+message MarketGroupSpecifier {
+  int32 id = 1;
+  string name = 2;
+  int32 marketID = 3;
+  string specifier = 4;
+}
+
+message MarketGroupData {
+  int32 marketGroupID = 1;
+  string groupName = 2;
+  int32 priority = 3;
+  repeated MarketGroupSpecifier specifiers = 4;
+}
+
+message MarketGroupResponse {
+  repeated MarketGroupData markets = 1;
+}
+
+message DeleteSpecifierRequest {
+  int32 id = 1;
 }
 
 message CountResponse {
@@ -90,9 +160,42 @@ message SportResponse {
   string sportName = 2; // Sport name
 }
 
+message Category {
+  int32 categoryID = 1;
+  string categoryName = 2;
+  int32 total = 3;
+  string code = 4;
+  repeated Tournament tournaments = 5;
+}
+
+message Tournament {
+  int32 tournamentID = 1;
+  string tournamentName = 2;
+  int32 total = 3;
+}
+
+message SportMenuResponse {
+  int32 sportID = 1; // unique ID of a sport
+  string sportName = 2; // Sport name
+  string total = 3; //total fixtures count for a sport
+  repeated Category categories = 4;
+}
+
 // Object used to hold array of sports
 message AllSportResponse {
   repeated SportResponse sports = 1;
+}
+
+// Object used to hold array of sports
+message AvailableSportMenuResponse {
+  repeated SportMenuResponse sports = 1;
+}
+
+message GetSportMenuRequest { 
+  string period = 1; // period to display
+  string start = 2; // start date
+  string end = 3; //end date
+
 }
 
 message GetHighlightsRequest {
@@ -103,6 +206,18 @@ message GetHighlightsRequest {
   int32 perPage = 5; // records to load per page (pagination)
   int32 tournamentID = 6; // If value > 0 only fixtures of this tournamentID will be loaded
   string countryCode = 7; // If length > 0 only fixtures of this countryCode will be loaded
+  int32 upcoming = 8;
+  int32 today = 9;
+  string specifier = 10;
+}
+
+message GetFixturesRequest {
+  int32 sportID = 1; // Filter fixtures by this sportID
+  string markets = 2; // comma separated string of market ids to be loaded
+  string source = 3; // mobile or web client making the request
+  int32 limit = 4; // no of records to be loaded (optional)
+  int32 tournamentID = 5; // fetch fixtures of this tournamentID will
+  string period = 6; // date range to fetch fixtures
 }
 
 message HighlightOutcomes {
@@ -118,6 +233,9 @@ message HighlightOutcomes {
   int32 active = 10; // wether odd is active or deactivated, 1 - ACtive, 0 - Deactivated
   int32 producerID = 11; // ID of the producer that send the odds
   int32 marketID = 12; // Unique ID of this market
+  int32 producerStatus = 13; // ID of the producer that send the odds
+  string displayName = 14; // outcome display name
+
 }
 
 message FixturesWithOdds {
@@ -131,8 +249,8 @@ message FixturesWithOdds {
   int32 tournamentID = 8; // Unique ID of the tournament
   int32 statusCode = 9; // match Status code
   int32 status = 10; // Match status
-  string country = 11; // Fixture country
-  string countryCode = 12; // Fixture country code
+  string categoryID = 11; // Fixture country
+  string categoryName = 12; // Fixture country code
   string eventTime = 13; //Current event time e.g 00:10
   string homeScore = 14; // Current Home Score
   string matchStatus = 15; // Match status description, available values NotStarted,Live,Ended,Suspended
@@ -140,7 +258,8 @@ message FixturesWithOdds {
   string awayScore = 17; // Current score of the away team
   string homeTeam = 18; // Home team name
   string awayTeam = 19; // Away team name
-  repeated HighlightOutcomes outcomes = 20; // Market Outcomes
+  string sportName = 20; // Away team name
+  repeated HighlightOutcomes outcomes = 21; // Market Outcomes
 }
 
 message GetHighlightsResponse {
@@ -150,7 +269,16 @@ message GetHighlightsResponse {
   int32 from = 3; // From data index
   int32 to = 4; // to data index
   int32 remainingRecords = 5; // how many records are remaining
+  repeated AvailableMarket markets = 6; // Array of available markets
+}
 
+message GetFixturesResponse {
+
+  repeated FixturesWithOdds fixtures = 1; // Array of fixtures
+  repeated AvailableMarket selectedMarket = 2; // Array of selected markets
+  repeated AvailableMarket markets = 3; // Array of available markets
+  repeated MarketGroup groups = 4; // Array of available markets
+  repeated MarketOutcome outcomeTypes = 5; // Array of selected markets outcomes
 }
 
 message Outcome {
@@ -161,6 +289,22 @@ message Outcome {
   float previousOdds = 5; // Previous odds of the outcome
   int32 oddID = 6; // Odd ID
   int32 active = 7; // wether odd is active (1) or not (0), only display active odds on the site
+  int32 displayName = 8;
+  int32 producerID = 9;
+}
+
+message AvailableMarket {
+  string marketID = 1;
+  string marketName = 2;
+  string specifier = 3;
+  string marketGroupID = 4;
+  repeated MarketOutcome outcomes = 5;
+  int32 sportID = 6;
+}
+
+message MarketGroup {
+  string groupID = 1;
+  string groupName = 2;
 }
 
 message Market {
@@ -169,7 +313,22 @@ message Market {
   string statusName = 3; // Market status name
   int32 status = 4; // Market status, 0 - active, 1 - suspended, 2 - deactivated, 5 - handedover, only displaye markets with status 0 on the site
   string specifier = 5; // Market line
-  repeated Outcome outcome = 6; // Array of outcomes
+  repeated Outcome outcomes = 6; // Array of outcomes
+}
+
+message MarketOutcome {
+  // internal id
+  int32 id = 1;
+  // betradar ID
+  int32 outcomeID = 2;
+  // market outcome name
+  string outcomeName = 3;
+  // market name
+  string marketName = 4;
+  // market id
+  string marketID = 5;
+  // 
+  string displayName = 6;
 }
 
 message FixtureOdds {
@@ -182,16 +341,17 @@ message FixtureOdds {
   string date = 6; // Fixture date
   int32 producerID = 7; // Unique ID of the producer that sent the odd
   repeated Market markets = 8; // array of markets
-  string country = 9; // Fixture country
+  string categoryName = 9; // Fixture country
   int32 statusCode = 10; // match status code
   int32 producerStatus = 11; // producer status
-
   string matchStatus = 12; // Match status description, available values NotStarted,Live,Ended,Suspended
   string homeScore = 13; // Current score of the home team
   string awayScore = 14; // Current score of the away team
   string competitor1 = 15; // Home team name
   string competitor2 = 16; // Away team name
   string eventTime = 17; //Current event time e.g 00:10
+  string sportName = 18;
+  string categoryID = 19;
 }
 
 message ResponseString {
@@ -201,4 +361,61 @@ message ResponseString {
 message UpdateMarketRequest {
   int32 marketID = 1; // Unique Market ID
   int32 priority = 2; // Market priority, the higher the value, the more the market priority
+}
+
+message CreateOutcomeAliasRequest {
+  int32 clientID = 1;
+  string alias = 2;
+  /** market name */
+  string marketName = 3;
+  /** outcome name */
+  string outcomeName = 4;
+  /** specifier if any is available */
+  string specifier = 5;
+  /** outcomeID */
+  string  outcomeID = 6;
+  /** Unique ID of this market */
+  int32  marketID = 7;
+}
+
+message CreateOutcomeAliasResponse {
+
+  int32 status = 1;
+  string statusDescription = 2;
+}
+
+message OutcomeAlias {
+  /** outcome name alias */
+  string alias = 1 ;
+  /** market name */
+  string marketName = 2;
+  /** outcome name */
+  string outcomeName = 3;
+  /** specifier if any is available */
+  string specifier = 4;
+  /** outcomeID */
+  string outcomeID = 5;
+  /** Unique ID of this market */
+  int32  marketID = 6;
+}
+
+message GetAllOutcomeAliasResponse {
+  repeated OutcomeAlias outcomes = 1;
+}
+
+message GetAllOutcomeAliasRequest {
+  int32 clientID = 1;
+}
+
+message ID {
+  int32 id = 1;
+}
+
+message DefaultSportMarketDTO {
+  int32 sportID = 1;
+  int32 marketID = 2;
+}
+
+message DefaultSportMarketsDTO {
+  repeated DefaultSportMarketDTO sports = 1;
 }

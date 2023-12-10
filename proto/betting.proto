@@ -9,7 +9,11 @@ service BettingService {
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
   rpc CancelBet (BetID) returns (StatusResponse) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
+  rpc BookBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
+  rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
+  rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
+  rpc GetBooking(BookingCode) returns (PlaceBetResponse) {}
 
 }
 
@@ -23,6 +27,7 @@ message Settings {
   int32 maximumSelections = 7;
   int32 mtsLimitID = 8;
   string currency = 9;
+  string url = 10;
 }
 
 message SettingsResponse {
@@ -35,8 +40,9 @@ message SettingsResponse {
   int32 maximumSelections = 7;
   int32 mtsLimitID = 8;
   string currency = 9;
-  string created = 10;
-  string updated = 11;
+  string url = 10;
+  string created = 11;
+  string updated = 12;
 }
 
 message SettingsById {
@@ -55,23 +61,42 @@ message BetID {
   int32 betID = 1;
 }
 
+message UpdateBetRequest {
+  int32 betId = 1;
+  string status = 2;
+  string entityType = 3;
+  int32 clientId = 4;
+}
+
+message UpdateBetResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+}
+
+message BookingCode {
+  string code = 1;
+  int32 clientId = 2;
+}
+
 message StatusResponse {
   string response = 1;
 }
 
 message PlaceBetRequest {
-  repeated BetSlip betslip = 1;
+  repeated BetSlip selections = 1;
   int32 clientId = 2;
   int32 userId = 3;
   float stake = 4;
   string source = 5;
   string ipAddress = 6;
+  string betType = 7;
 }
 
 message BetSlip {
   string eventName = 1;
   string eventType = 2;
-  int64 eventId = 3;
+  int32 eventId = 3;
   int32 producerId = 4;
   int32 marketId = 5;
   string marketName = 6;
@@ -80,25 +105,37 @@ message BetSlip {
   string outcomeName = 9;
   float odds = 10;
   int64 sportId = 11;
-
+  string sport = 12;
+  string tournament = 13;
+  string category = 14;
+  int32 matchId = 15;
+  string awayTeam = 16;
+  string homeTeam = 17;
+  string type = 18;
+  bool fixed = 19;
+  string selectionId = 20;
+  string eventDate = 21;
 }
 
 message PlaceBetResponse {
-  int32 betId = 1;
+  bool success = 1;
   int32 status = 2;
-  float statusDescription = 3;
+  string message = 3;
+  optional BetHistory data = 4;
 }
 
 message BetHistoryRequest {
   int32 userId = 1;
   int32 clientId = 2;
-  string date = 3;
+  string from = 3;
+  string to = 4;
+  string status = 5;
 }
 
 message BetSlipHistory {
   string eventName = 1;
   string eventType = 2;
-  int64 eventId = 3;
+  int32 eventId = 3;
   int32 producerId = 4;
   int32 marketId = 5;
   string marketName = 6;
@@ -107,22 +144,54 @@ message BetSlipHistory {
   string outcomeName = 9;
   float odds = 10;
   int64 sportId = 11;
-  int32 status = 12;
+  string status = 12;
   string statusDescription = 13;
+  int32 won = 14;
+  string type = 15;
+  string sport = 16;
+  string tournament = 17;
+  string category = 18;
+  string matchId = 19;
+  string eventDate = 20;
+  string selectionId = 21;
 }
 
 message BetHistory {
-  repeated BetSlipHistory betslip = 1;
+  repeated BetSlipHistory selections = 1;
   float stake = 2;
-  string date = 3;
+  string created = 3;
   int32 status = 4;
-  string statusDescription = 5;
-  string source = 6;
-
+  float cashOutAmount = 5;
+  string statusDescription = 6;
+  string source = 7;
+  float totalOdd = 8;
+  float possibleWin = 9;
+  string betType = 10;
+  string betslipId = 11;
 }
 
 message BetHistoryResponse {
 
-  repeated BetHistoryResponse data = 1;
+  repeated BetHistory bets = 1;
+
+}
+
+message ProbabilityBetSlipSelection {
+  int64 eventId = 1;
+  int32 marketId = 2;
+  string marketName = 3;
+  string specifier = 4;
+  string outcomeId = 5;
+  string outcomeName = 6;
+  int64 sportId = 7;
+  float currentProbability = 8;
+  float initialProbability = 9;
+}
+
+message Probability {
+  float probability = 1;
+  float currentProbability = 2;
+  float initialProbability = 3;
+  repeated ProbabilityBetSlipSelection selections = 4;
 
 }

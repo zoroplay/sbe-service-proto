@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package wallet;
+
+service WalletService {
+  rpc GetBalance (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc CreditUser (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc DebitUser (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc GetTransactions (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc InititateDeposit (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc Withdraw (SendOtpRequest) returns (SendOtpResponse) {}
+  rpc VerifyAccount (SendOtpRequest) returns (SendOtpResponse) {}
+}
+
+
+//send otp
+message SendOtpRequest {
+  string username = 1;
+}
+
+message SendOtpResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  repeated string error = 4;
+}
+
+// confirm otp
+message ConfirmOtpRequest {
+  string otp = 1;
+  string username = 2;
+}
+
+message ConfirmOtpResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  repeated string error = 4;
+}
