@@ -16,12 +16,31 @@ service AuthService {
   rpc RemoveClient (RemoveClientRequest) returns (CommonResponse) {}
   rpc RemoveRole (RemoveRoleRequest) returns (CommonResponse) {}
   rpc RemovePermission (RemovePermissionRequest) returns (CommonResponse) {}
+  rpc RegisterUser (User) returns (CommonResponse) {}
+  rpc UpdateUser (User) returns (CommonResponse) {}
+  rpc LoginUser (LoginRequest) returns (CommonResponse) {}
 }
 // user
 message UserData {
   int32 id = 1;
   string username = 2;
   string email = 3;
+}
+
+// user
+message User {
+  int32 id = 1;
+  string username = 2;
+  string firstName =3 ;
+  string lastName =4 ;
+  string password = 5;
+  string email= 6;
+  string city =7;
+  string country= 8;
+  string gender= 9;
+  string currency = 10;
+  string phone =11;
+  string  roleId =12;
 }
 
 //send otp
