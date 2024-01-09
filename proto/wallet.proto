@@ -11,8 +11,45 @@ service WalletService {
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
+  rpc GetPaymentMethods (GetPaymentMethodRequest) returns (PaymentMethodResponse) {}
+  rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
 }
 
+message PaymentMethodRequest {
+  int32 clientId = 1;
+  string title = 2;
+  string provider = 3;
+  string secretKey = 4;
+  string publicKey = 5;
+  string merchantId = 6;
+  string baseUrl = 7;
+  int32 status = 8;
+  int32 forDisbursement = 9;
+  int32 id = 10;
+}
+
+message GetPaymentMethodRequest {
+  int32 clientId = 1;
+}
+
+message PaymentMethodResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional PaymentMethod data = 4;
+}
+
+message PaymentMethod {
+  string title = 2;
+  string provider = 3;
+  string secret_key = 4;
+  string public_key = 5;
+  string merchant_id = 6;
+  string base_url = 7;
+  int32 status = 8;
+  int32 for_disbursement = 9;
+  int32 id = 10;
+}
 
 message CreateWalletRequest {
   int32 userId = 1;
@@ -40,7 +77,7 @@ message CreditUserRequest {
   int32 amount = 3;
   string source = 4;
   string description = 5;
-  string itemId = 6;
+  string username = 6;
 }
 
 // credit user request payload
@@ -50,7 +87,7 @@ message DebitUserRequest {
   int32 amount = 3;
   string source = 4;
   string description = 5;
-  string itemId = 6;
+  string username = 6;
 }
 
 message Wallet {
