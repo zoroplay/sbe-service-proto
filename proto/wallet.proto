@@ -16,7 +16,8 @@ service WalletService {
 
 message CreateWalletRequest {
   int32 userId = 1;
-  optional double amount = 2;
+  int32 clientId = 2;
+  optional double amount = 3;
 }
 
 message WalletResponse {
