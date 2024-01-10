@@ -11,7 +11,7 @@ service WalletService {
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
-  rpc GetPaymentMethods (GetPaymentMethodRequest) returns (PaymentMethodResponse) {}
+  rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
 }
 
@@ -31,6 +31,13 @@ message PaymentMethodRequest {
 message GetPaymentMethodRequest {
   int32 clientId = 1;
   optional int32 status = 2;
+}
+
+message GetPaymentMethodResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated PaymentMethod data = 4;
 }
 
 message PaymentMethodResponse {
