@@ -30,6 +30,7 @@ message PaymentMethodRequest {
 
 message GetPaymentMethodRequest {
   int32 clientId = 1;
+  optional int32 status = 2;
 }
 
 message PaymentMethodResponse {
