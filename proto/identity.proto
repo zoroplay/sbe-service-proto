@@ -8,12 +8,12 @@ service IdentityService {
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponse) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
-  rpc CreateRole (RoleRequest) returns (CommonResponse) {}
+  rpc SaveRole (RoleRequest) returns (CommonResponse) {}
+  rpc GetRoles (EmptyRequest) returns (CommonResponse) {}
+  rpc RemoveRole (RemoveRoleRequest) returns (CommonResponse) {}
   rpc FindAllPermissions (EmptyRequest) returns (CommonResponse) {}
   rpc FindAllClients (EmptyRequest) returns (CommonResponse) {}
-  rpc FindAllRoles (EmptyRequest) returns (CommonResponse) {}
   rpc RemoveClient (RemoveClientRequest) returns (CommonResponse) {}
-  rpc RemoveRole (RemoveRoleRequest) returns (CommonResponse) {}
   rpc RemovePermission (RemovePermissionRequest) returns (CommonResponse) {}
   rpc UpdateDetails (User) returns (CommonResponse) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponse) {}
@@ -118,7 +118,7 @@ message RemovePermissionRequest {
 
 message RoleRequest {
   string name = 1;
-  string description = 2;
+  optional string description = 2;
   string roleType = 3;
   optional string roleID = 4;
 }
