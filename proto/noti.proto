@@ -4,6 +4,7 @@ package notification;
 
 service NotificationService {
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
+  rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
   rpc SendSms (SendSmsRequest) returns (SendSmsResponse);
   rpc SendOtp (SendOtpRequest) returns (SendSmsResponse);
   rpc verifyOtp (VerifyOtpRequest) returns (SendSmsResponse);
@@ -11,20 +12,41 @@ service NotificationService {
 }
 
 message SaveSettingsRequest {
-  int32  settingsID = 1;
+  optional int32  settingsID = 1;
   int32  clientId = 2;
   bool   enable = 3;
   string displayName = 4;
   string gatewayName = 5;
   string senderID = 6;
-  string apiKey = 7;
-  string username = 8;
-  string password = 9;
+  optional string apiKey = 7;
+  optional string username = 8;
+  optional string password = 9;
 }
 
 message SaveSettingsResponse {
   string message = 1;
   bool   status = 2;
+}
+
+message GetSettingsRequest {
+  int32 clientId = 1;
+}
+
+message GetSettingsResponse {
+  string message = 1;
+  bool   status = 2;
+  Settings data = 3;
+}
+
+message Settings {
+  int32  id = 1;
+  bool   status = 2;
+  string displayName = 3;
+  string gatewayName = 4;
+  string senderID = 5;
+  string apiKey = 6;
+  string username = 7;
+  string password = 8;
 }
 
 
