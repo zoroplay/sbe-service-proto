@@ -6,7 +6,7 @@ service BonusService {
 
   rpc CreateCashbackBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateCashbackBonus (CreateCashbackBonusRequest) returns (CreateBonusResponse){}
+  rpc UpdateCashbackBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
   rpc CreateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
 
