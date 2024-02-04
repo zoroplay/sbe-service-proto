@@ -19,6 +19,7 @@ service IdentityService {
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponse) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponse) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
+  rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
 }
 // user
 message UserData {
@@ -69,7 +70,6 @@ message RegisterResponse {
   UserData data = 2;
   optional string error = 3;
 }
-
 // Login
 message LoginRequest {
   int32 clientId = 1;
@@ -151,6 +151,17 @@ message PermissionRequest {
   string permissionID = 3;
 }
 
+message GetClientRequest {
+  string id = 1;
+}
+
+message GetClientResponse {
+  bool status = 1;
+  string message = 2;
+  ClientData data = 3;
+  optional string errors = 4;
+}
+
 message CommonResponse {
   bool status = 1;
   string message = 2;
@@ -166,6 +177,15 @@ message DeleteResponse {
 message GetUsersResponse {
   bool status = 1;
   string message = 2;
+}
+
+message ClientData {
+  string name = 1;
+  string country = 2;
+  string currency = 3;
+  string website = 4;
+  string contactNumber = 5;
+  string contactEmail = 6;
 }
 
 message EmptyRequest {}
