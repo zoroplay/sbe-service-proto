@@ -146,13 +146,12 @@ message InitiateDepositRequest {
 
 message InitiateDepositReponse {
   bool success = 1;
-  string url = 2;
-  string message = 3;
+  string message = 2;
   message Data {
     string link = 1;
     string transactionRef = 2;
   }
-  Data data = 4;
+  Data data = 3;
 }
 
 message Transaction {
