@@ -151,7 +151,7 @@ message InitiateDepositReponse {
     optional string link = 1;
     optional string transactionRef = 2;
   }
-  Data data = 3;
+  optional Data data = 3;
 }
 
 message Transaction {
