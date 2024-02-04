@@ -148,8 +148,8 @@ message InitiateDepositReponse {
   bool success = 1;
   string message = 2;
   message Data {
-    string link = 1;
-    string transactionRef = 2;
+    optional string link = 1;
+    optional string transactionRef = 2;
   }
   Data data = 3;
 }
