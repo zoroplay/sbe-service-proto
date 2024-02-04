@@ -8,6 +8,8 @@ service WalletService {
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositRequest) {}
+  rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositRequest) {}
+  rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
@@ -26,6 +28,45 @@ message PaymentMethodRequest {
   int32 status = 8;
   int32 forDisbursement = 9;
   int32 id = 10;
+}
+
+message InititateDepositRequest {
+  int32 clientId = 1;
+  int32 amount = 2;
+  string paymentMethod = 3;
+  string channel = 4;
+}
+
+message InititateDepositResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  Transaction data = 4;
+}
+
+message VerifyDepositRequest {
+  int32 clientId = 1;
+  string transactionRef = 2;
+  string paymentChannel = 3;
+}
+
+message VerifyDepositResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+}
+
+message WebhookRequest {
+  int32 clientId = 1;
+  string transactionRef = 2;
+  string paymentChannel = 3;
+  string paymentStatus = 4;
+}
+
+message WebhookResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
 }
 
 message GetPaymentMethodRequest {
@@ -134,6 +175,7 @@ message Transaction {
   double balance = 8;
   int32 status = 9;
   string createdAt = 10;
+  optional string link = 11;
 }
 
 message VerifyBankAccountRequest {
