@@ -152,6 +152,7 @@ message InitiateDepositReponse {
     string link = 1;
     string transactionRef = 2;
   }
+  Data data = 4;
 }
 
 message Transaction {
