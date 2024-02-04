@@ -7,7 +7,7 @@ service WalletService {
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
-  rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositRequest) {}
+  rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositRequest) {}
   rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
@@ -144,7 +144,7 @@ message InitiateDepositRequest {
   string username = 6;
 }
 
-message InitiateDepositReponse {
+message InitiateDepositResponse {
   bool success = 1;
   string message = 2;
   message Data {
