@@ -141,13 +141,17 @@ message InitiateDepositRequest {
   double amount = 3;
   string paymentMethod = 4;
   string source = 5;
+  string username = 6;
 }
 
 message InitiateDepositReponse {
   bool success = 1;
   string url = 2;
   string message = 3;
-  Transaction data = 4;
+  message Data {
+    string link = 1;
+    string transactionRef = 2;
+  }
 }
 
 message Transaction {
