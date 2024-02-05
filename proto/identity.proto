@@ -6,6 +6,7 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponse) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
@@ -30,6 +31,7 @@ message UserData {
   optional string code = 4;
   optional string firstName = 5;
   optional string lastName = 6;
+  optional string email = 7;
 }
 
 message CreateUserRequest {
@@ -83,6 +85,18 @@ message LoginResponse {
   string token = 2;
   UserData data = 3;
   optional string error = 4;
+}
+
+message GetUserDetailsRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message GetUserDetailsResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  UserData data = 4;
 }
 
 // Validate
