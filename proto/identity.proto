@@ -70,8 +70,9 @@ message User {
 
 message RegisterResponse {
   int32 status = 1;
-  UserData data = 2;
-  optional string error = 3;
+  bool success = 2;
+  UserData data = 3;
+  optional string error = 4;
 }
 // Login
 message LoginRequest {
@@ -82,7 +83,7 @@ message LoginRequest {
 
 message LoginResponse {
   int32 status = 1;
-  string token = 2;
+  bool success = 2;
   UserData data = 3;
   optional string error = 4;
 }
