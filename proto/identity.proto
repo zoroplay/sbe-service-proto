@@ -20,6 +20,7 @@ service IdentityService {
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponse) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
+  rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
 }
 // user
 message UserData {
@@ -149,6 +150,17 @@ message PermissionRequest {
   string name = 1;
   string description = 2;
   string permissionID = 3;
+}
+
+message GetPaymentDataRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message GetPaymentDataResponse {
+  string username = 1;
+  string email = 2;
+  string clientUrl = 3;
 }
 
 message GetClientRequest {
