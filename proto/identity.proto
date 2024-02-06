@@ -52,6 +52,7 @@ message CreateUserRequest {
   optional string language = 15;
   optional string currency = 16;
   optional int32 parent = 17;
+  optional string promoCode = 18;
 }
 
 // user
