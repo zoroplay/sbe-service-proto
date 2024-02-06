@@ -27,11 +27,20 @@ service IdentityService {
 message UserData {
   int32 id = 1;
   string username = 2;
-  optional string balance = 3;
+  optional float balance = 3;
   optional string code = 4;
   optional string firstName = 5;
   optional string lastName = 6;
   optional string email = 7;
+  optional string phone = 8;
+  optional string role = 9;
+  optional int32 roleId = 10;
+  optional float availableBalance = 12;
+  optional float sportBonusBalance = 13;
+  optional float casinoBonusBalance = 14;
+  optional float virtualBonusBalance = 15;
+  optional float trustBalance = 16;
+  string token = 17;
 }
 
 message CreateUserRequest {
