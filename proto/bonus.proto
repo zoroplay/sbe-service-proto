@@ -4,25 +4,25 @@ package bonus;
 
 service BonusService {
 
-  rpc CreateCashbackBonus (CreateBonusRequest) returns (CreateBonusResponse){}
+  rpc CreateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateCashbackBonus (CreateBonusRequest) returns (CreateBonusResponse){}
+  rpc UpdateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-  rpc CreateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
+  // rpc CreateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
+  // rpc UpdateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
 
-  rpc CreateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
+  // rpc CreateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
+  // rpc UpdateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
 
-  rpc CreateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
+  // rpc CreateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
+  // rpc UpdateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
 
-  rpc CreateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
+  // rpc CreateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
 
-  rpc UpdateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
+  // rpc UpdateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
