@@ -8,7 +8,7 @@ service BonusService {
 
   rpc UpdateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-  rpc getCampaignBonus (GetCampaignBonusRequest) returns (GetCampaignBonusResponse){}
+  rpc GetCampaign (GetCampaignRequest) returns (GetCampaignResponse){}
 
   // rpc UpdateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
 
@@ -324,12 +324,12 @@ message GetBonusByClientID {
   int32 clientId = 1;
 }
 
-message GetCampaignBonusRequest {
+message GetCampaignRequest {
   int32 clientId = 1;
   string promoCode = 2;
 }
 
-message GetCampaignBonusResponse {
+message GetCampaignResponse {
   bool success = 1;
   string message = 2;
   CampaignBonusData data = 3;
