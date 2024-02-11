@@ -8,7 +8,7 @@ service BonusService {
 
   rpc UpdateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-  // rpc CreateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
+  rpc getCampaignBonus (GetCampaignBonusRequest) returns (GetCampaignBonusResponse){}
 
   // rpc UpdateFirstDepositBonus (CreateFirstDepositBonusRequest) returns (CreateBonusResponse){}
 
@@ -224,7 +224,6 @@ message UserBonusResponse {
 }
 
 
-
 message AwardBonusRequest {
   int32 clientId = 1;
   int32 bonusId = 2;
@@ -254,7 +253,6 @@ message BetSlip {
   string outcomeName = 9;
   float odds = 10;
   int64 sportId = 11;
-
 }
 
 message DebitBonusRequest {
@@ -299,8 +297,8 @@ message UpdateCampaignBonusDto {
 
 message RedeemCampaignBonusDto {
   int32 clientId = 1;
-  string    bonusCode = 2;
-  int32   userId = 3;
+  string bonusCode = 2;
+  int32 userId = 3;
 }
 
 
@@ -324,6 +322,17 @@ message AllCampaignBonus {
 
 message GetBonusByClientID {
   int32 clientId = 1;
+}
+
+message GetCampaignBonusRequest {
+  int32 clientId = 1;
+  string promoCode = 2;
+}
+
+message GetCampaignBonusResponse {
+  bool success = 1;
+  string message = 2;
+  CampaignBonusData data = 3;
 }
 
 message PlaceBetResponse {
