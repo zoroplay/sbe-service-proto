@@ -146,8 +146,9 @@ message CreateBonusRequest {
   int32 bonusAmountMultiplier = 15;
   int32 rolloverCount = 16;
   string name = 17;
-  float minimumBettingStake = 18;
-  string product = 19;
+  float minimumEntryAmount = 18;
+  float minimumBettingStake = 19;
+  string product = 20;
 }
 
 message CreateBonusResponse {
