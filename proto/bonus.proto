@@ -230,6 +230,7 @@ message AwardBonusRequest {
   string userId = 3;
   optional float amount = 4;
   optional float baseValue = 5;
+  optional string promoCode = 6;
 }
 
 message UserBet {
