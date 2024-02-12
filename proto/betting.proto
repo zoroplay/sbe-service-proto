@@ -125,6 +125,7 @@ message PlaceBetRequest {
   string type = 13;
   repeated Combo combos = 14;
   int32 isBooking = 15;
+  optional int32 bonusId = 16;
 }
 
 message BetSlip {

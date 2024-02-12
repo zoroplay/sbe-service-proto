@@ -255,6 +255,7 @@ message BetSlip {
   string outcomeName = 9;
   float odds = 10;
   int64 sportId = 11;
+  int32 matchId = 12;
 }
 
 message DebitBonusRequest {
@@ -338,7 +339,8 @@ message GetCampaignResponse {
 }
 
 message PlaceBetResponse {
-  int32 betId = 1;
-  int32 status = 2;
-  string statusDescription = 3;
+  bool success = 1;
+  int32 betId = 2;
+  int32 status = 3;
+  string statusDescription = 4;
 }
