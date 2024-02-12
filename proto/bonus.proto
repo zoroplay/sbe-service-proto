@@ -327,6 +327,7 @@ message GetBonusByClientID {
 message GetCampaignRequest {
   int32 clientId = 1;
   string promoCode = 2;
+  string userId = 3;
 }
 
 message GetCampaignResponse {
