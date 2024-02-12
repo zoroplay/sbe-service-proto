@@ -89,8 +89,9 @@ message PaymentMethod {
 message CreateWalletRequest {
   int32 userId = 1;
   int32 clientId = 2;
-  optional float amount = 3;
-  optional float bonus = 4;
+  string username = 3;
+  optional float amount = 4;
+  optional float bonus = 5;
 }
 
 message WalletResponse {
