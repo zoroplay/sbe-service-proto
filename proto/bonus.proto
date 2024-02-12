@@ -228,8 +228,8 @@ message AwardBonusRequest {
   int32 clientId = 1;
   int32 bonusId = 2;
   string userId = 3;
-  float amount = 4;
-  float baseValue = 5;
+  optional float amount = 4;
+  optional float baseValue = 5;
 }
 
 message UserBet {
