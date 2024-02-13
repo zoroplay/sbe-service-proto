@@ -349,4 +349,5 @@ message PlaceBetResponse {
 message ValidateBetResponse {
   bool success = 1;
   int32 id = 2;
+  string message = 3;
 }
