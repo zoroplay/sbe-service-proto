@@ -241,7 +241,7 @@ message UserBet {
   float stake = 4;
   float totalOdds = 5;
   int32 bonusId = 6;
-  int32 betId = 7;
+  optional int32 betId = 7;
 }
 
 message BetSlip {
