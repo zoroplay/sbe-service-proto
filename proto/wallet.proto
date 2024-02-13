@@ -116,6 +116,8 @@ message CreditUserRequest {
   string description = 5;
   string username = 6;
   string wallet = 7;
+  string subject = 8;
+  string channel = 9;
 }
 
 // credit user request payload
@@ -127,6 +129,8 @@ message DebitUserRequest {
   string description = 5;
   string username = 6;
   string wallet = 7;
+  string subject = 8;
+  string channel = 9;
 }
 
 message Wallet {
