@@ -10,7 +10,7 @@ service BonusService {
 
   rpc GetCampaign (GetCampaignRequest) returns (GetCampaignResponse){}
 
-  rpc CheckUserBonus (CheckBonusRequest) returns (CheckBonusResponse){}
+  rpc ValidateBetSelections (UserBet) returns (ValidateBetResponse){}
 
   // rpc CreateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
 
@@ -241,6 +241,7 @@ message UserBet {
   float stake = 4;
   float totalOdds = 5;
   int32 bonusId = 6;
+  int32 betId = 7;
 }
 
 message BetSlip {
@@ -345,12 +346,7 @@ message PlaceBetResponse {
   string statusDescription = 4;
 }
 
-message CheckBonusRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
-}
-
-message CheckBonusResponse {
+message ValidateBetResponse {
   bool success = 1;
   int32 id = 2;
 }
