@@ -214,7 +214,7 @@ message UserBonus {
   int32 totalRolloverCount = 9;
   int32 completedRolloverCount = 10;
   repeated UserBetData bets = 11;
-
+  int32 status = 13;
 }
 
 message UserBonusResponse {
