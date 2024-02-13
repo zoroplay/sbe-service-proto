@@ -195,6 +195,13 @@ message UserBetData {
   string created = 7;
 }
 
+message Transaction {
+  float amount = 1;
+  float balance = 2;
+  string createdAt = 3;
+  string desc = 4;
+}
+
 
 message GetUserBonusResponse {
 
@@ -213,8 +220,8 @@ message UserBonus {
   float pendingAmount = 8;
   int32 totalRolloverCount = 9;
   int32 completedRolloverCount = 10;
-  repeated UserBetData bets = 11;
-  int32 status = 13;
+  int32 status = 11;
+  repeated Transaction transactions = 12;
 }
 
 message UserBonusResponse {
@@ -232,6 +239,7 @@ message AwardBonusRequest {
   optional float amount = 5;
   optional float baseValue = 6;
   optional string promoCode = 7;
+  optional int32 status = 8;
 }
 
 message UserBet {
