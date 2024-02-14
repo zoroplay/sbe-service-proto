@@ -40,7 +40,7 @@ message Games {
 
 message UpdateGameDto {
     int32 id = 1;
-    string game_id = 2;
+    string gameId = 2;
     string title = 3;
     string description = 4;
     string url = 5;
@@ -52,7 +52,7 @@ message UpdateGameDto {
 }
 
 message CreateGameDto {
-    string game_id = 1;
+    string gameId = 1;
     string title = 2;
     string description = 3;
     string url = 4;
@@ -64,9 +64,11 @@ message CreateGameDto {
 }
 
 message StartGameDto {
-    string game_id = 1;
-    string provider_slug = 2;
-    optional string demo = 3;
+    string gameId = 1;
+    string clientId = 2;
+    string userId = 3;
+    string providerSlug = 4;
+    optional string demo = 5;
 };
 
 message StartGameResponse {
