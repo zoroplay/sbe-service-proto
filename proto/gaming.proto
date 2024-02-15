@@ -27,7 +27,8 @@ message SyncGameDto {
 
 message CallbackGameDto {
     string provider = 1;
-    google.protobuf.Any data = 2;
+    google.protobuf.Any header = 2;
+    google.protobuf.Any body = 3;
 };
 
 message FindOneGameDto {
