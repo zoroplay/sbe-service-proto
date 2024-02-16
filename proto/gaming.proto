@@ -9,6 +9,13 @@ service GamingService {
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
     rpc UpdateGame (UpdateGameDto) returns (Game) {}
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
+
+    rpc CreateProvider (CreateProviderDto) returns (Provider) {}
+    rpc UpdateProvider (CreateProviderDto) returns (Provider) {}
+    rpc FindOneProvider (FindOneGameDto) returns (Provider) {}
+    rpc RemoveProvider  (CreateProviderDto) returns (Provider) {}
+    rpc FindAllProviders (Empty) returns (Providers) {}
+
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleSmartSoftCallback (SmartSoftCallback) returns (SmartSoftCallback) {}
@@ -43,6 +50,10 @@ message Games {
     repeated Game games = 1;
 };
 
+message Providers {
+    repeated Provider providers = 1;
+};
+
 message UpdateGameDto {
     int32 id = 1;
     string gameId = 2;
@@ -54,6 +65,13 @@ message UpdateGameDto {
     bool status = 8;
     string type = 9;
     int32 providerId = 10;
+}
+message CreateProviderDto {
+    optional int32 id = 1;
+    string slug = 2;
+    string name = 3;
+    string description = 4;
+    string imagePath = 5;
 }
 
 message CreateGameDto {
