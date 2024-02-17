@@ -131,8 +131,8 @@ message CreateShareBetBonusRequest {
 message CreateBonusRequest {
   int32 clientId = 1;
   string bonusType = 2;
-  float minimumStake = 3;
-  int32 expiryInHours = 4;
+  string creditType = 3;
+  int32 duration = 4;
   int32 minimumEvents = 5;
   float minimumOddsPerEvent = 6;
   float minimumTotalOdds = 7;
@@ -147,7 +147,7 @@ message CreateBonusRequest {
   int32 rolloverCount = 16;
   string name = 17;
   float minimumEntryAmount = 18;
-  float minimumBettingStake = 19;
+  float maxAmount = 19;
   string product = 20;
 }
 
