@@ -188,9 +188,9 @@ message GetPaymentDataRequest {
 message GetPaymentDataResponse {
   string username = 1;
   string email = 2;
-  string mobileUrl = 3;
-  string webUrl = 4;
-  string shopUrl = 5;
+  optional string mobileUrl = 3;
+  optional string webUrl = 4;
+  optional string shopUrl = 5;
 }
 
 message GetClientRequest {
