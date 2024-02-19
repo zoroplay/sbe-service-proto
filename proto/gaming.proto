@@ -249,3 +249,9 @@ message EvolutionCallback {
     optional int32 tableId = 13;
     int32 timestamp = 14;
 }
+
+message CallbackResponse {
+    bool success = 1;
+    string message = 2;
+    google.protobuf.Any data = 3;
+}
