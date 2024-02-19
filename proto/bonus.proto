@@ -133,7 +133,7 @@ message CreateBonusRequest {
   string bonusType = 2;
   string creditType = 3;
   int32 duration = 4;
-  int32 minimumEvents = 5;
+  int32 minimumSelection = 5;
   float minimumOddsPerEvent = 6;
   float minimumTotalOdds = 7;
   string applicableBetType = 8;
