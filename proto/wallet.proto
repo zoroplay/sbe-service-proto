@@ -8,7 +8,7 @@ service WalletService {
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
-  rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositRequest) {}
+  rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
