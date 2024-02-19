@@ -207,8 +207,8 @@ message UserBonusResponse {
 message AwardBonusRequest {
   int32 clientId = 1;
   int32 bonusId = 2;
-  string userId = 3;
-  string username = 4;
+  int32 userId = 3;
+  optional string username = 4;
   optional float amount = 5;
   optional float baseValue = 6;
   optional string promoCode = 7;
