@@ -125,10 +125,13 @@ message ClientRequest {
   string name = 1;
   string country = 2;
   string currency = 3;
-  string website = 4;
-  string contactNumber = 5;
-  string contactEmail = 6;
-  string clientID = 7;
+  string apiUrl = 4;
+  string webUrl = 5;
+  string mobileUrl = 6;
+  string shopUrl = 7;
+  string contactNumber = 8;
+  string contactEmail = 9;
+  string clientID = 10;
 }
 
 message RemoveClientRequest {
@@ -180,12 +183,13 @@ message PermissionRequest {
 message GetPaymentDataRequest {
   int32 clientId = 1;
   int32 userId = 2;
+  string source = 3;
 }
 
 message GetPaymentDataResponse {
   string username = 1;
   string email = 2;
-  string clientUrl = 3;
+  string callbackUrl = 3;
 }
 
 message GetClientRequest {

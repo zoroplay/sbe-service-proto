@@ -8,7 +8,7 @@ service WalletService {
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
-  rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositRequest) {}
+  rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
   rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
@@ -116,6 +116,8 @@ message CreditUserRequest {
   string description = 5;
   string username = 6;
   string wallet = 7;
+  string subject = 8;
+  string channel = 9;
 }
 
 // credit user request payload
@@ -127,6 +129,8 @@ message DebitUserRequest {
   string description = 5;
   string username = 6;
   string wallet = 7;
+  string subject = 8;
+  string channel = 9;
 }
 
 message Wallet {
