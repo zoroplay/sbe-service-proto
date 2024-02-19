@@ -93,6 +93,7 @@ message StartGameDto {
     optional string homeUrl = 4;
     optional string depositUrl = 5;
     optional bool demo = 6;
+    optional bool isMobile = 7;
 };
 
 message StartGameResponse {
