@@ -12,7 +12,7 @@ service BonusService {
 
   rpc ValidateBetSelections (UserBet) returns (ValidateBetResponse){}
 
-  // rpc CreateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
+  rpc CheckFirstDeposit (CheckFirstDepositRequest) returns (CheckFirstDepositResponse){}
 
   // rpc UpdateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
 
@@ -48,49 +48,21 @@ service BonusService {
 
 }
 
-message CreateFirstDepositBonusRequest {
+message CheckFirstDepositRequest {
   int32 clientId = 1;
-  int32 expiryInHours = 2;
-  int32 minimumEvents = 3;
-  float minimumOddsPerEvent = 4;
-  float minimumTotalOdds = 5;
-  string applicableBetType = 6;
-  int32 maximumWinning = 7;
-  int32 minimumEntryAmount = 8;
-  int32 bonusAmount = 9;
-  float minimumBettingStake = 10;
+  int32 userId = 2;
 }
 
-message CreateCashbackBonusRequest {
-  int32 clientId = 1;
-  float minimumStake = 2;
-  int32 expiryInHours = 3;
-  int32 minimumEvents = 4;
-  float minimumOddsPerEvent = 5;
-  float minimumTotalOdds = 6;
-  string applicableBetType = 7;
-  int32 maximumWinning = 8;
-  int32 minimumSelection = 9;
-  int32 minimumLostGames = 10;
-  int32 bonusAmount = 11;
-  int32 bonusAmountMultiplier = 12;
-  int32 rolloverCount = 13;
-  string name = 14;
-  float minimumBettingStake = 15;
-  string product = 16;
+message CheckFirstDepositResponse {
+  bool success = 1;
+  float value = 2;
+  optional FirstDepositBonus data = 3;
 }
 
-message CreateFreebetBonusRequest {
-  int32 clientId = 1;
-  int32 expiryInHours = 2;
-  int32 minimumEvents = 3;
-  float minimumOddsPerEvent = 4;
-  float minimumTotalOdds = 5;
-  string applicableBetType = 6;
-  int32 maximumWinning = 7;
-  int32 bonusAmount = 8;
-  float minimumBettingStake = 9;
-  string product = 10;
+message FirstDepositBonus {
+  int32 bonusId = 1;
+  float value = 2;
+  string type = 3;
 }
 
 message CreateReferralBonusRequest {
