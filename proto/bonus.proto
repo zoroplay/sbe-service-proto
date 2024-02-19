@@ -63,6 +63,7 @@ message FirstDepositBonus {
   int32 bonusId = 1;
   float value = 2;
   string type = 3;
+  string name = 4;
 }
 
 message CreateReferralBonusRequest {
