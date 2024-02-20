@@ -40,7 +40,7 @@ service BonusService {
 
   rpc UpdateCampaignBonus(UpdateCampaignBonusDto) returns (CreateBonusResponse){}
 
-  rpc DeleteCampaignBonus(DeleteCampaignBonusDto) returns (CreateBonusResponse){}
+  rpc DeleteCampaignBonus(DeleteBonusRequest) returns (CreateBonusResponse){}
 
   rpc RedeemCampaignBonus(RedeemCampaignBonusDto) returns (CreateBonusResponse){}
 
@@ -137,7 +137,7 @@ message GetBonusRequest {
 
 message DeleteBonusRequest {
   int32 clientId = 1;
-  string bonusType = 2;
+  int32 id = 2;
 }
 
 message GetBonusResponse {
@@ -284,12 +284,6 @@ message RedeemCampaignBonusDto {
   int32 clientId = 1;
   string bonusCode = 2;
   int32 userId = 3;
-}
-
-
-message DeleteCampaignBonusDto {
-  int32 clientId = 1;
-  int32 id = 2;
 }
 
 message CampaignBonusData {
