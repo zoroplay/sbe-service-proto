@@ -126,6 +126,7 @@ message PlaceBetRequest {
   repeated Combo combos = 14;
   int32 isBooking = 15;
   optional int32 bonusId = 16;
+  optional bool useBonus = 17;
 }
 
 message BetSlip {
