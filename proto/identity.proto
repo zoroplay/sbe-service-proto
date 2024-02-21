@@ -41,6 +41,8 @@ message UserData {
   optional float virtualBonusBalance = 15;
   optional float trustBalance = 16;
   string token = 17;
+  string registered = 18;
+  string authCode = 19;
 }
 
 message CreateUserRequest {
