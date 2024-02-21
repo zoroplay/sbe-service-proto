@@ -64,6 +64,7 @@ message CreateUserRequest {
   optional string currency = 16;
   optional int32 parent = 17;
   optional string promoCode = 18;
+  optional string trackingToken = 19;
 }
 
 // user
