@@ -116,7 +116,7 @@ message CreateBonusRequest {
   string created = 12;
   string updated = 13;
   int32 id = 14;
-  int32 bonusAmountMultiplier = 15;
+  int32 minimumLostGames = 15;
   int32 rolloverCount = 16;
   string name = 17;
   float minimumEntryAmount = 18;
