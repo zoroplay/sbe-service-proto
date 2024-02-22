@@ -241,7 +241,7 @@ message SearchPlayerRequest {
 message SearchPlayerResponse {
   bool success = 1;
   string message = 2;
-  optional Player data = 3;
+  repeated Player data = 3;
 }
 
 message Player {
