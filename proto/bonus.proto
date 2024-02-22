@@ -279,6 +279,8 @@ message UpdateCampaignBonusDto {
   int32 bonusId = 4;
   string expiryDate = 5;
   int32 id = 6;
+  optional string affiliateIds = 7;
+  optional string trackierCampaignId = 8;
 }
 
 message RedeemCampaignBonusDto {
