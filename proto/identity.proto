@@ -249,7 +249,8 @@ message Player {
   string code = 2;
   string username = 3;
   string email = 4;
-  string name = 5;
+  string firstName = 5;
+  string lastName = 19;
   string phoneNumber = 6;
   string registered = 7;
   string country = 8;
