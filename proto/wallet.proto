@@ -177,8 +177,9 @@ message Transaction {
 }
 
 message VerifyBankAccountRequest {
-  string accountNumber = 1;
-  string bankCode = 2;
+  string clientId = 1;
+  string accountNumber = 2;
+  string bankCode = 3;
 }
 
 message VerifyBankAccountResponse {
