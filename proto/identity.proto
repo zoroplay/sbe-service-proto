@@ -29,9 +29,9 @@ service IdentityService {
 message UserData {
   int32 id = 1;
   string username = 2;
-  optional float balance = 3;
+  float balance = 3;
   optional string code = 4;
-  optional string firstName = 5;
+  string firstName = 5;
   optional string lastName = 6;
   optional string email = 7;
   optional string phone = 8;
@@ -45,6 +45,12 @@ message UserData {
   string token = 17;
   string registered = 18;
   string authCode = 19;
+  string country = 20;
+  string currency = 21;
+  string city = 22;
+  string address = 23;
+  string gender = 24;
+  string dateOfBirth = 25;
 }
 
 message CreateUserRequest {
