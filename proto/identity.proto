@@ -23,7 +23,7 @@ service IdentityService {
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
-  rpc UpdateUserDetails (UpdateUserReqiest) returns (UpdateUserResponse) {}
+  rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
 }
 // user
 message UserData {
@@ -69,7 +69,7 @@ message CreateUserRequest {
   optional string trackingToken = 19;
 }
 
-message UpdateUserReqiest {
+message UpdateUserRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string username = 3;
