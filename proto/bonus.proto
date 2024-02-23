@@ -116,7 +116,7 @@ message CreateBonusRequest {
   string created = 12;
   string updated = 13;
   int32 id = 14;
-  int32 bonusAmountMultiplier = 15;
+  int32 minimumLostGames = 15;
   int32 rolloverCount = 16;
   string name = 17;
   float minimumEntryAmount = 18;
@@ -221,7 +221,7 @@ message UserBet {
   int32 clientId = 2;
   int32 userId = 3;
   float stake = 4;
-  float maxOdds = 5;
+  float totalOdds = 5;
   int32 bonusId = 6;
   optional int32 betId = 7;
 }
@@ -279,6 +279,8 @@ message UpdateCampaignBonusDto {
   int32 bonusId = 4;
   string expiryDate = 5;
   int32 id = 6;
+  optional string affiliateIds = 7;
+  optional string trackierCampaignId = 8;
 }
 
 message RedeemCampaignBonusDto {

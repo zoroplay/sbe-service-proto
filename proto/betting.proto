@@ -143,7 +143,7 @@ message PlaceBetRequest {
   float minBonus = 9;
   float maxBonus = 10;
   float minOdds = 11;
-  float maxOdds = 12;
+  float totalOdds = 12;
   string type = 13;
   repeated Combo combos = 14;
   int32 isBooking = 15;
