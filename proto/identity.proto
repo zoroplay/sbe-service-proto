@@ -305,7 +305,7 @@ message Player {
 
 message GetUserByUsernameRequest {
   int32 clientId = 1;
-  int32 username = 2;
+  string username = 2;
 }
 
 message GetUserByUsernameResponse {
