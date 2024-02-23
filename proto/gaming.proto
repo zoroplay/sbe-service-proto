@@ -18,11 +18,7 @@ service GamingService {
 
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
-    rpc HandleSmartSoftCallback (SmartSoftCallback) returns (CallbackResponse) {}
-    rpc HandleTadaCallback (TadaCallback) returns (CallbackResponse) {}
-    rpc HandleShackEvolutionCallback (ShackEvolutionCallback) returns (CallbackResponse) {}
-    rpc HandleEvoplayCallback(EvoplayCallback) returns (CallbackResponse) {}
-    rpc HandleEvolutionCallback(EvolutionCallback) returns (CallbackResponse) {}
+    rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
 }
 
 message PaginationDto {
