@@ -24,6 +24,7 @@ service IdentityService {
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
   rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc ValidateUserByUsername (GetUserByUsernameRequest) returns (UpdateUserResponse) {}
 }
 // user
 message UserData {
@@ -143,6 +144,8 @@ message GetUserDetailsResponse {
   string message = 3;
   UserData data = 4;
 }
+
+
 
 message UpdateUserResponse {
   bool success = 1;
@@ -298,6 +301,23 @@ message Player {
   float lifeTimeWithdrawal = 15;
   int32 openBets = 16;
   string role = 17;
+}
+
+message GetUserByUsernameRequest {
+  int32 clientId = 1;
+  int32 username = 2;
+}
+
+message GetUserByUsernameResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  message Data {
+    string referenceID = 1;
+    string CustomerName = 2;
+    string Phoneno = 3;
+    string Status = 4;
+  }
+  optional Data data = 3;
 }
 
 message EmptyRequest {}

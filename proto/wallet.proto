@@ -15,6 +15,8 @@ service WalletService {
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
+  rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
+  rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
 }
 
 message PaymentMethodRequest {
@@ -223,4 +225,25 @@ message GetTransactionResponse {
   int32 status = 2;
   string message = 3;
   repeated Transaction data = 4;
+}
+
+message OpayWebhookRequest {
+  int32 clientId = 1;
+  optional string username = 2;
+  string transactionNo = 3;
+  string amount = 4;
+}
+
+message OpayWebhookResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  message Data {
+    string UserID = 1;
+    string OrderNo = 2;
+    string TransAmount = 3;
+    string PaymentReference = 4;
+    string Status = 5;
+    string TransDate = 6;
+  }
+  optional Data data = 3;
 }
