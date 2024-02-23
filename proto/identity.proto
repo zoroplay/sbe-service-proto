@@ -24,7 +24,7 @@ service IdentityService {
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
   rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
-  rpc ValidateUserByUsername (GetUserByUsernameRequest) returns (UpdateUserResponse) {}
+  rpc ValidateUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
 }
 // user
 message UserData {
