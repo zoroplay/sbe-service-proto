@@ -38,8 +38,10 @@ message SyncGameDto {
 
 message CallbackGameDto {
     string provider = 1;
-    google.protobuf.Any header = 2;
-    google.protobuf.Any body = 3;
+    optional string action = 2;
+    optional string method = 3;
+    google.protobuf.Any header = 4;
+    google.protobuf.Any body = 5;
 };
 
 message FindOneGameDto {
