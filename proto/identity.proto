@@ -6,6 +6,7 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponse) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
@@ -161,6 +162,12 @@ message ValidateResponse {
   int32 status = 1;
   string error = 2;
   int32 userId = 3;
+}
+
+message ValidateClientResponse {
+  int32 status = 1;
+  string error = 2;
+  int32 clientId = 3;
 }
 
 message ClientRequest {
