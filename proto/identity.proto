@@ -23,6 +23,7 @@ service IdentityService {
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
+  rpc UpdateUserDetails (CreateUserRequest) returns (UpdateUserResponse) {}
 }
 // user
 message UserData {
@@ -112,6 +113,11 @@ message GetUserDetailsResponse {
   bool success = 2;
   string message = 3;
   UserData data = 4;
+}
+
+message UpdateUserResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 // Validate
