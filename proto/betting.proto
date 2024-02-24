@@ -147,6 +147,8 @@ message PlaceBetRequest {
   string type = 13;
   repeated Combo combos = 14;
   int32 isBooking = 15;
+  optional int32 bonusId = 16;
+  optional bool useBonus = 17; 
 }
 
 message BetSlip {
@@ -172,6 +174,7 @@ message BetSlip {
   string selectionId = 20;
   string eventDate = 21;
   string eventPrefix = 22;
+  optional bool isBonus = 23;
 }
 
 message Combo {
