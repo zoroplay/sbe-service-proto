@@ -343,7 +343,7 @@ message OnlinePlayersResponse {
   int32 to = 2;
   int32 total = 3;
   int32 currentPage = 4;
-  string perPage = 5;
+  int32 perPage = 5;
   repeated Player data = 6;
 }
 
