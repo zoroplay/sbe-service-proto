@@ -334,6 +334,8 @@ message OnlinePlayersRequest {
   string country = 3;
   string state = 4;
   string source = 5;
+  optional int32 page = 6;
+  optional int32 limit = 7;
 }
 
 message OnlinePlayersResponse {
