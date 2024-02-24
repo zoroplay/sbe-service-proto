@@ -341,12 +341,11 @@ message OnlinePlayersRequest {
 
 message RegistrationReportRequest {
   int32 clientId = 1;
-  string username = 2;
-  string country = 3;
-  string state = 4;
-  string source = 5;
-  optional int32 page = 6;
-  optional int32 limit = 7;
+  string from = 2;
+  string to = 3;
+  string source = 4;
+  optional int32 page = 5;
+  optional int32 limit = 6;
 }
 
 message PlayersListResponse {
