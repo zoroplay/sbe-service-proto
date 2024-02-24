@@ -310,6 +310,7 @@ message Player {
   float lifeTimeWithdrawal = 15;
   int32 openBets = 16;
   string role = 17;
+  string lastLogin = 18;
 }
 
 message GetUserByUsernameRequest {
