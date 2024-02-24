@@ -26,7 +26,8 @@ service IdentityService {
   rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
   rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
-  rpc OnlinePlayersReport (OnlinePlayersRequest) returns (OnlinePlayersResponse) {}
+  rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
+  rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
 }
 // user
 message UserData {
@@ -338,7 +339,17 @@ message OnlinePlayersRequest {
   optional int32 limit = 7;
 }
 
-message OnlinePlayersResponse {
+message RegistrationReportRequest {
+  int32 clientId = 1;
+  string username = 2;
+  string country = 3;
+  string state = 4;
+  string source = 5;
+  optional int32 page = 6;
+  optional int32 limit = 7;
+}
+
+message PlayersListResponse {
   int32 from = 1;
   int32 to = 2;
   int32 total = 3;
