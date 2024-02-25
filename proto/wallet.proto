@@ -197,6 +197,12 @@ message WithdrawRequest {
   int32 userId = 1;
   int32 clientId = 2;
   double amount = 3;
+  string accountName = 4;
+  string accountNumber = 5;
+  optional string bankCode = 6;
+  optional string bankId = 7;
+  optional string type = 8;
+  optional string source = 9;
 }
 
 message WithdrawResponse {
