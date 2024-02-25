@@ -23,11 +23,12 @@ service IdentityService {
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
-  rpc SearchPlayer (SearchPlayerRequest) returns (SearchPlayerResponse) {}
+  rpc SearchPlayers (SearchPlayerRequest) returns (SearchPlayerResponse) {}
   rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
+  rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
 }
 // user
 message UserData {
@@ -360,6 +361,41 @@ message PlayersListResponse {
   int32 currentPage = 4;
   int32 perPage = 5;
   repeated Player data = 6;
+}
+
+message GetPlayerDataRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message GetPlayerDataResponse {
+  bool success = 1;
+  string message = 2;
+  message PlayerData {
+    Player user = 1;
+    PlayerWalletData wallet = 2;
+    PlayerBonusData bonus = 3;
+  }
+  optional PlayerData data = 3;
+}
+
+message PlayerWalletData {
+  int32 deposits = 1;
+  int32 totalDeposits = 2;
+  int32 withdrawals = 3;
+  int32 totalWithdrawals = 4;
+  int32 pendingWithdrawals = 5;
+  int32 avgWithdrawals = 6;
+  message LastDepositWithdrawal {
+    string data = 1;
+    float amount = 2;
+  }
+  LastDepositWithdrawal lasitDeposit = 7;
+  LastDepositWithdrawal lastWithdrawal = 8;
+}
+
+message PlayerBonusData {
+  
 }
 
 message EmptyRequest {}
