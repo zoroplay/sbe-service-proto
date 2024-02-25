@@ -163,7 +163,11 @@ message ValidateRequest {
 message ValidateResponse {
   int32 status = 1;
   string error = 2;
-  int32 userId = 3;
+  message User {
+    int32 id = 1;
+    string username = 2;
+  }
+  optional User user = 3;
 }
 
 message ValidateClientResponse {
