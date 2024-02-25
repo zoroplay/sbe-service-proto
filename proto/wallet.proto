@@ -203,6 +203,7 @@ message WithdrawRequest {
   optional string bankId = 7;
   optional string type = 8;
   optional string source = 9;
+  string username = 10;
 }
 
 message WithdrawResponse {
