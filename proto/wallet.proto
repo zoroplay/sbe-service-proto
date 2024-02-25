@@ -180,8 +180,10 @@ message Transaction {
 
 message VerifyBankAccountRequest {
   int32 clientId = 1;
-  string accountNumber = 2;
-  string bankCode = 3;
+  int32 userId = 2;
+  string accountNumber = 3;
+  string bankCode = 4;
+  string source = 5;
 }
 
 message VerifyBankAccountResponse {
