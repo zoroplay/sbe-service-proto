@@ -10,7 +10,7 @@ service WalletService {
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
-  rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {}
+  rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
