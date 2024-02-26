@@ -283,6 +283,7 @@ message WithdrawalRequest {
   string bankName = 7;
   string updatedBy = 8;
   int32 status = 9;
+  string created = 10;
 }
 
 message UserTransactionRequest {
