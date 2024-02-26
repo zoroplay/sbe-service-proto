@@ -308,4 +308,5 @@ message TransactionData {
   string description = 7;
   string transactionDate = 8;
   string channel = 9;
+  int32 status = 10;
 }
