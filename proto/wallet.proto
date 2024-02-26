@@ -239,7 +239,7 @@ message GetTransactionResponse {
 message OpayWebhookRequest {
   int32 clientId = 1;
   optional string username = 2;
-  string transactionNo = 3;
+  string orderNo = 3;
   string amount = 4;
 }
 
