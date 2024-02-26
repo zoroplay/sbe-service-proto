@@ -9,12 +9,12 @@ service WalletService {
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
-  rpc PaymentWebhook (WebhookRequest) returns (WebhookResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
+  rpc PaystackWebhook (PaystackWebhookRequest) returns (WebhookResponse) {}
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
@@ -45,17 +45,16 @@ message VerifyDepositResponse {
   string message = 3;
 }
 
-message WebhookRequest {
+message PaystackWebhookRequest {
   int32 clientId = 1;
-  string transactionRef = 2;
-  string paymentChannel = 3;
-  string paymentStatus = 4;
+  string reference = 2;
+  string event = 3;
+  string body = 4;
+  string paystackKey = 5;
 }
 
 message WebhookResponse {
   bool success = 1;
-  int32 status = 2;
-  string message = 3;
 }
 
 message GetPaymentMethodRequest {
