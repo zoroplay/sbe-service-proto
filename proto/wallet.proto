@@ -18,6 +18,7 @@ service WalletService {
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
+  rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
 }
 
 message PaymentMethodRequest {
@@ -262,8 +263,7 @@ message ListWithdrawalRequests {
   string from = 2;
   string to = 3;
   int32 status = 4;
-  string username = 5;
-  string transactionId = 6;
+  int32 userId = 5;
 }
 
 message ListWithdrawalRequestResponse {
@@ -283,4 +283,29 @@ message WithdrawalRequest {
   string bankName = 7;
   string updatedBy = 8;
   int32 status = 9;
+}
+
+message UserTransactionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string startDate = 3;
+  string endDate = 4;
+}
+
+message UserTransactionResponse {
+  bool success = 1;
+  string message = 2;
+  repeated TransactionData data = 3;
+}
+
+message TransactionData {
+  int32 id = 1;
+  string referenceNo = 2;
+  float amount = 3;
+  float balance = 4;
+  string subject = 5;
+  string type = 6;
+  string description = 7;
+  string transactionDate = 8;
+  string channel = 9;
 }
