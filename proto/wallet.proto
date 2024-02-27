@@ -279,7 +279,7 @@ message WithdrawalRequest {
   int32 userId = 2;
   string username = 3;
   float amount = 4;
-  int32 accountNumber = 5;
+  string accountNumber = 5;
   string accountName = 6;
   string bankName = 7;
   string updatedBy = 8;
