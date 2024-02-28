@@ -339,4 +339,6 @@ message PlayerWalletData {
   string lastWithdrawalDate = 8;
   float lastDepositAmount = 9;
   float lastWithdrawalAmount = 10;
+  string firstActivityDate = 11;
+  string lastActivityDate = 12;
 }
