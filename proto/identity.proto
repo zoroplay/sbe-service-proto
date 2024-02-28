@@ -380,18 +380,16 @@ message GetPlayerDataResponse {
 }
 
 message PlayerWalletData {
-  int32 deposits = 1;
-  int32 totalDeposits = 2;
-  int32 withdrawals = 3;
-  int32 totalWithdrawals = 4;
-  int32 pendingWithdrawals = 5;
-  int32 avgWithdrawals = 6;
-  message LastDepositWithdrawal {
-    string data = 1;
-    float amount = 2;
-  }
-  LastDepositWithdrawal lasitDeposit = 7;
-  LastDepositWithdrawal lastWithdrawal = 8;
+  float sportBalance = 1;
+  float totalDeposits = 2;
+  float sportBonusBalance = 3;
+  float totalWithdrawals = 4;
+  float pendingWithdrawals = 5;
+  float avgWithdrawals = 6;
+  string lastDepositDate = 7;
+  string lastWithdrawalDate = 8;
+  float lastDepositAmount = 9;
+  float lastWithdrawalAmount = 10;
 }
 
 message PlayerBonusData {
