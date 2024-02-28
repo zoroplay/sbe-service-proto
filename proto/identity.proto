@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
-
 package identity;
 
 service IdentityService {
@@ -373,7 +371,12 @@ message GetPlayerDataRequest {
 message GetPlayerDataResponse {
   bool success = 1;
   string message = 2;
-  google.protobuf.Any data = 3;
+  message PlayerData {
+    Player user = 1;
+    PlayerWalletData wallet = 2;
+    PlayerBonusData bonus = 3;
+  }
+  optional PlayerData data = 3;
 }
 
 message PlayerWalletData {
@@ -392,7 +395,7 @@ message PlayerWalletData {
 }
 
 message PlayerBonusData {
-
+  
 }
 
 message EmptyRequest {}
