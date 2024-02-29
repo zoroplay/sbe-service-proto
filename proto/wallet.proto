@@ -3,7 +3,7 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc fetchReport (FetchReportRequest) returns (FetchReportResponse){}
+  rpc fetchBonusReport (FetchReportRequest) returns (FetchReportResponse){}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
