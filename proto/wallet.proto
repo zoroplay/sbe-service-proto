@@ -18,6 +18,7 @@ service WalletService {
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
+  rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
@@ -343,4 +344,25 @@ message PlayerWalletData {
   string lastActivityDate = 12;
   int32 noOfDeposits = 13;
   int32 noOfWithdrawals = 14;
+}
+
+message ListDepositRequests {
+  int32 clientId = 1;
+  string startDate = 2;
+  string endDate = 3;
+  string paymentMethod = 4;
+  int32 status = 5;
+  string username = 6;
+  string transactionId = 7;
+  int32 page = 8;
+}
+
+message PaginationResponse {
+  string message = 1;
+  int32 count = 2;
+  int32 currentPage = 3;
+  int32 nextPage = 4;
+  int32 prevPage = 5;
+  int32 lastPage = 6;
+  string data = 7;
 }
