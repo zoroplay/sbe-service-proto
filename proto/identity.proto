@@ -30,6 +30,7 @@ service IdentityService {
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
 }
 // user
 message UserData {
@@ -404,6 +405,12 @@ message ChangePasswordRequest {
   int32 userId = 2;
   string oldPassword = 3;
   string password = 4;
+}
+
+message ResetPasswordRequest {
+  int32 clientId = 1;
+  string username = 2;
+  string password = 3;
 }
 
 message EmptyRequest {}
