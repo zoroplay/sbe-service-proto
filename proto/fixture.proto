@@ -12,7 +12,7 @@ service FixtureService {
   /*
   Gets a list of sports, categories, tournaments based on upcoming fixtures for a period
    */
-   rpc GetCategoriesMenu (GetSportMenuRequest) returns (Category){}
+   rpc GetCategoriesMenu (GetSportMenuRequest) returns (CategoryMenuResponse){}
 
    /*
   Gets a list of sports, categories, tournaments based on upcoming fixtures for a period
