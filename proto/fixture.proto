@@ -193,8 +193,12 @@ message SportMenuResponse {
   repeated Category categories = 4;
 }
 
+message CategoryMenuResponse {
+  repeated Category sports = 1;
+}
+
 message TournamentMenuResponse {
-  repeated Tournament tournaments = 1;
+  repeated Tournament sports = 1;
 }
 
 // Object used to hold array of sports
