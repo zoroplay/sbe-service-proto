@@ -29,6 +29,7 @@ service IdentityService {
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
+  rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
 }
@@ -377,6 +378,22 @@ message GetPlayerDataResponse {
     PlayerBonusData bonus = 3;
   }
   optional PlayerData data = 3;
+}
+
+message UpdatePlayerDataRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string username = 3;
+  string country = 4;
+  string state = 5;
+  string address = 6;
+  string email = 7;
+  string dateOfBirth = 8;
+  string phoneNumber = 9;
+  string currency = 10;
+  string language = 11;
+  string firstName = 12;
+  string lastName = 13;
 }
 
 message PlayerWalletData {
