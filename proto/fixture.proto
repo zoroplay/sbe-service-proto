@@ -10,6 +10,16 @@ service FixtureService {
   rpc GetSportsMenu (GetSportMenuRequest) returns (AvailableSportMenuResponse){}
 
   /*
+  Gets a list of sports, categories, tournaments based on upcoming fixtures for a period
+   */
+   rpc GetCategoriesMenu (GetSportMenuRequest) returns (CategoryMenuResponse){}
+
+   /*
+  Gets a list of sports, categories, tournaments based on upcoming fixtures for a period
+   */
+  rpc GetTournamentsMenu (GetSportMenuRequest) returns (TournamentMenuResponse){}
+
+  /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
   rpc GetMarkets (FilterBySportID) returns (AllMarketResponse){}
@@ -183,6 +193,14 @@ message SportMenuResponse {
   repeated Category categories = 4;
 }
 
+message CategoryMenuResponse {
+  repeated Category sports = 1;
+}
+
+message TournamentMenuResponse {
+  repeated Tournament sports = 1;
+}
+
 // Object used to hold array of sports
 message AllSportResponse {
   repeated SportResponse sports = 1;
@@ -198,6 +216,8 @@ message GetSportMenuRequest {
   string start = 2; // start date
   string end = 3; //end date
   int32 timeoffset = 4;
+  optional int32 sportId = 5;
+  optional int32 categoryId = 6;
 }
 
 message GetHighlightsRequest {
