@@ -24,6 +24,20 @@ service WalletService {
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
 }
 
+message FetchPlayerDepositRequest {
+  int32 clientId = 1;
+  string startDate = 2;
+  string endDate = 3;
+  
+}
+
+message FetchPlayerDepositResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated PlayerWalletData data = 3;
+  optional string error = 4;
+}
+
 message PaymentMethodRequest {
   int32 clientId = 1;
   string title = 2;
