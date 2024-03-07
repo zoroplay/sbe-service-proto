@@ -3,6 +3,7 @@ syntax = "proto3";
 package identity;
 
 service IdentityService {
+  rpc FetchRegisteredPlayers (FetchPlayerRequest) returns (FetchPlayerResponse) {}
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
@@ -31,6 +32,18 @@ service IdentityService {
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
 }
 // user
+message FetchPlayerRequest {
+  string startDate = 1;
+  string endDate = 2;
+  
+}
+
+message FetchPlayerResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated UserData data = 3;
+  optional string error = 4;
+}
 message UserData {
   int32 id = 1;
   string username = 2;
