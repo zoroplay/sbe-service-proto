@@ -3,8 +3,10 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
+  rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
+  rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (FetchPlayerDepositResponse) {} 
+  
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
