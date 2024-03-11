@@ -340,9 +340,32 @@ message FetchReportRequest {
   string to = 3;
 }
 
+message UserEntity {
+  int32  id =1;
+  int32 user_id =2;
+  int32 client_id =3;
+  string username =4;
+  int32 wagering_requirement =5;
+  string bonus_id = 6;
+  string bonus_type = 7;
+  string name = 8;
+  string expiry_date =9;
+  int32 status =10;
+  int32 amount =11;
+  int32 balance =12;
+  int32 used_amount =13;
+  int32 rolled_amount = 14;
+  int32 wagering_requirement_remaining = 15;
+  int32 wagering_requirement_achieved =16;
+  string promoCode =17;
+  string created=18;
+  string updated =19;
+}
+
+
     
 message FetchReportResponse {
   string message = 1;
   bool status = 2;
-  repeated UserBonus data = 3;
+  repeated UserEntity data = 3;
 }
