@@ -67,10 +67,27 @@ message FetchPlayerDepositRequest {
 message FetchPlayerDepositResponse {
   int32 status = 1;
   bool success = 2;
-  repeated PlayerWalletData data = 3;
+  repeated TransactionEntity data = 3;
   optional string error = 4;
 }
 
+message TransactionEntity {
+int32   id =1;
+int32 client_id =2;
+int32 user_id=3;
+string username =4;
+string transaction_no=5;
+int32  amount =6;
+string  tranasaction_type =7;
+string  subject =8;
+string  description =9;
+string  source =10;
+string  channel=11;
+int32  balance =12;
+int32  status =13;
+string created_at =14;
+string updated_at =15;
+}
 message PaymentMethodRequest {
   int32 clientId = 1;
   string title = 2;

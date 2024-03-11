@@ -56,10 +56,27 @@ message FetchPlayersRequest {
 message FetchPlayersResponse {
   int32 status = 1;
   bool success = 2;
-  repeated UserData data = 3;
+  repeated UserInfo data = 3;
   optional string error = 4;
 }
 
+message UserInfo {
+  int32 id =1;
+  string role_id = 2;
+  string code =3;
+  string email =4;
+  string username =5;
+  string password =6;
+  string lastLogin =7;
+  string auth_code =8;
+  string virtual_token =9;
+  string registration_source =10;
+  bool verified =11;
+  int32 status =12;
+  bool isActive =13;
+  string created_at =14;
+  string updated_at =15;
+}
 
 message FetchDepositRangeRequest {
   int32 minAmount = 1;
