@@ -13,7 +13,7 @@ service BonusService {
 
   rpc ValidateBetSelections (UserBet) returns (ValidateBetResponse){}
 
-  rpc CheckFirstDeposit (CheckFirstDepositRequest) returns (CheckFirstDepositResponse){}
+  rpc CheckDepositBonus (CheckDepositBonusRequest) returns (CheckDepositBonusResponse){}
 
   // rpc UpdateFreebetBonus (CreateFreebetBonusRequest) returns (CreateBonusResponse){}
 
@@ -49,12 +49,12 @@ service BonusService {
 
 }
 
-message CheckFirstDepositRequest {
+message CheckDepositBonusRequest {
   int32 clientId = 1;
   int32 userId = 2;
 }
 
-message CheckFirstDepositResponse {
+message CheckDepositBonusResponse {
   bool success = 1;
   float value = 2;
   optional FirstDepositBonus data = 3;
