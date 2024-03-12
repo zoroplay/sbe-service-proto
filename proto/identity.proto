@@ -45,7 +45,8 @@ message FetchPlayerFilterRequest {
   int32 minAmount = 4;
   int32 maxAmount = 5;
   int32 depositCount = 6;
-
+  int32 filterType = 7;
+  
 }
 
 
