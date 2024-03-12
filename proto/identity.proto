@@ -5,6 +5,7 @@ package identity;
 service IdentityService {
   rpc FetchRegisteredPlayers (FetchPlayersRequest) returns (FetchPlayersResponse) {}
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
+  rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (FetchPlayerDepositResponse) {} 
 
@@ -90,6 +91,19 @@ message FetchDepositRangeRequest {
   string startDate = 3;
   string endDate = 4;
   
+}
+message FetchDepositCountRequest {
+  int32 depositCount = 1;
+  string startDate = 3;
+  string endDate = 4;
+  
+}
+
+message FetchDepositCountResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated UserInfo data =3;
+  optional string error = 4;
 }
 
 message FetchDepositRangeResponse {

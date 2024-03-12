@@ -8,6 +8,7 @@ service WalletService {
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (FetchPlayerDepositResponse) {} 
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
+  rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
@@ -48,6 +49,19 @@ message FetchDepositRangeRequest {
   string startDate = 3;
   string endDate = 4;
   
+}
+message FetchDepositCountRequest {
+  int32 depositCount = 1;
+  string startDate = 3;
+  string endDate = 4;
+  
+}
+
+message FetchDepositCountResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated int32 data = 3;
+  optional string error = 4;
 }
 
 message FetchDepositRangeResponse {
