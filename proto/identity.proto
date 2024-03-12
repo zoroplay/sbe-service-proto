@@ -49,7 +49,7 @@ message FetchPlayerDepositRequest {
 message FetchPlayerDepositResponse {
   int32 status = 1;
   bool success = 2;
-  repeated TransactionEntity data = 3;
+  repeated UserInfo data = 3;
   optional string error = 4;
 }
 message TransactionEntity {
@@ -80,7 +80,7 @@ message FetchDepositRangeRequest {
 message FetchDepositRangeResponse {
   int32 status = 1;
   bool success = 2;
-  repeated Player data =3;
+  repeated UserInfo data =3;
   optional string error = 4;
 }
 
