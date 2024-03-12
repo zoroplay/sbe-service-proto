@@ -80,7 +80,7 @@ message FetchDepositRangeRequest {
 message FetchDepositRangeResponse {
   int32 status = 1;
   bool success = 2;
-  repeated int32 data = 3;
+  repeated Player data =3;
   optional string error = 4;
 }
 
