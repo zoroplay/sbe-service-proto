@@ -5,6 +5,8 @@ package identity;
 service IdentityService {
   rpc FetchRegisteredPlayers (FetchPlayersRequest) returns (FetchPlayersResponse) {}
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
+  rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (FetchPlayerDepositResponse) {} 
+
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
@@ -35,6 +37,53 @@ service IdentityService {
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
 }
+
+
+message FetchPlayerDepositRequest {
+  int32 clientId = 1;
+  string startDate = 2;
+  string endDate = 3;
+  
+}
+
+message FetchPlayerDepositResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated TransactionEntity data = 3;
+  optional string error = 4;
+}
+message TransactionEntity {
+  int32   id =1;
+  int32 clientId =2;
+  int32 userId=3;
+  string username =4;
+  string transactionNo=5;
+  int32  amount =6;
+  string  transactionType =7;
+  string  subject =8;
+  string  description =9;
+  string  source =10;
+  string  channel=11;
+  int32  balance =12;
+  int32  status =13;
+  string createdAt =14;
+  string updatedAt =15;
+  }
+message FetchDepositRangeRequest {
+  int32 minAmount = 1;
+  int32 maxAmount = 2;
+  string startDate = 3;
+  string endDate = 4;
+  
+}
+
+message FetchDepositRangeResponse {
+  int32 status = 1;
+  bool success = 2;
+  repeated int32 data = 3;
+  optional string error = 4;
+}
+
 // user
 message FetchPlayerRequest {
   int32 clientId = 1;  
@@ -76,22 +125,6 @@ message UserInfo {
   bool isActive =13;
   string created_at =14;
   string updated_at =15;
-}
-
-message FetchDepositRangeRequest {
-  int32 minAmount = 1;
-  int32 maxAmount = 2;
-  string startDate = 3;
-  string endDate = 4;
-  int32 clientId = 5;  
-  
-}
-
-message FetchDepositRangeResponse {
-  int32 status = 1;
-  bool success = 2;
-  repeated string data = 3;
-  optional string error = 4;
 }
 
 message UserData {
