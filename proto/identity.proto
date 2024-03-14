@@ -30,7 +30,7 @@ service IdentityService {
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
-  rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PlayersListResponse) {} 
+  rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
@@ -46,7 +46,7 @@ message FetchPlayerFilterRequest {
   int32 maxAmount = 5;
   int32 depositCount = 6;
   int32 filterType = 7;
-  
+  int32 page = 8;
 }
 
 
@@ -488,6 +488,16 @@ message ResetPasswordRequest {
   int32 clientId = 1;
   string username = 2;
   string password = 3;
+}
+
+message PaginationResponse {
+  string message = 1;
+  int32 count = 2;
+  int32 currentPage = 3;
+  int32 nextPage = 4;
+  int32 prevPage = 5;
+  int32 lastPage = 6;
+  string data = 7;
 }
 
 message EmptyRequest {}
