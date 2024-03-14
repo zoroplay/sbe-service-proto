@@ -3,7 +3,6 @@ syntax = "proto3";
 package identity;
 
 service IdentityService {
-  rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (FetchPlayerFilterResponse) {} 
   
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
@@ -31,6 +30,7 @@ service IdentityService {
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
+  rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PlayersListResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
@@ -74,11 +74,7 @@ message TransactionEntity {
   int32  status =13;
   string createdAt =14;
   string updatedAt =15;
-  }
-
-
-
-
+}
 
 message UserInfo {
   int32 id =1;
