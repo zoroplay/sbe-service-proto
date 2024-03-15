@@ -5,10 +5,10 @@ package wallet;
 service WalletService {
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
-  rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
-  rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (WalletResponse) {} 
-  rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
-  rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
+  rpc FetchBetRange (FetchPlayerFilterRequest) returns (WalletResponse) {} 
+  rpc FetchPlayerDeposit (FetchPlayerFilterRequest) returns (WalletResponse) {} 
+  rpc FetchDepositRange (FetchPlayerFilterRequest) returns (WalletResponse) {} 
+  rpc FetchDepositCount (FetchPlayerFilterRequest) returns (WalletResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
@@ -28,52 +28,15 @@ service WalletService {
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
 }
 
-message FetchBetRangeRequest {
-  int32 minAmount = 1;
-  int32 maxAmount = 2;
-  string startDate = 3;
-  string endDate = 4;
-  
-}
-
-message FetchBetRangeResponse {
-  int32 status = 1;
-  bool success = 2;
-  repeated int32 data = 3;
-  optional string error = 4;
-}
-
-message FetchDepositRangeRequest {
-  int32 minAmount = 1;
-  int32 maxAmount = 2;
-  string startDate = 3;
-  string endDate = 4;
-  
-}
-message FetchDepositCountRequest {
+message FetchPlayerFilterRequest {
   int32 clientId = 1;
   string startDate = 2;
   string endDate = 3;
-}
-
-message FetchDepositCountResponse {
-  int32 status = 1;
-  bool success = 2;
-  repeated TransactionEntity data = 3;
-  optional string error = 4;
-}
-
-message FetchDepositRangeResponse {
-  int32 status = 1;
-  bool success = 2;
-  repeated int32 data = 3;
-  optional string error = 4;
-}
-
-message FetchPlayerDepositRequest {
-  int32 userId = 1;
-  string startDate = 2;
-  string endDate = 3;
+  int32 minAmount = 4;
+  int32 maxAmount = 5;
+  int32 depositCount = 6;
+  int32 filterType = 7;
+  int32 page = 8;
 }
 
 message TransactionEntity {
@@ -93,6 +56,7 @@ int32  status =13;
 string createdAt =14;
 string updatedAt =15;
 }
+
 message PaymentMethodRequest {
   int32 clientId = 1;
   string title = 2;
