@@ -99,6 +99,7 @@ message GamingActivityRequest {
   string source = 12;
   string groupBy = 13;
   int32 clientID = 14;
+  string displayType = 15;
 }
 
 message GamingActivityResponse {
