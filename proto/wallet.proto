@@ -45,7 +45,7 @@ message FetchBetRangeResponse {
     float count = 3;
     float balance =  4;
   }
-  repeated int32 data = 3;
+  repeated Data data = 3;
   optional string error = 4;
 }
 
