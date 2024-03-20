@@ -48,7 +48,7 @@ message SaveSegmentRequest {
   string title = 3;
   float minOdd = 4;
   int32 minSelection = 5;
-  string errorMsg = 6;
+  string message = 6;
   optional int32 id = 7;
 }
 
@@ -354,10 +354,11 @@ message GetClientResponse {
 }
 
 message CommonResponse {
-  bool status = 1;
-  string message = 2;
-  repeated string data = 3;
-  optional string errors = 4;
+  optional bool status = 1;
+  optional bool success = 2;
+  string message = 3;
+  string data = 4;
+  optional string errors = 5;
 }
 
 message DeleteResponse {
