@@ -38,8 +38,8 @@ service IdentityService {
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponse) {}
   rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponse) {}
   rpc AddToSegment (AddToSegmentRequest) returns (CommonResponse) {}
-  rpc DeletePlayerSegment (DeleteSegmentRequest) returns (CommonResponse) {}
-  rpc RemovePlayerFromSegment (RemovePlayerSegmentRequest) returns (CommonResponse) {}
+  rpc DeletePlayerSegment (DeleteItemRequest) returns (CommonResponse) {}
+  rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponse) {}
 }
 
 message SaveSegmentRequest {
@@ -56,18 +56,11 @@ message FetchPlayerSegmentRequest {
   int32 clientId = 1;
 }
 
+message DeleteItemRequest {
+  int32 id = 1;
+}
+
 message AddToSegmentRequest {
-  int32 clientId = 1;
-  int32 playerId = 2;
-  int32 segmentId = 3;
-}
-
-message DeleteSegmentRequest {
-  int32 clientId = 1;
-  int32 segmentId = 2;
-}
-
-message RemovePlayerSegmentRequest {
   int32 clientId = 1;
   int32 playerId = 2;
   int32 segmentId = 3;
