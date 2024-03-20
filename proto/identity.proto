@@ -35,8 +35,43 @@ service IdentityService {
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
+  rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponse) {}
+  rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponse) {}
+  rpc AddToSegment (AddToSegmentRequest) returns (CommonResponse) {}
+  rpc DeletePlayerSegment (DeleteSegmentRequest) returns (CommonResponse) {}
+  rpc RemovePlayerFromSegment (RemovePlayerSegmentRequest) returns (CommonResponse) {}
 }
 
+message SaveSegmentRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string title = 3;
+  float minOdd = 4;
+  int32 minSelection = 5;
+  string errorMsg = 6;
+  optional int32 id = 7;
+}
+
+message FetchPlayerSegmentRequest {
+  int32 clientId = 1;
+}
+
+message AddToSegmentRequest {
+  int32 clientId = 1;
+  int32 playerId = 2;
+  int32 segmentId = 3;
+}
+
+message DeleteSegmentRequest {
+  int32 clientId = 1;
+  int32 segmentId = 2;
+}
+
+message RemovePlayerSegmentRequest {
+  int32 clientId = 1;
+  int32 playerId = 2;
+  int32 segmentId = 3;
+}
 
 message FetchPlayerFilterRequest {
   int32 clientId = 1;
@@ -48,8 +83,6 @@ message FetchPlayerFilterRequest {
   int32 filterType = 7;
   int32 page = 8;
 }
-
-
 
 message FetchPlayerFilterResponse {
   int32 status = 1;
