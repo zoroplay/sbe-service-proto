@@ -38,6 +38,7 @@ service IdentityService {
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponse) {}
   rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponse) {}
   rpc AddToSegment (AddToSegmentRequest) returns (CommonResponse) {}
+  rpc UploadToSegment (UploadPlayersToSegment) returns (CommonResponse) {}
   rpc DeletePlayerSegment (DeleteItemRequest) returns (CommonResponse) {}
   rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponse) {}
   rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponse) {}
@@ -69,6 +70,12 @@ message AddToSegmentRequest {
   int32 clientId = 1;
   int32 playerId = 2;
   int32 segmentId = 3;
+}
+
+message UploadPlayersToSegment {
+  int32 clientId = 1;
+  int32 segmentId = 2;
+  repeated string players = 3;
 }
 
 message FetchPlayerFilterRequest {
