@@ -42,6 +42,8 @@ service IdentityService {
   rpc DeletePlayerSegment (DeleteItemRequest) returns (CommonResponse) {}
   rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponse) {}
   rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponse) {}
+  rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponse) {}
+
 }
 
 message SaveSegmentRequest {
@@ -52,6 +54,13 @@ message SaveSegmentRequest {
   int32 minSelection = 5;
   string message = 6;
   optional int32 id = 7;
+}
+
+message GrantBonusRequest {
+  int32 clientId = 1;
+  int32 segmentId = 2;
+  int32 bonusId = 3;
+  float amount = 4;
 }
 
 message FetchPlayerSegmentRequest {
