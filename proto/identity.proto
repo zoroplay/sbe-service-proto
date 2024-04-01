@@ -14,6 +14,7 @@ service IdentityService {
   rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
+  rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc RemoveRole (RemoveRoleRequest) returns (DeleteResponse) {}
   rpc FindAllPermissions (EmptyRequest) returns (CommonResponse) {}
   rpc FindAllClients (EmptyRequest) returns (CommonResponse) {}
