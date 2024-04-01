@@ -44,6 +44,8 @@ service IdentityService {
   rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponse) {}
   rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponse) {}
   rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponse) {}
+  rpc GetCountries (EmptyRequest) returns (CommonResponse) {}
+  rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponse) {}
 
 }
 
@@ -547,6 +549,33 @@ message PaginationResponse {
   int32 prevPage = 5;
   int32 lastPage = 6;
   string data = 7;
+}
+
+message Country {
+  int32 id = 1;
+  string name = 2;
+  string countryCodeLong = 3;
+  string countryCode = 4;
+  string dialCode = 5;
+  string currencyName = 6;
+  string currencySymbol = 7;
+}
+
+message GetStatesRequest {
+  int32 countryId = 1;
+}
+
+message State {
+  int32 id = 1;
+  string name = 2;
+}
+
+message GetCountryResponse {
+  repeated Country countries = 1;
+}
+
+message StateResponse {
+  repeated State states = 1;
 }
 
 message EmptyRequest {}
