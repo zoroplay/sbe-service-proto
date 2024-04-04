@@ -357,6 +357,7 @@ message GetPaymentDataResponse {
   string username = 1;
   string email = 2;
   string callbackUrl = 3;
+  string siteUrl = 4;
 }
 
 message GetClientRequest {
