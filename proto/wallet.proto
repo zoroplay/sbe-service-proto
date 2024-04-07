@@ -19,6 +19,7 @@ service WalletService {
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
   rpc PaystackWebhook (PaystackWebhookRequest) returns (WebhookResponse) {}
+  rpc MonnifyWebhook (MonnifyWebhookRequest) returns (WebhookResponse) {}
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
@@ -141,6 +142,13 @@ message PaystackWebhookRequest {
   string event = 3;
   string body = 4;
   string paystackKey = 5;
+}
+
+message MonnifyWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  string body = 4;
 }
 
 message WebhookResponse {
