@@ -570,7 +570,8 @@ message GetStatesRequest {
 }
 
 message SessionRequest {
-  string sessionId = 1;
+  int32 clientId = 1;
+  string sessionId = 2;
 }
 
 message State {
