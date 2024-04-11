@@ -170,7 +170,7 @@ message UserData {
   string address = 23;
   string gender = 24;
   string dateOfBirth = 25;
-  string status = 26;
+  int32 status = 26;
 }
 
 message CreateUserRequest {
