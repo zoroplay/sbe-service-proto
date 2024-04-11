@@ -582,8 +582,8 @@ message StateResponse {
 }
 
 message XpressLoginRequest {
-  string token = 1;
-  int32 clientId = 2;
+  uint32 clientId = 1;
+  string token = 2;
 }
 
 message XpressLoginResponse {
