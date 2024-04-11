@@ -47,6 +47,7 @@ service IdentityService {
   rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponse) {}
   rpc GetCountries (EmptyRequest) returns (CommonResponse) {}
   rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponse) {}
+  rpc ValidateXpressSession (SessionRequest) returns (CommonResponse) {}
 
 }
 
@@ -566,6 +567,10 @@ message Country {
 
 message GetStatesRequest {
   int32 countryId = 1;
+}
+
+message SessionRequest {
+  string sessionId = 1;
 }
 
 message State {
