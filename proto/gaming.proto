@@ -286,6 +286,13 @@ message XpressRequest {
 }
 
 message XpressResponse {
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    optional XpressData data = 4;
+}
+
+message XpressData {
     string playerId = 1;
     string currency = 2;
     float balance = 3;
