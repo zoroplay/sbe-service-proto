@@ -7,6 +7,7 @@ service IdentityService {
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc XpressGameLogin (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
@@ -578,6 +579,26 @@ message GetCountryResponse {
 
 message StateResponse {
   repeated State states = 1;
+}
+
+message XpressLoginRequest {
+  string token = 1;
+  int32 clientId = 2;
+}
+
+message XpressLoginResponse {
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  message XpressData {
+    string playerId = 1;
+    string playerNickname = 2;
+    float balance = 3;
+    string sessionId = 4;
+    string group = 5;
+    string currency = 6;
+  }
+  optional XpressData data = 4;
 }
 
 message EmptyRequest {}
