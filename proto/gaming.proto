@@ -21,6 +21,12 @@ service GamingService {
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
+    rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
+    rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
+    rpc XpressDebit (XpressRequest) returns (XpressResponse) {}
+    rpc XpressCredit (XpressRequest) returns (XpressResponse) {}
+    rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
+    rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 }
 
 message PaginationDto {
@@ -254,4 +260,44 @@ message CallbackResponse {
     bool success = 1;
     string message = 2;
     google.protobuf.Struct data = 3;
+}
+
+message XpressRequest {
+    string action = 1;
+    optional string token = 2;
+    string gameId = 3;
+    string clientPlatform = 4;
+    string clientIp = 5;
+    string timestamp = 6;
+    string requestId = 7;
+    string siteId = 8;
+    string fingerprint = 9;
+    optional string sessionId = 10;
+    optional string currency = 11;
+    optional string group = 12;
+    optional string playerId = 13;
+    optional string gameCycle = 14;
+    optional string transactionId = 15;
+    optional float transactionAmount = 16;
+    optional string transactionCategory = 17;
+    optional bool gameCycleClosed = 18;
+    optional string transactionType = 19;
+}
+
+message XpressResponse {
+    string playerId = 1;
+    string currency = 2;
+    float balance = 3;
+    string sessionId = 4;
+    string group = 5;
+    string timestamp = 6;
+    string requestId = 7;
+    string fingerprint = 8;
+    optional string playerNickname = 9;
+    optional float oldBalance = 10;
+    optional string gameCycle = 11;
+    optional string transactionId = 12;
+    optional float transactionAmount = 13;
+    optional string transactionCategory = 14;
+    optional string transactionType = 15;
 }
