@@ -20,6 +20,7 @@ service BettingService {
   rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
   rpc GetCoupon(FindBetRequest) returns (FindBetResponse) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
+  rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
 
 }
 
@@ -41,6 +42,18 @@ message PlaceVirtualBetResponse {
   optional VirtualBetData data = 4;
 }
 
+message GetVirtualBetRequest {
+  int32 clientId = 1;
+  string gameId = 2;
+}
+
+message GetVirtualBetResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional VirtualBetData data = 4;
+}
+
 message VirtualBetData {
   int32 userId = 1;
   int32 clientId = 2;
@@ -50,6 +63,7 @@ message VirtualBetData {
   string transactionCategory = 6;
   string gameId = 7;
   double stake = 8;
+  int32 gameCycleClosed = 9;
 }
 
 message PlaceCasinoBetRequest {
