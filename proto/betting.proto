@@ -10,6 +10,8 @@ service BettingService {
   rpc CancelBet (BetID) returns (StatusResponse) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
+  rpc PlaceVirtualBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
+  rpc SettleVirtualBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc settleCasinoBet (CreditCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc cancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
@@ -19,6 +21,35 @@ service BettingService {
   rpc GetCoupon(FindBetRequest) returns (FindBetResponse) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
 
+}
+
+message PlaceVirtualBetRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string roundId= 3;
+  string transactionId = 4;
+  string transactionCategory = 5;
+  string gameId = 6;
+  float stake = 7;
+  string username = 8;
+}
+
+message PlaceVirtualBetResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional VirtualBetData data = 4;
+}
+
+message VirtualBetData {
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 betId = 3;
+  string roundId= 4;
+  string transactionId = 5;
+  string transactionCategory = 6;
+  string gameId = 7;
+  double stake = 8;
 }
 
 message PlaceCasinoBetRequest {
