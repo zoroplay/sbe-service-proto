@@ -45,6 +45,7 @@ message PlaceVirtualBetResponse {
 message GetVirtualBetRequest {
   int32 clientId = 1;
   string gameId = 2;
+  string transactionId = 3;
 }
 
 message GetVirtualBetResponse {
