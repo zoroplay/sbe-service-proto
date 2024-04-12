@@ -50,8 +50,8 @@ message GetVirtualBetRequest {
 
 message GetVirtualBetResponse {
   bool success = 1;
-  int32 status = 2;
-  string message = 3;
+  bool gameId = 2;
+  bool transactionId = 3;
   optional VirtualBetData data = 4;
 }
 
