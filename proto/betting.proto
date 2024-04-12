@@ -10,7 +10,7 @@ service BettingService {
   rpc CancelBet (BetID) returns (StatusResponse) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
-  rpc PlaceVirtualBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
+  rpc PlaceVirtualBet (PlaceCasinoBetRequest) returns (PlaceVirtualBetResponse) {}
   rpc SettleVirtualBet (PlaceCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc settleCasinoBet (CreditCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc cancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceBetResponse) {}
