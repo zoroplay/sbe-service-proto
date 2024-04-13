@@ -80,6 +80,7 @@ message VirtualBetData {
   string gameId = 7;
   double stake = 8;
   int32 gameCycleClosed = 9;
+  string username = 10;
 }
 
 message PlaceCasinoBetRequest {
