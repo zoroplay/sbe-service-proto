@@ -279,7 +279,7 @@ message XpressRequest {
     optional string playerId = 14;
     optional string gameCycle = 15;
     optional string transactionId = 16;
-    optional double transactionAmount = 17;
+    optional float transactionAmount = 17;
     optional string transactionCategory = 18;
     optional bool gameCycleClosed = 19;
     optional string transactionType = 20;
@@ -295,17 +295,17 @@ message XpressResponse {
 message XpressData {
     string playerId = 1;
     string currency = 2;
-    double balance = 3;
+    float balance = 3;
     string sessionId = 4;
     string group = 5;
     string timestamp = 6;
     string requestId = 7;
     string fingerprint = 8;
     optional string playerNickname = 9;
-    optional double oldBalance = 10;
+    optional float oldBalance = 10;
     optional string gameCycle = 11;
     optional string transactionId = 12;
-    optional double transactionAmount = 13;
+    optional float transactionAmount = 13;
     optional string transactionCategory = 14;
     optional string transactionType = 15;
 }
