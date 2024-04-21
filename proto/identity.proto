@@ -53,8 +53,56 @@ service IdentityService {
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponse) {}
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponse) {}
+  rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
 
 }
+
+message PlaceBetRequest {
+  repeated BetSelection selections = 1;
+  int32 clientId = 2;
+  optional int32 userId = 3;
+  float stake = 4;
+  string source = 5;
+  string ipAddress = 6;
+  string betType = 7;
+  optional string username = 8;
+  float minBonus = 9;
+  float maxBonus = 10;
+  float minOdds = 11;
+  float totalOdds = 12;
+  string type = 13;
+  int32 isBooking = 15;
+  optional int32 bonusId = 16;
+  optional bool useBonus = 17; 
+}
+
+message BetSelection {
+  string eventName = 1;
+  string eventType = 2;
+  int32 eventId = 3;
+  int32 producerId = 4;
+  int32 marketId = 5;
+  string marketName = 6;
+  string specifier = 7;
+  string outcomeId = 8;
+  string outcomeName = 9;
+  float odds = 10;
+  int32 sportId = 11;
+  string sport = 12;
+  string tournament = 13;
+  string category = 14;
+  int32 matchId = 15;
+  string awayTeam = 16;
+  string homeTeam = 17;
+  string type = 18;
+  bool fixed = 19;
+  string selectionId = 20;
+  string eventDate = 21;
+  string eventPrefix = 22;
+  optional bool isBonus = 23;
+
+}
+
 message GetSettingsRequest {
   int32 clientId = 1;
   string category = 2;
