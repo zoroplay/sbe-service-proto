@@ -49,7 +49,23 @@ service IdentityService {
   rpc GetCountries (EmptyRequest) returns (CommonResponse) {}
   rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponse) {}
   rpc ValidateXpressSession (SessionRequest) returns (CommonResponse) {}
+  rpc SaveSettings (SettingsRequest) returns (CommonResponse) {}
+  rpc SaveRiskSettings (SettingsRequest) returns (CommonResponse) {}
+  rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
 
+}
+
+message SettingsRequest {
+  int32 clientId = 1;
+  string inputs = 2;
+  optional string category = 3;
+  optional string period = 4;
+}
+
+message UserRiskSettingsRequest {
+  int32 userId = 1;
+  string inputs = 2;
+  string period = 4;
 }
 
 message SaveSegmentRequest {
