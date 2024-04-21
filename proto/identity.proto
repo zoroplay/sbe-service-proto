@@ -52,7 +52,12 @@ service IdentityService {
   rpc SaveSettings (SettingsRequest) returns (CommonResponse) {}
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponse) {}
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
+  rpc GetSettings (GetSettingsRequest) returns (CommonResponse) {}
 
+}
+message GetSettingsRequest {
+  int32 clientId = 1;
+  string category = 2;
 }
 
 message SettingsRequest {
