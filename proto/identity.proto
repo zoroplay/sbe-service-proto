@@ -60,7 +60,7 @@ service IdentityService {
 }
 
 message GetUserIdNameRequest {
-  int32 id = 1;
+  string username = 1;
 }
 
 message GetUserIdNameResponse {
