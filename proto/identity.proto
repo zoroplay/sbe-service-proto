@@ -64,8 +64,11 @@ message GetUserIdNameRequest {
 }
 
 message GetUserIdNameResponse {
-  int32 id = 1;
-  string username = 2;
+  message Users {
+    int32 id = 1;
+    string username = 2;
+  }
+  repeated Users data = 1;
 }
 
 message AutoDisbursementRequest {
