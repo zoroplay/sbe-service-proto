@@ -54,7 +54,19 @@ service IdentityService {
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponse) {}
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
+  rpc GetAutoDisbursementSettings (AutoDisbursementRequest) returns (AutoDisbursementResponse) {}
 
+}
+
+message AutoDisbursementRequest {
+  int32 clientId = 1;
+}
+
+message AutoDisbursementResponse {
+  int32 autoDisbursement = 1;
+  float autoDisbursementMin = 2;
+  float autoDisbursementMax = 3;
+  int32 autoDisbursementCount = 4;
 }
 
 message PlaceBetRequest {
