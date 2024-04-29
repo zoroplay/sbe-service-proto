@@ -56,7 +56,6 @@ service IdentityService {
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
   rpc GetAutoDisbursementSettings (AutoDisbursementRequest) returns (AutoDisbursementResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
-
 }
 
 message GetUserIdNameRequest {
@@ -290,6 +289,7 @@ message CreateUserRequest {
   optional int32 parent = 17;
   optional string promoCode = 18;
   optional string trackingToken = 19;
+  optional string parentId = 20;
 }
 
 message UpdateUserRequest {
@@ -313,6 +313,7 @@ message UpdateUserRequest {
   optional int32 parent = 18;
   optional string promoCode = 19;
   optional string trackingToken = 20;
+  optional string parentId = 21;
 }
 
 // user
