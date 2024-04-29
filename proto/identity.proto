@@ -289,7 +289,8 @@ message CreateUserRequest {
   optional int32 parent = 17;
   optional string promoCode = 18;
   optional string trackingToken = 19;
-  optional string parentId = 20;
+  optional int32 parentId = 20;
+  optional float balance = 21;
 }
 
 message UpdateUserRequest {
