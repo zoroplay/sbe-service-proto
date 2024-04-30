@@ -56,6 +56,16 @@ service IdentityService {
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
   rpc GetAutoDisbursementSettings (AutoDisbursementRequest) returns (AutoDisbursementResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
+  rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponse) {}
+  rpc ListAgents (GetAgentUsersRequest) returns (CommonResponse) {}
+}
+
+message GetAgentUsersRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  optional string username = 3;
+  optional int32 roleId = 4;
+  optional int32 state = 5;
 }
 
 message GetUserIdNameRequest {
