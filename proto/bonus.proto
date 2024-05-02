@@ -295,7 +295,8 @@ message CampaignBonusData {
   string name = 3;
   string bonusCode = 4;
   CreateBonusRequest bonus = 5 ;
-  string expiryDate = 6;
+  string startDate = 6;
+  string endDate = 7;
 }
 
 message AllCampaignBonus {
