@@ -257,9 +257,8 @@ message HasBonusBetResponse {
 
 
 message BonusStatusRequest {
-  int32 clientId = 1;
-  string bonusType = 2;
-  int32 status = 3;
+  int32 bonusId = 1;
+  int32 status = 2;
 }
 
 message CreateCampaignBonusDto {
