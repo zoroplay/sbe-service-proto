@@ -27,7 +27,7 @@ service WalletService {
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
-  rpc GetUserAccounts (GetBalanceRequest) returns (PlayerWalletData) {}
+  rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
 }
 
 message GetUserAccountsResponse {
