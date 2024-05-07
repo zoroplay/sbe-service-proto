@@ -54,7 +54,7 @@ service IdentityService {
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponse) {}
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
-  rpc GetAutoDisbursementSettings (AutoDisbursementRequest) returns (AutoDisbursementResponse) {}
+  rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponse) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponse) {}
@@ -82,15 +82,17 @@ message GetUserIdNameResponse {
   repeated Users data = 1;
 }
 
-message AutoDisbursementRequest {
+message GetWithdrawalSettingsRequest {
   int32 clientId = 1;
 }
 
-message AutoDisbursementResponse {
+message WithdrawalSettingsResponse {
   int32 autoDisbursement = 1;
   float autoDisbursementMin = 2;
   float autoDisbursementMax = 3;
   int32 autoDisbursementCount = 4;
+  float minimumWithdrawal = 5;
+  float maximumWithdrawal = 6;
 }
 
 message PlaceBetRequest {
