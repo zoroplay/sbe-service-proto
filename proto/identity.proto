@@ -84,6 +84,7 @@ message GetUserIdNameResponse {
 
 message GetWithdrawalSettingsRequest {
   int32 clientId = 1;
+  optional int32 userId = 2;
 }
 
 message WithdrawalSettingsResponse {
