@@ -58,6 +58,7 @@ service IdentityService {
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponse) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponse) {}
+  rpc GetUserRiskSettings (GetUserIdNameRequest) returns (CommonResponse) {}
 }
 
 message GetAgentUsersRequest {
@@ -70,6 +71,7 @@ message GetAgentUsersRequest {
 
 message GetUserIdNameRequest {
   string username = 1;
+  optional int32 clientId = 2;
 }
 
 message GetUserIdNameResponse {
