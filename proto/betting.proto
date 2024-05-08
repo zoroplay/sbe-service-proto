@@ -11,6 +11,7 @@ service BettingService {
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
+  rpc SettleCasinoBet (SettleCasinoBetRequest) returns (SettleCasinoBetResponse) {}
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc settleCasinoBet (CreditCasinoBetRequest) returns (PlaceBetResponse) {}
   rpc cancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceBetResponse) {}
@@ -43,6 +44,15 @@ message PaginationResponse {
   string data = 7;
 }
 
+message SettleCasinoBetRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  float amount = 3;
+  float jackpot = 4;
+  string roundId = 5;
+  string category = 6;
+  int32 gameCycleClosed = 7;
+}
 message SettleVirtualBetRequest {
   int32 userId = 1;
   int32 clientId = 2;
@@ -51,6 +61,11 @@ message SettleVirtualBetRequest {
   string roundId = 5;
   string category = 6;
   int32 gameCycleClosed = 7;
+}
+
+message SettleCasinoBetResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 message SettleVirtualBetResponse {
