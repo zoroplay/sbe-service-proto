@@ -11,9 +11,10 @@ service BettingService {
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
-  rpc SettleCasinoBet (SettleCasinoBetRequest) returns (SettleCasinoBetResponse) {}
+  rpc SettleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
-  rpc cancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceBetResponse) {}
+  rpc settleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
+  rpc cancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (FindBetResponse) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
