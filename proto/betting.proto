@@ -117,7 +117,7 @@ message PlaceCasinoBetRequest {
   string roundId= 3;
   string transactionId = 4;
   string gameId = 5;
-  string gameName = 6;
+  optional string gameName = 6;
   double stake = 7;
   optional double winnings = 8;
   optional string gameNumber = 9;
