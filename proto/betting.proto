@@ -13,7 +13,6 @@ service BettingService {
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
   rpc SettleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
-  rpc settleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (FindBetResponse) {}
@@ -118,8 +117,12 @@ message PlaceCasinoBetRequest {
   string roundId= 3;
   string transactionId = 4;
   string gameId = 5;
-  double stake = 6;
-  optional double winnings = 7;
+  string gameName = 6;
+  double stake = 7;
+  optional double winnings = 8;
+  string gameNumber = 9;
+  string source = 10;
+  string cashierTransactionId =11;
 }
 
 message CreditCasinoBetRequest {
