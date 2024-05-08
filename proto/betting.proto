@@ -45,13 +45,8 @@ message PaginationResponse {
 }
 
 message SettleCasinoBetRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
-  float amount = 3;
-  float jackpot = 4;
-  string roundId = 5;
-  string category = 6;
-  int32 gameCycleClosed = 7;
+  string transactionId = 1;
+  double winnings = 2;
 }
 message SettleVirtualBetRequest {
   int32 userId = 1;
