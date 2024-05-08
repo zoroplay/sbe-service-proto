@@ -120,9 +120,9 @@ message PlaceCasinoBetRequest {
   string gameName = 6;
   double stake = 7;
   optional double winnings = 8;
-  string gameNumber = 9;
-  string source = 10;
-  string cashierTransactionId =11;
+  optional string gameNumber = 9;
+  optional string source = 10;
+  optional string cashierTransactionId =11;
 }
 
 message CreditCasinoBetRequest {
