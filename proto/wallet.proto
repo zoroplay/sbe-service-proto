@@ -42,13 +42,16 @@ message GetUserAccountsResponse {
 }
 
 message GetNetworkBalanceRequest {
-  string userIds = 1;
-  int32 clientId = 2;
+  int32 agentId = 1;
+  string userIds = 2;
+  int32 clientId = 3;
 }
 
 message GetNetworkBalanceResponse {
-  float networkBalance = 1;
-  float trustBalance = 2;
+  bool success = 1;
+  string message = 2;
+  float networkBalance = 4;
+  float trustBalance = 5;
 }
 
 message FetchBetRangeRequest {
