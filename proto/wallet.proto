@@ -51,7 +51,10 @@ message GetNetworkBalanceResponse {
   bool success = 1;
   string message = 2;
   float networkBalance = 4;
-  float trustBalance = 5;
+  float networkTrustBalance = 5;
+  optional float trustBalance = 6;
+  optional float availableBalance = 7;
+  optional float balance = 8;
 }
 
 message FetchBetRangeRequest {
