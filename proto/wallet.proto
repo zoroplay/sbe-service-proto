@@ -28,6 +28,7 @@ service WalletService {
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
+  rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
 }
 
 message GetUserAccountsResponse {
@@ -38,6 +39,16 @@ message GetUserAccountsResponse {
     string bankName = 4;
   }
   repeated BankAccount data = 1;
+}
+
+message GetNetworkBalanceRequest {
+  string userIds = 1;
+  int32 clientId = 2;
+}
+
+message GetNetworkBalanceResponse {
+  float networkBalance = 1;
+  float trustBalance = 2;
 }
 
 message FetchBetRangeRequest {

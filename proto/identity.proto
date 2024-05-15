@@ -722,3 +722,12 @@ message XpressLoginResponse {
 }
 
 message EmptyRequest {}
+
+message MetaData {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 total = 3;
+  int32 lastPage = 4;
+  int32 nextPage = 5;
+  int32 prevPage = 6;
+}
