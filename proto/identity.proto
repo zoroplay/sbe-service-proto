@@ -62,11 +62,12 @@ service IdentityService {
 }
 
 message GetAgentUsersRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int32 clientId = 1;
+  optional int32 userId = 2;
   optional string username = 3;
   optional int32 roleId = 4;
   optional int32 state = 5;
+  optional int32 page = 6;
 }
 
 message GetUserIdNameRequest {
