@@ -417,6 +417,7 @@ message UserTransactionRequest {
   string startDate = 3;
   string endDate = 4;
   optional int32 page = 5;
+  optional int32 limit = 5;
 }
 
 message UserTransactionResponse {
