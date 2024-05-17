@@ -39,6 +39,8 @@ service FixtureService {
   //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
 
+  rpc GetRetailFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
+
   //GetLiveHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for live games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetLiveHighlights (GetHighlightsRequest) returns (GetHighlightsResponse){}
 
