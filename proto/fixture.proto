@@ -250,6 +250,7 @@ message GetFixturesRequest {
   string period = 6; // date range to fetch fixtures
   int32 timeoffset = 7;
   optional int32 categoryID = 8; // fetch fixtures of this categoryID if present
+  optional string specifier = 9;
 }
 
 message HighlightOutcomes {
