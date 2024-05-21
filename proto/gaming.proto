@@ -41,11 +41,12 @@ message SyncGameDto {
 };
 
 message CallbackGameDto {
-    string provider = 1;
-    optional string action = 2;
-    optional string method = 3;
-    google.protobuf.Struct header = 4;
-    google.protobuf.Struct body = 5;
+    int32 clientId = 1;
+    string provider = 2;
+    optional string action = 3;
+    optional string method = 4;
+    google.protobuf.Struct header = 5;
+    google.protobuf.Struct body = 6;
 };
 
 message FindOneGameDto {
@@ -72,6 +73,7 @@ message UpdateGameDto {
     string type = 9;
     int32 providerId = 10;
 }
+
 message CreateProviderDto {
     optional int32 id = 1;
     string slug = 2;
