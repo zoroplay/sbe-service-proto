@@ -68,6 +68,10 @@ service FixtureService {
 
   rpc AddFavourites(AddFavouriteRequest) returns (AddFavouriteResponse) {}
 
+  //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
+  rpc GetRetailFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
+  //Get Fixture Retail - Loads odds for all the markets of the supplied matchID
+  rpc GetRetailFixture (FilterByMatchID) returns (FixtureOdds){}
 
 }
 
@@ -246,6 +250,7 @@ message GetFixturesRequest {
   string period = 6; // date range to fetch fixtures
   int32 timeoffset = 7;
   optional int32 categoryID = 8; // fetch fixtures of this categoryID if present
+  optional string specifier = 9;
 }
 
 message HighlightOutcomes {

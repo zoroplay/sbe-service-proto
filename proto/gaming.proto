@@ -7,20 +7,24 @@ package gaming;
 service GamingService {
     rpc CreateGame (CreateGameDto) returns (Game) {}
     rpc FindAllGames (Empty) returns (Games) {}
+    rpc FetchGames (FetchGamesRequest) returns (Games) {}
     rpc SyncGames (SyncGameDto) returns (Games) {}
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
     rpc UpdateGame (UpdateGameDto) returns (Game) {}
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
+    rpc SaveCategory (SaveCategoryRequest) returns (CommonResponse) {}
+    rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc CreateProvider (CreateProviderDto) returns (Provider) {}
-    rpc UpdateProvider (CreateProviderDto) returns (Provider) {}
-    rpc FindOneProvider (FindOneGameDto) returns (Provider) {}
-    rpc RemoveProvider  (CreateProviderDto) returns (Provider) {}
-    rpc FindAllProviders (Empty) returns (Providers) {}
+    rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
+    rpc UpdateProvider (CreateProviderDto) returns (CommonResponse) {}
+    rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
+    rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
+    rpc FindAllProviders (Empty) returns (CommonResponse) {}
 
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
+
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
     rpc XpressDebit (XpressRequest) returns (XpressResponse) {}
@@ -34,6 +38,10 @@ message PaginationDto {
     int32 skip = 2;
 };
 
+message FetchGamesRequest {
+    optional int32 categoryId = 1;
+}
+
 message Empty {};
 
 message SyncGameDto {
@@ -41,11 +49,12 @@ message SyncGameDto {
 };
 
 message CallbackGameDto {
-    string provider = 1;
-    optional string action = 2;
-    optional string method = 3;
-    google.protobuf.Struct header = 4;
-    google.protobuf.Struct body = 5;
+    int32 clientId = 1;
+    string provider = 2;
+    optional string action = 3;
+    optional string method = 4;
+    google.protobuf.Struct header = 5;
+    google.protobuf.Struct body = 6;
 };
 
 message FindOneGameDto {
@@ -72,6 +81,7 @@ message UpdateGameDto {
     string type = 9;
     int32 providerId = 10;
 }
+
 message CreateProviderDto {
     optional int32 id = 1;
     string slug = 2;
@@ -308,4 +318,28 @@ message XpressData {
     optional float transactionAmount = 13;
     optional string transactionCategory = 14;
     optional string transactionType = 15;
+}
+
+message CommonResponse {
+    optional int32 status = 1;
+    optional bool success = 2;
+    string message = 3;
+    optional string data = 4;
+}
+
+message SaveCategoryRequest {
+    int32 clientId = 1;
+    optional int32 id = 2;
+    string name = 3;
+    optional string imagePath = 4;
+}
+
+message Category {
+    int32 id = 1;
+    string slug = 2;
+    string name = 3;
+}
+
+message Categories {
+    repeated Category data = 1;
 }

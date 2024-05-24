@@ -63,11 +63,12 @@ service IdentityService {
 }
 
 message GetAgentUsersRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int32 clientId = 1;
+  optional int32 userId = 2;
   optional string username = 3;
   optional int32 roleId = 4;
   optional int32 state = 5;
+  optional int32 page = 6;
 }
 
 message GetUserIdNameRequest {
@@ -722,3 +723,12 @@ message XpressLoginResponse {
 }
 
 message EmptyRequest {}
+
+message MetaData {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 total = 3;
+  int32 lastPage = 4;
+  int32 nextPage = 5;
+  int32 prevPage = 6;
+}

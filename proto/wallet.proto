@@ -28,6 +28,7 @@ service WalletService {
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
+  rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
 }
 
 message GetUserAccountsResponse {
@@ -38,6 +39,22 @@ message GetUserAccountsResponse {
     string bankName = 4;
   }
   repeated BankAccount data = 1;
+}
+
+message GetNetworkBalanceRequest {
+  int32 agentId = 1;
+  string userIds = 2;
+  int32 clientId = 3;
+}
+
+message GetNetworkBalanceResponse {
+  bool success = 1;
+  string message = 2;
+  float networkBalance = 4;
+  float networkTrustBalance = 5;
+  optional float trustBalance = 6;
+  optional float availableBalance = 7;
+  optional float balance = 8;
 }
 
 message FetchBetRangeRequest {
@@ -399,12 +416,15 @@ message UserTransactionRequest {
   int32 userId = 2;
   string startDate = 3;
   string endDate = 4;
+  optional int32 page = 5;
+  optional int32 limit = 6;
 }
 
 message UserTransactionResponse {
   bool success = 1;
   string message = 2;
   repeated TransactionData data = 3;
+  optional MetaData meta = 4;
 }
 
 message TransactionData {
@@ -471,4 +491,13 @@ message PaginationResponse {
   int32 prevPage = 5;
   int32 lastPage = 6;
   string data = 7;
+}
+
+message MetaData {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 total = 3;
+  int32 lastPage = 4;
+  int32 nextPage = 5;
+  int32 prevPage = 6;
 }
