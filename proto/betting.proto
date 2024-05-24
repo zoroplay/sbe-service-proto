@@ -46,7 +46,7 @@ message PaginationResponse {
 message SettleCasinoBetRequest {
   string transactionId = 1;
   double winnings = 2;
-  string type = 3;
+  string provider = 3;
 }
 message SettleVirtualBetRequest {
   int32 userId = 1;
