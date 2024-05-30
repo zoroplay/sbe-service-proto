@@ -54,7 +54,7 @@ message CallbackGameDto {
     optional string action = 3;
     optional string method = 4;
     google.protobuf.Struct header = 5;
-    google.protobuf.Struct body = 6;
+    optional string body = 6;
 };
 
 message FindOneGameDto {
