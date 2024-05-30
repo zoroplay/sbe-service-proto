@@ -22,6 +22,7 @@ service BettingService {
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
+  rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
 }
 
 message GetVirtualBetsRequest {
