@@ -269,7 +269,8 @@ message EvolutionCallback {
 message CallbackResponse {
     bool success = 1;
     string message = 2;
-    google.protobuf.Struct data = 3;
+    optional int32 status = 3;
+    google.protobuf.Struct data = 4;
 }
 
 message XpressRequest {
