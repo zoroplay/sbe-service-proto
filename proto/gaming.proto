@@ -109,7 +109,7 @@ message StartGameDto {
     int32 clientId = 2;
     int32 userId = 3;
     string username = 4;
-    string email = 5;
+    optional string email = 5;
     optional string homeUrl = 6;
     optional string depositUrl = 7;
     optional bool demo = 8;
