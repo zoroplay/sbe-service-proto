@@ -33,13 +33,16 @@ service GamingService {
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 }
 
+
 message PaginationDto {
     int32 page = 1;
     int32 skip = 2;
 };
 
 message FetchGamesRequest {
-    optional int32 categoryId = 1;
+    int32 clientId = 1;
+    optional int32 categoryId = 2;
+    optional string category = 3;
 }
 
 message Empty {};
@@ -344,3 +347,12 @@ message Category {
 message Categories {
     repeated Category data = 1;
 }
+
+message MetaData {
+    int32 page = 1;
+    int32 perPage = 2;
+    int32 total = 3;
+    int32 lastPage = 4;
+    int32 nextPage = 5;
+    int32 prevPage = 6;
+  }
