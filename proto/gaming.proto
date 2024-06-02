@@ -114,6 +114,7 @@ message StartGameDto {
     optional string depositUrl = 7;
     optional bool demo = 8;
     optional bool isMobile = 9;
+    optional string authCode = 10;
 };
 
 message StartGameResponse {
