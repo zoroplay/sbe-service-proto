@@ -8,7 +8,7 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
-  rpc ValidateAuthCode (XpressLoginRequest) returns (ValidateClientResponse) {}
+  rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponse) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
