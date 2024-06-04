@@ -241,7 +241,7 @@ message GetBalanceRequest {
 message CreditUserRequest {
   int32 userId = 1;
   int32 clientId = 2;
-  sint64 amount = 3;
+  string amount = 3;
   string source = 4;
   string description = 5;
   string username = 6;
@@ -254,7 +254,7 @@ message CreditUserRequest {
 message DebitUserRequest {
   int32 userId = 1;
   int32 clientId = 2;
-  sint64 amount = 3;
+  string amount = 3;
   string source = 4;
   string description = 5;
   string username = 6;
