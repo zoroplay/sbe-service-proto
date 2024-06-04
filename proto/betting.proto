@@ -125,6 +125,7 @@ message PlaceCasinoBetRequest {
   optional string gameNumber = 9;
   optional string source = 10;
   optional string cashierTransactionId =11;
+  optional string username = 12;
 }
 
 message CreditCasinoBetRequest {
