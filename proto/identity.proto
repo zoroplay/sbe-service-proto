@@ -16,6 +16,7 @@ service IdentityService {
   rpc CreateClient (ClientRequest) returns (CommonResponse) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
   rpc FindUser (FindUserRequest) returns (CommonResponse) {}
+  rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponse) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
@@ -61,6 +62,11 @@ service IdentityService {
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponse) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponse) {}
   rpc GetUserRiskSettings (GetAgentUsersRequest) returns (CommonResponse) {}
+}
+
+message GetAgentUserRequest {
+  int32 branchId = 1; 
+  int32 cashierId = 2; 
 }
 
 message FindUserRequest {
