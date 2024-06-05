@@ -5,6 +5,7 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
+  rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (WalletResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -43,6 +44,12 @@ message GetUserAccountsResponse {
   repeated BankAccount data = 1;
 }
 
+message CashbookCreateCashInRequest {
+  int32 userId = 1;
+  int32 branchId = 2;
+  int32 amount = 3;
+  string comment = 4;
+}
 message GetNetworkBalanceRequest {
   int32 agentId = 1;
   string userIds = 2;
