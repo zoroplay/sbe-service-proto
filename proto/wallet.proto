@@ -46,9 +46,10 @@ message GetUserAccountsResponse {
 
 message CashbookCreateCashInRequest {
   int32 userId = 1;
-  int32 branchId = 2;
-  int32 amount = 3;
-  string comment = 4;
+  int32 cashierId = 2;
+  int32 branchId = 3;
+  int32 amount = 4;
+  string comment = 5;
 }
 message GetNetworkBalanceRequest {
   int32 agentId = 1;
