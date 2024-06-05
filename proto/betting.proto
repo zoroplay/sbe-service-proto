@@ -22,6 +22,7 @@ service BettingService {
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
+  rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
 }
 
 message GetVirtualBetsRequest {
@@ -124,6 +125,7 @@ message PlaceCasinoBetRequest {
   optional string gameNumber = 9;
   optional string source = 10;
   optional string cashierTransactionId =11;
+  optional string username = 12;
 }
 
 message CreditCasinoBetRequest {
@@ -422,4 +424,15 @@ message GamingActivityBets {
   string market_name = 9;
   string sport_name = 10;
   string tournament_name = 11;
+}
+
+message ProcessCashoutRequest {
+  int32 betId = 1;
+  float amount = 2;
+}
+
+message ProcessCashoutResponse {
+  bool success = 1;
+  string message = 2;
+  optional float balance = 3;
 }

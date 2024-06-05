@@ -33,13 +33,15 @@ service GamingService {
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 }
 
+
 message PaginationDto {
     int32 page = 1;
     int32 skip = 2;
 };
 
 message FetchGamesRequest {
-    optional int32 categoryId = 1;
+    int32 clientId = 1;
+    optional int32 categoryId = 2;
 }
 
 message Empty {};
@@ -54,7 +56,7 @@ message CallbackGameDto {
     optional string action = 3;
     optional string method = 4;
     google.protobuf.Struct header = 5;
-    google.protobuf.Struct body = 6;
+    optional string body = 6;
 };
 
 message FindOneGameDto {
@@ -107,11 +109,12 @@ message StartGameDto {
     int32 clientId = 2;
     int32 userId = 3;
     string username = 4;
-    string email = 5;
+    optional string email = 5;
     optional string homeUrl = 6;
     optional string depositUrl = 7;
     optional bool demo = 8;
     optional bool isMobile = 9;
+    optional string authCode = 10;
 };
 
 message StartGameResponse {
@@ -269,7 +272,8 @@ message EvolutionCallback {
 message CallbackResponse {
     bool success = 1;
     string message = 2;
-    google.protobuf.Struct data = 3;
+    optional int32 status = 3;
+    google.protobuf.Struct data = 4;
 }
 
 message XpressRequest {
@@ -343,3 +347,12 @@ message Category {
 message Categories {
     repeated Category data = 1;
 }
+
+message MetaData {
+    int32 page = 1;
+    int32 perPage = 2;
+    int32 total = 3;
+    int32 lastPage = 4;
+    int32 nextPage = 5;
+    int32 prevPage = 6;
+  }
