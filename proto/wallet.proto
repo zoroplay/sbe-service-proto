@@ -6,6 +6,7 @@ package wallet;
 
 service WalletService {
   rpc CashbookCreateExpenseCategory(CashbookCreateExpenseCategoryRequest) returns (ExpenseCategorySingleResponse) {}
+  rpc CashbookFindAllExpenseCategory(EmptyRequest) returns (ExpenseCategoryRepeatedResponse) {}
   rpc CashbookCreateCashIn (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutRepeatedResponse) {}
@@ -44,7 +45,13 @@ message EmptyRequest {}
     bool success = 1;
     int32 status = 2;
     string message = 3;
-    optional CashInOut data = 4;
+    optional ExpenseCategory data = 4;
+  }
+  message ExpenseCategoryRepeatedResponse{
+    bool success = 1;
+    int32 status = 2;
+    string message = 3;
+    repeated ExpenseCategory data = 4;
   }
   message CashInOutSingleResponse{
     bool success = 1;
@@ -60,17 +67,13 @@ message EmptyRequest {}
     repeated CashInOut data = 4;
   }
 
-  message Expenses{
+  message ExpenseCategory{
     int32 id = 1;
-    int32 userId = 2;
-    int32 approvedBy = 3;
-    int32 branchId = 4;
-    int32 amount = 5;
-    string comment = 6;
-    int32 status = 7;
-    string createdAt = 8;
+    string title = 2;
+    string description = 3;
+    string createdAt = 4;
   }
-  
+
   message CashInOut{
     int32 id = 1;
     int32 userId = 2;
