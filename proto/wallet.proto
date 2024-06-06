@@ -5,8 +5,8 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (CashInOutRepeatedResponse) {}
-  rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
