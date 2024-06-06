@@ -6,6 +6,7 @@ package wallet;
 
 service WalletService {
   rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (WalletResponse) {}
+  rpc CashbookFindAllCashIn (EmptyRequest) returns (WalletResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -33,6 +34,8 @@ service WalletService {
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
 }
+
+message EmptyRequest {}
 
 message GetUserAccountsResponse {
   message BankAccount {
