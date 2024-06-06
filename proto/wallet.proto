@@ -93,6 +93,7 @@ message CashInOut{
   string comment = 6;
   int32 status = 7;
   string createdAt = 8;
+  int32 balance = 9;
 }
 
 message CashbookCreateExpenseTypeRequest {
