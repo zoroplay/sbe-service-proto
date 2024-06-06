@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-// import "google/protobuf/money.proto";
+import "google/protobuf/struct.proto";
 
 package wallet;
 
@@ -452,7 +452,7 @@ message GetTransactionResponse {
   bool success = 1;
   int32 status = 2;
   string message = 3;
-  repeated Transaction data = 4;
+  repeated google.protobuf.Struct data = 4;
 }
 
 message OpayWebhookRequest {
