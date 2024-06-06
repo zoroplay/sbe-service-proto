@@ -5,8 +5,8 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (WalletResponse) {}
-  rpc CashbookFindAllCashIn (EmptyRequest) returns (WalletResponse) {}
+  rpc CashbookCreateCashIn (CashbookCreateCashInRequest) returns (CashInOutResponse) {}
+  rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutResponse) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -36,6 +36,24 @@ service WalletService {
 }
 
 message EmptyRequest {}
+
+message CashInOutResponse{
+
+    bool success = 1;
+    int32 status = 2;
+    string message = 3;
+    optional CashInOut data = 4;
+  }
+
+  message CashInOut{
+    int32 userId = 1;
+    int32 approvedBy = 2;
+    int32 branchId = 3;
+    int32 amount = 4;
+    string comment = 5;
+    int32 status = 6;
+    string createdAt = 7;
+  }
 
 message GetUserAccountsResponse {
   message BankAccount {
