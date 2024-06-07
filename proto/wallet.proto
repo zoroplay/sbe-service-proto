@@ -40,7 +40,7 @@ service WalletService {
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
-  rpc ValidateWithdrawalCode (ValidateWithdrawalRequest) returns (CommonResponseObj) {}
+  rpc ValidateTransactionCode (ValidateWithdrawalRequest) returns (CommonResponseObj) {}
 }
 
 message WalletTransferRequest {
