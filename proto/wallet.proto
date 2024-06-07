@@ -35,11 +35,31 @@ service WalletService {
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
   rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
-  rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
+  rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
+  rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ValidateWithdrawalCode (ValidateWithdrawalRequest) returns (CommonResponseObj) {}
 }
+
+message WalletTransferRequest {
+  int32 clientId = 1;
+  int32 toUserId = 2;
+  string toUsername = 3;
+  string fromUsername = 4;
+  int32 fromUserId = 5;
+  double amount = 6;
+  optional string description = 7;
+  string action = 8;
+}
+
+message ValidateWithdrawalRequest {
+  int32 clientId = 1;
+  string code = 2;
+}
+
+
 
 message EmptyRequest {}
 message CashbookCreateExpenseCategoryRequest {
@@ -72,6 +92,7 @@ message CashbookCreateCashInOutRequest {
   int32 amount = 4;
   string comment = 5;
 }
+
 message CashInOutSingleResponse{
   bool success = 1;
   int32 status = 2;
@@ -124,7 +145,6 @@ message ExpenseType {
   int32 categoryId = 7;
 }
 
-
 message GetUserAccountsResponse {
   message BankAccount {
     string bankCode = 1;
@@ -134,6 +154,7 @@ message GetUserAccountsResponse {
   }
   repeated BankAccount data = 1;
 }
+
 message GetNetworkBalanceRequest {
   int32 agentId = 1;
   string userIds = 2;
@@ -541,10 +562,18 @@ message UpdateWithdrawalRequest {
   string updatedBy = 5;
 }
 
-message UpdateWithdrawalResponse {
+message CommonResponseObj {
   bool success = 1;
   string message = 2;
   int32 status = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
+message CommonResponseArray {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  repeated google.protobuf.Struct data = 4;
 }
 
 message PlayerWalletData {
