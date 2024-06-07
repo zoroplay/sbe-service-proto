@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package identity;
 
+import "google/protobuf/struct.proto";
+
 service IdentityService {
   
-
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
@@ -504,7 +505,7 @@ message CommonResponse {
   optional int32 status = 1;
   optional bool success = 2;
   string message = 3;
-  optional string data = 4;
+  optional google.protobuf.Struct data = 4;
   optional string errors = 5;
 }
 
