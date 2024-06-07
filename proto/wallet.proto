@@ -63,7 +63,8 @@ message WalletTransferRequest {
 
 message ValidateTransactionRequest {
   int32 clientId = 1;
-  string code = 2;
+  int32 userId = 2;
+  string code = 3;
 }
 
 message EmptyRequest {}
