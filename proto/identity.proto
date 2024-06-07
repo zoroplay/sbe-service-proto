@@ -108,6 +108,8 @@ message WithdrawalSettingsResponse {
   int32 autoDisbursementCount = 4;
   float minimumWithdrawal = 5;
   float maximumWithdrawal = 6;
+  int32 allowWithdrawalComm = 7;
+  float withdrawalComm = 8;
 }
 
 message PlaceBetRequest {

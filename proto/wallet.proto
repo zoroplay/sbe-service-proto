@@ -65,6 +65,7 @@ message ValidateTransactionRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string code = 3;
+  string userRole = 4;
 }
 
 message EmptyRequest {}
