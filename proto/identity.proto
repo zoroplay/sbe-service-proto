@@ -17,7 +17,6 @@ service IdentityService {
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseArray) {}
-  rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
@@ -60,9 +59,12 @@ service IdentityService {
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponseObj) {}
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
-  rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
-  rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
-  rpc GetUserRiskSettings (GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+}
+
+message GetRiskSettingRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
 }
 
 message GetAgentUserRequest {
@@ -74,14 +76,7 @@ message FindUserRequest {
   int32 userId = 1; 
 }
 
-message GetAgentUsersRequest {
-  int32 clientId = 1;
-  optional int32 userId = 2;
-  optional string username = 3;
-  optional int32 roleId = 4;
-  optional int32 state = 5;
-  optional int32 page = 6;
-}
+
 
 message GetUserIdNameRequest {
   string username = 1;
