@@ -1,8 +1,11 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
+
+import "retail/retail.proto";
+
 package identity;
 
-import "google/protobuf/struct.proto";
 
 service IdentityService {
   
