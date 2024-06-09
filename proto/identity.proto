@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/struct.proto";
 
-import public "retail/retail.proto";
+import public "proto/retail.proto";
 
 package identity;
 
@@ -63,7 +63,18 @@ service IdentityService {
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+
+  // retail services
+  rpc ListAgentUsers (retail.GetAgentUsersRequest) returns (CommonResponseArray) {}
+  rpc ListAgents (retail.GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
+  rpc getCommissionProfiles(Empty) returns (retail.CommissionProfilesResponse) {}
+  rpc createCommissionProfile(retail.CommissionProfile) returns (retail.CommissionProfileResponse) {}
+  rpc updateCommissionProfile(retail.CommissionProfile) returns (retail.CommissionProfileResponse) {}
+  rpc assignUserCommissionProfile(retail.AssignUserCommissionProfile) returns (retail.CommissionProfileResponse) {}
 }
+
+message Empty {}
 
 message GetRiskSettingRequest {
   int32 clientId = 1;

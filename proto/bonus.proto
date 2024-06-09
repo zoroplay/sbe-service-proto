@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import public "proto/retail.proto";
+
 package bonus;
 
 service BonusService {
@@ -46,6 +48,19 @@ service BonusService {
   rpc RedeemCampaignBonus(RedeemCampaignBonusDto) returns (CreateBonusResponse){}
 
   rpc GetCampaignBonus(GetBonusByClientID) returns (AllCampaignBonus){}
+
+  // RETAIL SERVICE
+  rpc getBonusGroups(Empty) returns (retail.BonusGroupResponse) {}
+  rpc createBonusGroups(retail.BonusGroups) returns (retail.BonusGroupResponse) {}
+  rpc createPowerBonus(retail.PowerRequest) returns (retail.PowerBonusResponse) {}
+  rpc getPowerBonus(retail.PowerRequest) returns (retail.PowerBonusResponse) {}
+  rpc payOutPowerBonus(retail.PayPowerRequest) returns (retail.PowerResponse) {}
+  rpc getNormalBonus(retail.GetNormalRequest) returns (retail.NormalResponse) {}
+  rpc calculateNormalBonus(retail.PayNormalRequest) returns (retail.PayNormalResponse) {}
+  rpc payOutNormalBonus(retail.PayNormalRequest) returns (retail.PayNormalResponse) {}
+}
+
+message Empty {
 
 }
 
