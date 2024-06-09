@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package retail;
 
+import "google/protobuf/struct.proto";
+
+
 service RetailService {
 
     // Bonus Groups
@@ -9,7 +12,7 @@ service RetailService {
     rpc createBonusGroups(BonusGroups) returns (BonusGroupResponse) {}
 
     // Profiles
-    rpc getCommissionProfiles(Meta) returns (CommissionProfilesResponse) {}
+    rpc getCommissionProfiles(Empty) returns (CommissionProfilesResponse) {}
     rpc createCommissionProfile(CommissionProfile) returns (CommissionProfileResponse) {}
     rpc updateCommissionProfile(CommissionProfile) returns (CommissionProfileResponse) {}
     rpc assignUserCommissionProfile(AssignUserCommissionProfile) returns (CommissionProfileResponse) {}
@@ -28,7 +31,43 @@ service RetailService {
     rpc getNormalBonus(GetNormalRequest) returns (NormalResponse) {}
     rpc calculateNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
     rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
+
+    rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
+    rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
+    rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
 }
+
+
+message GetAgentUserRequest {
+    int32 clientId = 1; 
+    int32 userId = 2; 
+  }
+
+message GetAgentUsersRequest {
+    int32 clientId = 1;
+    optional int32 userId = 2;
+    optional string username = 3;
+    optional int32 roleId = 4;
+    optional int32 state = 5;
+    optional int32 page = 6;
+  }
+
+  message CommonResponseArray {
+    optional int32 status = 1;
+    optional bool success = 2;
+    string message = 3;
+    repeated google.protobuf.Struct data = 4;
+    optional string errors = 5;
+  }
+  
+  message CommonResponseObj{
+    optional int32 status = 1;
+    optional bool success = 2;
+    string message = 3;
+    optional google.protobuf.Struct data = 4;
+    optional string errors = 5;
+  }
+  
 
 message Empty {
 

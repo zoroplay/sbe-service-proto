@@ -2,32 +2,32 @@ syntax = "proto3";
 
 package identity;
 
+import "google/protobuf/struct.proto";
+
 service IdentityService {
   
-
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
-  rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponse) {}
+  rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
-  rpc CreateClient (ClientRequest) returns (CommonResponse) {}
-  rpc CreatePermission (PermissionRequest) returns (CommonResponse) {}
-  rpc FindUser (FindUserRequest) returns (CommonResponse) {}
-  rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponse) {}
+  rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
+  rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
+  rpc FindUser (FindUserRequest) returns (CommonResponseArray) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc RemoveRole (RemoveRoleRequest) returns (DeleteResponse) {}
-  rpc FindAllPermissions (EmptyRequest) returns (CommonResponse) {}
-  rpc FindAllClients (EmptyRequest) returns (CommonResponse) {}
-  rpc RemoveClient (RemoveClientRequest) returns (CommonResponse) {}
-  rpc RemovePermission (RemovePermissionRequest) returns (CommonResponse) {}
-  rpc UpdateDetails (User) returns (CommonResponse) {}
-  rpc CreateRetailUser (CreateUserRequest) returns (CommonResponse) {}
-  rpc CreateAdminUser (CreateUserRequest) returns (CommonResponse) {}
+  rpc FindAllPermissions (EmptyRequest) returns (CommonResponseArray) {}
+  rpc FindAllClients (EmptyRequest) returns (CommonResponseArray) {}
+  rpc RemoveClient (RemoveClientRequest) returns (CommonResponseObj) {}
+  rpc RemovePermission (RemovePermissionRequest) returns (CommonResponseObj) {}
+  rpc UpdateDetails (User) returns (CommonResponseObj) {}
+  rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
+  rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
@@ -41,27 +41,30 @@ service IdentityService {
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
-  rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponse) {}
-  rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponse) {}
-  rpc AddToSegment (AddToSegmentRequest) returns (CommonResponse) {}
-  rpc UploadToSegment (UploadPlayersToSegment) returns (CommonResponse) {}
-  rpc DeletePlayerSegment (DeleteItemRequest) returns (CommonResponse) {}
-  rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponse) {}
-  rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponse) {}
-  rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponse) {}
-  rpc GetCountries (EmptyRequest) returns (CommonResponse) {}
-  rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponse) {}
-  rpc ValidateXpressSession (SessionRequest) returns (CommonResponse) {}
-  rpc SaveSettings (SettingsRequest) returns (CommonResponse) {}
-  rpc SaveRiskSettings (SettingsRequest) returns (CommonResponse) {}
-  rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponse) {}
-  rpc GetSettings (GetSettingsRequest) returns (CommonResponse) {}
-  rpc ValidateBet (PlaceBetRequest) returns (CommonResponse) {}
+  rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
+  rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponseArray) {}
+  rpc AddToSegment (AddToSegmentRequest) returns (CommonResponseObj) {}
+  rpc UploadToSegment (UploadPlayersToSegment) returns (CommonResponseObj) {}
+  rpc DeletePlayerSegment (DeleteItemRequest) returns (CommonResponseObj) {}
+  rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponseObj) {}
+  rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponseArray) {}
+  rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponseObj) {}
+  rpc GetCountries (EmptyRequest) returns (CommonResponseArray) {}
+  rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponseArray) {}
+  rpc ValidateXpressSession (SessionRequest) returns (CommonResponseObj) {}
+  rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
+  rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
+  rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
+  rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
+  rpc ValidateBet (PlaceBetRequest) returns (CommonResponseObj) {}
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
-  rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponse) {}
-  rpc ListAgents (GetAgentUsersRequest) returns (CommonResponse) {}
-  rpc GetUserRiskSettings (GetAgentUsersRequest) returns (CommonResponse) {}
+  rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+}
+
+message GetRiskSettingRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
 }
 
 message GetAgentUserRequest {
@@ -73,14 +76,7 @@ message FindUserRequest {
   int32 userId = 1; 
 }
 
-message GetAgentUsersRequest {
-  int32 clientId = 1;
-  optional int32 userId = 2;
-  optional string username = 3;
-  optional int32 roleId = 4;
-  optional int32 state = 5;
-  optional int32 page = 6;
-}
+
 
 message GetUserIdNameRequest {
   string username = 1;
@@ -107,6 +103,8 @@ message WithdrawalSettingsResponse {
   int32 autoDisbursementCount = 4;
   float minimumWithdrawal = 5;
   float maximumWithdrawal = 6;
+  int32 allowWithdrawalComm = 7;
+  float withdrawalComm = 8;
 }
 
 message PlaceBetRequest {
@@ -500,11 +498,19 @@ message GetClientResponse {
   optional string errors = 4;
 }
 
-message CommonResponse {
+message CommonResponseArray {
   optional int32 status = 1;
   optional bool success = 2;
   string message = 3;
-  optional string data = 4;
+  repeated google.protobuf.Struct data = 4;
+  optional string errors = 5;
+}
+
+message CommonResponseObj{
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
   optional string errors = 5;
 }
 

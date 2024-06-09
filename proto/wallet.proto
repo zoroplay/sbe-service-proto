@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-// import "google/protobuf/money.proto";
+import "google/protobuf/struct.proto";
 
 package wallet;
 
@@ -41,10 +41,42 @@ service WalletService {
   rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
   rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
-  rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (UpdateWithdrawalResponse) {}
+  rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
+  rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ValidateDepositCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
+  rpc ProcessShopDeposit (ProcessRetailTransaction) returns (CommonResponseObj) {}
+  rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
+  rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
+}
+
+message ProcessRetailTransaction {
+  int32 id = 1;
+  int32 clientId = 2;
+  int32 userId = 3;
+  string username = 4;
+  float amount = 5;
+  float withdrawalCharge = 6;
+}
+
+message WalletTransferRequest {
+  int32 clientId = 1;
+  int32 toUserId = 2;
+  string toUsername = 3;
+  string fromUsername = 4;
+  int32 fromUserId = 5;
+  double amount = 6;
+  optional string description = 7;
+  string action = 8;
+}
+
+message ValidateTransactionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string code = 3;
+  string userRole = 4;
 }
 
 message EmptyRequest {}
@@ -162,7 +194,6 @@ message ExpenseType {
   int32 fixed = 6;
 }
 
-
 message GetUserAccountsResponse {
   message BankAccount {
     string bankCode = 1;
@@ -172,6 +203,7 @@ message GetUserAccountsResponse {
   }
   repeated BankAccount data = 1;
 }
+
 message GetNetworkBalanceRequest {
   int32 agentId = 1;
   string userIds = 2;
@@ -490,7 +522,7 @@ message GetTransactionResponse {
   bool success = 1;
   int32 status = 2;
   string message = 3;
-  repeated Transaction data = 4;
+  repeated google.protobuf.Struct data = 4;
 }
 
 message OpayWebhookRequest {
@@ -579,10 +611,18 @@ message UpdateWithdrawalRequest {
   string updatedBy = 5;
 }
 
-message UpdateWithdrawalResponse {
+message CommonResponseObj {
   bool success = 1;
   string message = 2;
   int32 status = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
+message CommonResponseArray {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  repeated google.protobuf.Struct data = 4;
 }
 
 message PlayerWalletData {
