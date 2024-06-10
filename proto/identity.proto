@@ -86,10 +86,8 @@ message GetAgentUsersRequest {
   optional int32 page = 6;
 }
 
+message Empty {}
 
-message Empty {
-
-}
 // Bonus
 message BonusGroup {
   string group = 1;
