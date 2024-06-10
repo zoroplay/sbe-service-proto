@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import public "google/protobuf/struct.proto";
 
-import "proto/retail.proto";
+import "retail.proto";
 
 package identity;
 
