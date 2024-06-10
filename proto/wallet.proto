@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
-import "retail.proto";
-import "cashbook.proto";
+// import "proto";
+// import "cashbook.proto";
 
 package wallet;
 
@@ -62,14 +62,39 @@ service WalletService {
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
 
   // RETAIL SERVICES
-  rpc WalletTransfer (retail.WalletTransferRequest) returns (CommonResponseObj) {}
-  rpc ValidateDepositCode (retail.ValidateTransactionRequest) returns (CommonResponseObj) {}
-  rpc ProcessShopDeposit (retail.ProcessRetailTransaction) returns (CommonResponseObj) {}
-  rpc ValidateWithdrawalCode (retail.ValidateTransactionRequest) returns (CommonResponseObj) {}
-  rpc ProcessShopWithdrawal (retail.ProcessRetailTransaction) returns (CommonResponseObj) {}
+  rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ValidateDepositCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
+  rpc ProcessShopDeposit (ProcessRetailTransaction) returns (CommonResponseObj) {}
+  rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
+  rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
 }
 
+message ProcessRetailTransaction {
+  int32 id = 1;
+  int32 clientId = 2;
+  int32 userId = 3;
+  string username = 4;
+  float amount = 5;
+  float withdrawalCharge = 6;
+}
 
+message WalletTransferRequest {
+  int32 clientId = 1;
+  int32 toUserId = 2;
+  string toUsername = 3;
+  string fromUsername = 4;
+  int32 fromUserId = 5;
+  double amount = 6;
+  optional string description = 7;
+  string action = 8;
+}
+
+message ValidateTransactionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string code = 3;
+  string userRole = 4;
+}
 
 message EmptyRequest {}
 
