@@ -698,7 +698,7 @@ message PaginationResponse {
   int32 nextPage = 4;
   int32 prevPage = 5;
   int32 lastPage = 6;
-  string data = 7;
+  repeated google.protobuf.Struct data = 7;
 }
 
 message Country {
