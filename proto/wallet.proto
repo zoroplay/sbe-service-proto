@@ -100,6 +100,7 @@ message EmptyRequest {}
 
 message BranchRequest {
   int32 branchId = 1;
+  optional string date = 2;
 }
 
 message IdRequest {
