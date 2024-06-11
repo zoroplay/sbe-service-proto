@@ -25,6 +25,8 @@ service WalletService {
   rpc CashbookFindOneCashIn (IdRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashIn (BranchRequest) returns (CashInOutRepeatedResponse) {}
+  rpc FindAllBranchApprovedCashinWDate (BranchRequest) returns (CashInOutRepeatedResponse) {}
+  rpc FindAllBranchPendingCashinWDate (BranchRequest) returns (CashInOutRepeatedResponse) {}
   
   rpc CashbookApproveCashOut (CashbookApproveCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
