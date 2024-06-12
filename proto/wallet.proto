@@ -78,6 +78,7 @@ message ProcessRetailTransaction {
   optional string username = 4;
   optional float amount = 5;
   optional float withdrawalCharge = 6;
+  optional string userRole = 7;
 }
 
 message WalletTransferRequest {
