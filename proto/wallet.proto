@@ -75,9 +75,9 @@ message ProcessRetailTransaction {
   int32 id = 1;
   int32 clientId = 2;
   int32 userId = 3;
-  string username = 4;
-  float amount = 5;
-  float withdrawalCharge = 6;
+  optional string username = 4;
+  optional float amount = 5;
+  optional float withdrawalCharge = 6;
 }
 
 message WalletTransferRequest {
