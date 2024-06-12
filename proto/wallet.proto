@@ -75,9 +75,10 @@ message ProcessRetailTransaction {
   int32 id = 1;
   int32 clientId = 2;
   int32 userId = 3;
-  string username = 4;
-  float amount = 5;
-  float withdrawalCharge = 6;
+  optional string username = 4;
+  optional float amount = 5;
+  optional float withdrawalCharge = 6;
+  optional string userRole = 7;
 }
 
 message WalletTransferRequest {
@@ -95,7 +96,7 @@ message ValidateTransactionRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string code = 3;
-  string userRole = 4;
+  optional string userRole = 4;
 }
 
 message EmptyRequest {}
@@ -687,7 +688,7 @@ message PaginationResponse {
   int32 nextPage = 4;
   int32 prevPage = 5;
   int32 lastPage = 6;
-  string data = 7;
+  repeated google.protobuf.Struct data = 7;
 }
 
 message MetaData {
