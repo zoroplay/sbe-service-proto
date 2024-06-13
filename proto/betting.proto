@@ -27,6 +27,16 @@ service BettingService {
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
+  rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
+}
+
+message SalesReportRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string role = 3;
+  string from = 4;
+  string to = 5;
+  string productType = 6;
 }
 
 message CommonResponseObj{
