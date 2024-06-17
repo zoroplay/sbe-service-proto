@@ -56,7 +56,7 @@ service IdentityService {
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
-  rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseArray) {}
+  rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
   rpc ValidateBet (PlaceBetRequest) returns (CommonResponseObj) {}
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
