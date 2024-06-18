@@ -97,11 +97,11 @@ message CommissionProfile {
   int32 clientId = 1;
   optional int32 id = 2;
   string name = 3;
-  bool default = 4;
+  bool isDefault = 4;
   string description = 5;
   string providerGroup = 6;
   string period = 7;
-  string type = 8;
+  string calculationType = 8;
   double percentage = 9;
   int32 commissionType = 10;
   repeated CommissionTurnover turnovers = 11;
