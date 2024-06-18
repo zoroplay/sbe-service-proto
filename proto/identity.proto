@@ -66,10 +66,10 @@ service IdentityService {
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
-  rpc getCommissionProfiles(Empty) returns (CommissionProfilesResponse) {}
-  rpc createCommissionProfile(CommissionProfile) returns (CommissionProfileResponse) {}
-  rpc updateCommissionProfile(CommissionProfile) returns (CommissionProfileResponse) {}
-  rpc assignUserCommissionProfile(AssignUserCommissionProfile) returns (CommissionProfileResponse) {}
+  rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
+  rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
+  rpc updateCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
+  rpc assignUserCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
 }
 
 
@@ -87,37 +87,39 @@ message GetAgentUsersRequest {
   optional int32 page = 6;
 }
 
-message Empty {}
-
+message GetCommissionsRequest {
+  int32 clientId = 1;
+}
 
 
 // Commission Profile
 message CommissionProfile {
-  optional int32 id = 1;
-  string name = 2;
-  bool default = 3;
-  string description = 4;
-  string providerGroup = 5;
-  string period = 6;
-  string type = 7;
-  double percentage = 8;
-  int32 commissionType = 9;
-  repeated CommissionTurnover turnovers = 10;
-  optional string createdAt = 11;
-  optional string updatedAt = 12;
+  int32 clientId = 1;
+  optional int32 id = 2;
+  string name = 3;
+  bool default = 4;
+  string description = 5;
+  string providerGroup = 6;
+  string period = 7;
+  string type = 8;
+  double percentage = 9;
+  int32 commissionType = 10;
+  repeated CommissionTurnover turnovers = 11;
+  optional string createdAt = 12;
+  optional string updatedAt = 13;
 }
 
-message CommissionProfileResponse {
-  bool success = 1;
-  string message = 2;
-  CommissionProfile  data = 3;
-}
+// message CommissionProfileResponse {
+//   bool success = 1;
+//   string message = 2;
+//   CommissionProfile  data = 3;
+// }
 
-message CommissionProfilesResponse {
-  bool success = 1;
-  string message = 2;
-  repeated CommissionProfile  data = 3;
-}
+// message CommissionProfilesResponse {
+//   bool success = 1;
+//   string message = 2;
+//   repeated CommissionProfile  data = 3;
+// }
 
 message AssignUserCommissionProfile {
   int32 profileId = 1;
@@ -126,17 +128,6 @@ message AssignUserCommissionProfile {
   optional string updatedAt = 4;
 }
 
-// Commissions
-
-
-// Commission Reequest
-message CommissionRequest {
-  string provider = 1;
-}
-
-message ArrayCommissionResponse {
-  repeated Commission commissions = 1;
-}
 
 message Commission {
   optional int32 id = 1;
