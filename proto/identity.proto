@@ -70,6 +70,8 @@ service IdentityService {
   rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
   rpc updateCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
   rpc assignUserCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
+  rpc getCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
+  rpc deleteCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
 }
 
 
@@ -109,11 +111,9 @@ message CommissionProfile {
   optional string updatedAt = 13;
 }
 
-// message CommissionProfileResponse {
-//   bool success = 1;
-//   string message = 2;
-//   CommissionProfile  data = 3;
-// }
+message SingleItemRequest {
+  int32 itemId = 1;
+}
 
 // message CommissionProfilesResponse {
 //   bool success = 1;
