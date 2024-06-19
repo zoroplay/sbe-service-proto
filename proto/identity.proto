@@ -231,8 +231,8 @@ message PayNormalRequest {
 // Bonus
 message BonusGroup {
   string group = 1;
-  double maxSel = 2;
-  double minSel = 3;
+  double maxSelection = 2;
+  double minSelection = 3;
   double rate = 4;
   double rateIsLess = 5;
   double rateIsMore = 6;
