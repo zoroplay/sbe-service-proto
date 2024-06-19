@@ -71,6 +71,7 @@ service IdentityService {
   rpc updateCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
   rpc assignUserCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
   rpc getUserCommissionProfiles(SingleItemRequest) returns (CommonResponseArray) {}
+  rpc removeUserCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseArray) {}
   rpc getCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
   rpc deleteCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
 
