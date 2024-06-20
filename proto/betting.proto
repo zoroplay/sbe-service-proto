@@ -21,7 +21,7 @@ service BettingService {
   rpc FindBet (FindBetRequest) returns (FindBetResponse) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
   rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
-  rpc GetCoupon(FindBetRequest) returns (FindBetResponse) {}
+  rpc GetCoupon(FindBetRequest) returns (CommonResponseObj) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
