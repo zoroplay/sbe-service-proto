@@ -151,6 +151,7 @@ message Expense{
   int32 verifiedBy = 10;
   string createdAt = 11;
   optional int32 balance = 12;
+  int32 expenseType = 13;
 }
 
 message CashbookApproveCashInOutRequest {
