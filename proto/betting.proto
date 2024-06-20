@@ -18,7 +18,7 @@ service BettingService {
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
-  rpc FindBet (FindBetRequest) returns (FindBetResponse) {}
+  rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
   rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
   rpc GetCoupon(FindBetRequest) returns (CommonResponseObj) {}
