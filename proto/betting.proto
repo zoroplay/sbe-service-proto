@@ -18,15 +18,25 @@ service BettingService {
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
-  rpc FindBet (FindBetRequest) returns (FindBetResponse) {}
+  rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
   rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
-  rpc GetCoupon(FindBetRequest) returns (FindBetResponse) {}
+  rpc GetCoupon(FindBetRequest) returns (CommonResponseObj) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
+  rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
+}
+
+message SalesReportRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string role = 3;
+  string from = 4;
+  string to = 5;
+  string productType = 6;
 }
 
 message CommonResponseObj{
