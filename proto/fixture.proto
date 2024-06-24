@@ -413,7 +413,7 @@ message FixtureWithOutcomes {
   string awayScore = 14; // Current score of the away team
   string competitor1 = 15; // Home team name
   string competitor2 = 16; // Away team name
-  string eventTime = 17; //Current event time e.g 00:10
+  string eventTime = 17; // Current event time e.g 00:10
   string sportName = 18;
   string categoryID = 19;
 }
