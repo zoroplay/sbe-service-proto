@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package fixture;
 
+import "google/protobuf/struct.proto";
+
 service FixtureService {
 
   /*
@@ -71,8 +73,16 @@ service FixtureService {
   //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetRetailFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
   //Get Fixture Retail - Loads odds for all the markets of the supplied matchID
-  rpc GetRetailFixture (FilterByMatchID) returns (FixtureOdds){}
+  rpc GetRetailFixture (FilterByMatchID) returns (CommonResponseObj){}
 
+}
+
+message CommonResponseObj{
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+  optional string errors = 5;
 }
 
 message CreateMarketGroupRequest {
