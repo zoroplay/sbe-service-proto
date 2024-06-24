@@ -324,7 +324,7 @@ message Outcome {
   float previousOdds = 5; // Previous odds of the outcome
   int32 oddID = 6; // Odd ID
   int32 active = 7; // wether odd is active (1) or not (0), only display active odds on the site
-  int32 displayName = 8;
+  optional string displayName = 8;
   int32 producerID = 9;
   optional string marketName = 10;
   optional string specifier = 11;
@@ -332,6 +332,7 @@ message Outcome {
   optional int32 marketId = 13;
   optional int32 status = 14;
   optional int32 priority = 15;
+  optional string marketAlias = 16;
 }
 
 message AvailableMarket {
