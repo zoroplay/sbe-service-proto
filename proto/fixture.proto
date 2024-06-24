@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package fixture;
 
-import "google/protobuf/struct.proto";
-
 service FixtureService {
 
   /*
@@ -73,16 +71,8 @@ service FixtureService {
   //GetHighlights - This GRPC method retrieves the odds for a particular market (e.g 1x2, total, Double chance etc) for games, the method provides a way to pass pagination parameters, this method will be used to load games in the front page of the site
   rpc GetRetailFixtures (GetFixturesRequest) returns (GetFixturesResponse){}
   //Get Fixture Retail - Loads odds for all the markets of the supplied matchID
-  rpc GetRetailFixture (FilterByMatchID) returns (CommonResponseObj){}
+  rpc GetRetailFixture (FilterByMatchID) returns (FixtureOdds){}
 
-}
-
-message CommonResponseObj{
-  optional int32 status = 1;
-  optional bool success = 2;
-  string message = 3;
-  optional google.protobuf.Struct data = 4;
-  optional string errors = 5;
 }
 
 message CreateMarketGroupRequest {
@@ -336,6 +326,12 @@ message Outcome {
   int32 active = 7; // wether odd is active (1) or not (0), only display active odds on the site
   int32 displayName = 8;
   int32 producerID = 9;
+  optional string marketName = 10;
+  optional string specifier = 11;
+  optional int32 id = 12;
+  optional int32 marketId = 13;
+  optional int32 status = 14;
+  optional int32 priority = 15;
 }
 
 message AvailableMarket {
@@ -386,6 +382,29 @@ message FixtureOdds {
   string date = 6; // Fixture date
   int32 producerID = 7; // Unique ID of the producer that sent the odd
   repeated Market markets = 8; // array of markets
+  string categoryName = 9; // Fixture country
+  int32 statusCode = 10; // match status code
+  int32 producerStatus = 11; // producer status
+  string matchStatus = 12; // Match status description, available values NotStarted,Live,Ended,Suspended
+  string homeScore = 13; // Current score of the home team
+  string awayScore = 14; // Current score of the away team
+  string competitor1 = 15; // Home team name
+  string competitor2 = 16; // Away team name
+  string eventTime = 17; //Current event time e.g 00:10
+  string sportName = 18;
+  string categoryID = 19;
+}
+
+message FixtureWithOutcomes {
+
+  string tournament = 1; // Tournament name
+  int32 sportID = 2; // Unique ID of the sport
+  int32 gameID = 3; // Unique ID of the match (internal ID)
+  string name = 4; // Fixture name
+  int32 matchID = 5; // Unique ID of the match (betradr ID)
+  string date = 6; // Fixture date
+  int32 producerID = 7; // Unique ID of the producer that sent the odd
+  repeated Outcome outcomes = 8; // array of markets
   string categoryName = 9; // Fixture country
   int32 statusCode = 10; // match status code
   int32 producerStatus = 11; // producer status
