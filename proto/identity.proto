@@ -350,7 +350,7 @@ message GetRiskSettingRequest {
 
 message FindUserRequest {
   int32 userId = 1; 
-  optional string status = 2;
+  optional int32 status = 2;
 }
 
 message GetUserIdNameRequest {
