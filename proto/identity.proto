@@ -39,7 +39,7 @@ service IdentityService {
   rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
-  rpc UpdatePlayerStatus (SingleItemRequest) returns (CommonResponseObj) {}
+  rpc UpdatePlayerStatus (FindUserRequest) returns (CommonResponseObj) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
@@ -350,9 +350,8 @@ message GetRiskSettingRequest {
 
 message FindUserRequest {
   int32 userId = 1; 
+  optional string status = 2;
 }
-
-
 
 message GetUserIdNameRequest {
   string username = 1;
