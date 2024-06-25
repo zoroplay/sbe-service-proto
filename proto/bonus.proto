@@ -48,6 +48,8 @@ service BonusService {
   rpc RedeemCampaignBonus(RedeemCampaignBonusDto) returns (CreateBonusResponse){}
 
   rpc GetCampaignBonus(GetBonusByClientID) returns (AllCampaignBonus){}
+
+  rpc DeletePlayerData(GetBonusRequest) returns (EmptyResponse) {}
 }
 
 

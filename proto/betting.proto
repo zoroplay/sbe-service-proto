@@ -28,6 +28,7 @@ service BettingService {
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
+  rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
 }
 
 message SalesReportRequest {
