@@ -39,6 +39,7 @@ service IdentityService {
   rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
+  rpc UpdatePlayerStatus (SingleItemRequest) returns (CommonResponseObj) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
