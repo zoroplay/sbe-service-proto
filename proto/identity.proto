@@ -280,7 +280,7 @@ message CommissionProfile {
   int32 clientId = 1;
   optional int32 id = 2;
   string name = 3;
-  bool isDefault = 4;
+  optional bool isDefault = 4;
   string description = 5;
   string providerGroup = 6;
   string period = 7;
