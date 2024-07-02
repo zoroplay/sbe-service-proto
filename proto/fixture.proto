@@ -73,6 +73,38 @@ service FixtureService {
   //Get Fixture Retail - Loads odds for all the markets of the supplied matchID
   rpc GetRetailFixture (FilterByMatchID) returns (FixtureWithOutcomes){}
 
+
+  rpc GetTopTournaments (FilterByClientIDRequest) returns (GetTopTournamentResponse){}
+  rpc SaveTopTournament (SaveTopTournamentRequest) returns (CommonResponse){}
+  rpc RemoveTopTournament (DeleteMarketGroupRequest) returns (CommonResponse){}
+
+}
+
+message CommonResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message TopTournament {
+  int32 sportID = 1;
+  string sportName = 2;
+  int32 categoryID = 3;
+  string categoryName = 4;
+  int32 tournamentID = 5;
+  string tournamentName = 6; 
+}
+
+message GetTopTournamentResponse {
+  repeated TopTournament data = 1;
+}
+
+message SaveTopTournamentRequest {
+  int32 clientID = 1;
+  int32 sportId = 2;
+  int32 categoryId = 3;
+  int32 tournamentId = 4;
+  string sideMenu = 5;
+  string homeScreen = 6;
 }
 
 message CreateMarketGroupRequest {
