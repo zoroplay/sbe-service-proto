@@ -94,14 +94,7 @@ message HandlePinRequest {
   int32 pin = 1; 
   optional int32 confirmPin = 2; 
   int32 userId = 3;
-  string type = 4;
-}
-
-message HandlePinResponse {
-  repeated int32 agentIds = 1;
-  int32 clientId = 2;
-  string type = 3;
-  string toDate = 4;
+  int32 type = 4;
 }
 
 // Power Bonus
