@@ -85,17 +85,18 @@ message CommonResponse {
   string message = 2;
 }
 
-message TopTournament {
-  int32 sportID = 1;
-  string sportName = 2;
-  int32 categoryID = 3;
-  string categoryName = 4;
-  int32 tournamentID = 5;
-  string tournamentName = 6; 
+message TopTournamentData {
+  int32 id = 1;
+  int32 sportID = 2;
+  string sportName = 3;
+  int32 categoryID = 4;
+  string categoryName = 5;
+  int32 tournamentID = 6;
+  string tournamentName = 7; 
 }
 
 message GetTopTournamentResponse {
-  repeated TopTournament data = 1;
+  repeated TopTournamentData data = 1;
 }
 
 message SaveTopTournamentRequest {
