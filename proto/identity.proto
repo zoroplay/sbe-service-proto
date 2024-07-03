@@ -42,6 +42,7 @@ service IdentityService {
   rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
   rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
+  rpc UpdatePlayerStatus (FindUserRequest) returns (CommonResponseObj) {}
   rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
   rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
@@ -297,7 +298,7 @@ message CommissionProfile {
   int32 clientId = 1;
   optional int32 id = 2;
   string name = 3;
-  bool isDefault = 4;
+  optional bool isDefault = 4;
   string description = 5;
   string providerGroup = 6;
   string period = 7;
@@ -367,9 +368,8 @@ message GetRiskSettingRequest {
 
 message FindUserRequest {
   int32 userId = 1; 
+  optional int32 status = 2;
 }
-
-
 
 message GetUserIdNameRequest {
   string username = 1;

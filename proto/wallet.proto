@@ -61,6 +61,7 @@ service WalletService {
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
+  rpc DeletePlayerData (IdRequest) returns (CommonResponseObj) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
 
@@ -161,6 +162,7 @@ message CashbookApproveCashInOutRequest {
   int32 id = 2;
   int32 verifiedBy = 3;
 }
+
 message CashbookCreateCashInOutRequest {
   int32 userId = 1;
   int32 branchId = 2;
@@ -316,22 +318,23 @@ message FetchPlayerDepositRequest {
 }
 
 message TransactionEntity {
-int32   id =1;
-int32 clientId =2;
-int32 userId=3;
-string username =4;
-string transactionNo=5;
-int32  amount =6;
-string  transactionType =7;
-string  subject =8;
-string  description =9;
-string  source =10;
-string  channel=11;
-int32  balance =12;
-int32  status =13;
-string createdAt =14;
-string updatedAt =15;
+  int32   id =1;
+  int32 clientId =2;
+  int32 userId=3;
+  string username =4;
+  string transactionNo=5;
+  int32  amount =6;
+  string  transactionType =7;
+  string  subject =8;
+  string  description =9;
+  string  source =10;
+  string  channel=11;
+  int32  balance =12;
+  int32  status =13;
+  string createdAt =14;
+  string updatedAt =15;
 }
+
 message PaymentMethodRequest {
   int32 clientId = 1;
   string title = 2;
@@ -631,6 +634,7 @@ message TransactionData {
   string transactionDate = 8;
   string channel = 9;
   int32 status = 10;
+  string wallet = 11;
 }
 
 message UpdateWithdrawalRequest {
@@ -671,7 +675,6 @@ message PlayerWalletData {
   int32 noOfDeposits = 13;
   int32 noOfWithdrawals = 14;
 }
-
 
 message ListDepositRequests {
   int32 clientId = 1;

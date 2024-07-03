@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-// import "proto";
+import "google/protobuf/struct.proto";
 
 package bonus;
 
@@ -17,7 +17,7 @@ service BonusService {
 
   rpc CheckDepositBonus (CheckDepositBonusRequest) returns (CheckDepositBonusResponse){}
 
-  rpc SettleBet (SettleBetRequest) returns (EmptyResponse){}
+  rpc SettleBet (SettleBetRequest) returns (CommonResponseObj){}
 
   // rpc CreateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
 
@@ -48,8 +48,17 @@ service BonusService {
   rpc RedeemCampaignBonus(RedeemCampaignBonusDto) returns (CreateBonusResponse){}
 
   rpc GetCampaignBonus(GetBonusByClientID) returns (AllCampaignBonus){}
+
+  rpc DeletePlayerData(GetBonusRequest) returns (EmptyResponse) {}
 }
 
+
+message CommonResponseObj{
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+}
 
 message CheckDepositBonusRequest {
   int32 clientId = 1;
