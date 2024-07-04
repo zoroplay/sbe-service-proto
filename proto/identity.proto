@@ -6,6 +6,9 @@ package identity;
 
 service IdentityService {
   
+  rpc HandlePin (HandlePinRequest) returns (CommonResponseObj) {}
+
+
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
@@ -84,6 +87,14 @@ service IdentityService {
   rpc getNormalBonus(GetNormalRequest) returns (NormalResponse) {}
   rpc calculateNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
+}
+
+// HandlePin
+message HandlePinRequest {
+  int32 pin = 1; 
+  optional int32 confirmPin = 2; 
+  int32 userId = 3;
+  int32 type = 4;
 }
 
 // Power Bonus
