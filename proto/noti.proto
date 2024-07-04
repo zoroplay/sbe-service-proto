@@ -27,12 +27,12 @@ message GetUserNotificationsRequest {
 message HandleNotificationsResponse {
   string message = 1;
   bool   status = 2;
-   Notifications data = 3;
+  optional Notifications data = 3;
 }
 message GetUserNotificationsResponse {
   string message = 1;
   bool   status = 2;
-  repeated Notifications data = 3;
+  repeated Notifications  data = 3;
 }
 message Notifications {
   int32 userId = 1;
