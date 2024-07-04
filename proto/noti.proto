@@ -3,12 +3,34 @@ syntax = "proto3";
 package notification;
 
 service NotificationService {
+  rpc HandleUserNotifications (HandleUserNotificationsRequest) returns (SaveSettingsResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
   rpc SendSms (SendSmsRequest) returns (SendSmsResponse);
   rpc SendOtp (SendOtpRequest) returns (SendSmsResponse);
   rpc verifyOtp (VerifyOtpRequest) returns (SendSmsResponse);
   rpc GetDeliveryReport (DeliveryReportRequest) returns (DeliveryReportResponse);
+}
+
+message HandleUserNotificationsRequest {
+  int32 userId = 1;
+  string description = 2;
+  string title = 3;
+  int32 status = 4;
+}
+
+
+message HandleUserNotificationsResponse {
+  string message = 1;
+  bool   status = 2;
+  repeated Notifications data = 3;
+}
+message Notifications {
+  int32 userId = 1;
+  string description = 2;
+  string title = 3;
+  int32 status = 4;
+  string createdAt = 5;
 }
 
 message SaveSettingsRequest {
