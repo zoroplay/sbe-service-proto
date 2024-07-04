@@ -24,7 +24,7 @@ service BettingService {
   rpc GetCoupon(FindBetRequest) returns (CommonResponseObj) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
-  rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
+  rpc GetVirtualBets(GetVirtualBetsRequest) returns (CommonResponseObj) {}
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
 
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
