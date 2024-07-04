@@ -26,7 +26,9 @@ service BettingService {
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
   rpc GetVirtualBets(GetVirtualBetsRequest) returns (PaginationResponse) {}
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
+
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
+  rpc GetRetailVBets(GetVirtualBetRequest) returns (CommonResponseObj) {}
   rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
 }
@@ -227,6 +229,7 @@ message GamingActivityRequest {
   string groupBy = 13;
   int32 clientID = 14;
   string displayType = 15;
+  optional int32 userId = 16;
 }
 
 message GamingActivityResponse {
