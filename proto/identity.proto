@@ -94,7 +94,7 @@ message HandlePinRequest {
   int32 pin = 1; 
   optional int32 confirmPin = 2; 
   int32 userId = 3;
-  int32 type = 4;
+  string type = 4;
 }
 
 // Power Bonus
