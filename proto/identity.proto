@@ -7,7 +7,7 @@ package identity;
 service IdentityService {
   
   rpc HandlePin (HandlePinRequest) returns (CommonResponseObj) {}
-  rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseArray) {}
+  rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
 
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
