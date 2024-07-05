@@ -3,7 +3,7 @@ syntax = "proto3";
 package notification;
 
 service NotificationService {
-  rpc GetUserNotifications (GetUserNotificationsRequest) returns (HandleNotificationsResponse);
+  rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
