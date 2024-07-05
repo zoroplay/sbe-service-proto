@@ -101,8 +101,8 @@ message HandlePinRequest {
 message HandleTransferRequest {
   int32 pin = 1; 
   int32 clientId = 2;
-  int32 fromUsername = 3;
-  int32 toUsername = 4;
+  string fromUsername = 3;
+  string toUsername = 4;
   int32 amount = 5;
 }
 
