@@ -3,6 +3,7 @@ syntax = "proto3";
 package notification;
 
 service NotificationService {
+  rpc SetReadNotifications (SetReadNotificationsRequest) returns (SetReadNotificationsResponse);
   rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
@@ -22,6 +23,9 @@ message HandleNotificationsRequest {
 message GetUserNotificationsRequest {
   int32 userId = 1;
 }
+message SetReadNotificationsRequest {
+  int32 id = 1;
+}
 
 
 message HandleNotificationsResponse {
@@ -29,6 +33,13 @@ message HandleNotificationsResponse {
   bool   status = 2;
   optional Notifications data = 3;
 }
+
+message SetReadNotificationsResponse {
+  string message = 1;
+  bool   status = 2;
+  Notifications  data = 3;
+}
+
 message GetUserNotificationsResponse {
   string message = 1;
   bool   status = 2;
