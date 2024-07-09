@@ -79,6 +79,7 @@ service IdentityService {
   rpc removeUserCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseArray) {}
   rpc getCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
   rpc deleteCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
+  rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
 
   rpc getBonusGroups(SingleItemRequest) returns (BonusGroupResponse) {}
   rpc createBonusGroups(BonusGroups) returns (BonusGroupResponse) {}
@@ -292,6 +293,7 @@ message GetAgentUsersRequest {
 
 message GetCommissionsRequest {
   int32 clientId = 1;
+  optional string provider = 2;
 }
 
 
