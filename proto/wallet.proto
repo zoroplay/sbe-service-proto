@@ -83,7 +83,8 @@ message GetMoneyTransactionRequest {
   optional string referenceNo = 5;
   optional string username = 6;
   optional string keyword = 7;
-  int32  page = 8;
+  optional int32 limit = 8;
+  int32  page = 9;
 }
 
 message ProcessRetailTransaction {
