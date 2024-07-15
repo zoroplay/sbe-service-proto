@@ -64,7 +64,8 @@ service WalletService {
   rpc DeletePlayerData (IdRequest) returns (CommonResponseObj) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
-  rpc GetMoneyTransaction (GetMoneyTransactionRequest) returns (CommonResponseObj) {}
+  rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
+  rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
@@ -75,7 +76,7 @@ service WalletService {
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
 }
 
-message GetMoneyTransactionRequest {
+message GetTransactionsRequest {
   int32 clientId = 1;
   string from = 2;
   string to = 3;
