@@ -98,6 +98,22 @@ message HandlePinRequest {
   int32 userId = 3;
   string type = 4;
 }
+
+message DailyTransactionsRequest {
+  int32 userId = 1;
+  optional int32 normalSales = 2;
+  optional int32 normalPayout = 3;
+  optional int32 onlineSales = 4;
+  optional int32 onlinePayout = 5;
+  optional int32 cashIn = 6;
+  optional int32 cashOut = 7;
+  optional int32 expenses = 8;
+  optional int32 openingbalance = 9;
+  optional int32 closingbalance = 10;
+  string createdAt = 11;
+
+
+}
 // HandleTransfer
 message HandleTransferRequest {
   int32 pin = 1; 
