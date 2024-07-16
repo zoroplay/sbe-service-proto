@@ -6,7 +6,10 @@ package identity;
 
 service IdentityService {
   
+  rpc HandleDailyTransactions (DailyTransactionsRequest) returns (CommonResponseObj) {}
+  
   rpc HandlePin (HandlePinRequest) returns (CommonResponseObj) {}
+
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
 
 
