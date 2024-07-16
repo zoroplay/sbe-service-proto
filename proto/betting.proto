@@ -39,6 +39,7 @@ message GetCommissionsRequest {
   string provider = 2;
   string from = 3;
   string to = 4;
+  int32 page = 5;
 }
 message SalesReportRequest {
   int32 clientId = 1;
