@@ -176,7 +176,7 @@ message Expense{
   int32 userId = 2;
   int32 expenseTypeId = 3;
   int32 requestedAmount = 4;
-  int32 approvedAmount = 5;
+  int32 amount = 5;
   int32 status = 6;
   string branchComment = 7;
   string adminComment = 8;
