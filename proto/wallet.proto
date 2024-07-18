@@ -7,6 +7,10 @@ import "google/protobuf/struct.proto";
 package wallet;
 
 service WalletService {
+  rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
+
+
+  
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllExpense(EmptyRequest) returns (ExpenseRepeatedResponse) {}
@@ -74,6 +78,18 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
+}
+
+message FetchReportRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string date = 3;
+}
+message FetchReportResponse{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
 }
 
 message GetTransactionsRequest {
