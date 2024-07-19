@@ -87,7 +87,7 @@ message FetchReportRequest {
   string date = 3;
 }
 message HandleReportRequest {
-  int32 clientId = 1;
+  int32 branchId = 1;
   int32 openingBalance = 2;
   int32 closingBalance = 3;
   int32 onlinePayouts = 4;
