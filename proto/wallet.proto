@@ -8,6 +8,7 @@ package wallet;
 
 service WalletService {
   rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
+  rpc CashbookHandleReport(HandleReportRequest) returns (FetchReportResponse) {}
 
 
   
@@ -84,6 +85,21 @@ message FetchReportRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string date = 3;
+}
+message HandleReportRequest {
+  int32 clientId = 1;
+  int32 openingBalance = 2;
+  int32 closingBalance = 3;
+  int32 onlinePayouts = 4;
+  int32 onlineSales = 5;
+  int32 normalSales = 6;
+  int32 normalPayouts = 7;
+  int32 otherPayouts = 8;
+  int32 otherSales = 9;
+  int32 cashin = 10;
+  int32 cashout = 11;
+  int32 expense = 12;
+  string date = 13;
 }
 message FetchReportResponse{
   bool success = 1;
