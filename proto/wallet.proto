@@ -7,8 +7,9 @@ import "google/protobuf/struct.proto";
 package wallet;
 
 service WalletService {
+  rpc CashbookFetchLastApproved(FetchLastApprovedRequest) returns (LastApprovedResponseArray) {}
   rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
-  rpc CashbookHandleReport(HandleReportRequest) returns (FetchReportResponse) {}
+  rpc CashbookHandleReport(HandleReportRequest) returns (LastApprovedResponseObj) {}
 
 
   
@@ -79,6 +80,43 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
+}
+
+message FetchLastApprovedRequest {
+  int32 branchId = 1;
+  int32 status = 2;
+}
+
+message LastApprovedResponseArray{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated LastApproved data = 4;
+}
+message LastApprovedResponseObj{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional LastApproved data = 4;
+}
+
+message LastApproved {
+  int32 id = 1;
+  int32 branchId = 2;
+  int32 openingBalance = 3;
+  int32 closingBalance = 4;
+  int32 onlinePayouts = 5;
+  int32 onlineSales = 6;
+  int32 normalSales = 7;
+  int32 normalPayouts = 8;
+  int32 otherSales = 9;
+  int32 otherPayouts = 10;
+  int32 cashin = 11;
+  int32 cashout = 12;
+  int32 expenses = 13;
+  int32 status = 14;
+  string date = 15;
+  string createdAt = 16;
 }
 
 message FetchReportRequest {
