@@ -98,7 +98,7 @@ message HandleReportRequest {
   int32 otherSales = 9;
   int32 cashin = 10;
   int32 cashout = 11;
-  int32 expense = 12;
+  int32 expenses = 12;
   string date = 13;
 }
 message FetchReportResponse{
