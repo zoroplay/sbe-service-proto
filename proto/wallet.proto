@@ -16,8 +16,8 @@ service WalletService {
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllExpense(EmptyRequest) returns (ExpenseRepeatedResponse) {}
-  rpc CashbookFindOneExpense(IdRequest) returns (ExpenseSingleResponse) {}
-  rpc CashbookDeleteOneExpense(IdRequest) returns (ExpenseSingleResponse) {}
+  rpc CashbookFindOneExpense(CashbookIdRequest) returns (ExpenseSingleResponse) {}
+  rpc CashbookDeleteOneExpense(CashbookIdRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookUpdateOneExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllBranchExpense(BranchRequest) returns (ExpenseRepeatedResponse) {}
 
@@ -27,8 +27,8 @@ service WalletService {
   rpc CashbookApproveCashIn (CashbookApproveCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashIn (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookUpdateCashIn (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookDeleteOneCashIn (IdRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookFindOneCashIn (IdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookDeleteOneCashIn (CashbookIdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookFindOneCashIn (CashbookIdRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashIn (BranchRequest) returns (CashInOutRepeatedResponse) {}
   rpc FindAllBranchApprovedCashinWDate (BranchRequest) returns (CashInOutRepeatedResponse) {}
@@ -37,8 +37,8 @@ service WalletService {
   rpc CashbookApproveCashOut (CashbookApproveCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookUpdateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookDeleteOneCashOut (IdRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookFindOneCashOut (IdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookDeleteOneCashOut (CashbookIdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookFindOneCashOut (CashbookIdRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashOut (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashOut (BranchRequest) returns (CashInOutRepeatedResponse) {}
  
@@ -85,6 +85,8 @@ service WalletService {
 message FetchLastApprovedRequest {
   int32 branchId = 1;
   int32 status = 2;
+  int32 clientId = 3;
+
 }
 
 message LastApprovedResponseArray{
@@ -117,6 +119,8 @@ message LastApproved {
   int32 status = 14;
   string date = 15;
   string createdAt = 16;
+  int32 clientId = 17;
+
 }
 
 message FetchReportRequest {
@@ -138,6 +142,8 @@ message HandleReportRequest {
   int32 cashout = 11;
   int32 expenses = 12;
   string date = 13;
+  int32 clientId = 14;
+
 }
 message FetchReportResponse{
   bool success = 1;
@@ -193,16 +199,23 @@ message BranchRequest {
   optional string date = 2;
 }
 
+message CashbookIdRequest {
+  int32 id = 1;
+  int32 clientId = 2;
+}
+
 message IdRequest {
   int32 id = 1;
-
 }
+
 message CashbookApproveExpenseRequest {
   int32 status = 1;
   int32 verifiedBy = 2;
   int32 amount = 3;
   int32 expenseId = 4;
   string comment = 5;
+  
+  
 }
 message CashbookCreateExpenseRequest {
   int32 amount = 1;
@@ -210,6 +223,7 @@ message CashbookCreateExpenseRequest {
   int32 branchId = 3;
   string comment = 4;
   optional int32 id= 5;
+  int32 clientId = 6;
 }
 message ExpenseSingleResponse{
   bool success = 1;
@@ -253,6 +267,8 @@ message CashbookCreateCashInOutRequest {
   int32 amount = 3;
   string comment = 4;
   optional int32 id= 5;
+  int32 clientId = 6;
+
 }
 
 message CashInOutSingleResponse{
