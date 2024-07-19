@@ -195,8 +195,9 @@ message ValidateTransactionRequest {
 message EmptyRequest {}
 
 message BranchRequest {
-  int32 branchId = 1;
-  optional string date = 2;
+  int32 clientId = 1;
+  int32 branchId = 2;
+  optional string date = 3;
 }
 
 message CashbookIdRequest {
