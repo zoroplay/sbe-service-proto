@@ -8,9 +8,9 @@ package wallet;
 
 service WalletService {
   rpc CashbookFetchLastApproved(FetchLastApprovedRequest) returns (LastApprovedResponseArray) {}
+  rpc CashbookFetchSalesReport(FetchSalesReportRequest) returns (FetchSalesReportResponse) {}
   rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
   rpc CashbookHandleReport(HandleReportRequest) returns (LastApprovedResponseObj) {}
-
 
   
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
@@ -86,6 +86,19 @@ message FetchLastApprovedRequest {
   int32 branchId = 1;
   int32 clientId = 2;
 
+}
+message FetchSalesReportRequest {
+  int32 branchId = 1;
+  int32 clientId = 2;
+  int32 status = 3;
+
+}
+
+message FetchSalesReportResponse{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional LastApproved data = 4;
 }
 
 message LastApprovedResponseArray{
