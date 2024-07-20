@@ -84,8 +84,7 @@ service WalletService {
 
 message FetchLastApprovedRequest {
   int32 branchId = 1;
-  int32 status = 2;
-  int32 clientId = 3;
+  int32 clientId = 2;
 
 }
 
