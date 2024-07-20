@@ -7,8 +7,8 @@ import "google/protobuf/struct.proto";
 package wallet;
 
 service WalletService {
-  rpc CashbookFetchLastApproved(FetchLastApprovedRequest) returns (LastApprovedResponseArray) {}
-  rpc CashbookFetchSalesReport(FetchSalesReportRequest) returns (FetchSalesReportResponse) {}
+  rpc CashbookFetchLastApproved(FetchLastApprovedRequest) returns (LastApprovedResponse) {}
+  rpc CashbookFetchSalesReport(FetchSalesReportRequest) returns (SalesReportResponseArray) {}
   rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
   rpc CashbookHandleReport(HandleReportRequest) returns (LastApprovedResponseObj) {}
 
@@ -94,14 +94,14 @@ message FetchSalesReportRequest {
 
 }
 
-message FetchSalesReportResponse{
+message LastApprovedResponse{
   bool success = 1;
   int32 status = 2;
   string message = 3;
   optional LastApproved data = 4;
 }
 
-message LastApprovedResponseArray{
+message SalesReportResponseArray{
   bool success = 1;
   int32 status = 2;
   string message = 3;
