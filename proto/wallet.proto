@@ -7,11 +7,18 @@ import "google/protobuf/struct.proto";
 package wallet;
 
 service WalletService {
+  rpc CashbookVerifyFinalTransaction(FetchLastApprovedRequest) returns (CommonResponseObj) {}
+  rpc CashbookFetchLastApproved(FetchLastApprovedRequest) returns (LastApprovedResponse) {}
+  rpc CashbookFetchSalesReport(FetchSalesReportRequest) returns (SalesReportResponseArray) {}
+  rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
+  rpc CashbookHandleReport(HandleReportRequest) returns (LastApprovedResponseObj) {}
+
+  
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllExpense(EmptyRequest) returns (ExpenseRepeatedResponse) {}
-  rpc CashbookFindOneExpense(IdRequest) returns (ExpenseSingleResponse) {}
-  rpc CashbookDeleteOneExpense(IdRequest) returns (ExpenseSingleResponse) {}
+  rpc CashbookFindOneExpense(CashbookIdRequest) returns (ExpenseSingleResponse) {}
+  rpc CashbookDeleteOneExpense(CashbookIdRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookUpdateOneExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllBranchExpense(BranchRequest) returns (ExpenseRepeatedResponse) {}
 
@@ -21,8 +28,8 @@ service WalletService {
   rpc CashbookApproveCashIn (CashbookApproveCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashIn (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookUpdateCashIn (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookDeleteOneCashIn (IdRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookFindOneCashIn (IdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookDeleteOneCashIn (CashbookIdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookFindOneCashIn (CashbookIdRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashIn (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashIn (BranchRequest) returns (CashInOutRepeatedResponse) {}
   rpc FindAllBranchApprovedCashinWDate (BranchRequest) returns (CashInOutRepeatedResponse) {}
@@ -31,8 +38,8 @@ service WalletService {
   rpc CashbookApproveCashOut (CashbookApproveCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookCreateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookUpdateCashOut (CashbookCreateCashInOutRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookDeleteOneCashOut (IdRequest) returns (CashInOutSingleResponse) {}
-  rpc CashbookFindOneCashOut (IdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookDeleteOneCashOut (CashbookIdRequest) returns (CashInOutSingleResponse) {}
+  rpc CashbookFindOneCashOut (CashbookIdRequest) returns (CashInOutSingleResponse) {}
   rpc CashbookFindAllCashOut (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashOut (BranchRequest) returns (CashInOutRepeatedResponse) {}
  
@@ -83,6 +90,88 @@ message ResetBonusWalletRequest {
   string username = 3;
 }
 
+  message FetchLastApprovedRequest {
+  int32 branchId = 1;
+  int32 clientId = 2;
+
+}
+message FetchSalesReportRequest {
+  int32 branchId = 1;
+  int32 clientId = 2;
+  int32 status = 3;
+
+}
+
+message LastApprovedResponse{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional LastApproved data = 4;
+}
+
+message SalesReportResponseArray{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated LastApproved data = 4;
+}
+message LastApprovedResponseObj{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional LastApproved data = 4;
+}
+
+message LastApproved {
+  int32 id = 1;
+  int32 branchId = 2;
+  int32 openingBalance = 3;
+  int32 closingBalance = 4;
+  int32 onlinePayouts = 5;
+  int32 onlineSales = 6;
+  int32 normalSales = 7;
+  int32 normalPayouts = 8;
+  int32 otherSales = 9;
+  int32 otherPayouts = 10;
+  int32 cashin = 11;
+  int32 cashout = 12;
+  int32 expenses = 13;
+  int32 status = 14;
+  string date = 15;
+  string createdAt = 16;
+  int32 clientId = 17;
+
+}
+
+message FetchReportRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string date = 3;
+}
+message HandleReportRequest {
+  int32 branchId = 1;
+  int32 openingBalance = 2;
+  int32 closingBalance = 3;
+  int32 onlinePayouts = 4;
+  int32 onlineSales = 5;
+  int32 normalSales = 6;
+  int32 normalPayouts = 7;
+  int32 otherPayouts = 8;
+  int32 otherSales = 9;
+  int32 cashin = 10;
+  int32 cashout = 11;
+  int32 expenses = 12;
+  string date = 13;
+  int32 clientId = 14;
+
+}
+message FetchReportResponse{
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
 message GetTransactionsRequest {
   int32 clientId = 1;
   string from = 2;
@@ -126,20 +215,28 @@ message ValidateTransactionRequest {
 message EmptyRequest {}
 
 message BranchRequest {
-  int32 branchId = 1;
-  optional string date = 2;
+  int32 clientId = 1;
+  int32 branchId = 2;
+  optional string date = 3;
+}
+
+message CashbookIdRequest {
+  int32 id = 1;
+  int32 clientId = 2;
 }
 
 message IdRequest {
   int32 id = 1;
-
 }
+
 message CashbookApproveExpenseRequest {
   int32 status = 1;
   int32 verifiedBy = 2;
   int32 amount = 3;
   int32 expenseId = 4;
   string comment = 5;
+  
+  
 }
 message CashbookCreateExpenseRequest {
   int32 amount = 1;
@@ -147,6 +244,7 @@ message CashbookCreateExpenseRequest {
   int32 branchId = 3;
   string comment = 4;
   optional int32 id= 5;
+  int32 clientId = 6;
 }
 message ExpenseSingleResponse{
   bool success = 1;
@@ -167,7 +265,7 @@ message Expense{
   int32 userId = 2;
   int32 expenseTypeId = 3;
   int32 requestedAmount = 4;
-  int32 approvedAmount = 5;
+  int32 amount = 5;
   int32 status = 6;
   string branchComment = 7;
   string adminComment = 8;
@@ -190,6 +288,8 @@ message CashbookCreateCashInOutRequest {
   int32 amount = 3;
   string comment = 4;
   optional int32 id= 5;
+  int32 clientId = 6;
+
 }
 
 message CashInOutSingleResponse{
