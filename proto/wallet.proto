@@ -88,18 +88,18 @@ message ResetBonusWalletRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string username = 3;
+  string wallet = 4;
 }
 
-  message FetchLastApprovedRequest {
+message FetchLastApprovedRequest {
   int32 branchId = 1;
   int32 clientId = 2;
-
 }
+
 message FetchSalesReportRequest {
   int32 branchId = 1;
   int32 clientId = 2;
   int32 status = 3;
-
 }
 
 message LastApprovedResponse{
