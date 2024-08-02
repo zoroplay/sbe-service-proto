@@ -47,6 +47,10 @@ message TicketReportRequest {
   string betslipId = 8;
   string username = 9;
   optional string gameId = 10;
+  optional string ticketType = 11;
+  optional string betType = 12;
+  optional string amountRange = 13;
+  optional string groupType = 14;
 }
 
 message GetCommissionsRequest {
