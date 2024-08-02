@@ -33,10 +33,10 @@ service BettingService {
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
 
-  rpc TicketsReport (TicketReportRequest) returns (CommonResponseObj) {}
+  rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
 }
 
-message TicketReportRequest {
+message GetTicketsRequest {
   int32 userId = 1;
   int32 clientId = 2;
   string from = 3;
