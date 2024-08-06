@@ -284,6 +284,8 @@ message GetFixturesRequest {
   int32 timeoffset = 7;
   optional int32 categoryID = 8; // fetch fixtures of this categoryID if present
   optional string specifier = 9;
+  optional string startDate = 10;
+  optional string endDate = 11;
 }
 
 message HighlightOutcomes {
