@@ -32,6 +32,25 @@ service BettingService {
   rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
+
+  rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
+}
+
+message GetTicketsRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string from = 3;
+  string to = 4;
+  string status = 5;
+  int32 page = 6;
+  int32 perPage = 7;
+  string betslipId = 8;
+  string username = 9;
+  optional string gameId = 10;
+  optional string ticketType = 11;
+  optional string betType = 12;
+  optional string amountRange = 13;
+  optional string groupType = 14;
 }
 
 message GetCommissionsRequest {

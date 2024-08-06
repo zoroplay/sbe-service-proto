@@ -50,6 +50,7 @@ service WalletService {
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
+  rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
@@ -86,13 +87,12 @@ service WalletService {
 message FetchLastApprovedRequest {
   int32 branchId = 1;
   int32 clientId = 2;
-
 }
+
 message FetchSalesReportRequest {
   int32 branchId = 1;
   int32 clientId = 2;
   int32 status = 3;
-
 }
 
 message LastApprovedResponse{
