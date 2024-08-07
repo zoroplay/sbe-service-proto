@@ -43,6 +43,10 @@ service WalletService {
   rpc CashbookFindAllCashOut (EmptyRequest) returns (CashInOutRepeatedResponse) {}
   rpc CashbookFindAllBranchCashOut (BranchRequest) returns (CashInOutRepeatedResponse) {}
  
+  rpc HandleCreatePawaPay (CreatePawapayRequest) returns (CommonResponseObj) {}
+  rpc HandleFetchPawaPay (FetchPawapayRequest) returns (CommonResponseObj) {}
+
+
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -82,6 +86,19 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
+}
+
+message CreatePawapayRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string source = 3;
+  int32 amount = 4;
+  string action = 5;
+  optional string depositId = 6;
+}
+message FetchPawapayRequest {
+  string action = 1;
+  string actionId = 2;
 }
 
 message FetchLastApprovedRequest {

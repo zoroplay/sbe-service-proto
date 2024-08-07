@@ -802,6 +802,7 @@ message GetPaymentDataResponse {
   string callbackUrl = 3;
   string siteUrl = 4;
   optional string currency = 5;
+  optional string country = 6;
 }
 
 message GetClientRequest {
