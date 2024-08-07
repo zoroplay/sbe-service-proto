@@ -110,12 +110,18 @@ message SaveTopTournamentRequest {
 
 message CreateMarketGroupRequest {
   int32 clientID = 1;
-  string groupName = 2;
-  int32 priority = 3;
+  int32 sportID = 2;
+  string groupName = 3;
+  int32 priority = 4;
 }
 
 message DeleteMarketGroupRequest {
   int32 id = 1;
+}
+
+message FetchMarketGroup {
+  int32 clientID = 1;
+  int32 sportID = 2;
 }
 
 message FilterByClientIDRequest {
@@ -144,7 +150,7 @@ message MarketGroupData {
 }
 
 message MarketGroupResponse {
-  repeated MarketGroupData markets = 1;
+  repeated MarketGroupData groups = 1;
 }
 
 message DeleteSpecifierRequest {
