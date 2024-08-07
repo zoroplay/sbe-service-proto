@@ -22,7 +22,14 @@ service FixtureService {
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
-  rpc GetMarkets (FilterBySportID) returns (AllMarketResponse){}
+  rpc GetMarkets (GetMarketsRequest) returns (CommonResponseArray){}
+  /*
+  Gets a list of available markets, markets are pulled peridocally from betradr API
+   */
+  rpc SaveMarket (SaveMarketRequest) returns (CommonResponseObj){}
+
+  rpc DeleteMarket (DeleteMarketGroupRequest) returns (CommonResponseObj){}
+
 
   //GetTournaments - Gets a list of available tournaments, the tournaments are filterred by the supplied sportID
   rpc GetTournaments (FilterBySportID) returns (AllTournamentResponse){}
@@ -99,6 +106,20 @@ message GetTopTournamentResponse {
   repeated TopTournamentData data = 1;
 }
 
+message CommonResponseObj {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
+message CommonResponseArray {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  repeated google.protobuf.Struct data = 4;
+}
+
 message SaveTopTournamentRequest {
   int32 clientID = 1;
   int32 sportId = 2;
@@ -148,6 +169,26 @@ message MarketGroupData {
   int32 priority = 3;
   int32 status = 4;
   // repeated MarketGroupSpecifier specifiers = 4;
+}
+
+message GetMarketsRequest {
+  int32 clientID = 1;
+  int32 sportID = 2;
+  optional int32 groupID = 3;
+}
+
+message SaveMarketRequest {
+  int32 clientID = 1;
+  int32 sportID = 2;
+  int32 marketID = 3;
+  optional int32 groupID = 4;
+  string name = 5;
+  optional string displayName = 6;
+  optional string description = 7;
+  int32 status = 8;
+  optional int32 enableCashout = 9;
+  int32 isDefault = 10;
+  optional int32 id = 11;
 }
 
 message MarketGroupResponse {
