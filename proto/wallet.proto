@@ -45,6 +45,7 @@ service WalletService {
  
   rpc HandleCreatePawaPay (CreatePawapayRequest) returns (CommonResponseObj) {}
   rpc HandleFetchPawaPay (FetchPawapayRequest) returns (CommonResponseObj) {}
+  rpc HandlePawaPayResendCallback (FetchPawapayRequest) returns (CommonResponseObj) {}
 
 
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
