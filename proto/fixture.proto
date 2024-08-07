@@ -146,7 +146,8 @@ message MarketGroupData {
   int32 marketGroupID = 1;
   string groupName = 2;
   int32 priority = 3;
-  repeated MarketGroupSpecifier specifiers = 4;
+  int32 status = 4;
+  // repeated MarketGroupSpecifier specifiers = 4;
 }
 
 message MarketGroupResponse {
