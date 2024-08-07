@@ -112,7 +112,7 @@ message CreateMarketGroupRequest {
   int32 clientID = 1;
   int32 sportID = 2;
   string groupName = 3;
-  int32 priority = 4;
+  optional int32 id = 4;
 }
 
 message DeleteMarketGroupRequest {
