@@ -486,9 +486,9 @@ message CreateOutcomeAliasRequest {
 }
 
 message CreateOutcomeAliasResponse {
-
-  int32 status = 1;
-  string statusDescription = 2;
+  bool success = 1;
+  int32 status = 2;
+  string statusDescription = 3;
 }
 
 message OutcomeAlias {
