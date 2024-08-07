@@ -24,7 +24,7 @@ service FixtureService {
   /*
   Gets all Betradar markets
    */
-  rpc GetBetradarMarkets (Empty) return (CommonResponseArray) {}
+  rpc GetBetradarMarkets (Empty) returns (CommonResponseArray) {}
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
