@@ -22,7 +22,7 @@ service FixtureService {
   rpc GetTournamentsMenu (GetSportMenuRequest) returns (TournamentMenuResponse){}
 
   /*
-  Gets
+  Gets all Betradar markets
    */
   rpc GetBetradarMarkets (Empty) return (CommonResponseArray) {}
   /*
