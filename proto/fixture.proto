@@ -22,6 +22,10 @@ service FixtureService {
   rpc GetTournamentsMenu (GetSportMenuRequest) returns (TournamentMenuResponse){}
 
   /*
+  Gets
+   */
+  rpc GetBetradarMarkets (Empty) return (CommonResponseArray) {}
+  /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
   rpc GetMarkets (GetMarketsRequest) returns (CommonResponseArray){}
