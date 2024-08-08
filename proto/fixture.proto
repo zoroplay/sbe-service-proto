@@ -549,10 +549,11 @@ message UpdateMarketRequest {
 message CreateOutcomeAliasRequest {
   int32 clientID = 1;
   int32 marketID = 2;
+  int32 internalMarketID = 3;
   /** market name */
-  string marketName = 3;
+  string marketName = 4;
   /** outcomes */
-  repeated OutcomeAlias outcomes = 4;
+  repeated OutcomeAlias outcomes = 5;
 }
 
 message CreateOutcomeAliasResponse {
