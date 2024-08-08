@@ -195,6 +195,7 @@ message SaveMarketRequest {
   optional int32 enableCashout = 9;
   int32 isDefault = 10;
   optional int32 id = 11;
+  optional int32 priority = 12;
 }
 
 message MarketGroupResponse {
