@@ -28,7 +28,7 @@ service FixtureService {
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
-  rpc GetMarkets (GetMarketsRequest) returns (CommonResponseArray){}
+  rpc GetMarkets (GetMarketsRequest) returns (CommonResponseObj){}
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
