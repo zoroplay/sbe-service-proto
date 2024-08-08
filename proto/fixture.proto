@@ -28,7 +28,7 @@ service FixtureService {
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
-  rpc GetMarkets (GetMarketsRequest) returns (CommonResponseObj){}
+  rpc GetMarkets (GetMarketsRequest) returns (CommonResponseArray){}
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
@@ -120,10 +120,11 @@ message CommonResponseObj {
 }
 
 message CommonResponseArray {
-  bool success = 1;
-  string message = 2;
-  int32 status = 3;
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
   repeated google.protobuf.Struct data = 4;
+  optional string errors = 5;
 }
 
 message BetradarMarketResponse {
@@ -207,6 +208,7 @@ message SaveMarketRequest {
   int32 isDefault = 10;
   optional int32 id = 11;
   optional int32 priority = 12;
+  optional string specifier = 13;
 }
 
 message MarketGroupResponse {
