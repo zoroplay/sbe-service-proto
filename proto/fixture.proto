@@ -24,7 +24,7 @@ service FixtureService {
   /*
   Gets all Betradar markets
    */
-  rpc GetBetradarMarkets (Empty) returns (CommonResponseArray) {}
+  rpc GetBetradarMarkets (Empty) returns (BetradarMarketResponse){}
   /*
   Gets a list of available markets, markets are pulled peridocally from betradr API
    */
@@ -124,6 +124,17 @@ message CommonResponseArray {
   string message = 2;
   int32 status = 3;
   repeated google.protobuf.Struct data = 4;
+}
+
+message BetradarMarketResponse {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  message BetradarMarket {
+    string marketID = 1;
+    string marketName = 2;
+  }
+  repeated BetradarMarket data = 4;
 }
 
 message SaveTopTournamentRequest {
