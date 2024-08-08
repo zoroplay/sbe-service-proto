@@ -48,6 +48,9 @@ service WalletService {
   rpc HandlePawaPayResendCallback (FetchPawapayRequest) returns (CommonResponseObj) {}
   rpc HandlePawaPayBalances (EmptyRequest) returns (CommonResponseArray) {}
   rpc HandlePawaPayCountryBalances (PawapayCountryRequest) returns (CommonResponseArray) {}
+  rpc HandlePawaPayPredCorr (PawapayPredCorrRequest) returns (CommonResponseObj) {}
+  rpc HandlePawaPayToolkit (PawapayToolkitRequest) returns (CommonResponseArray) {}
+  rpc HandlePawaPayActiveConf (EmptyRequest) returns (CommonResponseObj) {}
 
 
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
@@ -89,6 +92,14 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
+}
+
+message PawapayToolkitRequest {
+  string action = 1;
+}
+
+message PawapayPredCorrRequest {
+  string phoneNumber = 1;
 }
 
 message CreatePawapayRequest {
