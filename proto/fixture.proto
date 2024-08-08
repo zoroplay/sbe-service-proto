@@ -139,7 +139,7 @@ message CustomMarket {
   string description = 10; // Market description
   string hasCashout = 11; // Market description
   int32 sportID = 12; // Market description
-  repeated OutcomeAlias outcomes = 6; // Array of outcomes
+  repeated OutcomeAlias outcomes = 13; // Array of outcomes
 }
 
 message BetradarMarketResponse {
