@@ -119,12 +119,27 @@ message CommonResponseObj {
   optional google.protobuf.Struct data = 4;
 }
 
-message CommonResponseArray {
+message GetMarketResponse {
   optional int32 status = 1;
   optional bool success = 2;
   string message = 3;
-  repeated google.protobuf.Struct data = 4;
-  optional string errors = 5;
+  repeated CustomMarket data = 4;
+}
+
+message CustomMarket {
+  int32 id = 1;
+  string marketName = 2; // Name of the market
+  int32 marketID = 3; // Unique ID of this market
+  string groupID = 4; // Market group ID
+  string displayName = 5; // Market group ID
+  int32 status = 6; // Market status, 0 - active, 1 - suspended, 2 - deactivated, 5 - handedover, only displaye markets with status 0 on the site
+  string specifier = 7; // Market line
+  string priority = 8; // Market line
+  string isPopular = 9; // is Market a popular ond
+  string description = 10; // Market description
+  string hasCashout = 11; // Market description
+  int32 sportID = 12; // Market description
+  repeated OutcomeAlias outcomes = 6; // Array of outcomes
 }
 
 message BetradarMarketResponse {
@@ -554,7 +569,7 @@ message CreateOutcomeAliasResponse {
 
 message OutcomeAlias {
   /** outcome name alias */
-  string alias = 1 ;
+  int32 id = 1 ;
   /** market name */
   string marketName = 2;
   /** outcome name */
@@ -565,6 +580,11 @@ message OutcomeAlias {
   string outcomeID = 5;
   /** Unique ID of this market */
   int32  marketID = 6;
+
+  string codeWA = 7;
+
+  string codeEA = 8;
+
 }
 
 message GetAllOutcomeAliasResponse {
