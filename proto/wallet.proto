@@ -44,6 +44,7 @@ service WalletService {
   rpc CashbookFindAllBranchCashOut (BranchRequest) returns (CashInOutRepeatedResponse) {}
  
   rpc HandleCreatePawaPay (CreatePawapayRequest) returns (CommonResponseObj) {}
+  rpc HandleCreateBulkPawaPay (CreateBulkPawapayRequest) returns (CommonResponseArray) {}
   rpc HandleFetchPawaPay (FetchPawapayRequest) returns (CommonResponseArray) {}
   rpc HandlePawaPayResendCallback (FetchPawapayRequest) returns (CommonResponseObj) {}
   rpc HandlePawaPayBalances (EmptyRequest) returns (CommonResponseArray) {}
@@ -110,6 +111,13 @@ message CreatePawapayRequest {
   string action = 5;
   optional string depositId = 6;
 }
+message CreateBulkPawapayRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string source = 3;
+  repeated int32 amount = 4;
+}
+
 message FetchPawapayRequest {
   string action = 1;
   string actionId = 2;
