@@ -42,6 +42,7 @@ message PaginationDto {
 message FetchGamesRequest {
     int32 clientId = 1;
     optional int32 categoryId = 2;
+    optional int32 providerId = 3;
 }
 
 message Empty {};

@@ -134,6 +134,7 @@ message CreateBonusRequest {
   float minimumEntryAmount = 18;
   float maxAmount = 19;
   string product = 20;
+  optional string game_id = 21;
 }
 
 message CreateBonusResponse {
