@@ -92,6 +92,7 @@ service IdentityService {
   rpc getNormalBonus(GetNormalRequest) returns (NormalResponse) {}
   rpc calculateNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
+  rpc getNetworkSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
 }
 
 // HandlePin
@@ -100,6 +101,13 @@ message HandlePinRequest {
   optional int32 confirmPin = 2; 
   int32 userId = 3;
   string type = 4;
+}
+
+message GetNetworkSalesRequest {
+  int32 clientId = 1;
+  string from = 2;
+  string to = 3;
+  string product = 4;
 }
 
 message DailyTransactionsRequest {
@@ -114,9 +122,8 @@ message DailyTransactionsRequest {
   optional int32 openingbalance = 9;
   optional int32 closingbalance = 10;
   string date = 11;
-
-
 }
+
 // HandleTransfer
 message HandleTransferRequest {
   int32 pin = 1; 
