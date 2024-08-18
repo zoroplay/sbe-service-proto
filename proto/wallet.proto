@@ -585,6 +585,7 @@ message WalletResponse {
 message GetBalanceRequest {
   int32 userId = 1;
   int32 clientId = 2;
+  optional string wallet = 3;
 }
 
 // credit user request payload
