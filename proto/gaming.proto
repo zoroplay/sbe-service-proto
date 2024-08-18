@@ -14,6 +14,7 @@ service GamingService {
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
     rpc SaveCategory (SaveCategoryRequest) returns (CommonResponse) {}
     rpc FetchCategories (Empty) returns (Categories) {}
+    rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
     rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
     rpc UpdateProvider (CreateProviderDto) returns (CommonResponse) {}
@@ -33,6 +34,16 @@ service GamingService {
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 }
 
+message RegisterBonusRequest {
+    int32 clientId = 1;
+    string gameId = 2;
+    string userId = 3;
+    double betMoney = 4;
+    int32 freeSpinsCount = 5;
+    string expireDate = 6;
+    int32 bonusId = 7;
+    string promoCode = 8;
+}
 
 message PaginationDto {
     int32 page = 1;
@@ -103,6 +114,7 @@ message CreateGameDto {
     bool status = 7;
     string type = 8;
     int32 providerId = 9;
+    string bonusType = 10;
 }
 
 message StartGameDto {
