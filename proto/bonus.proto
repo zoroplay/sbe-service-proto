@@ -19,7 +19,7 @@ service BonusService {
 
   rpc SettleBet (SettleBetRequest) returns (CommonResponseObj){}
 
-  // rpc CreateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
+  rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
 
   // rpc UpdateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
 
@@ -318,6 +318,7 @@ message AllCampaignBonus {
 
 message GetBonusByClientID {
   int32 clientId = 1;
+  optional string searchKey = 2;
 }
 
 message GetCampaignRequest {
@@ -384,6 +385,14 @@ message SettleBetRequest {
   int32 betId = 2;
   int32 status = 3;
   optional float amount = 4;
+}
+
+message SearchBonusResponse {
+  message Bonus {
+    int32 id = 1;
+    string name = 2;
+  }
+  repeated Bonus data = 1;
 }
 
 message EmptyResponse {}
