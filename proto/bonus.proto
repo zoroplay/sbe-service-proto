@@ -21,7 +21,7 @@ service BonusService {
 
   rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
 
-  // rpc UpdateReferralBonus (CreateReferralBonusRequest) returns (CreateBonusResponse){}
+  rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CreateBonusResponse){}
 
   // rpc CreateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
 
@@ -76,6 +76,7 @@ message FirstDepositBonus {
   float value = 2;
   string type = 3;
   string name = 4;
+  optional string gameId = 5;
 }
 
 message CreateReferralBonusRequest {
