@@ -129,6 +129,7 @@ message StartGameDto {
     optional bool isMobile = 9;
     optional string authCode = 10;
     optional string balanceType = 11;
+    optional int32 bonusId = 12;
 };
 
 message StartGameResponse {
