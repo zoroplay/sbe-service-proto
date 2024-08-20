@@ -429,6 +429,8 @@ message BetHistory {
   string events = 21;
   string markets = 22;
   string betCategoryDesc = 23;
+  optional bool hasCashout = 24;
+  optional string bonusId = 25;
 }
 
 message BetHistoryResponse {
