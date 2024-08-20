@@ -192,6 +192,7 @@ message PlaceCasinoBetRequest {
   optional string cashierTransactionId =11;
   optional string username = 12;
   optional string betType = 13;
+  optional int32 bonusId = 14;
 }
 
 message CreditCasinoBetRequest {
