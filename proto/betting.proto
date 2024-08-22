@@ -430,6 +430,7 @@ message BetHistory {
   string markets = 22;
   string betCategoryDesc = 23;
   optional bool isBonusBet = 24;
+  optional int32 pendingGames = 25;
 }
 
 message BetHistoryResponse {
