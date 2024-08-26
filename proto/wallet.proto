@@ -54,6 +54,10 @@ service WalletService {
   rpc HandlePawaPayActiveConf (EmptyRequest) returns (CommonResponseObj) {}
 
 
+  rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
+  rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
+
+
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -110,6 +114,12 @@ message CreatePawapayRequest {
   int32 amount = 4;
   string action = 5;
   optional string depositId = 6;
+}
+message WayaQuickRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  optional string transactionId = 3;
+  optional int32 amount = 4;
 }
 message CreateBulkPawapayRequest {
   int32 userId = 1;
