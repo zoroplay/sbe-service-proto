@@ -664,6 +664,7 @@ message UpdateUserRequest {
   optional string promoCode = 19;
   optional string trackingToken = 20;
   optional string parentId = 21;
+  optional string lga = 22;
 }
 
 // user
