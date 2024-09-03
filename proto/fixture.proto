@@ -451,6 +451,8 @@ message Outcome {
   optional int32 status = 14;
   optional int32 priority = 15;
   optional string marketAlias = 16;
+  optional string codeWA = 17;
+  optional string codeEA = 18;
 }
 
 message AvailableMarket {
