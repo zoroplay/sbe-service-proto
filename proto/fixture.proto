@@ -538,6 +538,7 @@ message FixtureWithOutcomes {
   string eventTime = 17; // Current event time e.g 00:10
   string sportName = 18;
   string categoryID = 19;
+  int32 printID = 20; // Unique Print ID of the match (internal ID)
 }
 
 message ResponseString {
