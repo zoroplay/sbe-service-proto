@@ -56,11 +56,8 @@ service WalletService {
 
   rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
 
-
-
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
-
 
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
@@ -122,8 +119,9 @@ message CreatePawapayRequest {
 message WayaBankRequest {
   int32 userId = 1;
   int32 clientId = 2;
-  optional string transactionId = 3;
-  optional int32 amount = 4;
+  int32 bvn = 3;
+  int32 nin = 4;
+  int32 merhantAccountNumber = 5;
 }
 message WayaQuickRequest {
   int32 userId = 1;
