@@ -680,6 +680,7 @@ message SearchTransactionsRequest {
   string accountNumber = 3;
   int32 page = 4;
   int32 size = 5;
+  string fromDate = 6;
 }
 message VerifyBankAccountRequest {
   int32 clientId = 1;
