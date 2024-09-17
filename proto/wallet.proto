@@ -54,9 +54,11 @@ service WalletService {
   rpc HandlePawaPayActiveConf (EmptyRequest) returns (CommonResponseObj) {}
 
 
+  rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
+  rpc SearchTransactions (SearchTransactionsRequest) returns (CommonResponseArray) {}
+
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
-
 
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
@@ -114,6 +116,11 @@ message CreatePawapayRequest {
   int32 amount = 4;
   string action = 5;
   optional string depositId = 6;
+}
+message WayaBankRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+
 }
 message WayaQuickRequest {
   int32 userId = 1;
@@ -667,6 +674,14 @@ message Transaction {
   optional string link = 11;
 }
 
+message SearchTransactionsRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string accountNumber = 3;
+  int32 page = 4;
+  int32 size = 5;
+  string fromDate = 6;
+}
 message VerifyBankAccountRequest {
   int32 clientId = 1;
   int32 userId = 2;
