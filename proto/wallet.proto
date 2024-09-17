@@ -685,8 +685,8 @@ message VerifyBankAccountRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string accountNumber = 3;
-  optional string bankCode = 4;
-  optional string source = 5;
+  string bankCode = 4;
+  string source = 5;
 }
 
 message VerifyBankAccountResponse {
