@@ -55,7 +55,7 @@ service WalletService {
 
 
   rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
-  rpc SearchTransactions (SearhTransactionsRequest) returns (CommonResponseArray) {}
+  rpc SearchTransactions (SearchTransactionsRequest) returns (CommonResponseArray) {}
 
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
@@ -674,7 +674,7 @@ message Transaction {
   optional string link = 11;
 }
 
-message SearhTransactionsRequest {
+message SearchTransactionsRequest {
   int32 clientId = 1;
   int32 userId = 2;
   string accountNumber = 3;
