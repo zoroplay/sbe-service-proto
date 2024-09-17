@@ -130,6 +130,7 @@ message StartGameDto {
     optional string authCode = 10;
     optional string balanceType = 11;
     optional int32 bonusId = 12;
+    optional string language = 13;
 };
 
 message StartGameResponse {
