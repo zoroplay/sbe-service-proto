@@ -55,7 +55,7 @@ service WalletService {
 
 
   rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
-  rpc SearchTransactions (SearchTransactionsRequest) returns (CommonResponseArray) {}
+  rpc WayabankAccountEnquiry (WayaBankRequest) returns (CommonResponseObj) {}
 
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
