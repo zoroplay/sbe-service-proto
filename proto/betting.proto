@@ -342,6 +342,7 @@ message BetSlip {
   string eventDate = 21;
   string eventPrefix = 22;
   optional bool isBonus = 23;
+  optional int32 id = 24;
 }
 
 message Combo {
