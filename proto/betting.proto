@@ -280,6 +280,7 @@ message UpdateBetRequest {
   string status = 2;
   string entityType = 3;
   int32 clientId = 4;
+  optional int32 selectionId = 5;
 }
 
 message UpdateBetResponse {
