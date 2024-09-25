@@ -91,13 +91,13 @@ service FixtureService {
   rpc SaveTopTournament (SaveTopTournamentRequest) returns (CommonResponse){}
   rpc RemoveTopTournament (DeleteMarketGroupRequest) returns (CommonResponse){}
 
-  rpc GetTournamentSportMenu (Empty) returns (CommonResponseObj){}
-  rpc UpdateTournamentSportsMenu (UpdateTournamentOrderRequest) returns (CommonResponse){}
+  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseObj){}
+  rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
 
 }
 
 
-message UpdateTournamentOrderRequest {
+message UpdateSportsMenuOrderRequest {
   google.protobuf.Struct data = 1;
 }
 
