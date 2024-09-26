@@ -91,7 +91,7 @@ service FixtureService {
   rpc SaveTopTournament (SaveTopTournamentRequest) returns (CommonResponse){}
   rpc RemoveTopTournament (DeleteMarketGroupRequest) returns (CommonResponse){}
 
-  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseArray){}
+  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseObj){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
 
 }
