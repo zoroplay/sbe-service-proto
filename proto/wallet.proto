@@ -131,6 +131,7 @@ message Pitch90TransactionRequest {
   int32 clientId = 2;
   int32 amount = 3;
   string action = 4;
+  string source = 5;
 }
 
 message Pitch90RegisterUrlRequest {
