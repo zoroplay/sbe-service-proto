@@ -404,7 +404,8 @@ message BetSlipHistory {
   string eventDate = 20;
   string selectionId = 21;
   string eventPrefix = 22;
-
+  string score = 23;
+  string htScore = 24;
 }
 
 message BetHistory {
