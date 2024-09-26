@@ -57,6 +57,10 @@ service WalletService {
   rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
   rpc WayabankAccountEnquiry (WayaBankRequest) returns (CommonResponseObj) {}
 
+
+  rpc Pitch90Transaction (Pitch90TransactionRequest) returns (CommonResponseObj) {}
+  rpc Pitch90RegisterUrl (Pitch90RegisterUrlRequest) returns (CommonResponseObj) {}
+
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
 
@@ -120,6 +124,18 @@ message CreatePawapayRequest {
 message WayaBankRequest {
   int32 userId = 1;
   int32 clientId = 2;
+
+}
+message Pitch90TransactionRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 amount = 3;
+  string action = 4;
+}
+
+message Pitch90RegisterUrlRequest {
+  string action = 1;
+  int32 url = 2;
 
 }
 message WayaQuickRequest {
