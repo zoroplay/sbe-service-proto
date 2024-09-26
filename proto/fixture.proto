@@ -91,7 +91,7 @@ service FixtureService {
   rpc SaveTopTournament (SaveTopTournamentRequest) returns (CommonResponse){}
   rpc RemoveTopTournament (DeleteMarketGroupRequest) returns (CommonResponse){}
 
-  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseObj){}
+  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseArray){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
 
 }
@@ -126,6 +126,14 @@ message CommonResponseObj {
   int32 status = 3;
   optional google.protobuf.Struct data = 4;
 }
+
+message CommonResponseArray {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  repeated google.protobuf.Struct data = 4;
+}
+
 
 message GetMarketResponse {
   optional int32 status = 1;
