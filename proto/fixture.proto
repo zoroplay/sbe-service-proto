@@ -91,7 +91,7 @@ service FixtureService {
   rpc SaveTopTournament (SaveTopTournamentRequest) returns (CommonResponse){}
   rpc RemoveTopTournament (DeleteMarketGroupRequest) returns (CommonResponse){}
 
-  rpc GetSportsTournamentMenu (Empty) returns (CommonResponseObj){}
+  rpc GetSportsTournamentMenu (Empty) returns (GetSportTournamentResponse){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
 
 }
@@ -105,6 +105,13 @@ message CommonResponse {
   bool success = 1;
   string message = 2;
 }
+
+message GetSportTournamentResponse {
+  bool success = 1;
+  string message = 2;
+  optional string menu = 3;
+}
+
 
 message TopTournamentData {
   int32 id = 1;
