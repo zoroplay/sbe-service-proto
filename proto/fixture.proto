@@ -98,7 +98,7 @@ service FixtureService {
 
 
 message UpdateSportsMenuOrderRequest {
-  google.protobuf.Struct data = 1;
+  string data = 1;
 }
 
 message CommonResponse {
