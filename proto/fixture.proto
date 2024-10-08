@@ -93,6 +93,7 @@ service FixtureService {
 
   rpc GetSportsTournamentMenu (Empty) returns (GetSportTournamentResponse){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
+  rpc GetActiveGamesMarkets (FilterByMatchID) returns (CommonResponseObj){}
 
 }
 
