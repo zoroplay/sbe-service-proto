@@ -94,7 +94,55 @@ service FixtureService {
   rpc GetSportsTournamentMenu (Empty) returns (GetSportTournamentResponse){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
   rpc GetActiveGamesMarkets (FilterByMatchID) returns (GetActiveMarketResponse){}
+  rpc ValidateSelections (ValidateSelectionRequests) returns (ValidateSelectionResponse){}
 
+}
+
+message ValidateSelectionRequests {
+  message ValidateSelection {
+    int32 outcomeID = 1;
+    int32 gameID = 2;
+    int32 marketID = 3;
+    string specifier = 4;
+  }
+
+  repeated ValidateSelection data = 1;
+}
+
+message ValidateSelectionResponse {
+  bool success = 1;
+  string message = 2;
+  message Data {
+    message RejectedData {
+      int32 matchID = 1;
+      optional string eventName = 2;
+      int32 outcomeID = 3;
+      int32 marketID = 4;
+    }
+
+    message AcceptedData {
+      string tournament = 1; // tournament name
+      string sportID = 2; // Unique ID of the sport
+      string gameID = 3; //Unique ID of the fixture (will always be between 1000 and 99999)
+      string name = 4; // fixture name e.g ABC FC vs Yanga FC
+      string matchID = 5; // Unique ID of the match (Betradar ID)
+      string date = 6; // Match date
+      string categoryName = 7; // Fixture country code
+      string sportName = 8; // Away team name
+      string marketName = 9; // market name
+      string outcomeName = 10; // outcome name
+      string specifier = 11; // specifier if any is available
+      string outcomeID = 12; // outcomeID
+      string odds = 13; // current odds
+      int32 active = 14; // wether odd is active or deactivated, 1 - ACtive, 0 - Deactivated
+      int32 producerID = 15; // ID of the producer that send the odds
+      int32 marketID = 16; // Unique ID of this market
+    }
+
+    repeated RejectedData rejected = 1;
+    repeated AcceptedData accepted = 2;
+  }
+  optional Data data = 4;
 }
 
 message GetActiveMarketResponse {
