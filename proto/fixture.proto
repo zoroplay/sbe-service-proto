@@ -103,11 +103,18 @@ message GetActiveMarketResponse {
   int32 status = 3;
   message Data {
     repeated string games = 1;
-    repeated google.protobuf.Struct markets = 2; 
+    repeated ActiveMarket activeMarkets = 2; 
   }
   optional Data data = 4;
 }
 
+message ActiveMarket {
+  int32 outcomeID = 1;
+  int32 marketID = 2;
+  string name = 3;
+  string code = 4;
+  string specifier = 5;
+}
 
 message UpdateSportsMenuOrderRequest {
   string data = 1;
