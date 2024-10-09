@@ -93,8 +93,19 @@ service FixtureService {
 
   rpc GetSportsTournamentMenu (Empty) returns (GetSportTournamentResponse){}
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
-  rpc GetActiveGamesMarkets (FilterByMatchID) returns (CommonResponseObj){}
+  rpc GetActiveGamesMarkets (FilterByMatchID) returns (GetActiveMarketResponse){}
 
+}
+
+message GetActiveMarketResponse {
+  bool success = 1;
+  string message = 2;
+  int32 status = 3;
+  message Data {
+    repeated string games = 1;
+    repeated google.protobuf.Struct markets = 2; 
+  }
+  optional Data data = 4;
 }
 
 
