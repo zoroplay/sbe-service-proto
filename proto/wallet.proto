@@ -12,6 +12,7 @@ service WalletService {
   rpc CashbookFetchSalesReport(FetchSalesReportRequest) returns (SalesReportResponseArray) {}
   rpc CashbookFetchReport(FetchReportRequest) returns (FetchReportResponse) {}
   rpc CashbookHandleReport(HandleReportRequest) returns (LastApprovedResponseObj) {}
+  rpc CashbookFetchMonthlyShopReport(FetchReportRequest) returns (CommonResponseObj) {}
 
   
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
