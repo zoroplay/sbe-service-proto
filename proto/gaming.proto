@@ -332,7 +332,7 @@ message XpressData {
     string requestId = 7;
     string fingerprint = 8;
     optional string playerNickname = 9;
-    optional float oldBalance = 10;
+    optional string oldBalance = 10;
     optional string gameCycle = 11;
     optional string transactionId = 12;
     optional float transactionAmount = 13;
