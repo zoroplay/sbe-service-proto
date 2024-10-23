@@ -325,7 +325,7 @@ message XpressResponse {
 message XpressData {
     string playerId = 1;
     string currency = 2;
-    float balance = 3;
+    string balance = 3;
     string sessionId = 4;
     string group = 5;
     string timestamp = 6;
