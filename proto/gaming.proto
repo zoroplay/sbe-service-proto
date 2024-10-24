@@ -8,6 +8,7 @@ service GamingService {
     rpc CreateGame (CreateGameDto) returns (Game) {}
     rpc FindAllGames (Empty) returns (Games) {}
     rpc FetchGames (FetchGamesRequest) returns (Games) {}
+    rpc FetchGamesByName (FetchGamesRequest) returns (Games) {}
     rpc SyncGames (SyncGameDto) returns (Games) {}
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
     rpc UpdateGame (UpdateGameDto) returns (Game) {}
