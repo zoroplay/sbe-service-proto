@@ -54,6 +54,7 @@ message FetchGamesRequest {
     int32 clientId = 1;
     optional int32 categoryId = 2;
     optional int32 providerId = 3;
+    optional string gameName = 4;
 }
 
 message Empty {};
