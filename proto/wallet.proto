@@ -123,7 +123,8 @@ message CreatePawapayRequest {
   string source = 3;
   int32 amount = 4;
   string action = 5;
-  optional string depositId = 6;
+  string operator = 6;
+  optional string depositId = 7;
 }
 message FetchUsersWithdrawalRequest {
   int32 userId = 1;
@@ -158,6 +159,7 @@ message CreateBulkPawapayRequest {
   int32 clientId = 2;
   string source = 3;
   repeated int32 amount = 4;
+  string operator = 5;
 }
 
 message FetchPawapayRequest {
