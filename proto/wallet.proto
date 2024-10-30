@@ -49,11 +49,11 @@ service WalletService {
   rpc HandleCreateBulkPawaPay (CreateBulkPawapayRequest) returns (CommonResponseArray) {}
   rpc HandleFetchPawaPay (FetchPawapayRequest) returns (CommonResponseArray) {}
   rpc HandlePawaPayResendCallback (FetchPawapayRequest) returns (CommonResponseObj) {}
-  rpc HandlePawaPayBalances (EmptyRequest) returns (CommonResponseArray) {}
+  rpc HandlePawaPayBalances (PawapayCountryRequest) returns (CommonResponseArray) {}
   rpc HandlePawaPayCountryBalances (PawapayCountryRequest) returns (CommonResponseArray) {}
   rpc HandlePawaPayPredCorr (PawapayPredCorrRequest) returns (CommonResponseObj) {}
   rpc HandlePawaPayToolkit (PawapayToolkitRequest) returns (CommonResponseArray) {}
-  rpc HandlePawaPayActiveConf (EmptyRequest) returns (CommonResponseObj) {}
+  rpc HandlePawaPayActiveConf (PawapayCountryRequest) returns (CommonResponseObj) {}
 
 
   rpc CreateVirtualAccount (WayaBankRequest) returns (CommonResponseObj) {}
@@ -111,10 +111,14 @@ service WalletService {
 
 message PawapayToolkitRequest {
   string action = 1;
+  int32 clientId = 2;
+
 }
 
 message PawapayPredCorrRequest {
-  string phoneNumber = 1;
+  string phoneNumber = 1;  
+  int32 clientId = 2;
+
 }
 
 message CreatePawapayRequest {
@@ -165,9 +169,12 @@ message CreateBulkPawapayRequest {
 message FetchPawapayRequest {
   string action = 1;
   string actionId = 2;
+  int32 clientId  = 3;
+
 }
 message PawapayCountryRequest {
-  string country = 1;
+  int32 clientId  = 1;
+  string country = 2;
 }
 
 message FetchLastApprovedRequest {
