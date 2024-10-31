@@ -133,6 +133,7 @@ message CreatePawapayRequest {
 message FetchUsersWithdrawalRequest {
   int32 userId = 1;
   int32 clientId = 2;
+  optional bool pending = 3;
 }
 message WayaBankRequest {
   int32 userId = 1;
