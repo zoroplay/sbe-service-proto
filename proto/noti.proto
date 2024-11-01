@@ -93,10 +93,18 @@ message SettingData {
 
 
 message SendSmsRequest {
-  string message = 1;
-  string sender = 2;
-  string receiver = 3;
-  bool status = 4;
+  string msisdn = 1;
+  string text = 2;
+  string senderID = 3;
+  string name = 4;
+  string from = 5;
+  string status = 6;
+  repeated string phoneNumbers = 7;
+  string schedule = 8;
+  string channel = 9;
+  string mode = 10;
+  string campaignType = 11;
+  int32 clientID = 12;
 }
 
 message SendOtpRequest {
