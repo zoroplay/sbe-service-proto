@@ -137,6 +137,8 @@ message ValidateSelectionResponse {
       int32 active = 14; // wether odd is active or deactivated, 1 - ACtive, 0 - Deactivated
       int32 producerID = 15; // ID of the producer that send the odds
       int32 marketID = 16; // Unique ID of this market
+      string homeTeam = 17;
+      string awayTeam = 18;
     }
 
     repeated RejectedData rejected = 1;
