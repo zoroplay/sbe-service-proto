@@ -84,6 +84,7 @@ service IdentityService {
   rpc deleteCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
+  rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
 
   rpc getBonusGroups(SingleItemRequest) returns (BonusGroupResponse) {}
   rpc createBonusGroups(BonusGroups) returns (BonusGroupResponse) {}
@@ -331,6 +332,26 @@ message CalculateCommissionRequest {
   double totalOdds = 4;
   string provider = 5;
   int32 noOfSelections = 6;
+}
+
+message PayoutCommissionRequest {
+  repeated PayoutCommissionData data = 1;
+}
+
+message PayoutCommissionData {
+  int32 clientId = 1;
+  int32 userId = 2;
+  double stake = 3;
+  double totalSales = 4;
+  string provider = 5;
+  double totalWon = 6;
+  double totalTickets = 7;
+  double net = 8;
+  double commission = 9;
+  double profit = 10;
+  int32 commissionId = 11;
+  string startDate = 12;
+  string endDate = 13;
 }
 
 
