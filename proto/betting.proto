@@ -30,7 +30,7 @@ service BettingService {
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetRetailVBets(GetVirtualBetsRequest) returns (CommonResponseObj) {}
   rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
-  rpc GetShopUserCommission(SalesReportRequest) returns (CommonResponseObj) {}
+  rpc GetShopUserCommissions(SalesReportRequest) returns (CommonResponseObj) {}
   rpc GetTotalSalesReport(NetworkSalesRequest) returns (CommonResponseObj) {}
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
