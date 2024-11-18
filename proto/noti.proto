@@ -105,6 +105,7 @@ message SendSmsRequest {
   string mode = 10;
   string campaignType = 11;
   int32 clientID = 12;
+  string operator = 13;
 }
 
 message SendOtpRequest {
