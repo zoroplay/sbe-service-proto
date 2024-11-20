@@ -111,6 +111,7 @@ message SendSmsRequest {
 message SendOtpRequest {
   int32 clientID = 1;
   string phoneNumber = 2;
+  string operator = 3;
 }
 
 message VerifyOtpRequest {
