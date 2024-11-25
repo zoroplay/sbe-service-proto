@@ -17,7 +17,7 @@ service GamingService {
     rpc FetchCategories (Empty) returns (Categories) {}
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
-    rpc deleteCategory (FindOneCategoryDto) returns (CommonResponse) {}
+    rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
     rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
