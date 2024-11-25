@@ -13,8 +13,11 @@ service GamingService {
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
     rpc UpdateGame (UpdateGameDto) returns (Game) {}
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
-    rpc SaveCategory (SaveCategoryRequest) returns (CommonResponse) {}
+    rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
+    rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
+    rpc updateCategory (SaveCategoryRequest) returns (Category) {}
+    rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
     rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
@@ -365,6 +368,10 @@ message Category {
 message Categories {
     repeated Category data = 1;
 }
+
+message FindOneCategoryDto {
+    int32 id = 1;
+};
 
 message MetaData {
     int32 page = 1;
