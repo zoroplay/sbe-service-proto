@@ -118,14 +118,15 @@ message ValidateSelectionResponse {
       optional string eventName = 2;
       int32 outcomeID = 3;
       int32 marketID = 4;
+      int32 gameID = 5;
     }
 
     message AcceptedData {
       string tournament = 1; // tournament name
-      string sportID = 2; // Unique ID of the sport
-      string gameID = 3; //Unique ID of the fixture (will always be between 1000 and 99999)
+      int32 sportID = 2; // Unique ID of the sport
+      int32 gameID = 3; //Unique ID of the fixture (will always be between 1000 and 99999)
       string name = 4; // fixture name e.g ABC FC vs Yanga FC
-      string matchID = 5; // Unique ID of the match (Betradar ID)
+      int32 matchID = 5; // Unique ID of the match (Betradar ID)
       string date = 6; // Match date
       string categoryName = 7; // Fixture country code
       string sportName = 8; // Away team name
@@ -139,6 +140,7 @@ message ValidateSelectionResponse {
       int32 marketID = 16; // Unique ID of this market
       string homeTeam = 17;
       string awayTeam = 18;
+      int32 eventID = 19;
     }
 
     repeated RejectedData rejected = 1;
