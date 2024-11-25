@@ -82,6 +82,7 @@ message FindOneGameDto {
 
 message Games {
     repeated Game games = 1;
+    int32 totalGames = 2;
 };
 
 message Providers {
