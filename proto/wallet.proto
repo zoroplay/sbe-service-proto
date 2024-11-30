@@ -150,7 +150,8 @@ message Pitch90TransactionRequest {
 
 message Pitch90RegisterUrlRequest {
   string action = 1;
-  int32 url = 2;
+  string url = 2;
+  int32 clientId = 3;
 
 }
 message WayaQuickRequest {
