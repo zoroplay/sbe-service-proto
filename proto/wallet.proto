@@ -62,6 +62,7 @@ service WalletService {
 
   rpc StkDepositNotification (StkTransactionRequest) returns (CommonResponseObj) {}
   rpc StkWithdrawNotification (StkTransactionRequest) returns (CommonResponseObj) {}
+  rpc StkStatusNotification (StkTransactionRequest) returns (CommonResponseObj) {}
   rpc StkRegisterUrl (StkRegisterUrlRequest) returns (CommonResponseObj) {}
 
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
