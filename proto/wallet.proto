@@ -60,8 +60,9 @@ service WalletService {
   rpc WayabankAccountEnquiry (WayaBankRequest) returns (CommonResponseObj) {}
 
 
-  rpc Pitch90Transaction (Pitch90TransactionRequest) returns (CommonResponseObj) {}
-  rpc Pitch90RegisterUrl (Pitch90RegisterUrlRequest) returns (CommonResponseObj) {}
+  rpc StkDepositNotification (StkTransactionRequest) returns (CommonResponseObj) {}
+  rpc StkWithdrawNotification (StkTransactionRequest) returns (CommonResponseObj) {}
+  rpc StkRegisterUrl (StkRegisterUrlRequest) returns (CommonResponseObj) {}
 
   rpc HandleWayaQuickInit (WayaQuickRequest) returns (CommonResponseObj) {}
   rpc HandleWayaQuickVerify (WayaQuickRequest) returns (CommonResponseObj) {}
@@ -107,6 +108,7 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
+
 }
 
 message PawapayToolkitRequest {
@@ -140,15 +142,16 @@ message WayaBankRequest {
   int32 clientId = 2;
 
 }
-message Pitch90TransactionRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
-  int32 amount = 3;
-  string action = 4;
-  string source = 5;
+message StkTransactionRequest {
+  int32 clientId = 1;
+  string amount = 2;
+  string msisdn = 3;
+  string trxCode = 4;
+  string trxDate = 5;
+  string refId = 6;
 }
 
-message Pitch90RegisterUrlRequest {
+message StkRegisterUrlRequest {
   string action = 1;
   string url = 2;
   int32 clientId = 3;
