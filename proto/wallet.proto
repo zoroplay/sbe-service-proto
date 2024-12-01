@@ -166,6 +166,7 @@ message KorapayPaymentResponse {
 
 message VerifyFlutterWaveTransactionRequest {
   string tx_ref = 1; 
+  int32 clientId = 2;
 }
 
 
