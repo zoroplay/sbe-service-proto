@@ -117,80 +117,28 @@ service WalletService {
   // Flutterwave and KoraPay
 
 
-  rpc InitiateFlutterWaveDeposit (CreateFlutterWavePaymentRequest) returns (CreatePaymentResponse) {}
-  rpc VerifyFlutterwaveTransaction (VerifyFlutterWaveTransactionRequest) returns (VerifyTransactionResponse){}
+  rpc FlutterWaveWebhook (FlutterwaveWebhookRequest) returns (WebhookResponse) {}
+  rpc  KorapayWebhook (KoraPayWebhookRequest) returns (WebhookResponse){}
 
-  rpc InitializeKoraPayDeposit (CreateKaraPaymentRequest) returns (KorapayPaymentResponse);
-  rpc VerifyTransaction (VerifyKoraPayTransactionRequest) returns (VerifyTransactionResponse);
-
+ 
 }
 
 
-message VerifyKoraPayTransactionRequest {
-  string reference = 1;
-  int32  clientId = 2;
-}
-
-message VerifyTransactionResponse {
-    string message = 1;
-}
-
-message CreateKaraPaymentRequest {
-  double amount = 1;                   
-  string redirect_url = 2;             
-  string currency = 3;                 
-  string reference = 4;                 
-  string notification_url = 5;          
-  string narration = 6;                 
-  repeated string channels = 7;         
-  string default_channel = 8;           
-  map<string, string> metadata = 9;     
-  Customer customer = 10;              
-  bool merchant_bears_cost = 11;        
+message FlutterwaveWebhookRequest {
+  int32 clientId = 1;
+  string tx_ref = 2;
+  string event = 3;
+  string body = 4;
+  string flutterwaveKey = 5;
 }
 
 
-message Customer {
-  string email = 1;                    
-  string name = 2;                    
-}
-
-
-
-message KorapayPaymentResponse {
-                      
-  string message = 1;                  
-  string payment_link = 2;              
-}
-
-
-
-message VerifyFlutterWaveTransactionRequest {
-  string tx_ref = 1; 
-  int32 clientId = 2;
-}
-
-
-
-
-message CreateFlutterWavePaymentRequest {
-  string tx_ref = 1; 
-  string amount = 2;
-  string currency = 3; 
-  string redirect_url = 4;
-  Customers customer = 5; 
-}
-
-message Customers {
-  string email = 1; 
-  string phone_number = 2; 
-  string name = 3; 
-}
-
-message CreatePaymentResponse {
-  string message = 1; 
-  map<string, string> data = 2;
-
+message KoraPayWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  string body = 4;
+  string korapayKey = 5;
 }
 
 message PawapayToolkitRequest {
