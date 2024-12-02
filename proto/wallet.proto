@@ -121,13 +121,14 @@ service WalletService {
   rpc VerifyFlutterwaveTransaction (VerifyFlutterWaveTransactionRequest) returns (VerifyTransactionResponse){}
 
   rpc InitializeKoraPayDeposit (CreateKaraPaymentRequest) returns (KorapayPaymentResponse);
-  rpc VerifyTransaction (VerifyTransactionRequest) returns (VerifyTransactionResponse);
+  rpc VerifyTransaction (VerifyKoraPayTransactionRequest) returns (VerifyTransactionResponse);
 
 }
 
 
-message VerifyTransactionRequest {
+message VerifyKoraPayTransactionRequest {
   string reference = 1;
+  int32  clientId = 2;
 }
 
 message VerifyTransactionResponse {
