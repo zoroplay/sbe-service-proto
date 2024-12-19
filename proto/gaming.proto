@@ -19,7 +19,7 @@ service GamingService {
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc addGameToCategories(AddGameToCategoriesDto) returns (CommonResponse) {}
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
 
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
@@ -436,3 +436,15 @@ message AddGameToCategoriesDto {
     int32 gameId = 1;
     repeated int32 categories = 2;
 }
+
+
+message GameCategory {
+    int32 gameId = 1;
+    string gameTitle = 2;
+    int32 categoryId = 3;
+    string categoryName = 4;
+  }
+  
+  message AddGameToCategoriesResponse {
+    repeated GameCategory gameCategories = 1;
+  }
