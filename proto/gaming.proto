@@ -1,8 +1,11 @@
 syntax = "proto3";
 // import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 package gaming;
+
+
 
 service GamingService {
     rpc CreateGame (CreateGameDto) returns (Game) {}
@@ -25,6 +28,17 @@ service GamingService {
     rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
+
+
+
+
+    rpc CreatePromotion (CreatePromotionDto) returns (Promotion) {}
+    rpc FindPromotions (Empty) returns (Promotions) {}
+    rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
+    rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
+    rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
+    
+
 
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
@@ -382,4 +396,33 @@ message MetaData {
     int32 lastPage = 4;
     int32 nextPage = 5;
     int32 prevPage = 6;
-  }
+};
+
+
+message Promotion {
+    string title = 1;
+    string imageUrl = 2;
+    string content = 3;
+    google.protobuf.Timestamp startDate = 4;
+    google.protobuf.Timestamp endDate = 5;
+    string type = 6;
+
+}
+
+message CreatePromotionDto {
+    string title = 1;
+    string imageUrl = 2;
+    string content = 3;
+    google.protobuf.Timestamp startDate = 4;
+    google.protobuf.Timestamp endDate = 5;
+    string type = 6;
+
+}
+
+message Promotions {
+    repeated Promotion data = 1;
+}
+
+message FindOnePromotionDto {
+    int32 id = 1;
+};
