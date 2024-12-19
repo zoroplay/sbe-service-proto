@@ -20,7 +20,6 @@ service GamingService {
     rpc FetchCategories (Empty) returns (Categories) {}
 
     rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
-    rpc modifyGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
     rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
 
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
