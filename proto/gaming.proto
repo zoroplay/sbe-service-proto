@@ -18,6 +18,9 @@ service GamingService {
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
+
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (CommonResponse) {}
+
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
@@ -419,6 +422,7 @@ message CreatePromotionDto {
 
 }
 
+
 message Promotions {
     repeated Promotion data = 1;
 }
@@ -426,3 +430,9 @@ message Promotions {
 message FindOnePromotionDto {
     int32 id = 1;
 };
+
+
+message AddGameToCategoriesDto {
+    int32 gameId = 1;
+    repeated int32 categories = 2;
+}
