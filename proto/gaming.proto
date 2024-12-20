@@ -33,8 +33,7 @@ service GamingService {
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
 
-
-
+    rpc getGames (Empty) returns (Games) {}
 
     rpc CreatePromotion (CreatePromotionDto) returns (Promotion) {}
     rpc FindPromotions (Empty) returns (Promotions) {}
