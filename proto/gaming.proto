@@ -33,7 +33,7 @@ service GamingService {
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
 
-    rpc getGames (Empty) returns (Games) {}
+    rpc getGames (Empty) returns (GamingServiceResponse) {}
 
     rpc CreatePromotion (CreatePromotionDto) returns (Promotion) {}
     rpc FindPromotions (Empty) returns (Promotions) {}
@@ -173,6 +173,22 @@ message Game {
     string createdAt = 11;
     string updatedAt = 12;
     repeated Category category = 13;
+}
+
+message IGame {
+    int32 id = 1;
+    bool status = 2;
+    int32 provider_id = 3;
+    string provider_name = 4;
+    string game_id = 5;
+    string game_name = 6;
+    string image = 7;
+    string description = 8;
+    repeated Category category = 9;
+}
+
+message GamingServiceResponse {
+    repeated IGame games = 1;
 }
 
 message Provider {
