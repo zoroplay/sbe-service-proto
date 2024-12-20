@@ -404,12 +404,14 @@ message MetaData {
 
 
 message Promotion {
-    string title = 1;
-    string imageUrl = 2;
-    string content = 3;
-    google.protobuf.Timestamp startDate = 4;
-    google.protobuf.Timestamp endDate = 5;
-    string type = 6;
+    int32 clientId = 1;
+    string title = 2;
+    string imageUrl = 3;
+    string status = 4;
+    string content = 5;
+    google.protobuf.Timestamp startDate = 6;
+    google.protobuf.Timestamp endDate = 7;
+    string type = 8;
 
 }
 
