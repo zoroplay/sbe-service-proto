@@ -375,7 +375,7 @@ message SaveCategoryRequest {
     optional int32 id = 2;
     string name = 3;
     optional string imagePath = 4;
-    optional bool priority = 5;
+    optional int32 priority = 5;
     optional string status = 6;
 }
 
