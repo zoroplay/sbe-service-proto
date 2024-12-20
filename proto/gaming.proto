@@ -383,6 +383,8 @@ message Category {
     int32 id = 1;
     string slug = 2;
     string name = 3;
+    optional int32 priority = 4;
+    optional string status = 5;
 }
 
 message Categories {
