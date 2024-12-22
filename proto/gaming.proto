@@ -177,15 +177,20 @@ message Game {
 
 message IGame {
     int32 id = 1;
-    bool status = 2;
-    int32 provider_id = 3;
-    string provider_name = 4;
-    string game_id = 5;
-    string game_name = 6;
-    string image = 7;
-    string description = 8;
-    repeated Category category = 9;
+    string gameId = 2;
+    string title = 3;
+    string description = 4;
+    string url = 5;
+    string imagePath = 6;
+    string bannerPath = 7;
+    bool status = 8;
+    string type = 9;
+    Provider provider = 10;
+    string createdAt = 11;
+    string updatedAt = 12;
+    repeated string category = 13; // Fixed the category type to be a repeated string
 }
+
 
 message GamingServiceResponse {
     repeated IGame games = 1;
