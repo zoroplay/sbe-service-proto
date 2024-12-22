@@ -1,7 +1,6 @@
 syntax = "proto3";
 // import "google/protobuf/any.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 
 package gaming;
 
@@ -432,8 +431,8 @@ message Promotion {
     string imageUrl = 3;
     string status = 4;
     string content = 5;
-    google.protobuf.Timestamp startDate = 6;
-    google.protobuf.Timestamp endDate = 7;
+    string startDate = 6;
+    string endDate = 7;
     string type = 8;
 
 }
@@ -444,8 +443,8 @@ message CreatePromotionDto {
     string title = 3;
     string imageUrl = 4;
     string content = 5;
-    google.protobuf.Timestamp startDate = 6;
-    google.protobuf.Timestamp endDate = 7;
+    string startDate = 6;
+    string endDate = 7;
     string type = 8;
 
 }
