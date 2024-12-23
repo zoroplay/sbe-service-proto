@@ -446,8 +446,8 @@ message Promotion {
     string startDate = 6;
     string endDate = 7;
     string status = 8;
-    string created_at = 9;
-    string updated_at = 10;
+    string createdAt = 9;
+    string updatedAt = 10;
   }
 
 message CreatePromotionDto {
