@@ -4,6 +4,8 @@ import "google/protobuf/struct.proto";
 
 package gaming;
 
+
+
 service GamingService {
     rpc CreateGame (CreateGameDto) returns (Game) {}
     rpc FindAllGames (Empty) returns (Games) {}
@@ -15,6 +17,10 @@ service GamingService {
     rpc RemoveGame (UpdateGameDto) returns (Game) {}
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
+
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
+    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
+
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
@@ -25,6 +31,16 @@ service GamingService {
     rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
+
+    rpc getGames (Empty) returns (CommonResponseArray) {}
+
+    rpc CreatePromotion (CreatePromotionDto) returns (Promotion) {}
+    rpc FindPromotions (Empty) returns (Promotions) {}
+    rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
+    rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
+    rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
+    
+
 
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
@@ -155,6 +171,28 @@ message Game {
     Provider provider = 10;
     string createdAt = 11;
     string updatedAt = 12;
+    repeated Category category = 13;
+}
+
+message IGame {
+    int32 id = 1;
+    string gameId = 2;
+    string title = 3;
+    string description = 4;
+    string url = 5;
+    string imagePath = 6;
+    string bannerPath = 7;
+    bool status = 8;
+    string type = 9;
+    Provider provider = 10;
+    string createdAt = 11;
+    string updatedAt = 12;
+    repeated string category = 13; // Fixed the category type to be a repeated string
+}
+
+
+message GamingServiceResponse {
+    repeated IGame games = 1;
 }
 
 message Provider {
@@ -297,6 +335,14 @@ message CallbackResponse {
     google.protobuf.Struct data = 4;
 }
 
+message CommonResponseArray {
+    optional int32 status = 1;
+    optional bool success = 2;
+    string message = 3;
+    repeated google.protobuf.Struct data = 4;
+    optional string errors = 5;
+}
+
 message XpressRequest {
     int32 clientId = 1;
     string action = 2;
@@ -357,12 +403,16 @@ message SaveCategoryRequest {
     optional int32 id = 2;
     string name = 3;
     optional string imagePath = 4;
+    optional int32 priority = 5;
+    optional string status = 6;
 }
 
 message Category {
     int32 id = 1;
     string slug = 2;
     string name = 3;
+    optional int32 priority = 4;
+    optional string status = 5;
 }
 
 message Categories {
@@ -380,4 +430,67 @@ message MetaData {
     int32 lastPage = 4;
     int32 nextPage = 5;
     int32 prevPage = 6;
+};
+
+
+message Promotion1 {
+    // int32 clientId = 1;
+    string title = 1;
+    string imageUrl = 2;
+    string status = 3;
+    string content = 4;
+    string startDate = 5;
+    string endDate = 6;
+    string type = 7;
+
+}
+
+message Promotion {
+    int32 id = 1;
+    string title = 2;
+    string imageUrl = 3;
+    string content = 4;
+    string type = 5;
+    string startDate = 6;
+    string endDate = 7;
+    string status = 8;
+  }
+
+message CreatePromotionDto {
+    // int32 clientId = 1;
+    optional int32 id = 1;
+    string title = 2;
+    string imageUrl = 3;
+    string content = 4;
+    string startDate = 5;
+    string endDate = 6;
+    string type = 7;
+
+}
+
+
+message Promotions {
+    repeated Promotion data = 1;
+}
+
+message FindOnePromotionDto {
+    int32 id = 1;
+};
+
+
+message AddGameToCategoriesDto {
+    int32 gameId = 1;
+    repeated int32 categories = 2;
+}
+
+
+message GameCategory {
+    int32 gameId = 1;
+    string gameTitle = 2;
+    int32 categoryId = 3;
+    string categoryName = 4;
+  }
+  
+  message AddGameToCategoriesResponse {
+    repeated GameCategory gameCategories = 1;
   }
