@@ -461,6 +461,7 @@ message Promotion {
     string startDate = 6;
     string endDate = 7;
     string status = 8;
+    optional string targetUrl = 9;
   }
 
 message CreatePromotionDto {
