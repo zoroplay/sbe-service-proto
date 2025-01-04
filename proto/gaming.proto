@@ -473,6 +473,7 @@ message CreatePromotionDto {
     string startDate = 5;
     string endDate = 6;
     string type = 7;
+    optional string targetUrl = 8;
 
 }
 
