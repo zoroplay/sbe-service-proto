@@ -26,6 +26,14 @@ service GamingService {
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
+
+
+    rpc findOneTournament (FindOneTournamentDto) returns (Tournament) {}
+    rpc FindAllTournaments (Empty) returns (Tournaments) {}
+    rpc updateTournament (CreateTournamentDto) returns (Tournament) {}
+    rpc deleteTournament (FindOneTournamentDto) returns (Empty) {}
+    rpc createTournament (CreateTournamentDto) returns (Tournament) {}
+
     rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
     rpc UpdateProvider (CreateProviderDto) returns (CommonResponse) {}
     rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
@@ -340,7 +348,6 @@ message CommonResponseArray {
     optional bool success = 2;
     string message = 3;
     repeated google.protobuf.Struct data = 4;
-    optional string errors = 5;
 }
 
 message XpressRequest {
@@ -491,6 +498,42 @@ message GameCategory {
     string categoryName = 4;
   }
   
+  
+
+
+
+
+  message Tournament {
+    int32 id = 1;
+    string title = 2;
+    string imageUrl = 3;
+    string content = 4;
+    string type = 5;
+    string startDate = 6;
+    string endDate = 7;
+    string status = 8;
+  }
+
   message AddGameToCategoriesResponse {
     repeated GameCategory gameCategories = 1;
   }
+
+message CreateTournamentDto {
+    // int32 clientId = 1;
+    optional int32 id = 1;
+    string title = 2;
+    string imageUrl = 3;
+    string content = 4;
+    string startDate = 5;
+    string endDate = 6;
+    string type = 7;
+
+}
+
+message Tournaments {
+    repeated Tournament data = 1;
+}
+
+  message FindOneTournamentDto {
+    int32 id = 1;
+};
