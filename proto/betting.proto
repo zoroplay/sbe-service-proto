@@ -408,11 +408,11 @@ message BetSlipHistory {
   string eventPrefix = 22;
   string score = 23;
   string htScore = 24;
-  int id = 25;
+  int32 id = 25;
   float currentOdds = 26;
   string eventTime = 27;
   string matchStatus = 28;
-
+  int32 isLive = 29;
 }
 
 message BetHistory {
