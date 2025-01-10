@@ -489,8 +489,7 @@ message Promotion {
     optional string targetUrl = 9;
   }
 
-message CreatePromotionDto {
-    // int32 clientId = 1;
+  message CreatePromotionDto {
     optional int32 id = 1;
     string title = 2;
     string imageUrl = 3;
@@ -499,19 +498,16 @@ message CreatePromotionDto {
     string endDate = 6;
     string type = 7;
     optional string targetUrl = 8;
-
 }
 
 message FileChunk {
     bytes data = 1;
 }
-  
-  message CreatePromotionRequest {
-    oneof payload {
-      CreatePromotionDto metadata = 1; // Metadata for the promotion
-      FileChunk fileChunk = 2;         // Binary chunks of the file
-    }
-  }
+
+message CreatePromotionRequest {
+    CreatePromotionDto metadata = 1; // Metadata for the promotion
+    FileChunk fileChunk = 2;         // Binary chunks of the file
+}
 
 
 message Promotions {
