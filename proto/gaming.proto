@@ -505,8 +505,8 @@ message FileChunk {
 }
 
 message CreatePromotionRequest {
-    CreatePromotionDto metadata = 1; // Metadata for the promotion
-    FileChunk fileChunk = 2;         // Binary chunks of the file
+    CreatePromotionDto metadata = 1;
+    string fileBase64 = 2;  // Base64 encoded file content
 }
 
 
