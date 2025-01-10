@@ -54,12 +54,35 @@ service GamingService {
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
 
+    rpc HandleQtechCallback (CallbackGameDto) returns (CallbackResponse) {}
+
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
     rpc XpressDebit (XpressRequest) returns (XpressResponse) {}
     rpc XpressCredit (XpressRequest) returns (XpressResponse) {}
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
+
+
+
+    rpc QTechVerifySession (QtechCallbackRequest) returns (CallbackResponse) {}
+}
+
+
+
+message QtechCallbackRequest {
+    optional int32 clientId = 1;
+    string playerId = 2;
+    string gameId = 3;
+    optional string action = 4;
+    optional string method = 5;
+    google.protobuf.Struct header = 6;
+    optional string body = 7;
+}
+
+
+message AddGameToCategoriesResponse {
+    repeated GameCategory gameCategories = 1;
 }
 
 message RegisterBonusRequest {
@@ -532,6 +555,7 @@ message GameCategory {
   message AddGameToCategoriesResponse {
     repeated GameCategory gameCategories = 1;
   }
+
 
 message CreateTournamentDto {
     // int32 clientId = 1;
