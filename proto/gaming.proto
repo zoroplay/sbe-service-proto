@@ -54,7 +54,7 @@ service GamingService {
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
 
-    rpc HandleQtechCallback (CallbackGameDto) returns (CallbackResponse) {}
+    rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
