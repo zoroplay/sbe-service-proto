@@ -552,9 +552,7 @@ message GameCategory {
     string status = 8;
   }
 
-  message AddGameToCategoriesResponse {
-    repeated GameCategory gameCategories = 1;
-  }
+
 
 
 message CreateTournamentDto {
