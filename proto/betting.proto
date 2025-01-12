@@ -195,6 +195,7 @@ message PlaceCasinoBetRequest {
   optional string username = 12;
   optional string betType = 13;
   optional int32 bonusId = 14;
+  optional int32 roundDetails = 15;
 }
 
 message CreditCasinoBetRequest {
