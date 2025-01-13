@@ -73,8 +73,9 @@ message QtechCallbackRequest {
     int32 clientId = 1;
     string playerId = 2;
     string gameId = 3;
-    string walletSessionId = 4;
-    optional string body = 5;
+    string passkey = 4;
+    string walletSessionId = 5;
+    optional string body = 6;
      
 }
 
