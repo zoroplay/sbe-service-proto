@@ -492,7 +492,7 @@ message Promotion {
   message CreatePromotionDto {
     optional int32 id = 1;
     string title = 2;
-    optional string imageUrl = 3;
+    optional bytes imageUrl = 3;
     string content = 4;
     string startDate = 5;
     string endDate = 6;
