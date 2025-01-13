@@ -64,21 +64,20 @@ service GamingService {
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
 
-
-    rpc QTechVerifySession (QtechCallbackRequest) returns (CallbackResponse) {}
+   
 }
 
 
 
 message QtechCallbackRequest {
-    optional int32 clientId = 1;
+    int32 clientId = 1;
     string playerId = 2;
     string gameId = 3;
-    optional string action = 4;
-    optional string method = 5;
-    google.protobuf.Struct header = 6;
-    optional string body = 7;
+    string walletSessionId = 4;
+    optional string body = 5;
+     
 }
+
 
 
 message AddGameToCategoriesResponse {
