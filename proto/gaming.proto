@@ -42,7 +42,7 @@ service GamingService {
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
 
-    rpc CreatePromotion (stream CreatePromotionRequest) returns (Promotion);
+    rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
