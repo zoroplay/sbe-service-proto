@@ -29,7 +29,7 @@ service GamingService {
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
-    rpc uploadImage (FileChunk) returns (CommonResponse) {}
+    // rpc uploadImage (FileChunk) returns (CommonResponse) {}
 
     rpc findOneTournament (FindOneTournamentDto) returns (Tournament) {}
     rpc FindAllTournaments (Empty) returns (Tournaments) {}
@@ -44,7 +44,7 @@ service GamingService {
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
--
+
     rpc CreatePromotion (CreatePromotionDto) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
@@ -522,7 +522,7 @@ message Promotion {
 // }
 
 message Promotions {
-    repeated Promotion data = 1;0
+    repeated Promotion data = 1;
 }
 
 message FindOnePromotionDto {
