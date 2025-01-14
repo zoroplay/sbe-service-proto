@@ -55,6 +55,7 @@ service GamingService {
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
 
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
+    rpc HandleQtechTransaction (QtechtransactionRequest) returns (CallbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -67,6 +68,13 @@ service GamingService {
    
 }
 
+message QtechtransactionRequest {
+    int32 clientId = 1;
+    optional  string gameId = 3;
+    string passkey = 4;
+    string walletSessionId = 5;
+    optional string body = 6;
+} 
 
 
 message QtechCallbackRequest {
@@ -76,6 +84,7 @@ message QtechCallbackRequest {
     string passkey = 4;
     string walletSessionId = 5;
     optional string body = 6;
+    string action = 7;
      
 }
 
