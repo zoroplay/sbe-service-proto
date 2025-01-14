@@ -136,6 +136,7 @@ message CreateBonusRequest {
   float maxAmount = 19;
   string product = 20;
   optional string game_id = 21;
+  optional string casinoSpinCount = 22;
 }
 
 message CreateBonusResponse {
