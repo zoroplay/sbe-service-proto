@@ -36,7 +36,7 @@ service BettingService {
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
-  rpc TaxReport (GetCommissionsRequest) returns (CommonResponseObj) {}
+  rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
 }
 
