@@ -528,7 +528,7 @@ message AddGameToCategoriesDto {
 
 message AddGameToPromotionDto {
     int32 gameId = 1;
-    repeated int32 categories = 2;
+    repeated int32 promotion = 2;
 }
 
 
