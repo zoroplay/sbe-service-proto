@@ -18,8 +18,11 @@ service GamingService {
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
-    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
+    rpc addGameToCategories(AddGameToPromotionDto) returns (AddGameToCategoriesResponse) {}
+    rpc removeGameToCategories(AddGameToPromotionDto) returns (Empty) {}
+
+    rpc addGameToPromotion(AddGameToCategoriesDto) returns (AddGameToPromotionResponse) {}
+    rpc removeGamePromotion(AddGameToCategoriesDto) returns (Empty) {}
 
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
@@ -523,15 +526,30 @@ message AddGameToCategoriesDto {
     repeated int32 categories = 2;
 }
 
+message AddGameToPromotionDto {
+    int32 gameId = 1;
+    repeated int32 categories = 2;
+}
+
 
 message GameCategory {
     int32 gameId = 1;
     string gameTitle = 2;
     int32 categoryId = 3;
     string categoryName = 4;
-  }
+}
+
+
+message GamePromotion {
+    int32 gameId = 1;
+    string gameTitle = 2;
+    int32 promotionId = 3;
+    string promotionTitle = 4;
+}
   
-  
+message AddGameToPromotionResponse {
+    repeated GamePromotion gamePromotion = 1;
+}
 
 
 
