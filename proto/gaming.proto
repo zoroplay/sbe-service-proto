@@ -21,12 +21,15 @@ service GamingService {
     rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
     rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
 
+    rpc addGameToPromotion(AddGameToPromotionDto) returns (AddGameToPromotionResponse) {}
+    rpc removeGamePromotion(AddGameToPromotionDto) returns (Empty) {}
+
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
 
-
+    rpc uploadImage (FileChunk) returns (CommonResponse) {}
 
     rpc findOneTournament (FindOneTournamentDto) returns (Tournament) {}
     rpc FindAllTournaments (Empty) returns (Tournaments) {}
@@ -42,7 +45,7 @@ service GamingService {
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
 
-    rpc CreatePromotion (stream CreatePromotionRequest) returns (Promotion);
+    rpc CreatePromotion (CreatePromotionDto) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
@@ -501,7 +504,7 @@ message Promotion {
   message CreatePromotionDto {
     optional int32 id = 1;
     string title = 2;
-    string imageUrl = 3;
+    optional bytes imageUrl = 3;
     string content = 4;
     string startDate = 5;
     string endDate = 6;
@@ -532,15 +535,30 @@ message AddGameToCategoriesDto {
     repeated int32 categories = 2;
 }
 
+message AddGameToPromotionDto {
+    int32 gameId = 1;
+    repeated int32 promotion = 2;
+}
+
 
 message GameCategory {
     int32 gameId = 1;
     string gameTitle = 2;
     int32 categoryId = 3;
     string categoryName = 4;
-  }
+}
+
+
+message GamePromotion {
+    int32 gameId = 1;
+    string gameTitle = 2;
+    int32 promotionId = 3;
+    string promotionTitle = 4;
+}
   
-  
+message AddGameToPromotionResponse {
+    repeated GamePromotion gamePromotion = 1;
+}
 
 
 
