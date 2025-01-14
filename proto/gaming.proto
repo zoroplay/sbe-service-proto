@@ -18,11 +18,11 @@ service GamingService {
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc addGameToCategories(AddGameToPromotionDto) returns (AddGameToCategoriesResponse) {}
-    rpc removeGameToCategories(AddGameToPromotionDto) returns (Empty) {}
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
+    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
 
-    rpc addGameToPromotion(AddGameToCategoriesDto) returns (AddGameToPromotionResponse) {}
-    rpc removeGamePromotion(AddGameToCategoriesDto) returns (Empty) {}
+    rpc addGameToPromotion(AddGameToPromotionDto) returns (AddGameToPromotionResponse) {}
+    rpc removeGamePromotion(AddGameToPromotionDto) returns (Empty) {}
 
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
