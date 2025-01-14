@@ -44,7 +44,7 @@ service GamingService {
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
-
+-
     rpc CreatePromotion (CreatePromotionDto) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
@@ -512,17 +512,17 @@ message Promotion {
     optional string targetUrl = 8;
 }
 
-message FileChunk {
-    bytes data = 1;
-}
+// message FileChunk {
+//     bytes data = 1;
+// }
 
-message CreatePromotionRequest {
-    CreatePromotionDto metadata = 1; // Metadata for the promotion
-    FileChunk fileChunk = 2;         // Binary chunks of the file
-}
+// message CreatePromotionRequest {
+//     CreatePromotionDto metadata = 1; // Metadata for the promotion
+//     FileChunk fileChunk = 2;         // Binary chunks of the file
+// }
 
 message Promotions {
-    repeated Promotion data = 1;
+    repeated Promotion data = 1;0
 }
 
 message FindOnePromotionDto {
