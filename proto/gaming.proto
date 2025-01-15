@@ -512,15 +512,6 @@ message Promotion {
     optional string targetUrl = 8;
 }
 
-// message FileChunk {
-//     bytes data = 1;
-// }
-
-// message CreatePromotionRequest {
-//     CreatePromotionDto metadata = 1; // Metadata for the promotion
-//     FileChunk fileChunk = 2;         // Binary chunks of the file
-// }
-
 message Promotions {
     repeated Promotion data = 1;
 }
