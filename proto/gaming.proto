@@ -563,7 +563,7 @@ message TournamentResponse {
     string startDate = 6;
     string endDate = 7;
     string status = 8;
-    string categoryId = 9;
+    int32 categoryId = 9;
   }
 
 
