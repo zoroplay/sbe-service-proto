@@ -45,7 +45,7 @@ service GamingService {
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
 
-    rpc CreatePromotion (CreatePromotionDto) returns (Promotion);
+    rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
@@ -511,6 +511,11 @@ message Promotion {
     string type = 7;
     optional string targetUrl = 8;
 }
+
+message CreatePromotionRequest {
+    CreatePromotionDto metadata = 1;  
+    string file = 2;  
+  }
 
 message Promotions {
     repeated Promotion data = 1;
