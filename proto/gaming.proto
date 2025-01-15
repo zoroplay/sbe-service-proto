@@ -56,7 +56,9 @@ service GamingService {
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
 
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
-    rpc HandleQtechTransaction (QtechtransactionRequest) returns (CallbackResponse) {}
+    rpc HandleQtechGetBalance (QtechCallbackRequest) returns (CallbackResponse) {}
+    rpc HandleQtechTransaction (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
+    
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -65,7 +67,7 @@ service GamingService {
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
-
+    
    
 }
 
@@ -89,6 +91,51 @@ message QtechCallbackRequest {
      
 }
 
+
+   
+
+message JPContribution {
+    string id = 1;
+    double amount = 2;
+    double balance = 3;
+  }
+
+message QtechDepositTransactionResponse {  // remover from wallet balance
+                 
+        string txnType = 1;
+        string txnId = 2;
+        string playerId = 3;
+        string roundId = 4;
+        double amount = 5;
+        string currency = 6;
+        repeated JPContribution jpContributions = 7;
+        string gameId = 8;
+        string device = 9;
+        string clientType = 10;
+        string clientRoundId = 11;
+        string category = 12;
+        string created = 13;
+        bool completed = 14;
+      }
+
+      message QtechWinTransactionResponse {  // Rollback can use this to update wallet
+        string txnType = 1;
+        string txnId = 2;
+        string betId = 3;
+        string playerId = 4;
+        string roundId = 5;
+        double amount = 6;
+        string currency = 7;
+        double jpPayout = 8;
+        string gameId = 9;
+        string device = 10;
+        string clientType = 11;
+        string clientRoundId = 12;
+        string category = 13;
+        string created = 14;
+        bool completed = 15;
+
+      }
 
 
 message AddGameToCategoriesResponse {
