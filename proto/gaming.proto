@@ -21,15 +21,13 @@ service GamingService {
     rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
     rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
 
-    rpc addGameToPromotion(AddGameToPromotionDto) returns (AddGameToPromotionResponse) {}
-    rpc removeGamePromotion(AddGameToPromotionDto) returns (Empty) {}
+    rpc addTournamentGame(AddGameToTournamentDto) returns (TournamentResponse) {}
+    rpc removeTournamentGame(AddGameToTournamentDto) returns (Empty) {}
 
     rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
     rpc updateCategory (SaveCategoryRequest) returns (Category) {}
     rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
     rpc RegisterBonus (Empty) returns (CommonResponse) {}
-
-    // rpc uploadImage (FileChunk) returns (CommonResponse) {}
 
     rpc findOneTournament (FindOneTournamentDto) returns (Tournament) {}
     rpc FindAllTournaments (Empty) returns (Tournaments) {}
@@ -531,9 +529,9 @@ message AddGameToCategoriesDto {
     repeated int32 categories = 2;
 }
 
-message AddGameToPromotionDto {
+message AddGameToTournamentDto {
     int32 gameId = 1;
-    repeated int32 promotion = 2;
+    repeated int32 tournamentId = 2;
 }
 
 
@@ -545,19 +543,16 @@ message GameCategory {
 }
 
 
-message GamePromotion {
+message GameTournament {
     int32 gameId = 1;
     string gameTitle = 2;
-    int32 promotionId = 3;
-    string promotionTitle = 4;
+    int32 tournamentId = 3;
+    string tournamentTitle = 4;
 }
   
-message AddGameToPromotionResponse {
-    repeated GamePromotion gamePromotion = 1;
+message TournamentResponse {
+    repeated GameTournament gameTournament = 1;
 }
-
-
-
 
   message Tournament {
     int32 id = 1;
