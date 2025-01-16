@@ -570,9 +570,10 @@ message Promotion {
 }
 
 message CreatePromotionRequest {
-    CreatePromotionDto metadata = 1;  
-    string file = 2;  
-  }
+    optional int32 id = 1;
+    CreatePromotionDto metadata = 2;
+    string file = 3;
+}
 
 message Promotions {
     repeated Promotion data = 1;
@@ -589,7 +590,6 @@ message AddGameToCategoriesDto {
 }
 
 message AddGameToTournamentDto {
-    optional int32 id = 1;
     int32 tournamentId = 2;
     repeated int32 gameId  = 3;
 }
@@ -601,7 +601,6 @@ message GameCategory {
     int32 categoryId = 3;
     string categoryName = 4;
 }
-
 
 message GameTournament {
     int32 gameId = 1;
@@ -625,9 +624,6 @@ message TournamentResponse {
     string status = 8;
     int32 categoryId = 9;
   }
-
-
-
 
 message CreateTournamentDto {
     // int32 clientId = 1;
