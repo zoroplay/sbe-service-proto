@@ -103,7 +103,8 @@ message JPContribution {
     string roundId = 6;          
     double amount = 7;          
     string currency = 8; 
-    double conversionRat = 9;        
+    double conversionRat = 9;  
+    int32 clientId = 10;      
     repeated JPContribution jpContributions = 12;
     string gameId = 13;          
     string device = 14;          
