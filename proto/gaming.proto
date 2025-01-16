@@ -73,6 +73,7 @@ service GamingService {
 
 message QtechtransactionRequest {
     int32 clientId = 1;
+    string playerId = 2;
     optional  string gameId = 3;
     string passkey = 4;
     string walletSessionId = 5;
