@@ -581,8 +581,9 @@ message AddGameToCategoriesDto {
 }
 
 message AddGameToTournamentDto {
-    int32 gameId = 1;
-    repeated int32 tournamentId = 2;
+    optional int32 id = 1;
+    int32 tournamentId = 2;
+    repeated int32 gameId  = 3;
 }
 
 
