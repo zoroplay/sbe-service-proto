@@ -71,27 +71,6 @@ service GamingService {
    
 }
 
-message QtechtransactionRequest {
-    int32 clientId = 1;
-    string playerId = 2;
-    optional  string gameId = 3;
-    string passkey = 4;
-    string walletSessionId = 5;
-    optional string body = 6;
-} 
-
-message QtechTransactionDto {
-    string txnType = 1;          
-    int32 playerId = 2;         
-    double amount = 3;          
-    string currency = 4;        
-    string roundId = 5;         
-    int32 clientId = 6;         
-    string passkey = 7;         
-    string walletSessionId = 8; 
-}
-
-
 message QtechCallbackRequest {
     int32 clientId = 1;
     string playerId = 2;
@@ -112,24 +91,38 @@ message JPContribution {
     double balance = 3;
   }
 
-message QtechDepositTransactionResponse {  // remover from wallet balance
-                 
-        string txnType = 1;
-        string txnId = 2;
-        string playerId = 3;
-        string roundId = 4;
-        double amount = 5;
-        string currency = 6;
-        repeated JPContribution jpContributions = 7;
-        string gameId = 8;
-        string device = 9;
-        string clientType = 10;
-        string clientRoundId = 11;
-        string category = 12;
-        string created = 13;
-        bool completed = 14;
-      }
+  message QtechtransactionRequest {
+    // Headers
+    string walletSessionId = 1;  
+    string passKey = 2;          
+    
+    // Required Parameters
+    string txnType = 3;          
+    string txnId = 4;           
+    string playerId = 5;         
+    string roundId = 6;          
+    double amount = 7;          
+    string currency = 8; 
+    double conversionRat = 9;  
+    int32 clientId = 10;      
+    repeated JPContribution jpContributions = 12;
+    string gameId = 13;          
+    string device = 14;          
+    string clientType = 15;      
+    string clientRoundId = 16;  
+    string category = 17;       
+    string created = 18;        
+    bool completed = 19;        
+             
+  }
 
+  message QtechDepositTransactionResponse {
+    double balance = 1;
+    string referenceId = 2;
+  }
+
+
+  
       message QtechWinTransactionResponse {  // Rollback can use this to update wallet
         string txnType = 1;
         string txnId = 2;
