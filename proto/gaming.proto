@@ -58,6 +58,7 @@ service GamingService {
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
     rpc HandleQtechGetBalance (QtechCallbackRequest) returns (CallbackResponse) {}
     rpc HandleQtechTransaction (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
+    rpc HandleQtechTransactionWin (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
     
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
