@@ -560,6 +560,7 @@ message Promotion {
     string endDate = 6;
     string type = 7;
     optional string targetUrl = 8;
+    optional string file = 9;
 }
 
 message CreatePromotionRequest {
