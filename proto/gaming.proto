@@ -46,7 +46,7 @@ service GamingService {
     rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
-    rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
+    rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
     
 
