@@ -57,7 +57,7 @@ service GamingService {
 
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
     rpc HandleQtechGetBalance (QtechCallbackRequest) returns (CallbackResponse) {}
-    rpc HandleQtechTransaction (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
+    rpc HandleQtechTransactionBet (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
     rpc HandleQtechTransactionWin (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
     
 
@@ -104,16 +104,10 @@ message JPContribution {
     string roundId = 6;          
     double amount = 7;          
     string currency = 8; 
-    double conversionRat = 9;  
-    int32 clientId = 10;      
-    repeated JPContribution jpContributions = 12;
-    string gameId = 13;          
-    string device = 14;          
-    string clientType = 15;      
-    string clientRoundId = 16;  
-    string category = 17;       
-    string created = 18;        
-    bool completed = 19;        
+    int32 clientId = 9;      
+    string gameId = 10; 
+    optional string body = 11;         
+       
              
   }
 
