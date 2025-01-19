@@ -104,8 +104,9 @@ message JPContribution {
     string roundId = 6;          
     double amount = 7;          
     string currency = 8; 
-    int32 clientId = 10;      
-    string gameId = 13;          
+    int32 clientId = 9;      
+    string gameId = 10; 
+    optional string body = 11;         
        
              
   }
