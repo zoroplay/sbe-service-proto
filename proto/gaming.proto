@@ -43,10 +43,10 @@ service GamingService {
 
     rpc getGames (Empty) returns (CommonResponseArray) {}
 
-    rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
+    rpc CreatePromotion (CreatePromotionDto) returns (Promotion);
     rpc FindPromotions (Empty) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
-    rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
+    rpc UpdatePromotion (CreatePromotionDto) returns (Promotion) {}
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
     
 
@@ -544,6 +544,7 @@ message Promotion {
     string endDate = 7;
     string status = 8;
     optional string targetUrl = 9;
+    string clientId = 10;
   }
 
   message CreatePromotionDto {
@@ -556,6 +557,7 @@ message Promotion {
     string type = 7;
     optional string targetUrl = 8;
     optional string file = 9;
+    optional string clientId = 10;
 }
 
 message CreatePromotionRequest {
