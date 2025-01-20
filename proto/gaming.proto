@@ -149,9 +149,8 @@ message QtechRollbackRequest {
     string currency = 8; 
     int32 clientId = 9;      
     string gameId = 10; 
-    optional string body = 11;  ;
-
-      }
+    optional string body = 11;
+  }
 
 
 message AddGameToCategoriesResponse {
