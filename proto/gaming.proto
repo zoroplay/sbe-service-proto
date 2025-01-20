@@ -610,17 +610,17 @@ message TournamentResponse {
     repeated GameTournament gameTournament = 1;
 }
 
-  message Tournament {
-    int32 id = 1;
-    string title = 2;
-    string imageUrl = 3;
-    string content = 4;
-    string type = 5;
-    string startDate = 6;
-    string endDate = 7;
-    string status = 8;
-    int32 categoryId = 9;
-  }
+message Tournament {
+int32 id = 1;
+string title = 2;
+string imageUrl = 3;
+string content = 4;
+string type = 5;
+string startDate = 6;
+string endDate = 7;
+string status = 8;
+int32 categoryId = 9;
+}
 
 message CreateTournamentDto {
     // int32 clientId = 1;

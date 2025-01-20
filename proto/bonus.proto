@@ -125,10 +125,10 @@ message CreateBonusRequest {
   string applicableBetType = 8;
   int32 maximumWinning = 9;
   int32 bonusAmount = 10;
-  int32 status = 11;
-  string created = 12;
-  string updated = 13;
-  int32 id = 14;
+  optional int32 status = 11;
+  optional string created = 12;
+  optional string updated = 13;
+  optional int32 id = 14;
   int32 minimumLostGames = 15;
   int32 rolloverCount = 16;
   string name = 17;
