@@ -59,7 +59,7 @@ service GamingService {
     rpc HandleQtechGetBalance (QtechCallbackRequest) returns (CallbackResponse) {}
     rpc HandleQtechTransactionBet (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
     rpc HandleQtechTransactionWin (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
-    
+    rpc HandleQtechRollback (QtechRollbackRequest) returns (QtechRollbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -81,6 +81,30 @@ message QtechCallbackRequest {
     optional string body = 6;
     string action = 7;
      
+}
+
+message QtechRollbackResponse {
+    bool success = 1;
+    string message = 2;
+    optional int32 status = 3;
+    google.protobuf.Struct data = 4;
+  }
+
+message QtechRollbackRequest {
+    // Headers
+    string walletSessionId = 1;  
+    string passKey = 2;          
+    
+    // Required Parameters
+    string betId = 3;          
+    string txnId = 4;           
+    string playerId = 5;         
+    string roundId = 6;          
+    double amount = 7;          
+    string currency = 8; 
+    int32 clientId = 9;      
+    string gameId = 10; 
+    optional string body = 11;   
 }
 
   message QtechtransactionRequest {
@@ -112,21 +136,20 @@ message QtechCallbackRequest {
 
   
       message QtechWinTransactionResponse {  // Rollback can use this to update wallet
-        string txnType = 1;
-        string txnId = 2;
-        string betId = 3;
-        string playerId = 4;
-        string roundId = 5;
-        double amount = 6;
-        string currency = 7;
-        double jpPayout = 8;
-        string gameId = 9;
-        string device = 10;
-        string clientType = 11;
-        string clientRoundId = 12;
-        string category = 13;
-        string created = 14;
-        bool completed = 15;
+         // Headers
+    string walletSessionId = 1;  
+    string passKey = 2;          
+    
+    // Required Parameters
+    string txnType = 3;          
+    string txnId = 4;           
+    string playerId = 5;         
+    string roundId = 6;          
+    double amount = 7;          
+    string currency = 8; 
+    int32 clientId = 9;      
+    string gameId = 10; 
+    optional string body = 11;  ;
 
       }
 
