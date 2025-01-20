@@ -83,15 +83,6 @@ message QtechCallbackRequest {
      
 }
 
-
-   
-
-message JPContribution {
-    string id = 1;
-    double amount = 2;
-    double balance = 3;
-  }
-
   message QtechtransactionRequest {
     // Headers
     string walletSessionId = 1;  
@@ -112,8 +103,10 @@ message JPContribution {
   }
 
   message QtechDepositTransactionResponse {
-    double balance = 1;
-    string referenceId = 2;
+    bool success = 1;
+    string message = 2;
+    optional int32 status = 3;
+    google.protobuf.Struct data = 4;
   }
 
 
