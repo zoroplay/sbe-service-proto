@@ -578,7 +578,7 @@ message Promotion {
 message CreatePromotionRequest {
     optional int32 id = 1;
     CreatePromotionDto metadata = 2;
-    string file = 3;
+    optional string file = 3;
 }
 
 message Promotions {
