@@ -531,7 +531,7 @@ message Promotion {
     string type = 7;
     optional string targetUrl = 8;
     optional string file = 9;
-    optional string clientId = 10;
+    int32 clientId = 10;
 }
 
 message CreatePromotionRequest {
