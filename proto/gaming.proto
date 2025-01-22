@@ -50,7 +50,7 @@ service GamingService {
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
 
 
-    rpc HandleProviderBonus (CreateBonusRequest) returns (CreateBonusResponse){}
+    rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
     
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
