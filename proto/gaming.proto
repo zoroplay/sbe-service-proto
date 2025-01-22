@@ -518,7 +518,7 @@ message Promotion {
     string endDate = 7;
     string status = 8;
     optional string targetUrl = 9;
-    string clientId = 10;
+    int32 clientId = 10;
   }
 
   message CreatePromotionDto {
