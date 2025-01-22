@@ -52,17 +52,10 @@ service GamingService {
 
     rpc HandleProviderBonus (CreateBonusRequest) returns (CreateBonusResponse){}
     
-
-
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
-
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
-    rpc HandleQtechGetBalance (QtechCallbackRequest) returns (CallbackResponse) {}
-    rpc HandleQtechTransactionBet (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
-    rpc HandleQtechTransactionWin (QtechtransactionRequest) returns (QtechDepositTransactionResponse) {}
-    rpc HandleQtechRollback (QtechRollbackRequest) returns (QtechRollbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -116,79 +109,8 @@ message QtechCallbackRequest {
     string passkey = 4;
     string walletSessionId = 5;
     optional string body = 6;
-    string action = 7;
-     
+    string action = 7;    
 }
-
-message QtechRollbackResponse {
-    bool success = 1;
-    string message = 2;
-    optional int32 status = 3;
-    google.protobuf.Struct data = 4;
-  }
-
-message QtechRollbackRequest {
-    // Headers
-    string walletSessionId = 1;  
-    string passKey = 2;          
-    
-    // Required Parameters
-    string betId = 3;          
-    string txnId = 4;           
-    string playerId = 5;         
-    string roundId = 6;          
-    double amount = 7;          
-    string currency = 8; 
-    int32 clientId = 9;      
-    string gameId = 10; 
-    optional string body = 11;   
-}
-
-  message QtechtransactionRequest {
-    // Headers
-    string walletSessionId = 1;  
-    string passKey = 2;          
-    
-    // Required Parameters
-    string txnType = 3;          
-    string txnId = 4;           
-    string playerId = 5;         
-    string roundId = 6;          
-    double amount = 7;          
-    string currency = 8; 
-    int32 clientId = 9;      
-    string gameId = 10; 
-    optional string body = 11;         
-       
-             
-  }
-
-  message QtechDepositTransactionResponse {
-    bool success = 1;
-    string message = 2;
-    optional int32 status = 3;
-    google.protobuf.Struct data = 4;
-  }
-
-
-  
-      message QtechWinTransactionResponse {  // Rollback can use this to update wallet
-         // Headers
-    string walletSessionId = 1;  
-    string passKey = 2;          
-    
-    // Required Parameters
-    string txnType = 3;          
-    string txnId = 4;           
-    string playerId = 5;         
-    string roundId = 6;          
-    double amount = 7;          
-    string currency = 8; 
-    int32 clientId = 9;      
-    string gameId = 10; 
-    optional string body = 11;
-  }
-
 
 message AddGameToCategoriesResponse {
     repeated GameCategory gameCategories = 1;
