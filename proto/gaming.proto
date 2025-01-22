@@ -64,8 +64,6 @@ service GamingService {
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
-    
-   
 }
 
 
@@ -92,6 +90,7 @@ message CreateBonusRequest {
     string product = 20;
     optional string game_id = 21;
     optional int32 casinoSpinCount = 22;
+    optional int32 providerId = 24;
   }
   
   message CreateBonusResponse {

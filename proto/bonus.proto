@@ -137,6 +137,7 @@ message CreateBonusRequest {
   string product = 20;
   optional string game_id = 21;
   optional int32 casinoSpinCount = 22;
+  optional int32 providerId = 23;
 }
 
 message CreateBonusResponse {
