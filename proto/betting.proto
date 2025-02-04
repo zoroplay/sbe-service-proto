@@ -18,6 +18,7 @@ service BettingService {
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
+  rpc SimulatedBetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
   rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
@@ -347,6 +348,7 @@ message BetSlip {
   string eventPrefix = 22;
   optional bool isBonus = 23;
   optional int32 id = 24;
+  optional string displayName = 25;
 }
 
 message Combo {
