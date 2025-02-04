@@ -21,7 +21,7 @@ service BonusService {
 
   rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
 
-  rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CreateBonusResponse){}
+  rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CommonResponseObj){}
 
   // rpc CreateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
 
@@ -135,8 +135,10 @@ message CreateBonusRequest {
   float minimumEntryAmount = 18;
   float maxAmount = 19;
   string product = 20;
-  optional string game_id = 21;
+  repeated string game_id = 21;
   optional int32 casinoSpinCount = 22;
+  optional int32 providerId = 23;
+  optional int32 bonusId = 24;
 }
 
 message CreateBonusResponse {
