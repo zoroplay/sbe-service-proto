@@ -51,6 +51,9 @@ service GamingService {
 
 
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
+
+    rpc HandleCasinoJackpot (Empty) returns (CommonResponse){}
+    rpc HandleCasinoJackpotWinners (Empty) returns (CommonResponse){}
     
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
