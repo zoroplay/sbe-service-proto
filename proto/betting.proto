@@ -373,8 +373,7 @@ message PlaceBetResponse {
   int32 status = 2;
   string message = 3;
   optional BetHistory data = 4;
-  repeated google.protobuf.Struct bets = 5;
-  repeated google.protobuf.Struct events = 6;
+  optional string events = 6;
 }
 
 message BetHistoryRequest {
