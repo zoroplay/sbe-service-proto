@@ -39,6 +39,7 @@ service BettingService {
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
+  rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
 }
 
 message GetTicketsRequest {
@@ -446,6 +447,7 @@ message BetHistory {
   string betCategoryDesc = 23;
   optional bool isBonusBet = 24;
   optional int32 pendingGames = 25;
+  optional int32 paidOut = 25;
 }
 
 message BetHistoryResponse {
