@@ -447,7 +447,7 @@ message BetHistory {
   string betCategoryDesc = 23;
   optional bool isBonusBet = 24;
   optional int32 pendingGames = 25;
-  optional int32 paidOut = 25;
+  optional int32 paidOut = 26;
 }
 
 message BetHistoryResponse {
