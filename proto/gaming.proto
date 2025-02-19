@@ -80,6 +80,7 @@ message GetGamesRequest {
 message StartDto {
      int32 clientId = 1;
      int32 userId = 2;
+     string token = 3;
 }
 
 message CreateBonusRequest {
