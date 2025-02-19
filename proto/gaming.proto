@@ -67,7 +67,7 @@ service GamingService {
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
-    rpc StartSmatGame (StartDto) returns (CommonResponse) {}
+    rpc StartSmatGame (StartDto) returns (StartGameResponse) {}
 
 }
 
