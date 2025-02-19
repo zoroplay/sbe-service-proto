@@ -86,6 +86,7 @@ message StartDto {
 
 message SmatVirtualCallbackRequest {
     string playerId = 1;
+    string sessionId = 2;
 }
 
 message CreateBonusRequest {
