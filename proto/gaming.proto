@@ -73,13 +73,13 @@ service GamingService {
 
 
 message GetGamesRequest {
-    int32 clientId = 1; 
-    int32 userId = 2;
+    repeated int32 gameIds = 1; // Optional array of game IDs for filtering
 }
 
 
 message StartDto {
-    repeated int32 gameIds = 1; // Optional array of game IDs for filtering
+     int32 clientId = 1;
+     int32 userId = 2;
 }
 
 message CreateBonusRequest {
