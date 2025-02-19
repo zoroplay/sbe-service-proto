@@ -67,10 +67,18 @@ service GamingService {
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
+    rpc StartSmatGame (StartDto) returns (CommonResponse) {}
+
 }
 
 
 message GetGamesRequest {
+    int32 clientId = 1; 
+    int32 userId = 2;
+}
+
+
+message StartDto {
     repeated int32 gameIds = 1; // Optional array of game IDs for filtering
 }
 
