@@ -84,10 +84,19 @@ message StartDto {
      string token = 3;
 }
 
+// message SmatVirtualCallbackRequest {
+//     string playerId = 1;
+//     string sessionId = 2;
+// }
+
+
 message SmatVirtualCallbackRequest {
-    string playerId = 1;
-    string sessionId = 2;
-}
+    int32 clientId = 1;
+    optional string action = 2;
+    optional string body = 3;
+    optional string playerId = 4;
+    optional string sessionId = 5;
+};
 
 message CreateBonusRequest {
     int32 clientId = 1;
@@ -630,4 +639,4 @@ message Tournaments {
 
   message FindOneTournamentDto {
     int32 id = 1;
-};
+}
