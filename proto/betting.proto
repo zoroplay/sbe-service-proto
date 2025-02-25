@@ -57,6 +57,7 @@ message GetTicketsRequest {
   optional string betType = 12;
   optional string amountRange = 13;
   optional string groupType = 14;
+  optional string viewType = 15;
 }
 
 message GetCommissionsRequest {
