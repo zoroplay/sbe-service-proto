@@ -959,6 +959,7 @@ message RegistrationReportRequest {
   string source = 4;
   optional int32 page = 5;
   optional int32 limit = 6;
+  optional string reportType = 7;
 }
 
 message PlayersListResponse {

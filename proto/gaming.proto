@@ -59,6 +59,7 @@ service GamingService {
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
+    rpc HandleSmatVirtualCallback (SmatVirtualCallbackRequest) returns (CallbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -67,12 +68,35 @@ service GamingService {
     rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
     rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
 
+    rpc StartSmatGame (StartDto) returns (StartGameResponse) {}
+
 }
 
 
 message GetGamesRequest {
     repeated int32 gameIds = 1; // Optional array of game IDs for filtering
 }
+
+
+message StartDto {
+     int32 clientId = 1;
+     int32 userId = 2;
+     string token = 3;
+}
+
+// message SmatVirtualCallbackRequest {
+//     string playerId = 1;
+//     string sessionId = 2;
+// }
+
+
+message SmatVirtualCallbackRequest {
+    int32 clientId = 1;
+    optional string action = 2;
+    optional string body = 3;
+    optional string playerId = 4;
+    optional string sessionId = 5;
+};
 
 message CreateBonusRequest {
     int32 clientId = 1;
@@ -615,4 +639,4 @@ message Tournaments {
 
   message FindOneTournamentDto {
     int32 id = 1;
-};
+}
