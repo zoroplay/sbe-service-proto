@@ -52,8 +52,8 @@ service GamingService {
 
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
-    rpc HandleCasinoJackpot (Empty) returns (CommonResponse){}
-    rpc HandleCasinoJackpotWinners (Empty) returns (CommonResponse){}
+    rpc HandleCasinoJackpot (GetGameKeyRequest) returns (CommonResponse){}
+    rpc HandleCasinoJackpotWinners (GetGameKeyRequest) returns (CommonResponse){}
     
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
@@ -75,6 +75,11 @@ service GamingService {
 
 message GetGamesRequest {
     repeated int32 gameIds = 1; // Optional array of game IDs for filtering
+}
+
+
+message GetGameKeyRequest {
+    int32 clientId = 1;
 }
 
 
