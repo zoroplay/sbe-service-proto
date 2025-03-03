@@ -100,28 +100,29 @@ message SmatVirtualCallbackRequest {
 message CreateBonusRequest {
     int32 clientId = 1;
     string bonusType = 2;
-    string creditType = 3;
-    int32 duration = 4;
-    int32 minimumSelection = 5;
-    float minimumOddsPerEvent = 6;
-    float minimumTotalOdds = 7;
-    string applicableBetType = 8;
-    int32 maximumWinning = 9;
-    int32 bonusAmount = 10;
+    optional string creditType = 3;
+    optional int32 duration = 4;
+    optional int32 minimumSelection = 5;
+    optional float minimumOddsPerEvent = 6;
+    optional float minimumTotalOdds = 7;
+    optional string applicableBetType = 8;
+    optional int32 maximumWinning = 9;
+    optional int32 bonusAmount = 10;
     optional int32 status = 11;
     optional string created = 12;
     optional string updated = 13;
     optional int32 id = 14;
-    int32 minimumLostGames = 15;
-    int32 rolloverCount = 16;
-    string name = 17;
-    float minimumEntryAmount = 18;
-    float maxAmount = 19;
-    string product = 20;
+    optional int32 minimumLostGames = 15;
+    optional int32 rolloverCount = 16;
+    optional string name = 17;
+    optional float minimumEntryAmount = 18;
+    optional float maxAmount = 19;
+    optional string product = 20;
     repeated string game_id = 21;
     optional int32 casinoSpinCount = 22;
     optional int32 providerId = 24;
     optional int32 bonusId = 25;
+    repeated string userIds = 26;
   }
   
   message CreateBonusResponse {
