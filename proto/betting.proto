@@ -40,6 +40,29 @@ service BettingService {
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
+
+  rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
+  rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
+  rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
+  rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
+}
+
+message GetSettingsRequest {
+  int32 clientId = 1;
+  string category = 2;
+}
+
+message SettingsRequest {
+  int32 clientId = 1;
+  string inputs = 2;
+  optional string category = 3;
+  optional string period = 4;
+}
+
+message UserRiskSettingsRequest {
+  int32 userId = 1;
+  string inputs = 2;
+  string period = 4;
 }
 
 message GetTicketsRequest {
