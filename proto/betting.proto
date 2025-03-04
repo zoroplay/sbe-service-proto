@@ -45,6 +45,13 @@ service BettingService {
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
   rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
+  rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+
+}
+
+message GetRiskSettingRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
 }
 
 message GetSettingsRequest {
