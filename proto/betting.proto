@@ -115,6 +115,14 @@ message CommonResponseObj{
   optional string errors = 5;
 }
 
+message CommonResponseArray {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated google.protobuf.Struct data = 4;
+  optional string errors = 5;
+}
+
 message GetVirtualBetsRequest {
   int32 clientId = 1;
   optional string gameId = 2;
