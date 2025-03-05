@@ -40,6 +40,36 @@ service BettingService {
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
+
+  rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
+  rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
+  rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
+  rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
+  rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+
+}
+
+message GetRiskSettingRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message GetSettingsRequest {
+  int32 clientId = 1;
+  string category = 2;
+}
+
+message SettingsRequest {
+  int32 clientId = 1;
+  string inputs = 2;
+  optional string category = 3;
+  optional string period = 4;
+}
+
+message UserRiskSettingsRequest {
+  int32 userId = 1;
+  string inputs = 2;
+  string period = 4;
 }
 
 message GetTicketsRequest {
@@ -89,6 +119,14 @@ message CommonResponseObj{
   optional bool success = 2;
   string message = 3;
   optional google.protobuf.Struct data = 4;
+  optional string errors = 5;
+}
+
+message CommonResponseArray {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated google.protobuf.Struct data = 4;
   optional string errors = 5;
 }
 
