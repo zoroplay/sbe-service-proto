@@ -40,6 +40,7 @@ service GamingService {
     rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
+    rpc FindAdminProviders (Empty) returns (CommonResponse) {}
 
     rpc getGames (GetGamesRequest) returns (CommonResponseArray) {}
 
@@ -217,6 +218,7 @@ message CreateProviderDto {
     string name = 3;
     string description = 4;
     string imagePath = 5;
+    optional bool status = 6;
 }
 
 message CreateGameDto {
