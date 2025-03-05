@@ -218,7 +218,7 @@ message CreateProviderDto {
     string name = 3;
     string description = 4;
     string imagePath = 5;
-    optional bool status = 6;
+    optional int32 status = 6;
 }
 
 message CreateGameDto {
