@@ -19,7 +19,7 @@ service GamingService {
     rpc FetchCategories (Empty) returns (Categories) {}
 
     rpc addGameToCategories(AddGameToCategoriesDto) returns (Game) {}
-    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
+    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Game) {}
 
     rpc addTournamentGame(AddGameToTournamentDto) returns (TournamentResponse) {}
     rpc removeTournamentGame(AddGameToTournamentDto) returns (Empty) {}
