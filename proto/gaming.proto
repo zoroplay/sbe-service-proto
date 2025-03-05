@@ -18,7 +18,7 @@ service GamingService {
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (Game) {}
     rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
 
     rpc addTournamentGame(AddGameToTournamentDto) returns (TournamentResponse) {}
