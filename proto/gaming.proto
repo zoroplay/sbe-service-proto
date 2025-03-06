@@ -18,8 +18,8 @@ service GamingService {
     rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
     rpc FetchCategories (Empty) returns (Categories) {}
 
-    rpc addGameToCategories(AddGameToCategoriesDto) returns (AddGameToCategoriesResponse) {}
-    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Empty) {}
+    rpc addGameToCategories(AddGameToCategoriesDto) returns (Game) {}
+    rpc removeGameToCategories(AddGameToCategoriesDto) returns (Game) {}
 
     rpc addTournamentGame(AddGameToTournamentDto) returns (TournamentResponse) {}
     rpc removeTournamentGame(AddGameToTournamentDto) returns (Empty) {}
@@ -40,6 +40,7 @@ service GamingService {
     rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
     rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
     rpc FindAllProviders (Empty) returns (CommonResponse) {}
+    rpc FindAdminProviders (Empty) returns (CommonResponse) {}
 
     rpc getGames (GetGamesRequest) returns (CommonResponseArray) {}
 
@@ -217,6 +218,7 @@ message CreateProviderDto {
     string name = 3;
     string description = 4;
     string imagePath = 5;
+    optional int32 status = 6;
 }
 
 message CreateGameDto {
