@@ -41,6 +41,7 @@ service BettingService {
   rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
 
+  rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
