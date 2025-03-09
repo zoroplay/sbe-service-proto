@@ -75,7 +75,8 @@ service GamingService {
 
 
 message GetGamesRequest {
-    repeated int32 gameIds = 1; // Optional array of game IDs for filtering
+    optional int32 providerId = 1;
+    optional int32 categoryId = 2; 
 }
 
 message StartDto {
