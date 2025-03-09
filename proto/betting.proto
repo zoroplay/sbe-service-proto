@@ -362,6 +362,7 @@ message PlaceBetRequest {
   int32 isBooking = 15;
   optional int32 bonusId = 16;
   optional bool useBonus = 17; 
+  optional string userRole = 18;
 }
 
 message BetSlip {
