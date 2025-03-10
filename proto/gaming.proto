@@ -45,7 +45,7 @@ service GamingService {
     rpc getGames (GetGamesRequest) returns (CommonResponseArray) {}
 
     rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
-    rpc FindPromotions (Empty) returns (Promotions) {}
+    rpc FindPromotions (GetPromotions) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
@@ -77,6 +77,10 @@ service GamingService {
 message GetGamesRequest {
     optional int32 providerId = 1;
     optional int32 categoryId = 2; 
+}
+
+message GetPromotions {
+    optional int32 clientId = 1;
 }
 
 message StartDto {
