@@ -138,6 +138,7 @@ message TigoWebhookRequest {
   string MFSTransactionID = 3;
   string ReferenceID = 4;
   int32 Amount = 5;
+  int32 clientId = 6;
 }
 
 message TigoResponse {
