@@ -133,12 +133,12 @@ message FlutterwaveWebhookRequest {
 }
 
 message TigoWebhookRequest {
-  bool Status = 1;
-  string Description = 2;
-  string MFSTransactionID = 3;
-  string ReferenceID = 4;
-  int32 Amount = 5;
-  int32 clientId = 6;
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  string body = 4;
+  bool Status = 5;
+ 
 }
 
 message TigoResponse {
