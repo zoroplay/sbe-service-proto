@@ -106,8 +106,9 @@ service IdentityService {
 
 // GetAllLogs
 message GetAllLogsRequest {
-  optional int32 page = 1;  
-  optional int32 limit = 2;
+  int32 clientId = 1;
+  optional int32 page = 2;  
+  optional int32 limit = 3;
 }
 
 // GetAllLogsResponse
@@ -119,8 +120,9 @@ message GetAllLogsResponse {
 // GetLogByUser
 message GetLogsByUserRequest {
   int32 userId = 1;
-   optional int32 page = 2;
-  optional int32 limit = 3;
+  int32 clientId = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
 }
 
 // GetLogByUserResponse
