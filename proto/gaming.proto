@@ -215,6 +215,7 @@ message UpdateGameDto {
     bool status = 8;
     string type = 9;
     int32 providerId = 10;
+    optional int32 priority = 11;
 }
 
 message CreateProviderDto {
