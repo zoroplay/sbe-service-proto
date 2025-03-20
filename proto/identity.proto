@@ -96,6 +96,54 @@ service IdentityService {
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc getNetworkSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
   rpc getTrackierKeys(SingleItemRequest) returns (CommonResponseObj) {}
+
+
+  rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
+  rpc getLogsByUser(GetLogsByUserRequest) returns (GetLogsByUserResponse) {}
+}
+
+
+
+// GetAllLogs
+message GetAllLogsRequest {
+  optional int32 page = 1;  
+  optional int32 limit = 2;
+}
+
+// GetAllLogsResponse
+message GetAllLogsResponse {
+  repeated AuditLog logs = 1;
+  optional Meta meta = 2; 
+}
+
+// GetLogByUser
+message GetLogsByUserRequest {
+  int32 userId = 1;
+   optional int32 page = 2;
+  optional int32 limit = 3;
+}
+
+// GetLogByUserResponse
+message GetLogsByUserResponse {
+  repeated AuditLog logs = 1;
+  optional Meta meta = 2;
+}
+
+// AuditLog
+message AuditLog {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 clientId = 3;
+  string action = 4;
+  string endpoint = 5;
+  string method = 6;
+  int32 statusCode = 7;
+  string payload = 8;
+  string response = 9;
+  string ipAddress = 10;
+  string userAgent = 11;
+  string additionalInfo = 12;
+  string timestamp = 13; 
 }
 
 // HandlePin
