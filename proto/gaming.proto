@@ -9,7 +9,7 @@ package gaming;
 service GamingService {
     rpc CreateGame (CreateGameDto) returns (Game) {}
     rpc FindAllGames (Empty) returns (Games) {}
-    rpc FetchGames (FetchGamesRequest) returns (Games) {}
+    rpc FetchGames (FetchGamesRequest) returns (CommonResponseArray) {}
     rpc FetchGamesByName (FetchGamesRequest) returns (Games) {}
     rpc SyncGames (SyncGameDto) returns (Games) {}
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
@@ -45,7 +45,7 @@ service GamingService {
     rpc getGames (GetGamesRequest) returns (CommonResponseArray) {}
 
     rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
-    rpc FindPromotions (Empty) returns (Promotions) {}
+    rpc FindPromotions (GetPromotions) returns (Promotions) {}
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
@@ -77,6 +77,10 @@ service GamingService {
 message GetGamesRequest {
     optional int32 providerId = 1;
     optional int32 categoryId = 2; 
+}
+
+message GetPromotions {
+    optional int32 clientId = 1;
 }
 
 message StartDto {
@@ -122,9 +126,9 @@ message CreateBonusRequest {
     optional string product = 20;
     repeated string game_id = 21;
     optional int32 casinoSpinCount = 22;
-    optional int32 providerId = 24;
-    optional int32 bonusId = 25;
-    repeated string userIds = 26;
+    optional int32 providerId = 23;
+    optional int32 bonusId = 24;
+    repeated string userIds = 25;
   }
   
   message CreateBonusResponse {
@@ -211,6 +215,7 @@ message UpdateGameDto {
     bool status = 8;
     string type = 9;
     int32 providerId = 10;
+    optional int32 priority = 11;
 }
 
 message CreateProviderDto {
