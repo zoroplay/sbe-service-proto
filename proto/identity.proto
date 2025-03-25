@@ -96,6 +96,77 @@ service IdentityService {
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc getNetworkSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
   rpc getTrackierKeys(SingleItemRequest) returns (CommonResponseObj) {}
+
+
+  rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
+  rpc getLogsByUser(GetLogsByUserRequest) returns (GetLogsByUserResponse) {}
+  rpc createlog(CreateLogRequest) returns (CreateLogResponse) {}
+}
+
+// Request message for creating an audit log
+message CreateLogRequest {
+    string userId = 1;
+    string clientId = 2;
+    string action = 3;
+    string method = 4;
+    string endpoint = 5;
+    int32 statusCode = 6;
+    string payload = 7;
+    string response = 8;
+    string ipAddress = 9;
+    string userAgent = 10;
+    string additionalInfo = 11;
+}
+
+// Response message for creating an audit log
+message CreateLogResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+
+// GetAllLogs
+message GetAllLogsRequest {
+  int32 clientId = 1;
+  optional int32 page = 2;  
+  optional int32 limit = 3;
+}
+
+// GetAllLogsResponse
+message GetAllLogsResponse {
+  repeated AuditLog logs = 1;
+  optional Meta meta = 2; 
+}
+
+// GetLogByUser
+message GetLogsByUserRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
+}
+
+// GetLogByUserResponse
+message GetLogsByUserResponse {
+  repeated AuditLog logs = 1;
+  optional Meta meta = 2;
+}
+
+// AuditLog
+message AuditLog {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 clientId = 3;
+  string action = 4;
+  string endpoint = 5;
+  string method = 6;
+  int32 statusCode = 7;
+  string payload = 8;
+  string response = 9;
+  string ipAddress = 10;
+  string userAgent = 11;
+  string additionalInfo = 12;
+  string timestamp = 13; 
 }
 
 // HandlePin
