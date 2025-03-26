@@ -129,7 +129,7 @@ service WalletService {
 
 message PawapayRequest {
   int32 clientId = 1;
-  bool   status = 2;
+  string   status = 2;
   string  depositId = 3;
 }
 
