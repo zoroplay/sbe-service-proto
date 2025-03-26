@@ -103,28 +103,48 @@ service IdentityService {
   rpc createlog(CreateLogRequest) returns (CreateLogResponse) {}
 }
 
+
+// Additional Audit Info
+message AdditionalInfo {
+  string browser = 1;
+  string os = 2;
+  string platform = 3;
+}
+
+// AuditLog
+message AuditLog {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 clientId = 3;
+  string action = 4;
+  string endpoint = 5;
+  string method = 6;
+  int32 statusCode = 7;
+  repeated google.protobuf.Struct payload = 8;
+  repeated google.protobuf.Struct response = 9;
+  AdditionalInfo additionalInfo = 10;
+  string ipAddress = 11;
+  string userAgent = 12;
+  google.protobuf.Timestamp timestamp = 13;
+}
+
 // Request message for creating an audit log
 message CreateLogRequest {
-    string userId = 1;
-    string clientId = 2;
-    string action = 3;
-    string method = 4;
-    string endpoint = 5;
-    int32 statusCode = 6;
-    repeated google.protobuf.Struct payload = 7;
-    repeated google.protobuf.Struct response = 8;
-    string ipAddress = 9;
-    string userAgent = 10;
-    optional google.protobuf.Struct additionalInfo = 11;
-    string timestamp = 12;
+  repeated AuditLog logs = 1;
+}
+
+// audit User
+message AuditUser {
+  int32 id = 1;
+  string username = 2;
 }
 
 // Response message for creating an audit log
 message CreateLogResponse {
-    bool success = 1;
-    string message = 2;
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
 }
-
 
 // GetAllLogs
 message GetAllLogsRequest {
@@ -150,24 +170,8 @@ message GetLogsByUserRequest {
 // GetLogByUserResponse
 message GetLogsByUserResponse {
   repeated AuditLog logs = 1;
+  AuditUser user = 2;
   optional Meta meta = 2;
-}
-
-// AuditLog
-message AuditLog {
-  int32 id = 1;
-  int32 userId = 2;
-  int32 clientId = 3;
-  string action = 4;
-  string endpoint = 5;
-  string method = 6;
-  int32 statusCode = 7;
-  repeated google.protobuf.Struct payload = 8;
-  repeated google.protobuf.Struct response = 9;
-  string ipAddress = 10;
-  string userAgent = 11;
-  optional google.protobuf.Struct additionalInfo = 12;
-  string timestamp = 13; 
 }
 
 // HandlePin
