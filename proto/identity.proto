@@ -111,11 +111,11 @@ message CreateLogRequest {
     string method = 4;
     string endpoint = 5;
     int32 statusCode = 6;
-    google.protobuf.Struct payload = 7;
-    google.protobuf.Struct response = 8;
+    repeated google.protobuf.Struct payload = 7;
+    repeated google.protobuf.Struct response = 8;
     string ipAddress = 9;
     string userAgent = 10;
-    google.protobuf.Struct additionalInfo = 11;
+    optional google.protobuf.Struct additionalInfo = 11;
     string timestamp = 12;
 }
 
@@ -162,11 +162,11 @@ message AuditLog {
   string endpoint = 5;
   string method = 6;
   int32 statusCode = 7;
-  google.protobuf.Struct payload = 8;
-  google.protobuf.Struct response = 9;
+  repeated google.protobuf.Struct payload = 8;
+  repeated google.protobuf.Struct response = 9;
   string ipAddress = 10;
   string userAgent = 11;
-  google.protobuf.Struct additionalInfo = 12;
+  optional google.protobuf.Struct additionalInfo = 12;
   string timestamp = 13; 
 }
 
