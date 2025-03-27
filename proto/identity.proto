@@ -172,7 +172,7 @@ message GetLogsByUserRequest {
 message GetLogsByUserResponse {
   repeated AuditLog logs = 1;
   AuditUser user = 2;
-  optional Meta meta = 2;
+  optional Meta meta = 3;
 }
 
 // HandlePin
