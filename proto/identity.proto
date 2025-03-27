@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
 
 package identity;
 
@@ -126,7 +125,7 @@ message AuditLog {
   AdditionalInfo additionalInfo = 10;
   string ipAddress = 11;
   string userAgent = 12;
-  google.protobuf.Timestamp timestamp = 13;
+  string timestamp = 13;
 }
 
 // Request message for creating an audit log
