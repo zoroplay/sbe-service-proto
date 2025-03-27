@@ -121,8 +121,8 @@ message AuditLog {
   string endpoint = 5;
   string method = 6;
   int32 statusCode = 7;
-  repeated google.protobuf.Struct payload = 8;
-  repeated google.protobuf.Struct response = 9;
+  google.protobuf.Struct payload = 8;
+  google.protobuf.Struct response = 9;
   AdditionalInfo additionalInfo = 10;
   string ipAddress = 11;
   string userAgent = 12;
