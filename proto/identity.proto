@@ -135,7 +135,7 @@ message CreateLogRequest {
 
 // audit User
 message AuditUser {
-  int32 id = 1;
+  int32 roleId = 1;
   string username = 2;
 }
 
