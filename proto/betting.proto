@@ -311,7 +311,7 @@ message GamingActivityRequest {
   int32 clientID = 14;
   string displayType = 15;
   optional int32 userId = 16;
-  optional string ticketType = 17;
+  optional int32 ticketType = 17;
 }
 
 message GamingActivityResponse {
