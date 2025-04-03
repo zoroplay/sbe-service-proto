@@ -148,16 +148,17 @@ message CreateLogResponse {
 
 // GetAllLogs
 message GetAllLogsRequest {
-  int32 clientId = 1;
-  optional int32 page = 2;  
-  optional int32 limit = 3;
-  string ipAddress = 4;
-  string userAgent = 5;
-  string os = 6;
-  string browser = 7;
-  string platform = 8;
-  string endpoint = 9;
-  string method = 10;
+  optional int32 clientId = 1;
+  optional int32 userId = 2;
+  optional int32 page = 3;  
+  optional int32 limit = 4;
+  string ipAddress = 5;
+  string userAgent = 6;
+  string os = 7;
+  string browser = 8;
+  string platform = 9;
+  string endpoint = 10;
+  string method = 11;
 }
 
 // GetAllLogsResponse
