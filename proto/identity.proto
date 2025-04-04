@@ -131,7 +131,20 @@ message AuditLog {
 
 // Request message for creating an audit log
 message CreateLogRequest {
-  repeated AuditLog logs = 1;
+  id: number;
+  userId: number;
+  userName: string;
+  clientId: number;
+  action: string;
+  endpoint: string;
+  method: string;
+  statusCode: number;
+  payload: string;
+  response: string;
+  additionalInfo: AdditionalInfo | undefined;
+  ipAddress: string;
+  userAgent: string;
+  timestamp: string;
 }
 
 // audit User
