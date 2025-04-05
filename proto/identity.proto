@@ -131,7 +131,7 @@ message AuditLog {
 
 // Request message for creating an audit log
 message CreateLogRequest {
-  AuditLog: AuditLog = 1
+  AuditLog AuditLog = 1
 }
 
 // audit User
