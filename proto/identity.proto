@@ -99,7 +99,7 @@ service IdentityService {
 
 
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
-  rpc createlog(CreateLogRequest) returns (CreateLogResponse) {}
+  rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
 }
 
 
