@@ -99,7 +99,6 @@ service IdentityService {
 
 
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
-  rpc getLogsByUser(GetLogsByUserRequest) returns (GetLogsByUserResponse) {}
   rpc createlog(CreateLogRequest) returns (CreateLogResponse) {}
 }
 
@@ -166,28 +165,6 @@ message GetAllLogsRequest {
 message GetAllLogsResponse {
   repeated AuditLog logs = 1;
   optional Meta meta = 2; 
-}
-
-// GetLogByUser
-message GetLogsByUserRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
-  optional int32 page = 3;
-  optional int32 limit = 4;
-  string ipAddress = 5;
-  string userAgent = 6;
-  string os = 7;
-  string browser = 8;
-  string platform = 9;
-  string endpoint = 10;
-  string method = 11;
- }
-
-// GetLogByUserResponse
-message GetLogsByUserResponse {
-  repeated AuditLog logs = 1;
-  AuditUser user = 2;
-  optional Meta meta = 3;
 }
 
 // HandlePin
