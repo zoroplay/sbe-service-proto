@@ -149,7 +149,7 @@ message CreateLogResponse {
 // GetAllLogs
 message GetAllLogsRequest {
   optional int32 clientId = 1;
-  optional int32 userId = 2;
+  optional string userName = 2;
   optional int32 page = 3;  
   optional int32 limit = 4;
   string ipAddress = 5;
