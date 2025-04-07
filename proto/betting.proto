@@ -47,7 +47,18 @@ service BettingService {
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
   rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+  rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
 
+}
+
+message ValidateSelectionRequest {
+  message Selections {
+    int32 matchId = 1;
+    string marketId = 2;
+    string outcomeId = 3;
+    string specifier = 4;
+  }
+  repeated Selections events = 1;
 }
 
 message GetRiskSettingRequest {
