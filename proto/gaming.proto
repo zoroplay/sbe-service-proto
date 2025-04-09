@@ -126,9 +126,10 @@ message CreateBonusRequest {
     optional string product = 20;
     repeated string game_id = 21;
     optional int32 casinoSpinCount = 22;
-    optional string providerId = 23;
+    optional int32 providerId = 23;
     optional int32 bonusId = 24;
     repeated string userIds = 25;
+    optional int32 provider = 26;
   }
   
   message CreateBonusResponse {
