@@ -120,12 +120,25 @@ service WalletService {
   rpc FlutterWaveWebhook (FlutterwaveWebhookRequest) returns (WebhookResponse) {}
   rpc  KorapayWebhook (KoraPayWebhookRequest) returns (WebhookResponse){}
   rpc  TigoWebhook (TigoWebhookRequest) returns (TigoResponse){}
+  rpc  TigoW2a (TigoW2aRequest) returns (TigoW2aResponse) {}
 
   rpc  PawapayCallback (PawapayRequest) returns (PawapayResponse){}
  
 }
 
+message TigoW2aRequest {
+  string txn_id = 1;
+  string msisdn = 2;
+  string amount = 3;
+  string customer_reference_id = 4;
+  string sender_name = 5;
+}
 
+message TigoW2aResponse {
+  bool success = 1;
+  string ref_id = 2;
+  string message = 3;
+}
 
 message PawapayRequest {
   int32 clientId = 1;
