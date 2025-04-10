@@ -132,6 +132,7 @@ message TigoW2aRequest {
   string amount = 3;
   string customer_reference_id = 4;
   string sender_name = 5;
+  int32 clientId = 6;
 }
 
 message TigoW2aResponse {
