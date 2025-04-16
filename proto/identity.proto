@@ -19,6 +19,7 @@ service IdentityService {
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateGroupCode (ValidateGroupCodeRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
