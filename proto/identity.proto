@@ -840,6 +840,17 @@ message ValidateClientResponse {
   int32 clientId = 3;
 }
 
+message ValidateGroupCodeRequest {
+  string groupName = 1;
+}
+
+message ValidateGroupCodeResponse {
+  int32 status = 1;
+  string error = 2;
+  string groupName = 3;
+  int32 clientId = 4
+}
+
 message ClientRequest {
   string name = 1;
   string country = 2;
