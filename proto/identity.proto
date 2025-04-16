@@ -849,7 +849,7 @@ message ValidateGroupCodeResponse {
   int32 status = 1;
   string error = 2;
   string groupName = 3;
-  int32 clientId = 4
+  int32 clientId = 4;
 }
 
 message ClientRequest {
