@@ -123,7 +123,16 @@ service WalletService {
   rpc  TigoW2a (TigoW2aRequest) returns (TigoW2aResponse) {}
 
   rpc  PawapayCallback (PawapayRequest) returns (PawapayResponse){}
+
+  rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
  
+}
+
+message MtnmomoRequest {
+  string amount = 1;
+  string externalId = 2;
+  string status = 3;
+  int32 clientId = 4;
 }
 
 message TigoW2aRequest {
