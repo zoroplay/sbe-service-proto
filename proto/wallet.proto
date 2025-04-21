@@ -112,7 +112,7 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
-  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
+  
 
   // Flutterwave and KoraPay
 
@@ -128,23 +128,6 @@ service WalletService {
  
 }
 
-
-message SummaryRequest {
-  int32 client_id = 1;
-  string range = 2; // optional: "day", "week", "month", "year"
-  string from = 3;  // optional ISO string
-  string to = 4;    // optional ISO string
-}
-
-
-message SummaryResponse {
-  string from = 1;
-  string to = 2;
-  double deposit = 3;
-  double withdrawal = 4;
-  double credit_balance = 5;
-  double player_balance = 6;
-}
 
 message MtnmomoRequest {
   string amount = 1;
