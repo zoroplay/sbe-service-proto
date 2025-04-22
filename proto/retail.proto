@@ -13,7 +13,7 @@ service RetailService {
     rpc onBetPlaced(BetData) returns (Response) {}
     rpc onBetSettled(BetData) returns (Response) {}
     rpc onBetCancelled(BetData) returns (Response) {}
-    rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
+    
 
 }
 
@@ -21,22 +21,7 @@ service RetailService {
 
 
 
-message SummaryRequest {
-    int32 client_id = 1;
-    string range = 2; // optional: "day", "week", "month", "year"
-    string from = 3;  // optional ISO string
-    string to = 4;    // optional ISO string
-  }
-  
-  
-  message SummaryResponse {
-    string from = 1;
-    string to = 2;
-    double deposit = 3;
-    double withdrawal = 4;
-    double credit_balance = 5;
-    double player_balance = 6;
-  }
+
 
 message ProcessRetailTransaction {
     int32 id = 1;
