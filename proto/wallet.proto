@@ -113,6 +113,7 @@ service WalletService {
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
   rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
+  rpc GetAllClientsTransactionSummary (TrxSummaryRequest) returns (PagedSummaryResponse);
 
   // Flutterwave and KoraPay
 
@@ -136,6 +137,14 @@ message SummaryRequest {
   string to = 4;    // optional ISO string
 }
 
+message TrxSummaryRequest {
+  string rangeZ = 1;         // "day", "week", "month", "year"
+  string from = 2;           // Optional ISO date
+  string to = 3;             // Optional ISO date
+  int32 page = 4;            // Defaults to 1
+  int32 page_size = 5;       // Defaults to 10
+}
+
 
 message SummaryResponse {
   string from = 1;
@@ -144,6 +153,13 @@ message SummaryResponse {
   double withdrawal = 4;
   double credit_balance = 5;
   double player_balance = 6;
+}
+
+message PagedSummaryResponse {
+  repeated SummaryResponse data = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
 }
 
 message MtnmomoRequest {
