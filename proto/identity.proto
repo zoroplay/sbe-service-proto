@@ -86,7 +86,7 @@ service IdentityService {
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
-  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
+  
 
   rpc getBonusGroups(SingleItemRequest) returns (BonusGroupResponse) {}
   rpc createBonusGroups(BonusGroups) returns (BonusGroupResponse) {}
@@ -106,22 +106,7 @@ service IdentityService {
 
 
 
-message SummaryRequest {
-  int32 client_id = 1;
-  string range = 2; // optional: "day", "week", "month", "year"
-  string from = 3;  // optional ISO string
-  string to = 4;    // optional ISO string
-}
 
-
-message SummaryResponse {
-  string from = 1;
-  string to = 2;
-  double deposit = 3;
-  double withdrawal = 4;
-  double credit_balance = 5;
-  double player_balance = 6;
-}
 
 // Additional Audit Info
 message AdditionalInfo {
