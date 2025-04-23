@@ -152,7 +152,8 @@ message SummaryResponse {
   double deposit = 3;
   double withdrawal = 4;
   double credit_balance = 5;
-  double player_balance = 6;
+  double client_range_balance = 6; 
+  double client_total_balance = 7;
 }
 
 message PagedSummaryResponse {
