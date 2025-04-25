@@ -113,7 +113,7 @@ service WalletService {
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
   rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
-  rpc GetAllClientsTransactionSummary (TrxSummaryRequest) returns (PagedSummaryResponse);
+  rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse);
 
   // Flutterwave and KoraPay
 
@@ -127,6 +127,26 @@ service WalletService {
 
   rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
  
+}
+
+message GetShopUserWalletSummaryRequest {
+  int32 client_id = 1;
+  string dateRange = 2;
+}
+
+
+message GetShopUserWalletSummaryResponse {
+  bool success = 1;        // Indicates success or failure of the request
+  int32 status = 2;        // HTTP status code (e.g., 200 for success, 500 for error)
+  string message = 3;      // Message with success/error information
+  repeated AgentUserSummaryResponse data = 4;  // Array of the summary data for each agent user
+}
+
+message AgentUserSummaryResponse {
+  int32 userId = 1;           // The user ID of the agent
+  double totalDeposit = 2;    // Total deposit for this agent user
+  double totalWithdrawal = 3; // Total withdrawal for this agent user
+  double totalSales = 4;      // Total sales (deposit - withdrawal)
 }
 
 
