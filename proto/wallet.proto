@@ -112,7 +112,7 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
-  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse);
+  rpc GetTransactionSummary (SummaryRequest) returns (PagedSummaryResponse){}
   rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse);
 
   // Flutterwave and KoraPay
@@ -165,11 +165,9 @@ message TrxSummaryRequest {
 
 
 message SummaryResponse {
-  string from = 1;
-  string to = 2;
-  double totalDepositAmount = 3;
-  double totalWithdrawalAmount = 4;
- 
+  int32 userId = 1;
+  double totalDeposit = 2;
+  double totalWithdrawal = 3;
 }
 
 message PagedSummaryResponse {
