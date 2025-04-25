@@ -112,7 +112,7 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
-  rpc GetTransactionSummary (SummaryRequest) returns (PagedSummaryResponse){}
+  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse){}
   rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse);
 
   // Flutterwave and KoraPay
@@ -165,17 +165,14 @@ message TrxSummaryRequest {
 
 
 message SummaryResponse {
-  int32 userId = 1;
-  double totalDeposit = 2;
-  double totalWithdrawal = 3;
+  bool success = 1;        // Indicates success or failure of the request
+  int32 status = 2;        // HTTP status code (e.g., 200 for success, 500 for error)
+  string message = 3;
+  double totalDeposit = 4;
+  double totalWithdrawal = 5;
 }
 
-message PagedSummaryResponse {
-  repeated SummaryResponse data = 1;
-  int32 total = 2;
-  int32 page = 3;
-  int32 page_size = 4;
-}
+
 
 message MtnmomoRequest {
   string amount = 1;
