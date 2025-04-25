@@ -139,14 +139,12 @@ message GetShopUserWalletSummaryResponse {
   bool success = 1;        // Indicates success or failure of the request
   int32 status = 2;        // HTTP status code (e.g., 200 for success, 500 for error)
   string message = 3;      // Message with success/error information
-  repeated AgentUserSummaryResponse data = 4;  // Array of the summary data for each agent user
+  repeated DailyTotals data = 4;  // Array of the summary data for each agent user
 }
-
-message AgentUserSummaryResponse {
-  int32 userId = 1;           // The user ID of the agent
-  double totalDeposit = 2;    // Total deposit for this agent user
-  double totalWithdrawal = 3; // Total withdrawal for this agent user
-  double totalSales = 4;      // Total sales (deposit - withdrawal)
+message DailyTotals {
+  string userId = 1;                 // User ID (as a string)
+  double totalDepositAmount = 2;    // Total deposit amount for the specified range
+  double totalWithdrawalAmount = 3; // Total withdrawal amount for the specified range
 }
 
 
@@ -169,11 +167,9 @@ message TrxSummaryRequest {
 message SummaryResponse {
   string from = 1;
   string to = 2;
-  double deposit = 3;
-  double withdrawal = 4;
-  double credit_balance = 5;
-  double client_range_balance = 6; 
-  double client_total_balance = 7;
+  double totalDepositAmount = 3;
+  double totalWithdrawalAmount = 4;
+ 
 }
 
 message PagedSummaryResponse {
