@@ -113,7 +113,8 @@ service WalletService {
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
   rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse){}
-  rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse);
+  rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse) {}
+  rpc ShopUsersSummary (ShopUsersSummaryRequest) returns (ShopUsersSummaryResponse){}
 
   // Flutterwave and KoraPay
 
@@ -127,6 +128,30 @@ service WalletService {
 
   rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
  
+}
+
+
+
+message ShopUsersSummaryRequest {
+  int32 clientId = 1;
+  string rangeZ = 2;
+  string from = 3;
+  string to = 4;
+}
+
+message ShopUserSummary {
+  int32 userId = 1;
+  int32 numberOfDeposits = 2;
+  double totalDeposits = 3;
+  int32 numberOfWithdrawals = 4;
+  double totalWithdrawals = 5;
+}
+
+message ShopUsersSummaryResponse {
+  repeated ShopUserSummary data = 1;
+  bool success = 2;
+  int32 status = 3;
+  string message = 4;
 }
 
 message GetShopUserWalletSummaryRequest {
