@@ -127,7 +127,7 @@ service WalletService {
   rpc  PawapayCallback (PawapayRequest) returns (PawapayResponse){}
 
   rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
-  rpc  OpayWebhook(OpayRequest) returns (OpayResponse) {}
+  rpc  OpayCallback(OpayRequest) returns (OpayResponse) {}
  
 }
 
