@@ -136,6 +136,7 @@ message OpayRequest {
   string   status = 2;
   string  reference = 3;
   string  type = 4;
+  string  sha512 = 5;
 }
 
 
