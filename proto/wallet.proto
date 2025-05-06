@@ -132,17 +132,18 @@ service WalletService {
 }
 
 message OpayRequest {
-  int32 clientId = 1;
+  int32    clientId = 1;
   string   status = 2;
-  string  reference = 3;
-  string  type = 4;
-  string  sha512 = 5;
+  string   reference = 3;
+  string   type = 4;
+  string   sha512 = 5;
 }
 
 
 message OpayResponse {
-  bool success = 1;
-  string message = 2;
+  int32  status = 1;
+  bool   success = 2;
+  string message = 3;
 }
 
 
