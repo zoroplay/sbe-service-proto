@@ -155,9 +155,10 @@ message QtechCallbackRequest {
 
 message SpribeCallbackRequest {
     int32 clientId = 1;
-    optional string signature = 4;
-    optional string body = 6;
-    string action = 7;    
+    string provider = 2;
+    optional string signature = 3;
+    optional string body = 4;
+    string action = 5;    
 }
 
 message AddGameToCategoriesResponse {
