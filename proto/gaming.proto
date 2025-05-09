@@ -155,8 +155,6 @@ message QtechCallbackRequest {
 
 message SpribeCallbackRequest {
     int32 clientId = 1;
-    optional string playerId = 2;
-    string gameId = 3;
     optional string signature = 4;
     optional string body = 6;
     string action = 7;    
