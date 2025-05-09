@@ -60,6 +60,7 @@ service GamingService {
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
+    rpc HandleSpribeCallback (SpribeCallbackRequest) returns (CallbackResponse) {}
     rpc HandleSmatVirtualCallback (SmatVirtualCallbackRequest) returns (CallbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
@@ -146,6 +147,17 @@ message QtechCallbackRequest {
     string gameId = 3;
     string passkey = 4;
     string walletSessionId = 5;
+    optional string body = 6;
+    string action = 7;    
+}
+
+
+
+message SpribeCallbackRequest {
+    int32 clientId = 1;
+    optional string playerId = 2;
+    string gameId = 3;
+    optional string signature = 4;
     optional string body = 6;
     string action = 7;    
 }
