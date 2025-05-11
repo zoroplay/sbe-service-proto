@@ -203,6 +203,7 @@ message CallbackGameDto {
     google.protobuf.Struct header = 5;
     optional string body = 6;
     optional string signature = 7;
+    optional string path = 8;
 };
 
 message FindOneGameDto {
