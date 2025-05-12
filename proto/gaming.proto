@@ -60,6 +60,7 @@ service GamingService {
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
+    rpc HandleSpribeCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleSmatVirtualCallback (SmatVirtualCallbackRequest) returns (CallbackResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
@@ -150,6 +151,16 @@ message QtechCallbackRequest {
     string action = 7;    
 }
 
+
+
+message SpribeCallbackRequest {
+    int32 clientId = 1;
+    string provider = 2;
+    optional string signature = 3;
+    optional string body = 4;
+    string action = 5;    
+}
+
 message AddGameToCategoriesResponse {
     repeated GameCategory gameCategories = 1;
 }
@@ -191,6 +202,8 @@ message CallbackGameDto {
     optional string method = 4;
     google.protobuf.Struct header = 5;
     optional string body = 6;
+    optional string signature = 7;
+    optional string path = 8;
 };
 
 message FindOneGameDto {
