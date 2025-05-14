@@ -128,7 +128,22 @@ service WalletService {
 
   rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
   rpc  OpayCallback(OpayRequest) returns (OpayResponse) {}
+  rpc  CorapayWebhook(CorapayWebhookRequest) returns (CorapayResponse) {}
+
  
+}
+
+message CorapayWebhookRequest {
+  int32 clientId = 1;
+  string authHeader = 2;
+  google.protobuf.Struct callbackData = 3;
+  
+}
+
+message CorapayResponse {
+  int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
 }
 
 message OpayRequest {
