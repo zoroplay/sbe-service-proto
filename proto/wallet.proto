@@ -1084,8 +1084,9 @@ message ListDepositRequests {
   string paymentMethod = 4;
   int32 status = 5;
   string username = 6;
-  string transactionId = 7;
-  int32 page = 8;
+  string bank = 7;
+  string transactionId = 8;
+  int32 page = 9;
 }
 
 message PaginationResponse {
@@ -1095,7 +1096,8 @@ message PaginationResponse {
   int32 nextPage = 4;
   int32 prevPage = 5;
   int32 lastPage = 6;
-  repeated google.protobuf.Struct data = 7;
+  int32 totalAmount = 7;
+  repeated google.protobuf.Struct data = 8;
 }
 
 message MetaData {
