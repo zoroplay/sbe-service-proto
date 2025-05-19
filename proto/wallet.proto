@@ -986,6 +986,11 @@ message ListWithdrawalRequests {
   string to = 3;
   int32 status = 4;
   int32 userId = 5;
+  string username = 6;
+  string  bankName = 7;
+  int32 page = 8;
+  int32 limit = 9;
+
 }
 
 message ListWithdrawalRequestResponse {
@@ -993,6 +998,10 @@ message ListWithdrawalRequestResponse {
   int32 status = 2;
   string message = 3;
   repeated WithdrawalRequest data = 4;
+  float totalAmount = 5;
+  int32 total = 6; 
+  int32 page = 7;  
+  int32 limit = 8;
 }
 
 message WithdrawalRequest {
@@ -1006,6 +1015,7 @@ message WithdrawalRequest {
   string updatedBy = 8;
   int32 status = 9;
   string created = 10;
+  
 }
 
 message UserTransactionRequest {
