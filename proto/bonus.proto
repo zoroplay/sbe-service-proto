@@ -29,6 +29,8 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
+  rpc GetAllAwardedBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
 
   rpc GetUserBonus (GetUserBonusRequest) returns (GetUserBonusResponse){}
