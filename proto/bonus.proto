@@ -29,7 +29,7 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
-  rpc GetAllAwardedBonus (GetBonusRequest) returns (CommonResponseObj){}
+  rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
 
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
 
@@ -160,6 +160,10 @@ message CreateBonusResponse {
 }
 
 message GetBonusRequest {
+  int32 clientId = 1;
+}
+
+message GetAllBonusRequest {
   int32 clientId = 1;
 }
 
