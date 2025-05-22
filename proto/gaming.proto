@@ -53,6 +53,8 @@ service GamingService {
 
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
+    rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
+
     rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
     
@@ -88,6 +90,13 @@ message StartDto {
      int32 clientId = 1;
      int32 userId = 2;
      string token = 3;
+}
+
+message CreateGameKeyRequest {
+     int32 clientId = 1;
+     string provider = 2;
+     string option = 3;
+     string value = 4;
 }
 
 // message SmatVirtualCallbackRequest {
