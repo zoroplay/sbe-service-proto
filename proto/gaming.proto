@@ -79,7 +79,9 @@ service GamingService {
 
 message GetGamesRequest {
     optional int32 providerId = 1;
-    optional int32 categoryId = 2; 
+    optional int32 categoryId = 2;
+    optional int32 page = 3;
+    optional int32 limit = 4;
 }
 
 message GetPromotions {
