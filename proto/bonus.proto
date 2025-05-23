@@ -161,6 +161,7 @@ message CreateBonusResponse {
 
 message GetBonusRequest {
   int32 clientId = 1;
+  optional string bpnus_type = 2;
 }
 
 message GetAllBonusRequest {
