@@ -464,11 +464,19 @@ message CallbackResponse {
     google.protobuf.Struct data = 4;
 }
 
+message Pagination {
+    optional int32 page = 1;
+    optional int32 limit = 2;
+    optional int32 total = 3;
+    optional int32 totalPages = 4;
+}
+
 message CommonResponseArray {
     optional int32 status = 1;
     optional bool success = 2;
     string message = 3;
     repeated google.protobuf.Struct data = 4;
+    optional Pagination pagination = 5;
 }
 
 message XpressRequest {
