@@ -17,6 +17,8 @@ service BonusService {
 
   rpc CheckDepositBonus (CheckDepositBonusRequest) returns (CheckDepositBonusResponse){}
 
+  rpc CheckRegisterBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc SettleBet (SettleBetRequest) returns (CommonResponseObj){}
 
   rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
