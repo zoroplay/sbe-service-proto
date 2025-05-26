@@ -54,6 +54,7 @@ service GamingService {
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
     rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
+    rpc fetchGameKeys (GetPromotions) returns (CommonResponse){}
 
     rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
