@@ -97,9 +97,15 @@ message StartDto {
 message CreateGameKeyRequest {
      int32 clientId = 1;
      string provider = 2;
-     string option = 3;
-     string value = 4;
+    repeated GameKeyEntry keys = 3;
+    
 }
+
+message GameKeyEntry {
+  string option = 1;
+  string value = 2;
+}
+
 
 // message SmatVirtualCallbackRequest {
 //     string playerId = 1;
@@ -429,6 +435,7 @@ message EvoplayData {
     optional string user_message= 14;
     optional string wallet_type= 15;
 }
+
 
 // Evoplay Callback
 message EvoplayCallback {
