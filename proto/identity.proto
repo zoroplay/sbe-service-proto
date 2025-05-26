@@ -151,10 +151,10 @@ message AuditQuery {
   optional string startDate = 1;
   optional string endDate = 2;
   optional int32 page = 3; 
-  optional int32 perPage = 4
-  optional string username = 5
-  optional string platform = 6
-  optional string ipAddress = 7
+  optional int32 perPage = 4;
+  optional string username = 5;
+  optional string platform = 6;
+  optional string ipAddress = 7;
 }
 
 // GetAllLogs
@@ -170,7 +170,7 @@ message GetAllLogsRequest {
   string platform = 9;
   string endpoint = 10;
   string method = 11;
-  AuditQuery auditQuery = 12
+  AuditQuery auditQuery = 12;
 }
 
 // GetAllLogsResponse
