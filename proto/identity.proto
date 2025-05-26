@@ -152,9 +152,9 @@ message AuditQuery {
   optional string endDate = 2;
   optional int32 page = 3; 
   optional int32 perPage = 4
-  optional username = 5
-  optional platform = 6
-  optional ipAddress = 7
+  optional string username = 5
+  optional string platform = 6
+  optional string ipAddress = 7
 }
 
 // GetAllLogs
