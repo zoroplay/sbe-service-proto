@@ -54,7 +54,7 @@ service GamingService {
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
     rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
-    rpc fetchGameKeys (GetPromotions) returns (CommonResponse){}
+    rpc fetchGameKeys (GetKeysRequest) returns (CommonResponse){}
 
     rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
@@ -89,6 +89,10 @@ message GetPromotions {
     optional int32 clientId = 1;
 }
 
+message GetKeysRequest {
+    int32 clientId = 1;
+}
+
 message StartDto {
      int32 clientId = 1;
      int32 userId = 2;
@@ -97,7 +101,7 @@ message StartDto {
 
 message CreateGameKeyRequest {
      int32 clientId = 1;
-    repeated GameKeyEntry keys = 3;
+     repeated GameKeyEntry keys = 3;
     
 }
 
