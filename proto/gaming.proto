@@ -101,7 +101,7 @@ message StartDto {
 
 message CreateGameKeyRequest {
      int32 clientId = 1;
-     repeated GameKeyEntry keys = 3;
+     repeated GameKeyEntry keys = 2;
     
 }
 
