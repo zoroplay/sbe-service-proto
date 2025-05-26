@@ -164,6 +164,8 @@ message GetAllLogsRequest {
   string platform = 9;
   string endpoint = 10;
   string method = 11;
+  string startDate = 12;
+  string endDate = 13;
 }
 
 // GetAllLogsResponse
@@ -693,6 +695,13 @@ message UserInfo {
   bool isActive =13;
   string createdAt =14;
   string updatedAt =15;
+  int32 lossCount =16;
+  int32 betCount = 17;
+  int32 stakeAmount = 18;
+  string lastPlayed = 19;
+  int32 totalBalance = 20;
+
+  
 }
 
 message UserData {
