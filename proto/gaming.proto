@@ -54,6 +54,7 @@ service GamingService {
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
     rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
+    rpc fetchGameKeys (GetKeysRequest) returns (CommonResponse){}
 
     rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
@@ -88,6 +89,10 @@ message GetPromotions {
     optional int32 clientId = 1;
 }
 
+message GetKeysRequest {
+    int32 clientId = 1;
+}
+
 message StartDto {
      int32 clientId = 1;
      int32 userId = 2;
@@ -96,10 +101,16 @@ message StartDto {
 
 message CreateGameKeyRequest {
      int32 clientId = 1;
-     string provider = 2;
-     string option = 3;
-     string value = 4;
+     repeated GameKeyEntry keys = 2;
+    
 }
+
+message GameKeyEntry {
+  string option = 1;
+  string value = 2;
+  string provider = 3;
+}
+
 
 // message SmatVirtualCallbackRequest {
 //     string playerId = 1;
@@ -429,6 +440,7 @@ message EvoplayData {
     optional string user_message= 14;
     optional string wallet_type= 15;
 }
+
 
 // Evoplay Callback
 message EvoplayCallback {
