@@ -70,6 +70,7 @@ service IdentityService {
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+  rpc FetchPlayerLosersByBetCount (FetchPlayerFilterRequest) returns (PaginationResponse) {}
 
   // retail services
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
