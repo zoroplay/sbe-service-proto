@@ -60,6 +60,7 @@ service GamingService {
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
     
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
+    rpc QtechLobby (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
