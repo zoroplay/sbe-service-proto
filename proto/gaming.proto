@@ -292,6 +292,7 @@ message StartGameDto {
     optional string language = 13;
     optional bool isBonus = 14;
     optional string bonusType = 15;
+    optional string type = 16;
 };
 
 message StartGameResponse {
