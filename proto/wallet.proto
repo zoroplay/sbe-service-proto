@@ -104,6 +104,7 @@ service WalletService {
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
   rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
+  rpc UpdatePaymentMethod  (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
@@ -133,12 +134,16 @@ service WalletService {
  
 }
 
+
+
 message CorapayWebhookRequest {
   int32 clientId = 1;
   string authHeader = 2;
   google.protobuf.Struct callbackData = 3;
   
 }
+
+
 
 message CorapayResponse {
   int32  statusCode = 1;
