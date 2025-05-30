@@ -105,7 +105,7 @@ service WalletService {
   rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc UpdatePaymentMethod  (PaymentMethodRequest) returns (GetPaymentMethodResponse) {}
-  rpc DeletePaymentMethod (DeletePaymentMethodRequest) returns () {}
+  rpc DeletePaymentMethod (DeletePaymentMethodRequest) returns (DeletePaymentMethodResponse) {}
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
