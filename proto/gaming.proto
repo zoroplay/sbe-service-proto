@@ -60,6 +60,7 @@ service GamingService {
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
     
     rpc StartGame (StartGameDto) returns (StartGameResponse) {}
+    rpc QtechLobby (StartGameDto) returns (StartGameResponse) {}
     rpc QueryGames (stream PaginationDto) returns (stream Games) {}
     rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
@@ -292,6 +293,7 @@ message StartGameDto {
     optional string language = 13;
     optional bool isBonus = 14;
     optional string bonusType = 15;
+    optional string type = 16;
 };
 
 message StartGameResponse {

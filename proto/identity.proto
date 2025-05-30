@@ -1199,6 +1199,7 @@ message XpressLoginResponse {
     string sessionId = 4;
     string group = 5;
     string currency = 6;
+    optional string country = 7;
   }
   optional XpressData data = 4;
 }
