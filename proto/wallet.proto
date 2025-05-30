@@ -104,7 +104,8 @@ service WalletService {
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
   rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
-  rpc UpdatePaymentMethod  (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
+  rpc UpdatePaymentMethod  (PaymentMethodRequest) returns (GetPaymentMethodResponse) {}
+  rpc DeletePaymentMethod (DeletePaymentMethodRequest) returns () {}
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
@@ -132,6 +133,18 @@ service WalletService {
   rpc  CorapayWebhook(CorapayWebhookRequest) returns (CorapayResponse) {}
 
  
+}
+
+message DeletePaymentMethodRequest {
+  int32 id = 1;
+  int32 clientId = 2;
+}
+
+message DeletePaymentMethodResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+    
 }
 
 
