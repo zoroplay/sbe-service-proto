@@ -169,10 +169,11 @@ message ShopUsersSummaryRequest {
 
 message ShopUserSummary {
   int32 userId = 1;
-  int32 numberOfDeposits = 2;
-  double totalDeposits = 3;
-  int32 numberOfWithdrawals = 4;
-  double totalWithdrawals = 5;
+  string username = 2;
+  int32 numberOfDeposits = 3;
+  double totalDeposits = 4;
+  int32 numberOfWithdrawals = 5;
+  double totalWithdrawals = 6;
 }
 
 message ShopUsersSummaryResponse {
