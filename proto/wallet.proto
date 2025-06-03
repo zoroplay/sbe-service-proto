@@ -141,6 +141,7 @@ service WalletService {
 
 message FidelityWebhookRequest {
   string transactionReference = 1;
+  int32  clientId = 2;
 }
 
 
