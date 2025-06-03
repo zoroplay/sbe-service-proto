@@ -55,6 +55,10 @@ service GamingService {
 
     rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
     rpc fetchGameKeys (GetKeysRequest) returns (CommonResponse){}
+    rpc deleteGameKeys (FindOneGameDto) returns (CommonResponse){}
+
+    rpc fetchBonusGames (BonusGameRequest) returns (CommonResponse){}
+    
 
     rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
     rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
@@ -113,10 +117,10 @@ message GameKeyEntry {
 }
 
 
-// message SmatVirtualCallbackRequest {
-//     string playerId = 1;
-//     string sessionId = 2;
-// }
+message BonusGameRequest {
+     int32 clientId = 1;
+     int32 userId = 2;
+}
 
 
 message SmatVirtualCallbackRequest {
