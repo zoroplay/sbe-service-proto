@@ -152,6 +152,9 @@ message CreateBonusRequest {
   optional int32 bonusId = 24;
   repeated string userIds = 25;
   optional string provider = 26;
+  optional string country = 27;
+  optional string tournament = 28;
+  optional string fixture = 29;
 }
 
 message CreateBonusResponse {
