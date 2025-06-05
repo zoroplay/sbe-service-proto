@@ -135,9 +135,23 @@ service WalletService {
 
   rpc FidelityWebhook(FidelityWebhookRequest) returns (FidelityResponse) {}
 
+
+  rpc ProvidusWebhook (ProvidusRequest) returns  (ProvidusResponse) {}
+
  
 }
 
+message ProvidusRequest {
+  string  accountNumber = 1;
+  int32  clientId = 2;
+}
+
+message ProvidusResponse {
+  bool requestSuccessful = 1;
+  string   sessionId = 2;
+  string  responseMessage =3;
+  string  responseCode = 4;
+}
 
 message FidelityWebhookRequest {
   string transactionReference = 1;
