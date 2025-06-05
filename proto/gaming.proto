@@ -11,6 +11,7 @@ service GamingService {
     rpc FindAllGames (Empty) returns (Games) {}
     rpc FetchGames (FetchGamesRequest) returns (CommonResponseArray) {}
     rpc FetchGamesByName (FetchGamesRequest) returns (Games) {}
+    rpc AdminFetchGamesByName (FetchGamesRequest) returns (CommonResponse) {}
     rpc SyncGames (SyncGameDto) returns (Games) {}
     rpc FindOneGame (FindOneGameDto) returns (Game) {}
     rpc UpdateGame (UpdateGameDto) returns (Game) {}
