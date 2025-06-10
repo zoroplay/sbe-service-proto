@@ -138,7 +138,23 @@ service WalletService {
 
   rpc ProvidusWebhook (ProvidusRequest) returns  (ProvidusResponse) {}
 
+  rpc globusWebhook (GlobusRequest) returns (GlobusResponse)  {}
+
  
+}
+
+
+message GlobusRequest {
+   int32 clientId = 1;
+   google.protobuf.Struct callbackData = 2;
+ 
+}
+
+message GlobusResponse {
+ int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+
 }
 
 message ProvidusRequest {
