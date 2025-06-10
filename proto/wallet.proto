@@ -144,6 +144,7 @@ service WalletService {
 message ProvidusRequest {
   string  accountNumber = 1;
   int32  clientId = 2;
+  string sessionId = 3;
 }
 
 message ProvidusResponse {
