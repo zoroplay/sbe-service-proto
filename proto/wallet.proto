@@ -145,6 +145,7 @@ message ProvidusRequest {
   string  accountNumber = 1;
   int32  clientId = 2;
   string sessionId = 3;
+  string headers = 4;
 }
 
 message ProvidusResponse {
