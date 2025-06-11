@@ -147,6 +147,7 @@ service WalletService {
 message GlobusRequest {
    int32 clientId = 1;
    google.protobuf.Struct callbackData = 2;
+   string headers = 3;
  
 }
 
@@ -162,6 +163,7 @@ message ProvidusRequest {
   int32  clientId = 2;
   string sessionId = 3;
   string headers = 4;
+  string settlementId = 5;
 }
 
 message ProvidusResponse {
