@@ -138,7 +138,7 @@ service WalletService {
 
   rpc ProvidusWebhook (ProvidusRequest) returns  (ProvidusResponse) {}
 
-  rpc globusWebhook (GlobusRequest) returns (GlobusResponse)  {}
+  rpc GlobusWebhook (GlobusRequest) returns (GlobusResponse)  {}
 
  
 }
