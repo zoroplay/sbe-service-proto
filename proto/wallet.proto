@@ -838,6 +838,7 @@ message VerifyDepositRequest {
   int32 clientId = 1;
   string transactionRef = 2;
   string paymentChannel = 3;
+  string orderReference = 4;
 }
 
 message VerifyDepositResponse {
