@@ -836,9 +836,9 @@ message PaymentMethodRequest {
 
 message VerifyDepositRequest {
   int32 clientId = 1;
-  string transactionRef = 2;
-  string paymentChannel = 3;
-  string orderReference = 4;
+  string paymentChannel = 2;
+  optional string transactionRef = 3;
+  optional string orderReference = 4;
 }
 
 message VerifyDepositResponse {
