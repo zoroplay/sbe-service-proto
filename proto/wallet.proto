@@ -142,9 +142,20 @@ service WalletService {
 
   rpc SmileAndPayWebhook(SmileAndPayRequest)returns (SmileAndPayResponse)  {}
 
+  rpc VerifySmileAndPay (VerifySmile) returns (VerifySmileRes) {}
+
  
 }
 
+message VerifySmile {
+int32 clientId = 1;
+string orderReference = 2;
+}
+
+message VerifySmileRes {
+  int32  statusCode = 1; 
+  string message = 2;
+}
 
 message SmileAndPayRequest {
   int32 clientId = 1;
