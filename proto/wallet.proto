@@ -140,7 +140,22 @@ service WalletService {
 
   rpc GlobusWebhook (GlobusRequest) returns (GlobusResponse)  {}
 
+  rpc SmileAndPayWebhook(SmileAndPayRequest)returns (SmileAndPayResponse)  {}
+
  
+}
+
+
+message SmileAndPayRequest {
+  int32 clientId = 1;
+   google.protobuf.Struct callbackData = 2; 
+}
+
+message SmileAndPayResponse {
+ int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+
 }
 
 
