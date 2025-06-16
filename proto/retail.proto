@@ -13,6 +13,7 @@ service RetailService {
     rpc onBetPlaced(BetData) returns (Response) {}
     rpc onBetSettled(BetData) returns (Response) {}
     rpc onBetCancelled(BetData) returns (Response) {}
+    
 
 }
 

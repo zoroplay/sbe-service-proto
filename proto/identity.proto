@@ -19,6 +19,7 @@ service IdentityService {
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
@@ -69,6 +70,7 @@ service IdentityService {
   rpc GetWithdrawalSettings (GetWithdrawalSettingsRequest) returns (WithdrawalSettingsResponse) {}
   rpc GetUserIdandName (GetUserIdNameRequest) returns (GetUserIdNameResponse) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
+  rpc FetchPlayerLosersByBetCount (FetchPlayerFilterRequest) returns (PaginationResponse) {}
 
   // retail services
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
@@ -85,6 +87,7 @@ service IdentityService {
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
+  
 
   rpc getBonusGroups(SingleItemRequest) returns (BonusGroupResponse) {}
   rpc createBonusGroups(BonusGroups) returns (BonusGroupResponse) {}
@@ -100,8 +103,29 @@ service IdentityService {
 
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
+
+  rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
 }
 
+
+message ClientIdRequest {
+  int32 clientId = 1;
+}
+
+
+message BasicUser {
+  int32 id = 1;
+  string username = 2;
+  string role = 3;
+  int32 client_id = 4;
+}
+
+message UsersResponse {
+  repeated BasicUser user_infos = 1;
+  string message = 2;
+  bool success = 3;
+  int32 status = 4;
+}
 
 // Additional Audit Info
 message AdditionalInfo {
@@ -146,10 +170,20 @@ message CreateLogResponse {
   string message = 3;
 }
 
+message AuditQuery {
+  optional string startDate = 1;
+  optional string endDate = 2;
+  optional int32 page = 3; 
+  optional int32 perPage = 4;
+  optional string username = 5;
+  optional string platform = 6;
+  optional string ipAddress = 7;
+}
+
 // GetAllLogs
 message GetAllLogsRequest {
   optional int32 clientId = 1;
-  optional int32 userId = 2;
+  optional string userName = 2;
   optional int32 page = 3;  
   optional int32 limit = 4;
   string ipAddress = 5;
@@ -159,6 +193,7 @@ message GetAllLogsRequest {
   string platform = 9;
   string endpoint = 10;
   string method = 11;
+  AuditQuery auditQuery = 12;
 }
 
 // GetAllLogsResponse
@@ -688,6 +723,13 @@ message UserInfo {
   bool isActive =13;
   string createdAt =14;
   string updatedAt =15;
+  int32 lossCount =16;
+  int32 betCount = 17;
+  int32 stakeAmount = 18;
+  string lastPlayed = 19;
+  int32 totalBalance = 20;
+
+  
 }
 
 message UserData {
@@ -838,6 +880,17 @@ message ValidateClientResponse {
   int32 status = 1;
   string error = 2;
   int32 clientId = 3;
+}
+
+message ValidateGroupCodeRequest {
+  string groupName = 1;
+}
+
+message ValidateGroupCodeResponse {
+  int32 status = 1;
+  string error = 2;
+  string groupName = 3;
+  int32 clientId = 4;
 }
 
 message ClientRequest {
@@ -1165,6 +1218,7 @@ message XpressLoginResponse {
     string sessionId = 4;
     string group = 5;
     string currency = 6;
+    optional string country = 7;
   }
   optional XpressData data = 4;
 }

@@ -104,6 +104,8 @@ service WalletService {
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
   rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
+  rpc UpdatePaymentMethod  (PaymentMethodRequest) returns (GetPaymentMethodResponse) {}
+  rpc DeletePaymentMethod (DeletePaymentMethodRequest) returns (DeletePaymentMethodResponse) {}
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
@@ -112,7 +114,9 @@ service WalletService {
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopWithdrawal (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc DebitAgentBalance (DebitUserRequest) returns (CommonResponseObj) {}
-
+  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse){}
+  rpc ShopTransactionSummary (GetShopUserWalletSummaryRequest) returns (GetShopUserWalletSummaryResponse) {}
+  rpc ShopUsersSummary (ShopUsersSummaryRequest) returns (ShopUsersSummaryResponse){}
 
   // Flutterwave and KoraPay
 
@@ -120,12 +124,274 @@ service WalletService {
   rpc FlutterWaveWebhook (FlutterwaveWebhookRequest) returns (WebhookResponse) {}
   rpc  KorapayWebhook (KoraPayWebhookRequest) returns (WebhookResponse){}
   rpc  TigoWebhook (TigoWebhookRequest) returns (TigoResponse){}
+  rpc  TigoW2a (TigoW2aRequest) returns (TigoW2aResponse) {}
 
   rpc  PawapayCallback (PawapayRequest) returns (PawapayResponse){}
+
+  rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
+  rpc  OpayCallback(OpayRequest) returns (OpayResponse) {}
+  rpc  CorapayWebhook(CorapayWebhookRequest) returns (CorapayResponse) {}
+
+
+  rpc FidelityWebhook(FidelityWebhookRequest) returns (FidelityResponse) {}
+
+
+  rpc ProvidusWebhook (ProvidusRequest) returns  (ProvidusResponse) {}
+
+  rpc GlobusWebhook (GlobusRequest) returns (GlobusResponse)  {}
+
+  rpc SmileAndPayWebhook(SmileAndPayRequest)returns (SmileAndPayResponse)  {}
+
+  rpc VerifySmileAndPay (VerifySmile) returns (VerifySmileRes) {}
+
+
+  /// DASHBOARD 
+
+
+  rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
+
+   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
+}
+
+
+
+
+message ClientRequest {
+  int32 clientId = 1;
  
 }
 
 
+message FinancialPerformanceResponse {
+  bool success = 1;        
+  int32 status = 2;        
+  string message = 3;
+  double totalDeposit = 4;
+  double totalWithdrawal = 5;
+}
+
+message PlayerBalanceResponse {
+   bool success = 1;        
+   int32 status = 2;        
+   string message = 3;
+   double totalOnlinePlayerBalance = 4;
+   double totalOnlinePlayerBonus = 5;
+   double totalRetailBalance = 6;
+   double totalRetailTrustBalance = 7;
+
+}
+
+
+message Balances {
+
+}
+
+message VerifySmile {
+int32 clientId = 1;
+string orderReference = 2;
+}
+
+message VerifySmileRes {
+  int32  statusCode = 1; 
+  string message = 2;
+}
+
+message SmileAndPayRequest {
+  int32 clientId = 1;
+   google.protobuf.Struct callbackData = 2; 
+}
+
+message SmileAndPayResponse {
+ int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+
+}
+
+
+message GlobusRequest {
+   int32 clientId = 1;
+   google.protobuf.Struct callbackData = 2;
+   string headers = 3;
+ 
+}
+
+message GlobusResponse {
+ int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+
+}
+
+message ProvidusRequest {
+  string  accountNumber = 1;
+  int32  clientId = 2;
+  string sessionId = 3;
+  string headers = 4;
+  string settlementId = 5;
+}
+
+message ProvidusResponse {
+  bool requestSuccessful = 1;
+  string   sessionId = 2;
+  string  responseMessage =3;
+  string  responseCode = 4;
+}
+
+message FidelityWebhookRequest {
+  string transactionReference = 1;
+  int32  clientId = 2;
+}
+
+
+message FidelityResponse {
+  int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+}
+
+message DeletePaymentMethodRequest {
+  int32 id = 1;
+  int32 clientId = 2;
+}
+
+message DeletePaymentMethodResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+    
+}
+
+message UpdatePaymentMethodRes {
+  string title = 2;
+  string provider = 3;
+  string secret_key = 4;
+  string public_key = 5;
+  string merchant_id = 6;
+  string base_url = 7;
+  int32 status = 8;
+  int32 for_disbursement = 9;
+  int32 id = 10;
+}
+
+message CorapayWebhookRequest {
+  int32 clientId = 1;
+  string authHeader = 2;
+  google.protobuf.Struct callbackData = 3;
+  
+}
+
+
+
+message CorapayResponse {
+  int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+}
+
+message OpayRequest {
+  int32    clientId = 1;
+  string   sha512 = 2;
+  google.protobuf.Struct rawBody = 3;
+}
+
+
+message OpayResponse {
+  int32  statusCode = 1;
+  bool   success = 2;
+  string message = 3;
+}
+
+
+message ShopUsersSummaryRequest {
+  int32 clientId = 1;
+  string rangeZ = 2;
+  string from = 3;
+  string to = 4;
+}
+
+message ShopUserSummary {
+  int32 userId = 1;
+  string username = 2;
+  int32 numberOfDeposits = 3;
+  double totalDeposits = 4;
+  int32 numberOfWithdrawals = 5;
+  double totalWithdrawals = 6;
+}
+
+message ShopUsersSummaryResponse {
+  repeated ShopUserSummary data = 1;
+  bool success = 2;
+  int32 status = 3;
+  string message = 4;
+}
+
+message GetShopUserWalletSummaryRequest {
+  int32 client_id = 1;
+  string dateRange = 2;
+}
+
+
+message GetShopUserWalletSummaryResponse {
+  bool success = 1;        // Indicates success or failure of the request
+  int32 status = 2;        // HTTP status code (e.g., 200 for success, 500 for error)
+  string message = 3;      // Message with success/error information
+  repeated DailyTotals data = 4;  // Array of the summary data for each agent user
+}
+message DailyTotals {
+  string userId = 1;                 // User ID (as a string)
+  double totalDepositAmount = 2;    // Total deposit amount for the specified range
+  double totalWithdrawalAmount = 3; // Total withdrawal amount for the specified range
+}
+
+
+message SummaryRequest {
+  int32 client_id = 1;
+  string range = 2; // optional: "day", "week", "month", "year"
+  string from = 3;  // optional ISO string
+  string to = 4;    // optional ISO string
+}
+
+message TrxSummaryRequest {
+  string rangeZ = 1;         // "day", "week", "month", "year"
+  string from = 2;           // Optional ISO date
+  string to = 3;             // Optional ISO date
+  int32 page = 4;            // Defaults to 1
+  int32 page_size = 5;       // Defaults to 10
+}
+
+
+message SummaryResponse {
+  bool success = 1;        // Indicates success or failure of the request
+  int32 status = 2;        // HTTP status code (e.g., 200 for success, 500 for error)
+  string message = 3;
+  double totalDeposit = 4;
+  double totalWithdrawal = 5;
+}
+
+
+
+message MtnmomoRequest {
+  string amount = 1;
+  string externalId = 2;
+  string status = 3;
+  int32 clientId = 4;
+}
+
+message TigoW2aRequest {
+  string txn_id = 1;
+  string msisdn = 2;
+  string amount = 3;
+  string customer_reference_id = 4;
+  string sender_name = 5;
+  int32 clientId = 6;
+}
+
+message TigoW2aResponse {
+  bool success = 1;
+  string ref_id = 2;
+  string message = 3;
+}
 
 message PawapayRequest {
   int32 clientId = 1;
@@ -620,8 +886,9 @@ message PaymentMethodRequest {
 
 message VerifyDepositRequest {
   int32 clientId = 1;
-  string transactionRef = 2;
-  string paymentChannel = 3;
+  string paymentChannel = 2;
+  optional string transactionRef = 3;
+  optional string orderReference = 4;
 }
 
 message VerifyDepositResponse {
@@ -864,6 +1131,11 @@ message ListWithdrawalRequests {
   string to = 3;
   int32 status = 4;
   int32 userId = 5;
+  string username = 6;
+  string  bankName = 7;
+  int32 page = 8;
+  int32 limit = 9;
+
 }
 
 message ListWithdrawalRequestResponse {
@@ -871,6 +1143,10 @@ message ListWithdrawalRequestResponse {
   int32 status = 2;
   string message = 3;
   repeated WithdrawalRequest data = 4;
+  float totalAmount = 5;
+  int32 total = 6; 
+  int32 page = 7;  
+  int32 limit = 8;
 }
 
 message WithdrawalRequest {
@@ -884,6 +1160,7 @@ message WithdrawalRequest {
   string updatedBy = 8;
   int32 status = 9;
   string created = 10;
+  
 }
 
 message UserTransactionRequest {
@@ -962,8 +1239,9 @@ message ListDepositRequests {
   string paymentMethod = 4;
   int32 status = 5;
   string username = 6;
-  string transactionId = 7;
-  int32 page = 8;
+  string bank = 7;
+  string transactionId = 8;
+  int32 page = 9;
 }
 
 message PaginationResponse {
@@ -973,7 +1251,8 @@ message PaginationResponse {
   int32 nextPage = 4;
   int32 prevPage = 5;
   int32 lastPage = 6;
-  repeated google.protobuf.Struct data = 7;
+  int32 totalAmount = 7;
+  repeated google.protobuf.Struct data = 8;
 }
 
 message MetaData {

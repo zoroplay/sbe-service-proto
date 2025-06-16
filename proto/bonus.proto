@@ -17,6 +17,8 @@ service BonusService {
 
   rpc CheckDepositBonus (CheckDepositBonusRequest) returns (CheckDepositBonusResponse){}
 
+  rpc CheckRegisterBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc SettleBet (SettleBetRequest) returns (CommonResponseObj){}
 
   rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
@@ -29,11 +31,15 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
+  rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
+
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
 
   rpc GetUserBonus (GetUserBonusRequest) returns (GetUserBonusResponse){}
 
   rpc AwardBonus (AwardBonusRequest) returns (UserBonusResponse){}
+
+  rpc DeactivateUserBonus (BonusRequest) returns (CommonResponseObj){}
 
   rpc PlaceBonusBet(UserBet) returns (PlaceBetResponse){}
 
@@ -61,6 +67,11 @@ message CommonResponseObj{
 }
 
 message CheckDepositBonusRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message BonusRequest {
   int32 clientId = 1;
   int32 userId = 2;
 }
@@ -140,6 +151,10 @@ message CreateBonusRequest {
   optional int32 providerId = 23;
   optional int32 bonusId = 24;
   repeated string userIds = 25;
+  optional string provider = 26;
+  optional string country = 27;
+  optional string tournament = 28;
+  optional string fixture = 29;
 }
 
 message CreateBonusResponse {
@@ -150,6 +165,11 @@ message CreateBonusResponse {
 }
 
 message GetBonusRequest {
+  int32 clientId = 1;
+  optional string bonus_type = 2;
+}
+
+message GetAllBonusRequest {
   int32 clientId = 1;
 }
 
