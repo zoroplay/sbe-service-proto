@@ -114,13 +114,13 @@ message ClientIdRequest {
 
 
 message UsersResponse {
-  repeated UserData users = 1;
+  repeated UserRes user_infos = 1;
   string message = 2;
   bool success = 3;
   int32 status = 4;
 }
 
-message UserInfos {
+message UserRes {
   int32 id = 1;
   string role = 2;
   string username = 3;
