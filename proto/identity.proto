@@ -103,11 +103,29 @@ service IdentityService {
 
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
+
+  rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
 }
 
 
+message ClientIdRequest {
+  int32 clientId = 1;
+}
 
 
+message UsersResponse {
+  repeated UserData users = 1;
+  string message = 2;
+  bool success = 3;
+  int32 status = 4;
+}
+
+message UserInfos {
+  int32 id = 1;
+  string role = 2;
+  string username = 3;
+  int32 clientId = 4;
+}
 
 // Additional Audit Info
 message AdditionalInfo {
