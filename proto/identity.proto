@@ -105,6 +105,8 @@ service IdentityService {
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
 
   rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
+
+  rpc  getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
 }
 
 
