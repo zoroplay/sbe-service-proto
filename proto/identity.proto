@@ -959,8 +959,8 @@ message PermissionRequest {
 
 
 message AssignRolePermissionRequest {
-  string roleID = 1;
-  repeated string permissionIDs = 2;
+  int32 roleID = 1;
+  repeated int32 permissionIDs = 2;
 }
 
 message GetPaymentDataRequest {
