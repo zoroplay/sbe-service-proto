@@ -960,7 +960,7 @@ message PermissionRequest {
 
 message AssignRolePermissionRequest {
   string roleID = 1;
-  string permissionID = 2;
+  repeated permissionID = 2;
 }
 
 message GetPaymentDataRequest {
