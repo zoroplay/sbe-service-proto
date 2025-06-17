@@ -24,6 +24,7 @@ service IdentityService {
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
+  rpc AssignRolePermission ( AssignRolePermissionRequest ) return (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseObj) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
@@ -951,6 +952,12 @@ message PermissionRequest {
   string description = 2;
   string permissionID = 3;
   string roleID = 4;
+}
+
+
+message AssignRolePermissionRequest {
+  string roleID = 1
+  string permissionID = 2
 }
 
 message GetPaymentDataRequest {
