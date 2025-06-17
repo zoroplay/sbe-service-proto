@@ -24,7 +24,7 @@ service IdentityService {
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
-  rpc AssignRolePermission ( AssignRolePermissionRequest ) return (CommonResponseObj) {}
+  rpc AssignRolePermission ( AssignRolePermissionRequest ) returns (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseObj) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
