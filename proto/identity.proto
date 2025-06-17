@@ -106,6 +106,8 @@ service IdentityService {
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
 
   rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
+
+  rpc  getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
 }
 
 
@@ -760,6 +762,7 @@ message UserData {
   string dateOfBirth = 25;
   int32 status = 26;
   string group = 27;
+  optional string virtualToken = 28;
 }
 
 message CreateUserRequest {
