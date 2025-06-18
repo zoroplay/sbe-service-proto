@@ -149,12 +149,35 @@ service WalletService {
 
 
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
-
-   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
+  rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
+  rpc OverallGames (OverallGamesRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesOnline (OverallGamesRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesRetail (OverallGamesRequest) returns (OverallGamesResponse) {}
 }
 
 
+message OverallGamesRequest {
+  int32 client_id = 1;
+  string range = 2;
+  string from = 3;
+  string to = 4;
+}
 
+message ProductSummary {
+  string product = 1;
+  double turnover = 2;
+  string margin = 3;
+  double ggr = 4;
+  double bonusGiven = 5;
+  double bonusSpent = 6;
+  double ngr = 7;
+}
+
+message OverallGamesResponse {
+  string start_date = 1;
+  string end_date = 2;
+  repeated ProductSummary data = 3;
+}
 
 message ClientRequest {
   int32 clientId = 1;
