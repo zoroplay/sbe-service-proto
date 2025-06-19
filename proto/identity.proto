@@ -839,6 +839,7 @@ message LoginRequest {
   int32 clientId = 1;
   string username = 2;
   string password = 3;
+  optional string source = 4;
 }
 
 message LoginResponse {
