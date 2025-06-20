@@ -162,6 +162,7 @@ message CreateBannerRequest {
   optional string category = 10;
   optional string tournament = 11;
   optional string event = 12;
+  optional int32 id = 13;
 }
 
 message AuditLog {
