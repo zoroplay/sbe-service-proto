@@ -160,7 +160,7 @@ service WalletService {
 
 message StatisticsRequest {
   int32 clientId = 1;
-  int32 year = 2; 
+  string year = 2; 
 }
 
 message ProductStatistics {
