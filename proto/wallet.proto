@@ -153,6 +153,7 @@ service WalletService {
   rpc OverallGames (OverallGamesRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesOnline (OverallGamesRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesRetail (OverallGamesRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesSport (OverallGamesRequest) returns (OverallGamesResponse) {}
 }
 
 
