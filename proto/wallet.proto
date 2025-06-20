@@ -169,7 +169,7 @@ message ProductStatistics {
 }
 
 message StatisticsResponse {
-  int32 year = 1;
+  string year = 1;
   repeated ProductStatistics data = 2;
 }
 
