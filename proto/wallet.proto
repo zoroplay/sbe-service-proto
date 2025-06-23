@@ -158,6 +158,11 @@ service WalletService {
 }
 
 
+message MonthlyData {
+  string month = 1;
+  double turnover = 2;
+}
+
 message StatisticsRequest {
   int32 clientId = 1;
   string year = 2; 
@@ -165,7 +170,7 @@ message StatisticsRequest {
 
 message ProductStatistics {
   string product = 1;
-  repeated double monthlyTurnover = 2; 
+  repeated MonthlyData monthlyData = 2;
 }
 
 message StatisticsResponse {
