@@ -109,11 +109,34 @@ service IdentityService {
   rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
 
   rpc  getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
+
+  rpc findOneBanner (FindOneRequest) returns (CommonResponseObj) {}
+  rpc FindAllBanners (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc updateBanner (CreateBannerRequest) returns (CommonResponseObj) {}
+  rpc deleteBanner (FindOneRequest) returns (CommonResponseObj) {}
+  rpc createBanner (CreateBannerRequest) returns (CommonResponseObj) {}
+
+  rpc findOnePage (FindOneRequest) returns (CommonResponseObj) {}
+  rpc FindAllPages (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc updatePage (CreatePageRequest) returns (CommonResponseObj) {}
+  rpc deletePage (FindOneRequest) returns (CommonResponseObj) {}
+  rpc createPage (CreatePageRequest) returns (CommonResponseObj) {}
+
+  rpc findOneMenu (FindOneRequest) returns (CommonResponseObj) {}
+  rpc FindAllMenu (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc updateMenu (CreateMenuRequest) returns (CommonResponseObj) {}
+  rpc deleteMenu (FindOneRequest) returns (CommonResponseObj) {}
+  rpc createMenu (CreateMenuRequest) returns (CommonResponseObj) {}
 }
 
 
 message ClientIdRequest {
   int32 clientId = 1;
+}
+
+message FindOneRequest {
+  int32 clientId = 1;
+  int32 id = 2;
 }
 
 
@@ -138,7 +161,48 @@ message AdditionalInfo {
   string platform = 3;
 }
 
-// AuditLog
+// Banner
+message CreateBannerRequest {
+  string title = 1;
+  string bannerType = 2;
+  int32 clientId = 3;
+  string target = 4;
+  string position = 5;
+  string link = 6;
+  string content = 7;
+  string image = 8;
+  optional string sport = 9;
+  optional string category = 10;
+  optional string tournament = 11;
+  optional string event = 12;
+  optional int32 id = 13;
+}
+
+
+// Pages
+message CreatePageRequest {
+  string title = 1;
+  int32 clientId = 2;
+  optional string url = 3;
+  string content = 4;
+  string createdBy = 5;
+  string target = 6;
+  optional int32 id = 7;
+}
+
+// Menu
+message CreateMenuRequest {
+  string title = 1;
+  int32 clientId = 2;
+  string link = 3;
+  bool newWindow = 4;
+  bool status = 5;
+  string target = 6;
+  optional int32 id = 7;
+  optional string order = 8;
+  optional string parentId = 9;
+}
+
 message AuditLog {
   int32 id = 1;
   int32 userId = 2;
@@ -840,6 +904,7 @@ message LoginRequest {
   int32 clientId = 1;
   string username = 2;
   string password = 3;
+  optional string source = 4;
 }
 
 message LoginResponse {
