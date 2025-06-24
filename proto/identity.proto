@@ -36,6 +36,7 @@ service IdentityService {
   rpc RemovePermission (RemovePermissionRequest) returns (CommonResponseObj) {}
   rpc UpdateDetails (User) returns (CommonResponseObj) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
+  rpc UpdateRetailuser (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
