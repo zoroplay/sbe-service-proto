@@ -275,6 +275,7 @@ message ProvidusRequest {
   string sessionId = 3;
   string headers = 4;
   string settlementId = 5;
+  google.protobuf.Struct rawBody = 6;
 }
 
 message ProvidusResponse {
@@ -422,6 +423,7 @@ message MtnmomoRequest {
   string externalId = 2;
   string status = 3;
   int32 clientId = 4;
+  google.protobuf.Struct rawBody = 5;
 }
 
 message TigoW2aRequest {
@@ -431,6 +433,7 @@ message TigoW2aRequest {
   string customer_reference_id = 4;
   string sender_name = 5;
   int32 clientId = 6;
+  google.protobuf.Struct rawBody = 7;
 }
 
 message TigoW2aResponse {
@@ -443,6 +446,7 @@ message PawapayRequest {
   int32 clientId = 1;
   string   status = 2;
   string  depositId = 3;
+  google.protobuf.Struct rawBody = 4;
 }
 
 
@@ -465,6 +469,7 @@ message TigoWebhookRequest {
   string event = 3;
   string body = 4;
   bool Status = 5;
+  google.protobuf.Struct rawBody = 6;
  
 }
 
