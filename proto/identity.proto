@@ -844,6 +844,8 @@ message GetUsersTypeResponse {
   bool success = 2;
   optional UserData data = 3;
   optional string message = 4;
+  int32 totalPages = 5;
+  int32 totalUsers = 6;
 }
 
 message ChangeUserTypeStatusRequest {
