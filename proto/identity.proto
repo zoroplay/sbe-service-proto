@@ -830,23 +830,21 @@ message UserData {
   optional string virtualToken = 28;
 }
 
-
-
-message GetUsers = {
+message GetUsers {
   optional string userType = 1;
   optional int32 page = 2; 
   optional int32 perPage = 3;
   optional string search = 4;
 }
 
-message GetUsersResponse = {
+message GetUsersResponse {
   int32 status = 1;
   bool success = 2;
   optional UserData data = 3;
   optional string message = 4;
 }
 
-message ChangeUserTypeStatusRequest = {
+message ChangeUserTypeStatusRequest {
   string initialType = 1;
   string currentType = 2;
 }
