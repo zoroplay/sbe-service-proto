@@ -846,7 +846,10 @@ message GetUsersResponse = {
   optional string message = 4;
 }
 
-
+message ChangeUserTypeStatusRequest = {
+  string initialType = 1;
+  string currentType = 2;
+}
 
 message CreateUserRequest {
   int32 clientId = 1;
