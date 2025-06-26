@@ -40,7 +40,7 @@ service IdentityService {
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
   rpc GetUsers (GetUser ) returns (GetUsersTypeResponse) {}
-  rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) retruns (CommonResponseObj) {}
+  rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayers (SearchPlayerRequest) returns (SearchPlayerResponse) {}
