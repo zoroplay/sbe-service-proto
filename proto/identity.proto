@@ -850,8 +850,8 @@ message GetUsersTypeResponse {
 
 message ChangeUserTypeStatusRequest {
   int32 userId = 1;
-  string initialType = 2;
-  string currentType = 3;
+  int32 initialType = 2;
+  int32 currentType = 3;
 }
 
 message CreateUserRequest {
