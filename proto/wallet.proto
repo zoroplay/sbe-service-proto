@@ -144,6 +144,8 @@ service WalletService {
 
   rpc VerifySmileAndPay (VerifySmile) returns (VerifySmileRes) {}
 
+  rpc PawapayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
+
 
   /// DASHBOARD 
 
