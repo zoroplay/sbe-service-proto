@@ -948,7 +948,7 @@ message ValidateRequest {
 }
 
 message ValidateTestRequest {
-  string account_id = 1;
+  int32 account_id = 1;
 }
 
 message ValidateTestResponse {
