@@ -144,6 +144,8 @@ service WalletService {
 
   rpc VerifySmileAndPay (VerifySmile) returns (VerifySmileRes) {}
 
+  rpc PawapayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
+
 
   /// DASHBOARD 
 
@@ -505,8 +507,9 @@ message CreatePawapayRequest {
   string source = 3;
   int32 amount = 4;
   string action = 5;
-  string operator = 6;
+ optional string operator = 6;
   optional string depositId = 7;
+  optional string username = 8;
 }
 message FetchUsersWithdrawalRequest {
   int32 userId = 1;
