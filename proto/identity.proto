@@ -876,6 +876,7 @@ message CreateUserRequest {
   optional string trackingToken = 19;
   optional int32 parentId = 20;
   optional float balance = 21;
+  optional bool isTest = 22;
 }
 
 message UpdateUserRequest {
