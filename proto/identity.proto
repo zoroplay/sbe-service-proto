@@ -959,9 +959,10 @@ message ValidateTestResponse {
 }
 
 message ListTestAccountsRequest {
-  optional int32 page = 1;
-  optional int32 PerPage = 2;
-  optional int32 totals = 3;
+  int32 clientId = 1
+  optional int32 page = 2;
+  optional int32 PerPage = 3;
+  optional int32 totals = 4;
 }
 
 message ListTestAccountsResponse {
