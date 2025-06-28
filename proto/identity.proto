@@ -21,6 +21,9 @@ service IdentityService {
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
+  rpc ListTestAccount (ListTestAccountsRequest) returns (ListTestAccountsResponse) {}
+  rpc ToggleAccount (ValidateTestRequest) returns (ValidateTestResponse) {}
+
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
@@ -960,6 +963,28 @@ message UpdateUserResponse {
 message ValidateRequest {
   string token = 1;
 }
+
+message ValidateTestRequest {
+  string account_id = 1;
+}
+
+message ValidateTestResponse {
+  bool is_test = 1;
+  int32 status = 2;
+  bool success = 3;
+  string message = 4;
+}
+
+message ListTestAccountsRequest {
+  optional int32 page = 1;
+  optional int32 PerPage = 2;
+  optional int32 totals = 3;
+}
+
+message ListTestAccountsResponse {
+  repeated BasicUser accounts = 1;
+  int32 totals = 2;
+}  
 
 message ValidateResponse {
   int32 status = 1;
