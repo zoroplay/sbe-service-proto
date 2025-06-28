@@ -42,7 +42,6 @@ service IdentityService {
   rpc UpdateRetailUser (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
-  rpc GetUsers (GetUsersTypeRequest) returns (GetUsersTypeResponse) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
@@ -835,22 +834,6 @@ message UserData {
   optional string virtualToken = 28;
 }
 
-message GetUsersTypeRequest {
-  optional string userType = 1;
-  optional int32 page = 2; 
-  optional int32 perPage = 3;
-  optional string search = 4;
-}
-
-message GetUsersTypeResponse {
-  int32 status = 1;
-  bool success = 2;
-  optional UserData data = 3;
-  optional string message = 4;
-  int32 totalPages = 5;
-  int32 totalUsers = 6;
-}
-
 message ChangeUserTypeStatusRequest {
   int32 userId = 1;
   int32 initialType = 2;
@@ -1199,6 +1182,7 @@ message OnlinePlayersRequest {
   string source = 5;
   optional int32 page = 6;
   optional int32 limit = 7;
+  optional string type = 8;
 }
 
 message RegistrationReportRequest {
