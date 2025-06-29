@@ -31,7 +31,7 @@ service IdentityService {
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (CommonResponseArray) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
-  rpc RemoveRole (RemoveRoleRequest) returns (DeleteResponse) {}
+  rpc RemoveRole (RemoveRoleRequest) returns (CommonResponseObj) {}
   rpc FindAllPermissions (EmptyRequest) returns (CommonResponseArray) {}
   rpc FindAllClients (EmptyRequest) returns (CommonResponseArray) {}
   rpc RemoveClient (RemoveClientRequest) returns (CommonResponseObj) {}
@@ -40,7 +40,7 @@ service IdentityService {
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
-  rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
+  rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
@@ -1105,16 +1105,6 @@ message CommonResponseObj{
   string message = 3;
   optional google.protobuf.Struct data = 4;
   optional string errors = 5;
-}
-
-message DeleteResponse {
-  bool status = 1;
-  string message = 2;
-}
-
-message GetUsersResponse {
-  bool status = 1;
-  string message = 2;
 }
 
 message ClientData {
