@@ -29,7 +29,7 @@ service IdentityService {
   rpc AssignRolePermission ( AssignRolePermissionRequest ) returns (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseObj) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
-  rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
+  rpc GetRoles (EmptyRequest) returns (CommonResponseArray) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
   rpc RemoveRole (RemoveRoleRequest) returns (DeleteResponse) {}
   rpc FindAllPermissions (EmptyRequest) returns (CommonResponseArray) {}
