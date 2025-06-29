@@ -12,7 +12,6 @@ service IdentityService {
 
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
 
-
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
@@ -1023,7 +1022,7 @@ message RemovePermissionRequest {
 message RoleRequest {
   string name = 1;
   optional string description = 2;
-  string roleType = 3;
+  string type = 3;
   optional string roleID = 4;
 }
 
