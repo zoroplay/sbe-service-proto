@@ -110,9 +110,9 @@ service IdentityService {
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
 
-  rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
+  rpc ClintUsers (ClientIdRequest) returns (UsersResponse) {}
 
-  rpc  getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
 
   rpc findOneBanner (FindOneRequest) returns (CommonResponseObj) {}
   rpc FindAllBanners (ClientIdRequest) returns (CommonResponseObj) {}
@@ -1049,7 +1049,7 @@ message Role {
   int32 id = 1;
   string name = 2;
   string description = 3;
-  string roleType = 4;
+  string type = 4;
 }
 
 message PermissionRequest {
