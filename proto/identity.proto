@@ -12,7 +12,6 @@ service IdentityService {
 
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
 
-
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
@@ -21,39 +20,41 @@ service IdentityService {
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
+  rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
+  rpc ToggleAccount (ValidateTestRequest) returns (ValidateTestResponse) {}
+
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
   rpc AssignRolePermission ( AssignRolePermissionRequest ) returns (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseObj) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
-  rpc GetRoles (EmptyRequest) returns (GetRolesResponse) {}
+  rpc GetRoles (EmptyRequest) returns (CommonResponseArray) {}
   rpc GetAgencyRoles (EmptyRequest) returns (GetRolesResponse) {}
-  rpc RemoveRole (RemoveRoleRequest) returns (DeleteResponse) {}
+  rpc RemoveRole (RemoveRoleRequest) returns (CommonResponseObj) {}
   rpc FindAllPermissions (EmptyRequest) returns (CommonResponseArray) {}
   rpc FindAllClients (EmptyRequest) returns (CommonResponseArray) {}
   rpc RemoveClient (RemoveClientRequest) returns (CommonResponseObj) {}
   rpc RemovePermission (RemovePermissionRequest) returns (CommonResponseObj) {}
-  rpc UpdateDetails (User) returns (CommonResponseObj) {}
+  rpc UpdateDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
-  rpc UpdateRetailUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
-  rpc GetAdminUsers (EmptyRequest) returns (GetUsersResponse) {}
-  rpc GetUsers (GetUsersTypeRequest) returns (GetUsersTypeResponse) {}
+  rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayers (SearchPlayerRequest) returns (SearchPlayerResponse) {}
-  rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc UpdateUserDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
   rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
-  rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
+  rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (CommonResponseObj) {}
   rpc UpdatePlayerStatus (FindUserRequest) returns (CommonResponseObj) {}
-  rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
-  rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
+  rpc ChangePassword (ChangePasswordRequest) returns (CommonResponseObj) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (CommonResponseObj) {}
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
   rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponseArray) {}
   rpc AddToSegment (AddToSegmentRequest) returns (CommonResponseObj) {}
@@ -108,9 +109,9 @@ service IdentityService {
   rpc getAllLogs(GetAllLogsRequest) returns (GetAllLogsResponse) {}
   rpc createLog(CreateLogRequest) returns (CreateLogResponse) {}
 
-  rpc  ClintUsers (ClientIdRequest) returns (UsersResponse) {}
+  rpc ClintUsers (ClientIdRequest) returns (CommonResponseArray) {}
 
-  rpc  getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc getPlayerStatistics (ClientIdRequest) returns (CommonResponseObj) {}
 
   rpc findOneBanner (FindOneRequest) returns (CommonResponseObj) {}
   rpc FindAllBanners (ClientIdRequest) returns (CommonResponseObj) {}
@@ -132,16 +133,6 @@ service IdentityService {
 }
 
 
-message ClientIdRequest {
-  int32 clientId = 1;
-}
-
-message FindOneRequest {
-  int32 clientId = 1;
-  int32 id = 2;
-}
-
-
 message BasicUser {
   int32 id = 1;
   string username = 2;
@@ -149,11 +140,13 @@ message BasicUser {
   int32 client_id = 4;
 }
 
-message UsersResponse {
-  repeated BasicUser user_infos = 1;
-  string message = 2;
-  bool success = 3;
-  int32 status = 4;
+message ClientIdRequest {
+  int32 clientId = 1;
+}
+
+message FindOneRequest {
+  int32 clientId = 1;
+  int32 id = 2;
 }
 
 // Additional Audit Info
@@ -832,22 +825,6 @@ message UserData {
   optional string virtualToken = 28;
 }
 
-message GetUsersTypeRequest {
-  optional string userType = 1;
-  optional int32 page = 2; 
-  optional int32 perPage = 3;
-  optional string search = 4;
-}
-
-message GetUsersTypeResponse {
-  int32 status = 1;
-  bool success = 2;
-  optional UserData data = 3;
-  optional string message = 4;
-  int32 totalPages = 5;
-  int32 totalUsers = 6;
-}
-
 message ChangeUserTypeStatusRequest {
   int32 userId = 1;
   int32 initialType = 2;
@@ -876,6 +853,7 @@ message CreateUserRequest {
   optional string trackingToken = 19;
   optional int32 parentId = 20;
   optional float balance = 21;
+  optional bool isTest = 22;
 }
 
 message UpdateUserRequest {
@@ -915,6 +893,9 @@ message User {
   string currency = 8;
   string phone =9;
   string roleId =10;
+  string username = 11;
+  string address = 12;
+  string state = 13;
 }
 
 message RegisterResponse {
@@ -950,14 +931,26 @@ message GetUserDetailsResponse {
   UserData data = 4;
 }
 
-message UpdateUserResponse {
-  bool success = 1;
-  string message = 2;
-}
-
 // Validate
 message ValidateRequest {
   string token = 1;
+}
+
+message ValidateTestRequest {
+  int32 account_id = 1;
+}
+
+message ValidateTestResponse {
+  bool is_test = 1;
+  int32 status = 2;
+  bool success = 3;
+  string message = 4;
+}
+
+message ListTestAccountsRequest {
+  int32 clientId = 1;
+  optional int32 page = 2;
+  optional int32 PerPage = 3;
 }
 
 message ValidateResponse {
@@ -1011,7 +1004,7 @@ message RemovePermissionRequest {
 message RoleRequest {
   string name = 1;
   optional string description = 2;
-  string roleType = 3;
+  string type = 3;
   optional string roleID = 4;
 }
 
@@ -1037,7 +1030,7 @@ message Role {
   int32 id = 1;
   string name = 2;
   string description = 3;
-  string roleType = 4;
+  string type = 4;
 }
 
 message PermissionRequest {
@@ -1094,16 +1087,6 @@ message CommonResponseObj{
   string message = 3;
   optional google.protobuf.Struct data = 4;
   optional string errors = 5;
-}
-
-message DeleteResponse {
-  bool status = 1;
-  string message = 2;
-}
-
-message GetUsersResponse {
-  bool status = 1;
-  string message = 2;
 }
 
 message ClientData {
@@ -1173,6 +1156,7 @@ message OnlinePlayersRequest {
   string source = 5;
   optional int32 page = 6;
   optional int32 limit = 7;
+  optional string type = 8;
 }
 
 message RegistrationReportRequest {
