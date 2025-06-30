@@ -36,25 +36,25 @@ service IdentityService {
   rpc FindAllClients (EmptyRequest) returns (CommonResponseArray) {}
   rpc RemoveClient (RemoveClientRequest) returns (CommonResponseObj) {}
   rpc RemovePermission (RemovePermissionRequest) returns (CommonResponseObj) {}
-  rpc UpdateDetails (User) returns (CommonResponseObj) {}
+  rpc UpdateDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
-  rpc UpdateRetailUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayers (SearchPlayerRequest) returns (SearchPlayerResponse) {}
-  rpc UpdateUserDetails (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc UpdateUserDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
   rpc FetchPlayerFilters (FetchPlayerFilterRequest) returns (PaginationResponse) {} 
   rpc GetPlayerData (GetPlayerDataRequest) returns (GetPlayerDataResponse) {}
-  rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (UpdateUserResponse) {}
+  rpc UpdatePlayerData (UpdatePlayerDataRequest) returns (CommonResponseObj) {}
   rpc UpdatePlayerStatus (FindUserRequest) returns (CommonResponseObj) {}
-  rpc ChangePassword (ChangePasswordRequest) returns (UpdateUserResponse) {}
-  rpc ResetPassword (ResetPasswordRequest) returns (UpdateUserResponse) {}
+  rpc ChangePassword (ChangePasswordRequest) returns (CommonResponseObj) {}
+  rpc ResetPassword (ResetPasswordRequest) returns (CommonResponseObj) {}
   rpc SavePlayerSegment (SaveSegmentRequest) returns (CommonResponseObj) {}
   rpc FetchPlayerSegment (FetchPlayerSegmentRequest) returns (CommonResponseArray) {}
   rpc AddToSegment (AddToSegmentRequest) returns (CommonResponseObj) {}
@@ -901,6 +901,9 @@ message User {
   string currency = 8;
   string phone =9;
   string roleId =10;
+  string username = 11;
+  string address = 12;
+  string state = 13;
 }
 
 message RegisterResponse {
@@ -934,11 +937,6 @@ message GetUserDetailsResponse {
   bool success = 2;
   string message = 3;
   UserData data = 4;
-}
-
-message UpdateUserResponse {
-  bool success = 1;
-  string message = 2;
 }
 
 // Validate
