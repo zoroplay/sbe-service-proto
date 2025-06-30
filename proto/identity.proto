@@ -133,6 +133,13 @@ service IdentityService {
 }
 
 
+message BasicUser {
+  int32 id = 1;
+  string username = 2;
+  string role = 3;
+  int32 client_id = 4;
+}
+
 message ClientIdRequest {
   int32 clientId = 1;
 }
