@@ -510,6 +510,7 @@ message CreatePawapayRequest {
  optional string operator = 6;
   optional string depositId = 7;
   optional string username = 8;
+  optional string type = 9;
 }
 message FetchUsersWithdrawalRequest {
   int32 userId = 1;
