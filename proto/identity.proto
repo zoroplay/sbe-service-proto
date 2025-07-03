@@ -40,6 +40,7 @@ service IdentityService {
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
+  rpc CreateAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
@@ -854,6 +855,19 @@ message CreateUserRequest {
   optional int32 parentId = 20;
   optional float balance = 21;
   optional bool isTest = 22;
+}
+
+message CreateAgentRequest {
+  int32 clientId = 1;
+  string username = 2;
+  string password = 3;
+  optional string email = 4;
+  optional int32 roleId = 5;
+  optional string firstName = 6;
+  optional string lastName = 7;
+  optional string phoneNumber = 8;
+  optional string city = 9;
+  optional string address = 10;
 }
 
 message UpdateUserRequest {
