@@ -135,7 +135,7 @@ service IdentityService {
 }
 
 
-message BasicUser {--
+message BasicUser {
   int32 id = 1;
   string username = 2;
   string role = 3;
