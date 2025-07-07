@@ -1018,9 +1018,9 @@ message RemovePermissionRequest {
 }
 
 message RoleRequest {
-  string name = 1;
+  optional string name = 1;
   optional string description = 2;
-  string type = 3;
+  optional string type = 3;
   optional string roleID = 4;
 }
 
