@@ -146,6 +146,10 @@ service WalletService {
 
   rpc PawapayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
 
+  rpc TigoPayout (TigoPayoutRequest) returns (TigoPayoutResponse) {}
+
+
+
 
   /// DASHBOARD 
 
@@ -158,6 +162,25 @@ service WalletService {
   rpc OverallGamesSport (OverallGamesRequest) returns (OverallGamesResponse) {}
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
 }
+
+
+
+message TigoPayoutRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 amount = 4;
+  string username = 5;
+  string referenceId = 6;
+ 
+}
+
+
+message TigoPayoutResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+}
+
 
 
 message MonthlyData {
