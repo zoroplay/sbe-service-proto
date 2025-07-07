@@ -155,6 +155,7 @@ message CreateBonusRequest {
   optional string country = 27;
   optional string tournament = 28;
   optional string fixture = 29;
+  optional int32 percentageValue = 30;
 }
 
 message CreateBonusResponse {

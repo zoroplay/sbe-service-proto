@@ -40,7 +40,6 @@ service IdentityService {
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
-  rpc CreateAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
@@ -79,8 +78,10 @@ service IdentityService {
   rpc FetchPlayerLosersByBetCount (FetchPlayerFilterRequest) returns (PaginationResponse) {}
 
   // retail services
+  rpc CreateAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc ApproveAgentRegistration (FindOneRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
@@ -868,6 +869,7 @@ message CreateAgentRequest {
   optional string phoneNumber = 8;
   optional string city = 9;
   optional string address = 10;
+  optional string isApproved = 11;
 }
 
 message UpdateUserRequest {
