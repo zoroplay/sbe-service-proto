@@ -315,7 +315,9 @@ message ProvidusResponse {
 message FidelityWebhookRequest {
   string transactionReference = 1;
   int32  clientId = 2;
-  google.protobuf.Struct rawBody = 3;
+  bool   success = 3;
+  string transaction_status = 4;
+  google.protobuf.Struct rawBody = 5;
 }
 
 
