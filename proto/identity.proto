@@ -79,6 +79,7 @@ service IdentityService {
 
   // retail services
   rpc CreateAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
+  rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ApproveAgentRegistration (FindOneRequest) returns (CommonResponseObj) {}
