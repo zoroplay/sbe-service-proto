@@ -152,7 +152,7 @@ message FindOneRequest {
   int32 id = 2;
 }
 
-mesage ApprovalRequest {
+message ApprovalRequest {
   int32 agent_id = 1;
   int32 user_id = 2;
 }
