@@ -41,7 +41,7 @@ service IdentityService {
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
-  rpc DeleteUser (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc DeleteUser (SingleItemRequest) returns (CommonResponseObj) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
