@@ -41,6 +41,7 @@ service IdentityService {
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
+  rpc DeleteUser (SingleItemRequest) returns (CommonResponseObj) {}
   rpc ChangeUserTypeStatus (ChangeUserTypeStatusRequest) returns (CommonResponseObj) {}
   rpc GetClient (GetClientRequest) returns (GetClientResponse) {}
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
@@ -82,7 +83,7 @@ service IdentityService {
   rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
-  rpc ApproveAgentRegistration (ApprovalRequest) returns (CommonResponseObj) {}
+  rpc ApproveAgentRegistration (FindOneRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
