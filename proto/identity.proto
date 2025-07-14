@@ -84,7 +84,7 @@ service IdentityService {
   rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
-  rpc ApproveAgentRegistration (FindOneRequest) returns (CommonResponseObj) {}
+  rpc ApproveAgentRegistration (ApprovalRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
@@ -120,18 +120,21 @@ service IdentityService {
 
   rpc findOneBanner (FindOneRequest) returns (CommonResponseObj) {}
   rpc FindAllBanners (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc userFetchBanner (ClientIdRequest) returns (CommonResponseObj) {}
   rpc updateBanner (CreateBannerRequest) returns (CommonResponseObj) {}
   rpc deleteBanner (FindOneRequest) returns (CommonResponseObj) {}
   rpc createBanner (CreateBannerRequest) returns (CommonResponseObj) {}
 
   rpc findOnePage (FindOneRequest) returns (CommonResponseObj) {}
   rpc FindAllPages (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc userFetchPage (ClientIdRequest) returns (CommonResponseObj) {}
   rpc updatePage (CreatePageRequest) returns (CommonResponseObj) {}
   rpc deletePage (FindOneRequest) returns (CommonResponseObj) {}
   rpc createPage (CreatePageRequest) returns (CommonResponseObj) {}
 
   rpc findOneMenu (FindOneRequest) returns (CommonResponseObj) {}
   rpc FindAllMenu (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc userFetchMenu (ClientIdRequest) returns (CommonResponseObj) {}
   rpc updateMenu (CreateMenuRequest) returns (CommonResponseObj) {}
   rpc deleteMenu (FindOneRequest) returns (CommonResponseObj) {}
   rpc createMenu (CreateMenuRequest) returns (CommonResponseObj) {}
@@ -147,11 +150,17 @@ message BasicUser {
 
 message ClientIdRequest {
   int32 clientId = 1;
+  optional string slug = 2;
 }
 
 message FindOneRequest {
   int32 clientId = 1;
   int32 id = 2;
+}
+
+message ApprovalRequest {
+  int32 agent_id = 1;
+  int32 user_id = 2;
 }
 
 // Additional Audit Info
@@ -168,14 +177,15 @@ message CreateBannerRequest {
   int32 clientId = 3;
   string target = 4;
   string position = 5;
-  string link = 6;
-  string content = 7;
-  string image = 8;
-  optional string sport = 9;
-  optional string category = 10;
-  optional string tournament = 11;
-  optional string event = 12;
-  optional int32 id = 13;
+  optional string slug = 6;
+  string link = 7;
+  string content = 8;
+  string image = 9;
+  optional string sport = 10;
+  optional string category = 11;
+  optional string tournament = 12;
+  optional string event = 13;
+  optional int32 id = 14;
 }
 
 
@@ -185,9 +195,10 @@ message CreatePageRequest {
   int32 clientId = 2;
   optional string url = 3;
   string content = 4;
-  string createdBy = 5;
-  string target = 6;
-  optional int32 id = 7;
+  optional string slug = 5;
+  string createdBy = 6;
+  string target = 7;
+  optional int32 id = 8;
 }
 
 // Menu
@@ -196,11 +207,12 @@ message CreateMenuRequest {
   int32 clientId = 2;
   string link = 3;
   bool newWindow = 4;
-  bool status = 5;
-  string target = 6;
-  optional int32 id = 7;
-  optional string order = 8;
-  optional string parentId = 9;
+  optional string slug = 5;
+  bool status = 6;
+  string target = 7;
+  optional int32 id = 8;
+  optional string order = 9;
+  optional string parentId = 10;
 }
 
 message AuditLog {
