@@ -146,6 +146,7 @@ message BasicUser {
 
 message ClientIdRequest {
   int32 clientId = 1;
+  optional string slug = 2;
 }
 
 message FindOneRequest {
