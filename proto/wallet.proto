@@ -1223,15 +1223,19 @@ message ListWithdrawalRequests {
 }
 
 message ListWithdrawalRequestResponse {
-  bool success = 1;
-  int32 status = 2;
-  string message = 3;
-  repeated WithdrawalRequest data = 4;
-  float totalAmount = 5;
-  float paginatedAmountTotal = 6;
-  int32 total = 7; 
-  int32 page = 8;  
-  int32 limit = 9;
+  string message = 1;
+  bool success = 2;
+  int32 statusCode = 3;
+  int32 count = 4;
+  int32 currentPage = 5;
+  int32 nextPage = 6;
+  int32 prevPage = 7;
+  int32 lastPage = 8;
+  int32 total = 9; 
+  int32 page = 10;
+  float totalAmount = 11;
+  repeated WithdrawalRequest data = 12;
+  
 }
 
 message WithdrawalRequest {
