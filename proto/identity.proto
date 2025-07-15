@@ -147,9 +147,10 @@ service IdentityService {
 message KycRequest {
   int32 clientId = 1;
   int32 userId = 2;
- string documentType = 3;
+  string documentType = 3;
   string documentNumber = 4;
   string userName = 5;
+  optional string lastName = 6;
   
 }
 message BasicUser {
