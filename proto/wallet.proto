@@ -1218,6 +1218,7 @@ message ListWithdrawalRequests {
   string  bankName = 7;
   int32 page = 8;
   int32 limit = 9;
+  string paymentMethod = 10;
 
 }
 
@@ -1227,9 +1228,10 @@ message ListWithdrawalRequestResponse {
   string message = 3;
   repeated WithdrawalRequest data = 4;
   float totalAmount = 5;
-  int32 total = 6; 
-  int32 page = 7;  
-  int32 limit = 8;
+  float paginatedAmountTotal = 6;
+  int32 total = 7; 
+  int32 page = 8;  
+  int32 limit = 9;
 }
 
 message WithdrawalRequest {
