@@ -149,6 +149,7 @@ message KycRequest {
   int32 userId = 2;
  string documentType = 3;
   string documentNumber = 4;
+  string userName = 5;
   
 }
 message BasicUser {
