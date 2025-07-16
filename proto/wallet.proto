@@ -165,6 +165,7 @@ message PawapayPayoutRequest {
   int32 clientId = 1;
   string username = 2;
   google.protobuf.Struct rawBody = 3;
+  string status = 4;
 
 }
 
