@@ -166,6 +166,7 @@ message PawapayPayoutRequest {
   string username = 2;
   google.protobuf.Struct rawBody = 3;
   string status = 4;
+  float amount = 5;
 
 }
 
