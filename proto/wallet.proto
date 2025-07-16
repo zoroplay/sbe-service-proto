@@ -148,11 +148,9 @@ service WalletService {
 
   rpc TigoPayout (TigoPayoutRequest) returns (TigoPayoutResponse) {}
 
-
-
+  rpc PawapayPayoutWebhook (PawapayPayoutRequest) returns (PawapayResponse) {}
 
   /// DASHBOARD 
-
 
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
@@ -163,7 +161,12 @@ service WalletService {
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
 }
 
+message PawapayPayoutRequest {
+  int32 clientId = 1;
+  string username = 2;
+  google.protobuf.Struct rawBody = 3;
 
+}
 
 message TigoPayoutRequest {
   int32 userId = 1;
