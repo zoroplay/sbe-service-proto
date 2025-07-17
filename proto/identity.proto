@@ -1004,6 +1004,7 @@ message ValidateResponse {
   message User {
     int32 id = 1;
     string username = 2;
+    optional string role = 3;
   }
   optional User user = 3;
 }
