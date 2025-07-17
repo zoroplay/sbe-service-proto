@@ -142,6 +142,8 @@ service IdentityService {
 
   //Kyc
   rpc CreateKyc (KycRequest) returns (CommonResponseObj) {} 
+  rpc CheckKyc  (FindOneRequest) returns (CommonResponseObj) {}
+  rpc ListAllKyc (ClientIdRequest) returns (CommonResponseArray) {}
 } 
 
 message KycRequest {
