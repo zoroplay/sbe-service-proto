@@ -72,7 +72,7 @@ service WalletService {
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
   
-
+  rpc ClientWalletsBalance (ClientRequest) returns (CommonResponseArray) {}
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
