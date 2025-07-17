@@ -94,7 +94,7 @@ service WalletService {
   rpc MonnifyWebhook (MonnifyWebhookRequest) returns (WebhookResponse) {}
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
-  rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
+  rpc ListWithdrawals (ListWithdrawalRequests) returns (CommonResponseObj) {}
   rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
@@ -1228,22 +1228,6 @@ message ListWithdrawalRequests {
   int32 limit = 9;
   string paymentMethod = 10;
 
-}
-
-message ListWithdrawalRequestResponse {
-  string message = 1;
-  bool success = 2;
-  int32 statusCode = 3;
-  int32 count = 4;
-  int32 currentPage = 5;
-  int32 nextPage = 6;
-  int32 prevPage = 7;
-  int32 lastPage = 8;
-  int32 total = 9; 
-  int32 page = 10;
-  float totalAmount = 11;
-  repeated WithdrawalRequest data = 12;
-  
 }
 
 message WithdrawalRequest {
