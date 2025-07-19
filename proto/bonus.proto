@@ -73,6 +73,17 @@ message CommonResponseArray{
   repeated google.protobuf.Struct data = 4;
 }
 
+message SaveAccaBonusRequest {
+  int32 clientId = 1;
+  string section = 2;
+  message BonusItem {
+    string ticketLength = 1;
+    string bonus = 2;
+  }
+  
+  repeated BonusItem data = 3;
+}
+
 message CheckDepositBonusRequest {
   int32 clientId = 1;
   int32 userId = 2;
