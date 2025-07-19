@@ -1296,6 +1296,7 @@ message CommonResponseArray {
   string message = 2;
   int32 status = 3;
   repeated google.protobuf.Struct data = 4;
+  optional float total = 5;
 }
 
 message PlayerWalletData {
