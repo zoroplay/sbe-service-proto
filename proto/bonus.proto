@@ -25,9 +25,9 @@ service BonusService {
 
   rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CommonResponseObj){}
 
-  // rpc CreateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
+  rpc SaveAccaBonus (SaveAccaBonusRequest) returns (CommonResponseObj){}
 
-  // rpc UpdateShareBetBonus (CreateShareBetBonusRequest) returns (CreateBonusResponse){}
+  rpc GetAccaBonuses (GetAllBonusRequest) returns (CommonResponseArray){}
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
@@ -64,6 +64,13 @@ message CommonResponseObj{
   optional bool success = 2;
   string message = 3;
   optional google.protobuf.Struct data = 4;
+}
+
+message CommonResponseArray{
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated google.protobuf.Struct data = 4;
 }
 
 message CheckDepositBonusRequest {
