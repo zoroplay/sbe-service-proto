@@ -80,8 +80,8 @@ message SaveAccaBonusRequest {
     string ticketLength = 1;
     string bonus = 2;
   }
-  
-  repeated BonusItem data = 3;
+
+  repeated BonusItem items = 3;
 }
 
 message CheckDepositBonusRequest {
