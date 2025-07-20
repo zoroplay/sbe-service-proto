@@ -65,8 +65,8 @@ service IdentityService {
   rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponseObj) {}
   rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponseArray) {}
   rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponseObj) {}
-  rpc GetCountries (EmptyRequest) returns (CommonResponseArray) {}
-  rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponseArray) {}
+  rpc GetCountries (EmptyRequest) returns (GetCountryResponse) {}
+  rpc GetStatesByCountry (GetStatesRequest) returns (StateResponse) {}
   rpc ValidateXpressSession (SessionRequest) returns (CommonResponseObj) {}
   rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
