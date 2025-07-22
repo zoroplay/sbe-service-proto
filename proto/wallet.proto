@@ -146,6 +146,9 @@ service WalletService {
 
   rpc PawapayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
 
+  rpc SmilePayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
+
+
   rpc TigoPayout (TigoPayoutRequest) returns (TigoPayoutResponse) {}
 
   rpc PawapayPayoutWebhook (PawapayPayoutRequest) returns (PawapayResponse) {}
