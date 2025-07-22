@@ -162,6 +162,15 @@ service WalletService {
 
 
   rpc ClientWalletsBalance(ClientRequest) returns (CommonResponseArray) {}
+  rpc FindTransactionsByClientId(TransactionRequest) returns (CommonResponseArray) {}
+}
+
+
+message TransactionRequest{
+  int32 clientId = 1;
+ repeated string productKeys = 2;
+  int32 page = 3;
+
 }
 
 message PawapayPayoutRequest {
