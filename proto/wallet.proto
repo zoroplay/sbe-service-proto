@@ -166,8 +166,27 @@ service WalletService {
 
   rpc ClientWalletsBalance(ClientRequest) returns (CommonResponseArray) {}
   rpc FindTransactionsByClientId(TransactionRequest) returns (CommonResponseArray) {}
+
+
+  rpc PlayerPendingWithdrawals(PlayerRequest) returns (CommonResponseArray) {}
+  rpc PlayerCancelWithdrawal(PlayerCancelWithdrawalRequest) returns (CommonResponseObj) {}
+
 }
 
+
+message PlayerCancelWithdrawalRequest{
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 withdrawalId = 3;
+  string comment = 4;
+}
+
+
+message PlayerRequest{
+  int32 userId = 1;
+  int32 clientId = 2;
+
+}
 
 message TransactionRequest{
   int32 clientId = 1;
