@@ -72,7 +72,7 @@ service WalletService {
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
   
-
+  
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -94,7 +94,7 @@ service WalletService {
   rpc MonnifyWebhook (MonnifyWebhookRequest) returns (WebhookResponse) {}
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
-  rpc ListWithdrawals (ListWithdrawalRequests) returns (ListWithdrawalRequestResponse) {}
+  rpc ListWithdrawals (ListWithdrawalRequests) returns (CommonResponseObj) {}
   rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
@@ -146,13 +146,14 @@ service WalletService {
 
   rpc PawapayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
 
+  rpc SmilePayPayout (CreatePawapayRequest) returns (WithdrawResponse) {}
+
+
   rpc TigoPayout (TigoPayoutRequest) returns (TigoPayoutResponse) {}
 
-
-
+  rpc PawapayPayoutWebhook (PawapayPayoutRequest) returns (PawapayResponse) {}
 
   /// DASHBOARD 
-
 
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
@@ -161,9 +162,47 @@ service WalletService {
   rpc OverallGamesRetail (OverallGamesRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesSport (OverallGamesRequest) returns (OverallGamesResponse) {}
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
+
+
+  rpc ClientWalletsBalance(ClientRequest) returns (CommonResponseArray) {}
+  rpc FindTransactionsByClientId(TransactionRequest) returns (CommonResponseArray) {}
+
+
+  rpc PlayerPendingWithdrawals(PlayerRequest) returns (CommonResponseArray) {}
+  rpc PlayerCancelWithdrawal(PlayerCancelWithdrawalRequest) returns (CommonResponseObj) {}
+
 }
 
 
+message PlayerCancelWithdrawalRequest{
+  int32 userId = 1;
+  int32 clientId = 2;
+  int32 withdrawalId = 3;
+  string comment = 4;
+}
+
+
+message PlayerRequest{
+  int32 userId = 1;
+  int32 clientId = 2;
+
+}
+
+message TransactionRequest{
+  int32 clientId = 1;
+ repeated string productKeys = 2;
+  int32 page = 3;
+
+}
+
+message PawapayPayoutRequest {
+  int32 clientId = 1;
+  string username = 2;
+  google.protobuf.Struct rawBody = 3;
+  string status = 4;
+  float amount = 5;
+
+}
 
 message TigoPayoutRequest {
   int32 userId = 1;
@@ -1218,18 +1257,8 @@ message ListWithdrawalRequests {
   string  bankName = 7;
   int32 page = 8;
   int32 limit = 9;
+  string paymentMethod = 10;
 
-}
-
-message ListWithdrawalRequestResponse {
-  bool success = 1;
-  int32 status = 2;
-  string message = 3;
-  repeated WithdrawalRequest data = 4;
-  float totalAmount = 5;
-  int32 total = 6; 
-  int32 page = 7;  
-  int32 limit = 8;
 }
 
 message WithdrawalRequest {
@@ -1298,6 +1327,7 @@ message CommonResponseArray {
   string message = 2;
   int32 status = 3;
   repeated google.protobuf.Struct data = 4;
+  optional float total = 5;
 }
 
 message PlayerWalletData {

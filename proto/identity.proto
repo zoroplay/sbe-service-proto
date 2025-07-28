@@ -27,6 +27,7 @@ service IdentityService {
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
   rpc AssignRolePermission ( AssignRolePermissionRequest ) returns (CommonResponseObj) {}
+  rpc GetAuthPermission(SingleItemRequest) returns (CommonResponseObj) {}
   rpc FindUser (FindUserRequest) returns (CommonResponseObj) {}
   rpc SaveRole (RoleRequest) returns (SaveRoleResponse) {}
   rpc GetRoles (EmptyRequest) returns (CommonResponseArray) {}
@@ -64,8 +65,8 @@ service IdentityService {
   rpc RemovePlayerFromSegment (DeleteItemRequest) returns (CommonResponseObj) {}
   rpc GetSegmentPlayers (GetSegmentPlayerRequest) returns (CommonResponseArray) {}
   rpc GrantBonusToSegment (GrantBonusRequest) returns (CommonResponseObj) {}
-  rpc GetCountries (EmptyRequest) returns (CommonResponseArray) {}
-  rpc GetStatesByCoutnry (GetStatesRequest) returns (CommonResponseArray) {}
+  rpc GetCountries (EmptyRequest) returns (GetCountryResponse) {}
+  rpc GetStatesByCountry (GetStatesRequest) returns (StateResponse) {}
   rpc ValidateXpressSession (SessionRequest) returns (CommonResponseObj) {}
   rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
@@ -137,9 +138,23 @@ service IdentityService {
   rpc updateMenu (CreateMenuRequest) returns (CommonResponseObj) {}
   rpc deleteMenu (FindOneRequest) returns (CommonResponseObj) {}
   rpc createMenu (CreateMenuRequest) returns (CommonResponseObj) {}
+
+
+  //Kyc
+  rpc CreateKyc (KycRequest) returns (CommonResponseObj) {} 
+  rpc CheckKyc  (FindOneRequest) returns (CommonResponseObj) {}
+  rpc ListAllKyc (ClientIdRequest) returns (CommonResponseArray) {}
+} 
+
+message KycRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string documentType = 3;
+  string documentNumber = 4;
+  string userName = 5;
+  optional string lastName = 6;
+  
 }
-
-
 message BasicUser {
   int32 id = 1;
   string username = 2;
@@ -990,6 +1005,7 @@ message ValidateResponse {
   message User {
     int32 id = 1;
     string username = 2;
+    optional string role = 3;
   }
   optional User user = 3;
 }
