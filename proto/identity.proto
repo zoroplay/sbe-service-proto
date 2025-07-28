@@ -244,7 +244,7 @@ message AuditLog {
   string ipAddress = 12;
   string userAgent = 13;
   string timestamp = 14;
-  string target = 15
+  string target = 15;
 }
 
 // Request message for creating an audit log
