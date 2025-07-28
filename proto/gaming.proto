@@ -50,7 +50,6 @@ service GamingService {
     rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
     rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
     rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
-    rpc FetchPromotions (GetPromotions) returns (Promotions) {}
 
 
     rpc HandleCasinoBonus (CreateBonusRequest) returns (CommonResponse){}
