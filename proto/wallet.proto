@@ -171,7 +171,23 @@ service WalletService {
   rpc PlayerPendingWithdrawals(PlayerRequest) returns (CommonResponseArray) {}
   rpc PlayerCancelWithdrawal(PlayerCancelWithdrawalRequest) returns (CommonResponseObj) {}
 
+
+  rpc ShopUserWithdrawals(ShopUserRequest) returns (CommonResponseArray) {}
+   rpc ShopUserDeposits(ShopUserRequest) returns (CommonResponseArray) {}
+   rpc ShopUserProfit (ShopUserRequest) returns (CommonResponseObj) {}
+
 }
+
+
+message ShopUserRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string from = 3;    
+  string to = 4;
+  optional int32 page = 5;
+  
+}
+
 
 
 message PlayerCancelWithdrawalRequest{
