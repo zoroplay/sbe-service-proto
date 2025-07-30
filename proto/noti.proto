@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
+
 package notification;
 
 service NotificationService {
@@ -12,7 +14,56 @@ service NotificationService {
   rpc SendOtp (SendOtpRequest) returns (SendSmsResponse);
   rpc verifyOtp (VerifyOtpRequest) returns (SendSmsResponse);
   rpc GetDeliveryReport (DeliveryReportRequest) returns (DeliveryReportResponse);
+
+  rpc findOneMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc FindAllMessages (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc updateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+  rpc deleteMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc createMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+
+
+  rpc sendMessage (SendMessageRequest) returns (CommonResponseObj) {}
+
+  rpc findUserMessages (GetUserNotificationsRequest) returns (CommonResponseObj) {}
+  rpc updateUserMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc deleteUserMessage (FindOneMessage) returns (CommonResponseObj) {}
 }
+
+
+// Menu
+message CreateMessageRequest {
+  string title = 1;
+  int32 clientId = 2;
+  string content = 3;
+  bool status = 4;
+  optional int32 id = 6;
+  optional string createdAt = 7;
+  optional string updatedAt = 8;
+}
+
+message FindOneMessage {
+  int32 clientId = 1;
+  int32 id = 2;
+}
+
+message ClientIdRequest {
+  int32 clientId = 1;
+}
+
+message CommonResponseObj{
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+  optional string errors = 5;
+}
+
+message SendMessageRequest {
+  int32 clientId = 1;
+  int32 messageId = 2;
+  string userId = 3;
+}
+
 
 message HandleNotificationsRequest {
   int32 userId = 1;
