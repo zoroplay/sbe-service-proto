@@ -157,10 +157,10 @@ service WalletService {
 
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
-  rpc OverallGames (OverallGamesRequest) returns (OverallGamesResponse) {}
-  rpc OverallGamesOnline (OverallGamesRequest) returns (OverallGamesResponse) {}
-  rpc OverallGamesRetail (OverallGamesRequest) returns (OverallGamesResponse) {}
-  rpc OverallGamesSport (OverallGamesRequest) returns (OverallGamesResponse) {}
+  rpc OverallGames (DashboardRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesOnline (DashboardRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesRetail (DashboardRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesSport (DashboardRequest) returns (OverallGamesResponse) {}
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
 
 
