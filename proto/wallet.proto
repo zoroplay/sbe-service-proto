@@ -95,7 +95,7 @@ service WalletService {
   rpc OpayDepositWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc OpayLookUpWebhook (OpayWebhookRequest) returns (OpayWebhookResponse) {}
   rpc ListWithdrawals (ListWithdrawalRequests) returns (CommonResponseObj) {}
-  rpc ListDeposits (ListDepositRequests) returns (PaginationResponse) {}
+  rpc ListDeposits (ListDepositRequests) returns (CommonResponseObj) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
