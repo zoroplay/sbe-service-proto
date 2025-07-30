@@ -1372,7 +1372,7 @@ message ListDepositRequests {
   string startDate = 2;
   string endDate = 3;
   string paymentMethod = 4;
-  int32 status = 5;
+  string status = 5;
   string username = 6;
   string bank = 7;
   string transactionId = 8;
