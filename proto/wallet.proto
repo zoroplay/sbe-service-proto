@@ -263,7 +263,7 @@ message StatisticsResponse {
 }
 
 
-message OverallGamesRequest {
+message DashboardRequest {
   int32 client_id = 1;
   string rangeZ = 2;
   string from = 3;
