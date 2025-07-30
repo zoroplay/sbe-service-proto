@@ -308,6 +308,8 @@ message PlayerBalanceResponse {
    double totalOnlinePlayerBonus = 5;
    double totalRetailBalance = 6;
    double totalRetailTrustBalance = 7;
+   string start_date = 8;
+   string end_date = 9;
 
 }
 
@@ -1370,7 +1372,7 @@ message ListDepositRequests {
   string startDate = 2;
   string endDate = 3;
   string paymentMethod = 4;
-  string status = 5;
+  int32 status = 5;
   string username = 6;
   string bank = 7;
   string transactionId = 8;
