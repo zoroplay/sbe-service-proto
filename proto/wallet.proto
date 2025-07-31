@@ -1226,6 +1226,7 @@ message WithdrawResponse {
 message Withdraw {
   double balance = 1;
   string code = 2;
+  
 }
 
 message GetTransactionRequest {
@@ -1325,6 +1326,7 @@ message TransactionData {
   string channel = 9;
   int32 status = 10;
   string wallet = 11;
+  string created = 12;
 }
 
 message UpdateWithdrawalRequest {
