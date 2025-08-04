@@ -31,6 +31,8 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
+  rpc CheckCashBackBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
 
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
