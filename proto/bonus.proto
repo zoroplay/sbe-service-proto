@@ -174,6 +174,10 @@ message CreateBonusRequest {
   optional string tournament = 28;
   optional string fixture = 29;
   optional int32 percentageValue = 30;
+  optional int32 minimumMatches = 31;
+  optional int32 maximumLostGames = 32;
+  optional float minimumOddsExcludingLosing = 33;
+  optional int32 refundTimesOnStake = 34;
 }
 
 message CreateBonusResponse {
