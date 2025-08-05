@@ -445,6 +445,39 @@ message SettleBetRequest {
   string betId = 2;
   int32 status = 3;
   optional float amount = 4;
+  repeated Selection selections = 5;
+}
+
+message Selection {
+  string eventName = 1;
+  string eventType = 2;
+  int32 eventId = 3;
+  int32 producerId = 4;
+  int32 marketId = 5;
+  string marketName = 6;
+  string specifier = 7;
+  string outcomeId = 8;
+  string outcomeName = 9;
+  float odds = 10;
+  int32 sportId = 11;
+  string status = 12;
+  string statusDescription = 13;
+  int32 won = 14;
+  string type = 15;
+  string sport = 16;
+  string tournament = 17;
+  string category = 18;
+  string matchId = 19;
+  string eventDate = 20;
+  string selectionId = 21;
+  string eventPrefix = 22;
+  string score = 23;
+  string htScore = 24;
+  int32 id = 25;
+  float currentOdds = 26;
+  string eventTime = 27;
+  string matchStatus = 28;
+  int32 isLive = 29;
 }
 
 message SearchBonusResponse {
