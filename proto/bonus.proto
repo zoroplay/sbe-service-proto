@@ -176,10 +176,20 @@ message CreateBonusRequest {
   optional string tournament = 28;
   optional string fixture = 29;
   optional int32 percentageValue = 30;
-  optional int32 minimumMatches = 31;
-  optional int32 maximumLostGames = 32;
-  optional float minimumOddsExcludingLosing = 33;
-  optional int32 refundTimesOnStake = 34;
+  repeated CashbackConfiguration cashbackConfigurationDto =31;
+  
+  // optional int32 minimumMatches = 31;
+  // optional int32 maximumLostGames = 32;
+  // optional float minimumOddsExcludingLosing = 33;
+  // optional int32 refundTimesOnStake = 34;
+}
+
+message CashbackConfiguration {
+    int32 minimumMatches = 1;
+    int32 maximumLostGames = 2;
+    float minimumOddsExcludingLosing = 3;
+    int32 refundTimesOnStake = 4;
+    int32 tierOrder = 5;
 }
 
 message CreateBonusResponse {
