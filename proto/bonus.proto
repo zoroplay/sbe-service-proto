@@ -31,6 +31,8 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
+  rpc CheckCashBackBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
 
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
@@ -174,6 +176,20 @@ message CreateBonusRequest {
   optional string tournament = 28;
   optional string fixture = 29;
   optional int32 percentageValue = 30;
+  repeated CashbackConfiguration cashbackConfigurationDto =31;
+  
+  // optional int32 minimumMatches = 31;
+  // optional int32 maximumLostGames = 32;
+  // optional float minimumOddsExcludingLosing = 33;
+  // optional int32 refundTimesOnStake = 34;
+}
+
+message CashbackConfiguration {
+    int32 minimumMatches = 1;
+    int32 maximumLostGames = 2;
+    float minimumOddsExcludingLosing = 3;
+    int32 refundTimesOnStake = 4;
+    int32 tierOrder = 5;
 }
 
 message CreateBonusResponse {
@@ -429,6 +445,39 @@ message SettleBetRequest {
   string betId = 2;
   int32 status = 3;
   optional float amount = 4;
+  repeated Selection selections = 5;
+}
+
+message Selection {
+  string eventName = 1;
+  string eventType = 2;
+  int32 eventId = 3;
+  int32 producerId = 4;
+  int32 marketId = 5;
+  string marketName = 6;
+  string specifier = 7;
+  string outcomeId = 8;
+  string outcomeName = 9;
+  float odds = 10;
+  int32 sportId = 11;
+  string status = 12;
+  string statusDescription = 13;
+  int32 won = 14;
+  string type = 15;
+  string sport = 16;
+  string tournament = 17;
+  string category = 18;
+  string matchId = 19;
+  string eventDate = 20;
+  string selectionId = 21;
+  string eventPrefix = 22;
+  string score = 23;
+  string htScore = 24;
+  int32 id = 25;
+  float currentOdds = 26;
+  string eventTime = 27;
+  string matchStatus = 28;
+  int32 isLive = 29;
 }
 
 message SearchBonusResponse {
