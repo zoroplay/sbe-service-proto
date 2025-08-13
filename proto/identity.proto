@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "google/protobuf/empty.proto";
 
 package identity;
 
@@ -144,7 +145,15 @@ service IdentityService {
   rpc CreateKyc (KycRequest) returns (CommonResponseObj) {} 
   rpc CheckKyc  (FindOneRequest) returns (CommonResponseObj) {}
   rpc ListAllKyc (ClientIdRequest) returns (CommonResponseArray) {}
+  rpc ListBanks (ListBanksRequest) returns (CommonResponseArray) {}
+
 } 
+
+message ListBanksRequest {
+  int32 page = 1;
+  int32 limit = 2;
+}
+
 
 message KycRequest {
   int32 clientId = 1;
@@ -153,7 +162,7 @@ message KycRequest {
   string documentNumber = 4;
   string userName = 5;
   optional string lastName = 6;
-  optional string bankName = 7;
+  optional string bankCode = 7;
   
 }
 message BasicUser {
