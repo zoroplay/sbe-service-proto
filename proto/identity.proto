@@ -153,6 +153,7 @@ message KycRequest {
   string documentNumber = 4;
   string userName = 5;
   optional string lastName = 6;
+  optional string bankName = 7;
   
 }
 message BasicUser {
