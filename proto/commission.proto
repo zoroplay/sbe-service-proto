@@ -7,6 +7,7 @@ package commission;
 
 service CommissionService {
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
+  rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc createCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
   rpc updateCommissionProfile(CommissionProfile) returns (CommonResponseObj) {}
@@ -103,7 +104,6 @@ message CommissionProfile {
 
 
 
-
 message CommonResponseArray {
   optional int32 status = 1;
   optional bool success = 2;
@@ -118,4 +118,14 @@ message CommonResponseObj{
   string message = 3;
   optional google.protobuf.Struct data = 4;
   optional string errors = 5;
+}
+
+
+message GetAgentUsersRequest {
+  int32 clientId = 1;
+  optional int32 userId = 2;
+  optional string username = 3;
+  optional int32 roleId = 4;
+  optional int32 state = 5;
+  optional int32 page = 6;
 }
