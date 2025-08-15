@@ -22,6 +22,15 @@ service CommissionService {
    
 }
 
+message GetCommissionsRequestData {
+  int32 clientId = 1;
+  string provider = 2;
+  string from = 3;
+  string to = 4;
+  int32  page = 5;
+}
+
+
 
 message GetCommissionsRequest {
   int32 clientId = 1;
