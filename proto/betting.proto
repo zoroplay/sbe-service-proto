@@ -9,7 +9,7 @@ service BettingService {
   rpc UpdateSetting (Settings) returns (SettingsResponse) {}
   rpc GetSettingsByID (SettingsById) returns (SettingsResponse) {}
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
-  rpc CancelBet (BetID) returns (StatusResponse) {}
+  rpc CancelBet (BookingCode) returns (CommonResponseObj) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
@@ -170,6 +170,7 @@ message SettleCasinoBetRequest {
   double winnings = 2;
   optional string provider = 3;
 }
+
 message SettleVirtualBetRequest {
   int32 userId = 1;
   int32 clientId = 2;
