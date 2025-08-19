@@ -176,14 +176,22 @@ service WalletService {
   rpc ShopUserDeposits(ShopUserRequest) returns (CommonResponseArray) {}
   rpc ShopUserProfit (ShopUserRequest) returns (CommonResponseObj) {}
 
+  rpc CreditCommissionWallet (CommissionRequest) returns (CommonResponseObj) {}
+
 }
 
+message CommissionRequest {
+   int32 userId = 1;
+   int32 clientId = 2;
+   string amount = 3;
+   string description = 4;
+}
 
 message ShopUserRequest {
   int32 userId = 1;
   int32 clientId = 2;
   optional string from = 3;    
- optional string to = 4;
+  optional string to = 4;
   optional int32 page = 5;
   optional int32 username = 6;
   optional int32 status = 7;
