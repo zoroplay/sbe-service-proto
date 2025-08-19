@@ -177,7 +177,7 @@ service WalletService {
   rpc ShopUserProfit (ShopUserRequest) returns (CommonResponseObj) {}
 
   rpc CreditCommissionWallet (CommissionRequest) returns (CommonResponseObj) {}
-
+  
 }
 
 message CommissionRequest {
@@ -185,6 +185,7 @@ message CommissionRequest {
    int32 clientId = 2;
    string amount = 3;
    string description = 4;
+   string username = 5;
 }
 
 message ShopUserRequest {
