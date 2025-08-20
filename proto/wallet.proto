@@ -186,8 +186,11 @@ message CommissionRequest {
    string amount = 3;
    string description = 4;
    string username = 5;
-   string source = 6;
-   string subject = 7;
+   optional string source = 6;
+   optional string subject = 7;
+   optional string wallet = 8;
+   optional string channel = 9;
+   
 }
 
 message ShopUserRequest {
