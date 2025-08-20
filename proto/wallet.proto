@@ -187,6 +187,7 @@ message CommissionRequest {
    string description = 4;
    string username = 5;
    string source = 6;
+   string subject = 7;
 }
 
 message ShopUserRequest {
