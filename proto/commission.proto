@@ -19,7 +19,10 @@ service CommissionService {
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
-   
+  rpc FlatCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
+  rpc MultipleCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
+  rpc ProfitCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
+  
 }
 
 message GetCommissionsRequestData {
