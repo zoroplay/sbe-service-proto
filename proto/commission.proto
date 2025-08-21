@@ -22,7 +22,10 @@ service CommissionService {
   rpc FlatCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc MultipleCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc ProfitCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
-  
+  rpc SportCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc VirtualCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc TotalCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+
 }
 
 message GetCommissionsRequestData {
