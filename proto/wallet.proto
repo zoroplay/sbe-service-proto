@@ -183,7 +183,7 @@ service WalletService {
 message CommissionRequest {
    int32 userId = 1;
    int32 clientId = 2;
-   string amount = 3;
+   float amount = 3;
    string description = 4;
    string username = 5;
    optional string source = 6;
