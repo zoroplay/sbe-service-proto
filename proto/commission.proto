@@ -25,6 +25,8 @@ service CommissionService {
   rpc SportCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc VirtualCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc TotalCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc SportBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
+
 
 }
 
@@ -36,7 +38,17 @@ message GetCommissionsRequestData {
   int32  page = 5;
 }
 
-
+message BetHistoryRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string from= 3 ;
+  string  to= 4;
+  string status=  5;
+  string page = 6;
+  string perPage = 7;
+  optional string   betslipId= 8;
+  string  username= 9;
+}
 
 message GetCommissionsRequest {
   int32 clientId = 1;
