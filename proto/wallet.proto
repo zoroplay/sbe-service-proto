@@ -178,6 +178,16 @@ service WalletService {
 
   rpc CreditCommissionWallet (CommissionRequest) returns (CommonResponseObj) {}
   
+  rpc AgentBalance (AgentBalanceRequest) returns (CommonResponseObj) {}
+
+  
+}
+
+
+message AgentBalanceRequest{
+  int32 clientId = 1;
+  int32 userId = 2;
+
 }
 
 message CommissionRequest {
