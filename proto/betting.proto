@@ -35,6 +35,7 @@ service BettingService {
   rpc GetTotalSalesReport(NetworkSalesRequest) returns (CommonResponseObj) {}
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
+  rpc GetAgentTotals (SalesReportRequest) returns (CommonResponseArray) {}
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
@@ -113,10 +114,10 @@ message GetCommissionsRequest {
 message SalesReportRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  string role = 3;
-  string from = 4;
-  string to = 5;
-  string productType = 6;
+  optional string role = 3;
+  optional string from = 4;
+  optional string to = 5;
+  optional string productType = 6;
 }
 
 message NetworkSalesRequest {
