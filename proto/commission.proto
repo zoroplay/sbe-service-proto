@@ -126,6 +126,7 @@ message CommissionTurnover {
   bool oddSet = 7;
   optional string createdAt = 8;
   optional string updatedAt = 9;
+  double amount = 10;
 }
 
 // Commission Profile
