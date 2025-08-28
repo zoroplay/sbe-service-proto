@@ -124,7 +124,7 @@ message CommissionTurnover {
   double maxOdd = 5;
   double minOdd = 6;
   bool oddSet = 7;
-  int32 amount = 8;
+  optional int32 amount = 8;
   optional string createdAt = 9;
   optional string updatedAt = 10;
   
