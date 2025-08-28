@@ -19,7 +19,7 @@ service CommissionService {
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
-  rpc FlatCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
+  rpc FlatCommission(FlatCommissionRequest) returns (CommonResponseObj) {}
   rpc MultipleCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc ProfitCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc SportCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
@@ -31,7 +31,18 @@ service CommissionService {
   rpc Totals (SalesReportRequest) returns (CommonResponseArray) {}
 }
 
+message FlatCommissionRequest{
+  
+ int32 userId = 1;
+  int32 noOfSelections = 2;
+  string provider = 3;
+  int32 stake = 4;
+  int32 clientId = 5;
+  int32 totalOdds = 6;
+  int32 commissionId = 7;
+ repeated float individualOdds = 8;
 
+}
 
 message SalesReportRequest {
   int32 clientId = 1;
