@@ -446,6 +446,7 @@ message SettleBetRequest {
   int32 status = 3;
   optional float amount = 4;
   repeated Selection selections = 5;
+  optional string betslipId = 6;
 }
 
 message Selection {
