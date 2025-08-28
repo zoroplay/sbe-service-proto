@@ -28,9 +28,20 @@ service CommissionService {
   rpc SportBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc VirtualBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
 
-
-
+  rpc Totals (SalesReportRequest) returns (CommonResponseArray) {}
 }
+
+
+
+message SalesReportRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string role = 3;
+  optional string from = 4;
+  optional string to = 5;
+  optional string productType = 6;
+}
+
 
 message GetVirtualBetsRequest {
   int32 clientId = 1;
