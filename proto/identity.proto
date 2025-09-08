@@ -98,6 +98,8 @@ service IdentityService {
   rpc getCommissionProfileUsers(GetCommissionsRequest) returns (CommonResponseArray) {}
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
+  rpc getAgentTree(GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc getAgentPlayers(GetAgentUsersRequest) returns (CommonResponseObj) {}
   
 
   rpc getBonusGroups(SingleItemRequest) returns (BonusGroupResponse) {}
@@ -527,6 +529,10 @@ message GetAgentUsersRequest {
   optional int32 roleId = 4;
   optional int32 state = 5;
   optional int32 page = 6;
+  optional int32 pageSize = 7;
+  optional string search = 8;
+  optional string order = 9;
+  optional string orderBy = 10;
 }
 
 message GetCommissionsRequest {
