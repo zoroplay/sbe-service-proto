@@ -28,9 +28,21 @@ service CommissionService {
   rpc SportBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc VirtualBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc PaidCommission(PaidCommissionRequest) returns (CommonResponseObj) {}
+
 
 
   rpc Totals (SalesReportRequest) returns (CommonResponseArray) {}
+}
+
+
+message PaidCommissionRequest {
+  int32 clientId = 1;
+  string from = 2;
+  string to = 3;
+  string provider = 4;
+  int32 page = 5;
+  optional int32 perPage = 8;
 }
 
 message FlatCommissionRequest{
