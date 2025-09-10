@@ -180,8 +180,15 @@ service WalletService {
   
   rpc AgentBalance (AgentBalanceRequest) returns (CommonResponseObj) {}
   rpc CreditPlayer (CreditPlayerRequest) returns (CommonResponseObj) {}
+  rpc WithdrawCommission (WithdrawCommissionRequest) returns (CommonResponseObj) {}
 
   
+}
+
+message WithdrawCommissionRequest {
+   int32 clientId = 1;
+  int32 userId = 2;
+  float amount = 3;
 }
 
 message CreditPlayerRequest {
