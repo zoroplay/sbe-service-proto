@@ -1190,6 +1190,7 @@ message Wallet {
   double sportBonusBalance = 5;
   double virtualBonusBalance = 6;
   double casinoBonusBalance = 7;
+  optional double commissionBalance = 8;
 }
 
 message InitiateDepositRequest {
