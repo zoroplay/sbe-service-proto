@@ -972,6 +972,7 @@ message GetNetworkBalanceResponse {
   optional float trustBalance = 6;
   optional float availableBalance = 7;
   optional float balance = 8;
+  optional float commissionBalance = 9;
 }
 
 message FetchBetRangeRequest {
