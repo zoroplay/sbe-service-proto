@@ -181,6 +181,7 @@ message CommissionProfile {
   repeated CommissionTurnover turnovers = 11;
   optional string createdAt = 12;
   optional string updatedAt = 13;
+  optional string paymentDay = 14;
 }
 
 
