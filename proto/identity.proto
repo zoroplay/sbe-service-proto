@@ -24,6 +24,8 @@ service IdentityService {
   rpc ToggleAccount (ValidateTestRequest) returns (ValidateTestResponse) {}
 
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
+  rpc GetUserLogs ( GetUserDetailsRequest ) returns ( GetUserLogResponse ) {}
+  rpc GetUerLogs ( GetUserDetailsRequest) return (GetUserDetailsResponse) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
   rpc AssignRolePermission ( AssignRolePermissionRequest ) returns (CommonResponseObj) {}
@@ -80,7 +82,7 @@ service IdentityService {
   rpc FetchPlayerLosersByBetCount (FetchPlayerFilterRequest) returns (PaginationResponse) {}
 
   // retail services
-  rpc CreateAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
+  rpc createAgentUser (CreateAgentRequest) returns (CommonResponseObj) {}
   rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
@@ -1193,6 +1195,20 @@ message GetUserByUsernameResponse {
     optional string Status = 4;
   }
   Data data = 3;
+}
+
+message LoggedIn {
+  string timestamp = 1;
+  string ipAddress =  2;
+  string userAgent = 3;
+  int32  status = 4
+}
+
+message GetUserLogResponse {
+  string message = 1;
+  int32 status = 2;
+  LoggedIn Data 3;
+
 }
 
 message OnlinePlayersRequest {
