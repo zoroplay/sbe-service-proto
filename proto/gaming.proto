@@ -230,8 +230,7 @@ message CallbackGameDto {
     optional string method = 4;
     google.protobuf.Struct header = 5;
     optional string body = 6;
-    optional string signature = 7;
-    optional string path = 8;
+    optional string path = 7;
 };
 
 message FindOneGameDto {

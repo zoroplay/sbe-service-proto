@@ -177,6 +177,8 @@ message CreateBonusRequest {
   optional string fixture = 29;
   optional int32 percentageValue = 30;
   repeated CashbackConfiguration cashbackConfigurationDto =31;
+  optional string startDate = 32;
+  optional string endDate = 33;
   
   // optional int32 minimumMatches = 31;
   // optional int32 maximumLostGames = 32;
@@ -446,6 +448,7 @@ message SettleBetRequest {
   int32 status = 3;
   optional float amount = 4;
   repeated Selection selections = 5;
+  optional string betslipId = 6;
 }
 
 message Selection {

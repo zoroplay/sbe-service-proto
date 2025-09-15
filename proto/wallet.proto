@@ -176,14 +176,59 @@ service WalletService {
   rpc ShopUserDeposits(ShopUserRequest) returns (CommonResponseArray) {}
   rpc ShopUserProfit (ShopUserRequest) returns (CommonResponseObj) {}
 
+  rpc CreditCommissionWallet (CommissionRequest) returns (CommonResponseObj) {}
+  
+  rpc AgentBalance (AgentBalanceRequest) returns (CommonResponseObj) {}
+  rpc CreditPlayer (CreditPlayerRequest) returns (CommonResponseObj) {}
+  rpc WithdrawCommission (WithdrawCommissionRequest) returns (CommonResponseObj) {}
+  rpc ReverseCommission (CommissionRequest) returns (CommonResponseObj) {}
+
+  
 }
 
+message WithdrawCommissionRequest {
+   int32 clientId = 1;
+  int32 userId = 2;
+  float amount = 3;
+}
+
+message CreditPlayerRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  float amount = 3;
+  int32 agentId = 4;
+ 
+ }
+
+message AgentBalanceRequest{
+  int32 clientId = 1;
+  int32 userId = 2;
+  string rangeZ = 3;
+  string from = 4;
+  string to = 5;
+  int32 page = 6;
+  int32 limit = 7;
+
+}
+
+message CommissionRequest {
+   int32 userId = 1;
+   int32 clientId = 2;
+   float amount = 3;
+   string description = 4;
+   string username = 5;
+   optional string source = 6;
+   optional string subject = 7;
+   optional string wallet = 8;
+   optional string channel = 9;
+   
+}
 
 message ShopUserRequest {
   int32 userId = 1;
   int32 clientId = 2;
   optional string from = 3;    
- optional string to = 4;
+  optional string to = 4;
   optional int32 page = 5;
   optional int32 username = 6;
   optional int32 status = 7;
@@ -928,6 +973,7 @@ message GetNetworkBalanceResponse {
   optional float trustBalance = 6;
   optional float availableBalance = 7;
   optional float balance = 8;
+  optional float commissionBalance = 9;
 }
 
 message FetchBetRangeRequest {
@@ -1145,6 +1191,7 @@ message Wallet {
   double sportBonusBalance = 5;
   double virtualBonusBalance = 6;
   double casinoBonusBalance = 7;
+  optional double commissionBalance = 8;
 }
 
 message InitiateDepositRequest {

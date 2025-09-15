@@ -9,7 +9,7 @@ service BettingService {
   rpc UpdateSetting (Settings) returns (SettingsResponse) {}
   rpc GetSettingsByID (SettingsById) returns (SettingsResponse) {}
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
-  rpc CancelBet (BetID) returns (StatusResponse) {}
+  rpc CancelBet (BookingCode) returns (CommonResponseObj) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
@@ -35,6 +35,7 @@ service BettingService {
   rpc GetTotalSalesReport(NetworkSalesRequest) returns (CommonResponseObj) {}
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
+  rpc GetAgentTotals (SalesReportRequest) returns (CommonResponseArray) {}
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
@@ -113,10 +114,10 @@ message GetCommissionsRequest {
 message SalesReportRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  string role = 3;
-  string from = 4;
-  string to = 5;
-  string productType = 6;
+  optional string role = 3;
+  optional string from = 4;
+  optional string to = 5;
+  optional string productType = 6;
 }
 
 message NetworkSalesRequest {
@@ -170,6 +171,7 @@ message SettleCasinoBetRequest {
   double winnings = 2;
   optional string provider = 3;
 }
+
 message SettleVirtualBetRequest {
   int32 userId = 1;
   int32 clientId = 2;
@@ -375,6 +377,7 @@ message PlaceBetRequest {
   optional int32 bonusId = 16;
   optional bool useBonus = 17; 
   optional string userRole = 18;
+  repeated Grouping Groupings = 19;
 }
 
 message BetSlip {
@@ -407,6 +410,28 @@ message BetSlip {
 
 message Combo {
 
+}
+
+message Grouping {
+  int32 Combinations = 1;
+  int32 Grouping = 2;
+  float MaxBonus = 3;
+  float MaxBonusForUnit = 4;
+  float MaxPercentageBonus = 5;
+  float MaxWinForUnit = 6;
+  float MaxWinNet = 7;
+  float MinBonus = 8;
+  float MinBonusForUnit = 9;
+  float MinPercentageBonus = 10;
+  float MinWinForUnit = 11;
+  float MinWinNet = 12;
+  float NetStake = 13;
+  float NetStakeMaxWin = 14;
+  float NetStakeMinWin = 15;
+  float Stake = 16;
+  float StakeForCombination = 17;
+  float maxWin = 18;
+  float minWin = 19;
 }
 
 message PlaceCasinoBetResponse {
