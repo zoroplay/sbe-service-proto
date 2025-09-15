@@ -1223,7 +1223,6 @@ message GetUserLogResponse {
   string message = 1;
   int32 status = 2;
   LoggedIn Data 3;
-
 }
 
 message OnlinePlayersRequest {
