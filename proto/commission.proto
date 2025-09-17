@@ -166,6 +166,35 @@ message CommissionTurnover {
   
 }
 
+message CommissionLiveBet {
+  optional int32 id = 1;
+  int32 event = 2;
+  optional CommissionProfile commissionProfile = 3;
+  double percentage = 4;
+  double maxOdd = 5;
+  double minOdd = 6;
+  bool oddSet = 7;
+  optional int32 amount = 8;
+  optional string createdAt = 9;
+  optional string updatedAt = 10;
+  string type = 11;
+  
+}
+
+message CommissionDeposit {
+  optional int32 id = 1;
+  double maxAmount = 2;
+  double percentage = 3;
+  optional CommissionProfile commissionProfile = 4;
+}
+
+message CommissionPayout {
+  optional int32 id = 1;
+  double maxAmount = 2;
+  double percentage = 3;
+  optional CommissionProfile commissionProfile = 4;
+}
+
 // Commission Profile
 message CommissionProfile {
   int32 clientId = 1;
@@ -182,9 +211,11 @@ message CommissionProfile {
   optional string createdAt = 12;
   optional string updatedAt = 13;
   optional string paymentDay = 14;
+  optional string livebetTypes = 15;
+  repeated CommissionLiveBet betTypes = 16;
+  optional CommissionDeposit deposit = 17;
+  optional CommissionPayout payout = 18;
 }
-
-
 
 message CommonResponseArray {
   optional int32 status = 1;
