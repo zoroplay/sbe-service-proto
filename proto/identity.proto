@@ -1225,6 +1225,7 @@ message GetUserLogResponse {
   string message = 1;
   int32 status = 2;
   LoggedIn data = 3;
+  MetaData metaData = 4;
 }
 
 message OnlinePlayersRequest {
