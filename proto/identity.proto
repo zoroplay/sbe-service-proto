@@ -1218,7 +1218,7 @@ message LoggedIn {
   string userAgent = 3;
   int32  action = 4;
   string description = 5;
-  int32 userId: 6;
+  int32 userId = 6;
 }
 
 message GetUserLogResponse {
