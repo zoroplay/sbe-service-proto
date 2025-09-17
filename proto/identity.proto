@@ -1212,7 +1212,7 @@ message GetUserByUsernameResponse {
   Data data = 3;
 }
 
-message LoggedIn {
+message LoggedInUserData {
   string timestamp = 1;
   string ipAddress =  2;
   string userAgent = 3;
@@ -1224,7 +1224,7 @@ message LoggedIn {
 message GetUserLogResponse {
   string message = 1;
   int32 status = 2;
-  LoggedIn data = 3;
+  LoggedInUserData loggedInUserData = 3;
   MetaData metaData = 4;
 }
 
