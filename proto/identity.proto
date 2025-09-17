@@ -1212,17 +1212,20 @@ message GetUserByUsernameResponse {
   Data data = 3;
 }
 
-message LoggedIn {
+message LoggedInUserData {
   string timestamp = 1;
   string ipAddress =  2;
   string userAgent = 3;
-  int32  status = 4;
+  int32  action = 4;
+  string description = 5;
+  int32 userId = 6;
 }
 
 message GetUserLogResponse {
   string message = 1;
   int32 status = 2;
-  LoggedIn data = 3;
+  repeated LoggedInUserData loggedInUserData = 3;
+  MetaData metaData = 4;
 }
 
 message OnlinePlayersRequest {
