@@ -1224,7 +1224,7 @@ message LoggedInUserData {
 message GetUserLogResponse {
   string message = 1;
   int32 status = 2;
-  LoggedInUserData loggedInUserData = 3;
+  repeated LoggedInUserData loggedInUserData = 3;
   MetaData metaData = 4;
 }
 
