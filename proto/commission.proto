@@ -94,6 +94,7 @@ message FlatCommissionRequest{
   int32 totalOdds = 6;
   int32 commissionId = 7;
  repeated float individualOdds = 8;
+ optional string ticketCancellation = 9;
 
 }
 
