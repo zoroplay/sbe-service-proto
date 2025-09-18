@@ -29,6 +29,7 @@ service CommissionService {
   rpc VirtualBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc PaidCommission(PaidCommissionRequest) returns (CommonResponseObj) {}
+  rpc ListOneUserCommissionProfile(UserCommissionData) returns (CommonResponseObj) {}
 
 
 
@@ -38,6 +39,11 @@ service CommissionService {
   rpc PayoutCommission (PayoutCommissionRequestData) returns (CommonResponseObj) {}
   rpc BetCommission (BetCommissionRequest) returns (CommonResponseObj) {}
 
+}
+
+message UserCommissionData {
+  int32 userId = 1;
+  string commissionType = 2;
 }
 
 message DepositCommissionRequest {
