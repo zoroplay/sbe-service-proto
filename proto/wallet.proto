@@ -183,7 +183,16 @@ service WalletService {
   rpc WithdrawCommission (WithdrawCommissionRequest) returns (CommonResponseObj) {}
   rpc ReverseCommission (CommissionRequest) returns (CommonResponseObj) {}
 
+  rpc PalmPayWebhook (PalmPayRequest) returns (CommonResponseObj) {}
+
   
+}
+
+message PalmPayRequest {
+  int32 clientId = 1;
+  string orderId = 2;
+  string palmPayKey = 3;
+  google.protobuf.Struct rawBody = 4;
 }
 
 message WithdrawCommissionRequest {
@@ -191,6 +200,8 @@ message WithdrawCommissionRequest {
   int32 userId = 2;
   float amount = 3;
 }
+
+
 
 message CreditPlayerRequest {
   int32 clientId = 1;
