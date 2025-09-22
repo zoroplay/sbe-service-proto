@@ -182,7 +182,6 @@ service WalletService {
   rpc CreditPlayer (CreditPlayerRequest) returns (CommonResponseObj) {}
   rpc WithdrawCommission (WithdrawCommissionRequest) returns (CommonResponseObj) {}
   rpc ReverseCommission (CommissionRequest) returns (CommonResponseObj) {}
-
   rpc PalmPayWebhook (PalmPayRequest) returns (CommonResponseObj) {}
 
   

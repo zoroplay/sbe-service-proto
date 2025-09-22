@@ -58,7 +58,7 @@ message DepositCommissionRequest {
 }
 
 message PayoutCommissionRequestData {
-   int32 clientId = 1;
+  int32 clientId = 1;
   int32 userId = 2;
   int32 commissionId = 3;
   float amount = 4;
@@ -68,15 +68,16 @@ message PayoutCommissionRequestData {
 
 
 message BetCommissionRequest {
-   int32 clientId = 1;
+  int32 clientId = 1;
   int32 userId = 2;
   int32 commissionId = 3;
   float stake = 4;
   string provider = 5;
   string eventType = 6;
- int32  noOfSelections = 7;
- float totalOdds  = 8;
- repeated float individualOdds = 9;
+  int32  noOfSelections = 7;
+  float totalOdds  = 8;
+  repeated string individualEventTypes = 9;
+  repeated float individualOdds = 10;
   
   
 }
