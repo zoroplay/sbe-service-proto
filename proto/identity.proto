@@ -86,7 +86,6 @@ service IdentityService {
   rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
-  rpc FetchAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ApproveAgentRegistration (ApprovalRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
@@ -150,6 +149,9 @@ service IdentityService {
   rpc CheckKyc  (FindOneRequest) returns (CommonResponseObj) {}
   rpc ListAllKyc (ClientIdRequest) returns (CommonResponseArray) {}
   rpc ListBanks (ListBanksRequest) returns (CommonResponseArray) {}
+
+
+  rpc FetchAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
 
 } 
 
