@@ -86,6 +86,7 @@ service IdentityService {
   rpc GetPendingAgent (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ListAgentUsers (GetAgentUsersRequest) returns (CommonResponseArray) {}
   rpc ListAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc FetchAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
   rpc ApproveAgentRegistration (ApprovalRequest) returns (CommonResponseObj) {}
   rpc GetAgentUser (GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc getCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
