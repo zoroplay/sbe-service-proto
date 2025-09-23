@@ -96,6 +96,10 @@ service FixtureService {
   rpc GetActiveGamesMarkets (FilterByMatchID) returns (GetActiveMarketResponse){}
   rpc ValidateSelections (ValidateSelectionRequests) returns (ValidateSelectionResponse){}
   rpc GetSportsHierarchy (Empty) returns (SportMenuResponse){}
+
+  // Admin methods for sports management
+  rpc GetSportCategories (FilterBySportID) returns (GetCategoriesResponse){}
+  rpc GetCategoryTournament (FilterByCategoryID) returns (GetTournamentsResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -338,6 +342,10 @@ message FilterBySportID {
 
 }
 
+message FilterByCategoryID {
+  int32 categoryID = 1; // CategoryID of a particular category
+}
+
 message FilterByMarketID {
   int32 marketID = 1; // marketID of a particular market
 
@@ -418,6 +426,25 @@ message TournamentMenuResponse {
 // Object used to hold array of sports
 message AllSportResponse {
   repeated SportResponse sports = 1;
+}
+
+// Response for GetSportCategories
+message GetCategoriesResponse {
+  repeated CategoryResponse categories = 1;
+}
+
+// Response for GetCategoryTournament
+message GetTournamentsResponse {
+  repeated TournamentResponse tournaments = 1;
+}
+
+// Category response object
+message CategoryResponse {
+  int32 categoryID = 1; // unique ID of a category
+  string categoryName = 2; // Category name
+  int32 sportID = 3; // Sport ID this category belongs to
+  string code = 4; // Category code
+  int32 status = 5; // Category status
 }
 
 // Object used to hold array of sports
