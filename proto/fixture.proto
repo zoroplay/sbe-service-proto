@@ -379,8 +379,11 @@ message AllMarketResponse {
 message TournamentResponse {
   int32 tournamentID = 1; // Unique ID of the tournament
   string tournamentName = 2; // Name of the tournament
-  int32 liveGames = 3; // current number of live games under this tournament
+  bool status = 3; // current status of this tournament
   int32 allGames = 4; // current number of total games under this tournament
+  optional float oddsMargin = 5;
+  optional string combinability = 6;
+  optional bool enableCashout = 7;
 }
 
 // Object used to hold array of tournament
