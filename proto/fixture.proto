@@ -95,7 +95,6 @@ service FixtureService {
   rpc UpdateSportsMenuOrder (UpdateSportsMenuOrderRequest) returns (CommonResponse){}
   rpc GetActiveGamesMarkets (FilterByMatchID) returns (GetActiveMarketResponse){}
   rpc ValidateSelections (ValidateSelectionRequests) returns (ValidateSelectionResponse){}
-  rpc GetSportsHierarchy (Empty) returns (SportMenuResponse){}
 
   // Admin methods for sports management
   rpc GetSportCategories (FilterBySportID) returns (GetCategoriesResponse){}
