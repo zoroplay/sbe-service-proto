@@ -53,7 +53,7 @@ message DepositCommissionRequest {
   int32 commissionId = 3;
   float amount = 4;
   string provider = 5;
-  string depositCode = 6;
+  optional string depositCode = 6;
 
 }
 
