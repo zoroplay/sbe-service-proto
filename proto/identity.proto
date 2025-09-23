@@ -151,7 +151,7 @@ service IdentityService {
   rpc ListBanks (ListBanksRequest) returns (CommonResponseArray) {}
 
 
-  rpc FetchAgents (GetAgentUsersRequest) returns (CommonResponseObj) {}
+  rpc FetchAgents (ClientIdRequest) returns (CommonResponseObj) {}
 
 } 
 
