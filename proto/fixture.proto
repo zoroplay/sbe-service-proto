@@ -797,6 +797,11 @@ message UpdateOddsRequest {
 
 message UpdateEventStatusRequest {
   int32 matchID = 1;
-  string type = 2;
+  UpdateType type = 2;
   bool value = 3;
+}
+
+enum UpdateType {
+  STATUS = 0;
+  HIGHLIGHT = 1;
 }
