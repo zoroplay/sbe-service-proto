@@ -791,4 +791,5 @@ message UpdateOddsRequest {
   int32 marketID = 2;
   int32 oddID = 3;
   float odds = 4;
+  string specifier = 5;
 }
