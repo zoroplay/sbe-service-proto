@@ -777,7 +777,7 @@ message TournamentEvent {
   int32 homeScore = 10;
   int32 awayScore = 11;
   int32 activeMarkets = 12;
-  int32 highlight = 13;
+  bool highlighted = 13;
 }
 
 message GetTournamentEventsResponse {
