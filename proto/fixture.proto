@@ -106,6 +106,7 @@ service FixtureService {
 
   // Odds management methods
   rpc UpdateOdds (UpdateOddsRequest) returns (CommonResponse){}
+  rpc UpdateEventStatus (UpdateEventStatusRequest) returns (CommonResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -792,4 +793,10 @@ message UpdateOddsRequest {
   int32 oddID = 3;
   float odds = 4;
   string specifier = 5;
+}
+
+message UpdateEventStatusRequest {
+  int32 matchID = 1;
+  string type = 2;
+  bool value = 3;
 }
