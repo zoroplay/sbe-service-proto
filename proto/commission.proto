@@ -39,6 +39,8 @@ service CommissionService {
   rpc PayoutCommission (PayoutCommissionRequestData) returns (CommonResponseObj) {}
   rpc BetCommission (BetCommissionRequest) returns (CommonResponseObj) {}
 
+  
+
 }
 
 message UserCommissionData {
