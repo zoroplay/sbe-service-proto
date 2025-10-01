@@ -99,6 +99,14 @@ service FixtureService {
   // Admin methods for sports management
   rpc GetSportCategories (FilterBySportID) returns (GetCategoriesResponse){}
   rpc GetCategoryTournament (FilterByCategoryID) returns (GetTournamentsResponse){}
+
+  // Tournament management methods
+  rpc UpdateMargins (UpdateMarginsRequest) returns (CommonResponse){}
+  rpc GetTournamentEvents (FilterByTournamentID) returns (GetTournamentEventsResponse){}
+
+  // Odds management methods
+  rpc UpdateOdds (UpdateOddsRequest) returns (CommonResponse){}
+  rpc UpdateEventStatus (UpdateEventStatusRequest) returns (CommonResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -379,8 +387,11 @@ message AllMarketResponse {
 message TournamentResponse {
   int32 tournamentID = 1; // Unique ID of the tournament
   string tournamentName = 2; // Name of the tournament
-  int32 liveGames = 3; // current number of live games under this tournament
+  bool status = 3; // current status of this tournament
   int32 allGames = 4; // current number of total games under this tournament
+  optional float oddsMargin = 5;
+  optional string combinability = 6;
+  optional bool enableCashout = 7;
 }
 
 // Object used to hold array of tournament
@@ -738,4 +749,60 @@ message AddFavouriteRequest {
 message AddFavouriteResponse {
   bool success = 1;
   string message = 2;
+}
+
+// Tournament management request/response messages
+message UpdateMarginsRequest {
+  int32 tournamentId = 1;
+  float margin = 2;
+  bool status = 3;
+  bool enableCashout = 4;
+  string combinability = 5;
+}
+
+message FilterByTournamentID {
+  int32 tournamentID = 1;
+}
+
+message TournamentEvent {
+  int32 gameID = 1;
+  int32 matchID = 2;
+  string eventName = 3;
+  string homeTeam = 4;
+  string awayTeam = 5;
+  string eventDate = 6;
+  string eventTime = 7;
+  int32 status = 8;
+  string matchStatus = 9;
+  int32 homeScore = 10;
+  int32 awayScore = 11;
+  int32 activeMarkets = 12;
+  bool highlighted = 13;
+}
+
+message GetTournamentEventsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated TournamentEvent events = 3;
+  int32 totalEvents = 4;
+}
+
+// Odds management request/response messages
+message UpdateOddsRequest {
+  int32 matchID = 1;
+  int32 marketID = 2;
+  int32 oddID = 3;
+  float odds = 4;
+  string specifier = 5;
+}
+
+message UpdateEventStatusRequest {
+  int32 matchID = 1;
+  UpdateType type = 2;
+  bool value = 3;
+}
+
+enum UpdateType {
+  STATUS = 0;
+  HIGHLIGHT = 1;
 }
