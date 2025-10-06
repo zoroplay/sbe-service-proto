@@ -875,6 +875,7 @@ message UserData {
   int32 status = 26;
   string group = 27;
   optional string virtualToken = 28;
+  optional bool affiliateAccess = 29;
 }
 
 message ChangeUserTypeStatusRequest {
