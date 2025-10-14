@@ -49,7 +49,7 @@ service CommissionService {
   rpc DeleteAffiliateCommissionProfile(Getdata) returns (CommonResponseObj) {}
   rpc AssignUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
   rpc GetUserAffiliateCommissionProfiles(Getdata) returns (CommonResponseArray) {}
-  rpc RemoveUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj)
+  rpc RemoveUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
 
 
 
