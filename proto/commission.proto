@@ -45,14 +45,21 @@ service CommissionService {
   rpc CreateAffiliateCommissionProfile(AffiliateCommission) returns (CommonResponseObj) {}
   rpc UpdateAffiliateCommissionProfile(AffiliateCommission) returns (CommonResponseObj) {}
   rpc GetAffiliateCommissionProfiles(GetCommissionsRequest) returns (CommonResponseArray) {}
-  rpc GetAffiliateCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
-  rpc DeleteAffiliateCommissionProfile(SingleItemRequest) returns (CommonResponseObj) {}
+  rpc GetAffiliateCommissionProfile(Getdata) returns (CommonResponseObj) {}
+  rpc DeleteAffiliateCommissionProfile(Getdata) returns (CommonResponseObj) {}
   rpc AssignUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
-  rpc GetUserAffiliateCommissionProfiles(SingleItemRequest) returns (CommonResponseArray) {}
-  rpc RemoveUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseArray)
+  rpc GetUserAffiliateCommissionProfiles(Getdata) returns (CommonResponseArray) {}
+  rpc RemoveUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj)
 
 
 
+}
+
+
+message Getdata {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional int32 id = 3;
 }
 
 message AffiliateCommission {
