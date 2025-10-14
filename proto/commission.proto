@@ -107,9 +107,7 @@ message UserCommissionData {
 }
 
 message DepositCommissionRequest {
-  int32 clientId = 1;GetCommissionsRequest
-GetCommissionsRequest
-GetCommissionsRequest
+  int32 clientId = 1;
   int32 userId = 2;
   int32 commissionId = 3;
   float amount = 4;
