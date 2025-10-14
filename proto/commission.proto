@@ -100,6 +100,13 @@ message Hybrid {
   float totalDeposit = 6;
 }
 
+message Tiered {
+  int32 affiliateCommissionId = 1;
+  float percentage = 2;
+  float maxRevenueShare = 3;
+  float minRevenueShare = 4;
+}
+
 message UserCommissionData {
   int32 userId = 1;
   string commissionType = 2;
