@@ -228,8 +228,9 @@ message SingleItemRequest {
 message AssignUserCommissionProfile {
   int32 profileId = 1;
   int32 userId = 2;
-  optional string createdAt = 3;
-  optional string updatedAt = 4;
+  optional int32 clientId = 3;
+  optional string createdAt = 4;
+  optional string updatedAt = 5;
 }
 
 message GetAgentUserRequest {
