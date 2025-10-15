@@ -214,7 +214,7 @@ message GetBonusRequest {
 
 message GetAffiliateBonusRequest {
   int32 clientId = 1;
-  optional string affiliate_id = 2;
+  optional int32 affiliate_id = 2;
 }
 
 message GetAllBonusRequest {
