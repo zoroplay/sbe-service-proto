@@ -179,8 +179,8 @@ message CreateBonusRequest {
   repeated CashbackConfiguration cashbackConfigurationDto =31;
   optional string startDate = 32;
   optional string endDate = 33;
-  optional string isAffiliate = 34;
-  optional string affiliateId = 35;
+  optional bool isAffiliate = 34;
+  optional int32 affiliateId = 35;
   
   // optional int32 minimumMatches = 31;
   // optional int32 maximumLostGames = 32;
