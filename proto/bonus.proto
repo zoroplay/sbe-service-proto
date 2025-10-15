@@ -31,6 +31,8 @@ service BonusService {
 
   rpc GetBonus (GetBonusRequest) returns (GetBonusResponse){}
 
+  rpc GetAffiliateBonus (GetAffiliateBonusRequest) returns (GetBonusResponse){}
+
   rpc CheckCashBackBonus (GetBonusRequest) returns (CommonResponseObj){}
 
   rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
@@ -40,6 +42,8 @@ service BonusService {
   rpc GetUserBonus (GetUserBonusRequest) returns (GetUserBonusResponse){}
 
   rpc AwardBonus (AwardBonusRequest) returns (UserBonusResponse){}
+
+  rpc AssignAffiliateBonus (AssignBonusRequest) returns (CommonResponseObj){}
 
   rpc DeactivateUserBonus (BonusRequest) returns (CommonResponseObj){}
 
@@ -179,6 +183,8 @@ message CreateBonusRequest {
   repeated CashbackConfiguration cashbackConfigurationDto =31;
   optional string startDate = 32;
   optional string endDate = 33;
+  optional bool isAffiliate = 34;
+  optional int32 affiliateId = 35;
   
   // optional int32 minimumMatches = 31;
   // optional int32 maximumLostGames = 32;
@@ -204,6 +210,11 @@ message CreateBonusResponse {
 message GetBonusRequest {
   int32 clientId = 1;
   optional string bonus_type = 2;
+}
+
+message GetAffiliateBonusRequest {
+  int32 clientId = 1;
+  optional int32 affiliate_id = 2;
 }
 
 message GetAllBonusRequest {
@@ -289,6 +300,12 @@ message AwardBonusRequest {
   optional float baseValue = 6;
   optional string promoCode = 7;
   optional int32 status = 8;
+}
+
+message AssignBonusRequest {
+  int32 clientId = 1;
+  int32 bonusId = 2;
+  int32 affiliateId = 3;
 }
 
 message UserBet {
