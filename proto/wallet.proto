@@ -184,6 +184,15 @@ service WalletService {
   rpc ReverseCommission (CommissionRequest) returns (CommonResponseObj) {}
   rpc PalmPayWebhook (PalmPayRequest) returns (CommonResponseObj) {}
 
+
+
+  rpc FirstDepositCommissionProcess(FirstDepositRequest) returns (CommonResponseArray) {}
+
+  
+}
+
+message FirstDepositRequest {
+  repeated int32 referralIds = 1;
   
 }
 
