@@ -187,8 +187,14 @@ service WalletService {
 
 
   rpc FirstDepositCommissionProcess(FirstDepositRequest) returns (CommonResponseArray) {}
-
+  rpc GetReferralTransactions(ReferralTransactionRequest) returns (CommonResponseArray) {}
   
+}
+
+message ReferralTransactionRequest {
+   repeated int32 referralIds = 1;
+   string startDate = 2;
+   string endDate = 3;
 }
 
 message FirstDepositRequest {
