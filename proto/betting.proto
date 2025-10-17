@@ -528,6 +528,9 @@ message BetHistory {
   optional int32 paidOut = 26;
   optional string paidAt = 27;
   optional bool isSim = 28;
+  optional float minStake = 29;
+  optional float minOdd = 30;
+  repeated SystemBet systemBets = 31;
 }
 
 message BetHistoryResponse {
@@ -602,4 +605,39 @@ message ProcessCashoutResponse {
   bool success = 1;
   string message = 2;
   optional float balance = 3;
+}
+
+message SystemBetCombination {
+  int32 id = 1;
+  int32 systemBetId = 2;
+  int32 betId = 3;
+  int32 clientId = 4;
+  int32 combinationNumber = 5;
+  repeated int32 selectionIds = 6;
+  float odds = 7;
+  float stake = 8;
+  float possibleWin = 9;
+  int32 status = 10;
+  float winnings = 11;
+  optional string settledAt = 12;
+  optional string settlementType = 13;
+}
+
+message SystemBet {
+  int32 id = 1;
+  int32 clientId = 2;
+  int32 betId = 3;
+  int32 combinationSize = 4;
+  int32 numberOfCombos = 5;
+  optional string combined = 6;
+  optional float odds = 7;
+  optional float minStake = 8;
+  optional float maxWin = 9;
+  optional float maxBonus = 10;
+  float winnings = 11;
+  optional string games = 12;
+  int32 status = 13;
+  int32 wonCombinations = 14;
+  optional string settledDate = 15;
+  repeated SystemBetCombination combinations = 16;
 }
