@@ -49,13 +49,21 @@ service CommissionService {
   rpc DeleteAffiliateCommissionProfile(Getdata) returns (CommonResponseObj) {}
   rpc AssignUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
   rpc GetUserAffiliateCommissionProfiles(Getdata) returns (CommonResponseArray) {}
-  rpc RemoveUserAffiliateCommissionProfile(AssignUserCommissionProfile) returns (CommonResponseObj) {}
+  rpc RemoveUserAffiliateCommissionProfile(RemoveAffiliatePayload) returns (CommonResponseObj) {}
 
   rpc ProcessFirstDepositCommission(PaymentRequest) returns (CommonResponseArray) {}
   rpc ProcessRevenueShareCommission(PaymentRequest) returns (CommonResponseArray) {}
   rpc ProcessHybridCommission(PaymentRequest) returns (CommonResponseObj) {}
   rpc ProcessTieredCommission(PaymentRequest) returns (CommonResponseObj) {} 
 
+}
+
+
+message RemoveAffiliatePayload {
+  int32 userId = 1;
+  int32 id = 2;
+  string commissionType = 3;
+  int32 clientId = 4;
 }
 
 message PaymentRequest {
