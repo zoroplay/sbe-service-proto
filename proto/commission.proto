@@ -103,11 +103,13 @@ message RevenueShare {
 
 message Hybrid {
   int32 affiliateCommissionId = 1;
-  float percentage = 2;
-  optional float minNGRThreshold = 3;
-  optional float maxNGRThreshold = 4;
-  float totalRevenueShare = 5;
-  float totalDeposit = 6;
+  int32 depositRate = 2;
+  int32 maxDepositAmount = 3;
+  int32 minDepositAmount = 4;
+  float revShareRate = 5;
+  int32 minNGRThreshold = 3;
+  int32 maxNGRThreshold = 4;
+ 
 }
 
 message Tiered {
