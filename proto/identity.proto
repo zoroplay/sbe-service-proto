@@ -152,8 +152,13 @@ service IdentityService {
 
 
   rpc FetchAgents (ClientIdRequest) returns (CommonResponseObj) {}
+  rpc FetchUsersId (FindUserIdRequest) returns (CommonResponseObj) {}
 
 } 
+
+message FindUserIdRequest {
+  int32 affiliateId = 1;
+}
 
 message ListBanksRequest {
   int32 page = 1;
