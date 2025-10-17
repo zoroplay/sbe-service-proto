@@ -188,7 +188,8 @@ service WalletService {
 
   rpc FirstDepositCommissionProcess(FirstDepositRequest) returns (CommonResponseArray) {}
   rpc GetReferralTransactions(ReferralTransactionRequest) returns (CommonResponseArray) {}
-  
+
+  rpc RequestCommission(CommissionRequest) returns (CommonResponseObj) {}
 }
 
 message ReferralTransactionRequest {
