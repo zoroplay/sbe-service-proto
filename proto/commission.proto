@@ -81,6 +81,7 @@ message Getdata {
 }
 
 message AffiliateCommission {
+  
   int32 clientId = 1;
   string name = 2;
   string description = 3;
@@ -89,6 +90,7 @@ message AffiliateCommission {
   repeated RevenueShare revenueShare = 6;
   repeated Hybrid hybrid = 7;
   repeated Tiered tiered = 8;
+  optional int32 id = 9;
 }
 
 message FirstDeposit {
