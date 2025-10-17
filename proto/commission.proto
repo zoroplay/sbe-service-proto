@@ -107,9 +107,9 @@ message Hybrid {
   int32 maxDepositAmount = 3;
   int32 minDepositAmount = 4;
   float revShareRate = 5;
-  int32 minNGRThreshold = 3;
-  int32 maxNGRThreshold = 4;
- 
+  int32 minNGRThreshold = 6;
+  int32 maxNGRThreshold = 7;
+
 }
 
 message Tiered {
