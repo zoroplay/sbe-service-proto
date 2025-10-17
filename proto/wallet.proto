@@ -190,6 +190,17 @@ service WalletService {
   rpc GetReferralTransactions(ReferralTransactionRequest) returns (CommonResponseArray) {}
 
   rpc RequestCommission(CommissionRequest) returns (CommonResponseObj) {}
+  rpc FetchCommissionRequests(CommissionDataRequest) returns (CommonResponseObj) {}
+}
+
+message CommissionDataRequest {
+  int32 clientId = 1;
+  optional int32 userId = 2;
+  optional page = 3;
+  optional limit = 4;
+  optional string from = 5;
+  optional string to = 6;
+  optional string status = 7;
 }
 
 message ReferralTransactionRequest {
