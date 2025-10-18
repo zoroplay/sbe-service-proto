@@ -198,7 +198,7 @@ message UpdateAffiliateCommissionRequest {
   int32 clientId = 1;
   int32 userId = 2;
   int32 status = 3;
-  int32 transaction_no = 4;
+  int32 transactionNo = 4;
 }
 
 message RequestCommissionDto {
