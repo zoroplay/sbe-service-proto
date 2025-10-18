@@ -51,11 +51,15 @@ service CommissionService {
   rpc GetUserAffiliateCommissionProfiles(Getdata) returns (CommonResponseArray) {}
   rpc RemoveUserAffiliateCommissionProfile(RemoveAffiliatePayload) returns (CommonResponseObj) {}
 
-  rpc ProcessFirstDepositCommission(PaymentRequest) returns (CommonResponseArray) {}
+  rpc ProcessFirstDepositCommission(AffiliateIds) returns (CommonResponseArray) {}
   rpc ProcessRevenueShareCommission(PaymentRequest) returns (CommonResponseArray) {}
   rpc ProcessHybridCommission(PaymentRequest) returns (CommonResponseObj) {}
   rpc ProcessTieredCommission(PaymentRequest) returns (CommonResponseObj) {} 
 
+}
+
+message AffiliateIds {
+  repeated int32 affiliateIds = 1;
 }
 
 
@@ -68,9 +72,8 @@ message RemoveAffiliatePayload {
 
 message PaymentRequest {
   int32 affiliateUserId = 1;
- repeated int32 referralIds = 2;
- optional string startDate = 3;
- optional string endDate = 4;
+  optional string startDate = 2;
+  optional string endDate = 3;
 }
 
 
