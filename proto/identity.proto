@@ -912,6 +912,7 @@ message CreateUserRequest {
   optional int32 parentId = 20;
   optional float balance = 21;
   optional bool isTest = 22;
+  optional bool isAffiliate = 23;
 }
 
 message CreateAgentRequest {
