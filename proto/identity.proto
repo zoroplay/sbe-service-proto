@@ -14,6 +14,7 @@ service IdentityService {
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
+  rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
