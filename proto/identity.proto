@@ -154,7 +154,7 @@ service IdentityService {
 
   rpc FetchAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc FetchUsersId (FindUserIdRequest) returns (CommonResponseObj) {}
-  rpc FetchUserReferralIds (FindUserIdRequest) returns (CommonResponseArray) {}
+  rpc FetchUserReferralId (FindUserIdRequest) returns (CommonResponseArray) {}
 
 } 
 
