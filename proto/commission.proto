@@ -55,12 +55,16 @@ service CommissionService {
   rpc ProcessRevenueShareCommission(PaymentRequest) returns (CommonResponseArray) {}
   rpc ProcessHybridCommission(PaymentRequest) returns (CommonResponseObj) {}
   rpc ProcessTieredCommission(PaymentRequest) returns (CommonResponseObj) {} 
-  rpc ListAssignedCommissionProfiles(Getdata) returns (CommonResponseObj) {}
+  rpc ListAssignedCommissionProfiles(ClientRequest) returns (CommonResponseObj) {}
 
 }
 
 message AffiliateIds {
   repeated int32 affiliateIds = 1;
+}
+
+message ClientRequest {
+  int32 clientId = 1;
 }
 
 
