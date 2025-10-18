@@ -55,6 +55,7 @@ service CommissionService {
   rpc ProcessRevenueShareCommission(PaymentRequest) returns (CommonResponseArray) {}
   rpc ProcessHybridCommission(PaymentRequest) returns (CommonResponseObj) {}
   rpc ProcessTieredCommission(PaymentRequest) returns (CommonResponseObj) {} 
+  rpc ListAssignedCommissionProfiles(Getdata) returns (CommonResponseObj) {}
 
 }
 
