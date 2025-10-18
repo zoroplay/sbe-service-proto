@@ -154,7 +154,7 @@ service IdentityService {
 
   rpc FetchAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc FetchUsersId (FindUserIdRequest) returns (CommonResponseObj) {}
-  rpc FetchUserReferralIds (FindReferralsRequest) returns (CommonResponseArray) {}
+  rpc FetchUserReferralIds (FindUserIdRequest) returns (CommonResponseArray) {}
 
 } 
 
@@ -162,12 +162,6 @@ message FindUserIdRequest {
   int32 affiliateId = 1;
 }
 
-
-message FindReferralsRequest {
-   int32 affiliateId = 1;
-  repeated int32 referralIds = 2;
-
-}
 
 message ListBanksRequest {
   int32 page = 1;
