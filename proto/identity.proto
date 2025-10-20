@@ -155,9 +155,16 @@ service IdentityService {
   rpc FetchAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc FetchUsersId (FindUserIdRequest) returns (CommonResponseObj) {}
   rpc FetchUserReferralId (FindUserIdRequest) returns (CommonResponseArray) {}
+  rpc AddAndRemoveUser (AddAndRemoveUserRequest) returns (CommonResponseObj) {}
 
 } 
 
+message AddAndRemoveUserRequest {
+  int32 clientId = 1;
+  int32 agentId = 2;
+  string type = 3;
+}
+ 
 message FindUserIdRequest {
   int32 affiliateId = 1;
 }
