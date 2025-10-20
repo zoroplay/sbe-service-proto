@@ -192,6 +192,8 @@ service WalletService {
   rpc RequestCommission(RequestCommissionDto) returns (CommonResponseObj) {}
   rpc FetchCommissionRequests(CommissionDataRequest) returns (CommonResponseObj) {}
   rpc UpdateCommissionRequest(UpdateAffiliateCommissionRequest) returns (CommonResponseObj) {}
+  rpc FetchAffiliateEarnings(PlayerRequest) returns (CommonResponseObj) {}
+  rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
 }
 
 message UpdateAffiliateCommissionRequest {
