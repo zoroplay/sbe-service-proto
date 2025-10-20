@@ -306,6 +306,10 @@ message AssignBonusRequest {
   int32 clientId = 1;
   int32 bonusId = 2;
   int32 affiliateId = 3;
+  string userId = 4;
+  optional string username = 5;
+  optional float amount = 6;
+  optional string promoCode = 7;
 }
 
 message UserBet {
