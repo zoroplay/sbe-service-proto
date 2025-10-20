@@ -162,7 +162,8 @@ service IdentityService {
 message AddAndRemoveUserRequest {
   int32 clientId = 1;
   int32 agentId = 2;
-  string type = 3;
+  int32 userId = 3;
+  string type = 4;
 }
  
 message FindUserIdRequest {
