@@ -33,6 +33,8 @@ service BonusService {
 
   rpc GetAffiliateBonus (GetAffiliateBonusRequest) returns (GetBonusResponse){}
 
+  rpc GetAffiliateWithBonus (AffiliateBonusRequest) returns (CommonResponseObj){}
+
   rpc CheckCashBackBonus (GetBonusRequest) returns (CommonResponseObj){}
 
   rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
@@ -215,6 +217,13 @@ message GetBonusRequest {
 message GetAffiliateBonusRequest {
   int32 clientId = 1;
   optional int32 affiliate_id = 2;
+}
+
+message AffiliateBonusRequest {
+  int32 clientId = 1;
+  optional int32 affiliateId = 2;
+  optional int32 bonusId = 3;
+  optional int32 userId = 4;
 }
 
 message GetAllBonusRequest {
