@@ -224,6 +224,7 @@ message AffiliateBonusRequest {
   optional int32 affiliateId = 2;
   optional int32 bonusId = 3;
   optional int32 userId = 4;
+  optional string promoCode = 5;
 }
 
 message GetAllBonusRequest {
