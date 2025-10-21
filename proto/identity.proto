@@ -160,9 +160,6 @@ service IdentityService {
 
 } 
 
-
-message EmptyRequest {}
-
 message AddAndRemoveUserRequest {
   int32 clientId = 1;
   int32 agentId = 2;
@@ -174,12 +171,10 @@ message FindUserIdRequest {
   int32 affiliateId = 1;
 }
 
-
 message ListBanksRequest {
   int32 page = 1;
   int32 limit = 2;
 }
-
 
 message KycRequest {
   int32 clientId = 1;
