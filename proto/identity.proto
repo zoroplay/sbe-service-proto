@@ -156,8 +156,12 @@ service IdentityService {
   rpc FetchUsersId (FindUserIdRequest) returns (CommonResponseObj) {}
   rpc FetchUserReferralId (FindUserIdRequest) returns (CommonResponseArray) {}
   rpc AddAndRemoveUser (AddAndRemoveUserRequest) returns (CommonResponseObj) {}
+  rpc GetAffiliateIds (EmptyRequest) returns (CommonResponseArray) {}
 
 } 
+
+
+message EmptyRequest {}
 
 message AddAndRemoveUserRequest {
   int32 clientId = 1;
