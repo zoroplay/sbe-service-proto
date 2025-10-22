@@ -157,10 +157,16 @@ service IdentityService {
   rpc FetchUserReferralId (FindUserIdRequest) returns (CommonResponseArray) {}
   rpc AddAndRemoveUser (AddAndRemoveUserRequest) returns (CommonResponseObj) {}
   rpc GetAffiliateIds (EmptyRequest) returns (CommonResponseArray) {}
-  rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseArray) {}
+  rpc GetAffiliateUsers (AffiliateRequest) returns (CommonResponseObj) {}
 
-} 
+}
 
+message AffiliateRequest {
+  int32 clientId = 1;
+  optional int32 affiliateId = 2;
+  optional string startDate = 3;
+  optional string endDate = 4;
+}
 
 
 message AddAndRemoveUserRequest {
