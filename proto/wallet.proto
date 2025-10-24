@@ -194,7 +194,7 @@ service WalletService {
   rpc UpdateCommissionRequest(UpdateAffiliateCommissionRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateEarnings(PlayerRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
-  rpc PayonusWebhook (PayonusWebhookRequest) returns (WebhookResponse) {}
+  rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
 }
 
 message PayonusWebhookRequest {
