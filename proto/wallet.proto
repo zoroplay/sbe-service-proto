@@ -194,6 +194,15 @@ service WalletService {
   rpc UpdateCommissionRequest(UpdateAffiliateCommissionRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateEarnings(PlayerRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
+  rpc PayonusWebhook (PayonusWebhookRequest) returns (WebhookResponse) {}
+}
+
+message PayonusWebhookRequest {
+    int32  clientId = 1;
+    string  type = 2;
+    string  signature = 3;
+    int64   timestamp = 4;
+    google.protobuf.Struct rawBody = 5;
 }
 
 message UpdateAffiliateCommissionRequest {
