@@ -219,6 +219,7 @@ message RequestCommissionDto {
   string accountName = 4;
   string accountNumber = 5;
   string bankCode = 6;
+  string transactionNo = 7;
 }
 
 message CommissionDataRequest {
@@ -229,6 +230,7 @@ message CommissionDataRequest {
   optional string from = 5;
   optional string to = 6;
   optional int32 status = 7;
+  optional string transactionNo = 8;
 }
 
 message ReferralTransactionRequest {
