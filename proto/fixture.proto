@@ -108,6 +108,7 @@ service FixtureService {
   rpc UpdateOdds (UpdateOddsRequest) returns (CommonResponse){}
   rpc UpdateEventStatus (UpdateEventStatusRequest) returns (CommonResponse){}
   rpc GetClientOddsOverrides (GetClientOddsOverridesRequest) returns (GetClientOddsOverridesResponse){}
+  rpc RemoveClientOddsOverride (RemoveClientOddsOverrideRequest) returns (CommonResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -834,6 +835,17 @@ message ClientOddsOverride {
   bool active = 8;
   string created = 9;
   string updated = 10;
+  optional string matchName = 11;
+  optional string homeTeam = 12;
+  optional string awayTeam = 13;
+  optional string matchDate = 14;
+  optional string tournamentName = 15;
+  optional int32 tournamentID = 16;
+  optional string sportName = 17;
+  optional int32 sportID = 18;
+  optional string categoryName = 19;
+  optional string marketName = 20;
+  optional string outcomeName = 21;
 }
 
 message GetClientOddsOverridesResponse {
@@ -841,4 +853,13 @@ message GetClientOddsOverridesResponse {
   string message = 2;
   repeated ClientOddsOverride overrides = 3;
   int32 total = 4;
+}
+
+// Remove client odds override request
+message RemoveClientOddsOverrideRequest {
+  int32 clientID = 1;
+  int32 matchID = 2;
+  int32 marketID = 3;
+  string outcomeID = 4;
+  optional string specifier = 5;
 }
