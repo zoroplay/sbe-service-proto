@@ -167,6 +167,8 @@ message AffiliateRequest {
   optional int32 affiliateId = 2;
   optional string startDate = 3;
   optional string endDate = 4;
+  optional int32 page = 5;
+  optional int32 limit = 6;
 }
 
 message Pagination {
