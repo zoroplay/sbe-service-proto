@@ -39,6 +39,8 @@ service BonusService {
 
   rpc GetAllAwardedBonus (GetAllBonusRequest) returns (CommonResponseObj){}
 
+  rpc GetBonusWithPromoCode (GetBonusWithPromoCodeRequest) returns (CommonResponseObj){}
+
   rpc DeleteBonus (DeleteBonusRequest) returns (BonusResponse){}
 
   rpc GetUserBonus (GetUserBonusRequest) returns (GetUserBonusResponse){}
@@ -229,6 +231,12 @@ message AffiliateBonusRequest {
 
 message GetAllBonusRequest {
   int32 clientId = 1;
+}
+
+message GetBonusWithPromoCodeRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string promoCode = 3;
 }
 
 message DeleteBonusRequest {
