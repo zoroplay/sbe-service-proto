@@ -361,6 +361,7 @@ message FilterByMarketID {
 message FilterByMatchID {
   int32 matchID = 1; // matchID of a particular match
   int32 timeoffset = 2;
+  optional int32 clientId = 3;
 }
 
 message SportFilters {
@@ -500,6 +501,7 @@ message GetFixturesRequest {
   optional string specifier = 9;
   optional string startDate = 10;
   optional string endDate = 11;
+  optional int32 clientId = 12;
 }
 
 message HighlightOutcomes {
@@ -753,11 +755,12 @@ message AddFavouriteResponse {
 
 // Tournament management request/response messages
 message UpdateMarginsRequest {
-  int32 tournamentId = 1;
-  float margin = 2;
-  bool status = 3;
-  bool enableCashout = 4;
-  string combinability = 5;
+  int32 clientID = 1;
+  int32 tournamentId = 2;
+  float margin = 3;
+  bool status = 4;
+  bool enableCashout = 5;
+  string combinability = 6;
 }
 
 message FilterByTournamentID {
@@ -789,17 +792,19 @@ message GetTournamentEventsResponse {
 
 // Odds management request/response messages
 message UpdateOddsRequest {
-  int32 matchID = 1;
-  int32 marketID = 2;
-  int32 oddID = 3;
-  float odds = 4;
-  string specifier = 5;
+  int32 clientID = 1;
+  int32 matchID = 2;
+  int32 marketID = 3;
+  int32 oddID = 4;
+  float odds = 5;
+  string specifier = 6;
 }
 
 message UpdateEventStatusRequest {
-  int32 matchID = 1;
-  UpdateType type = 2;
-  bool value = 3;
+  int32 clientID = 1;
+  int32 matchID = 2;
+  UpdateType type = 3;
+  bool value = 4;
 }
 
 enum UpdateType {
