@@ -158,6 +158,7 @@ service IdentityService {
   rpc AddAndRemoveUser (AddAndRemoveUserRequest) returns (CommonResponseObj) {}
   rpc GetAffiliateIds (EmptyRequest) returns (CommonResponseArray) {}
   rpc GetAffiliateUsers (AffiliateRequest) returns (AffiliateResponse) {}
+  rpc GetAffiliateData (AffiliateRequest) returns (CommonResponseObj) {}
   rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseObj) {}
 
 }
