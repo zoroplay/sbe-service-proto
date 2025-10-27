@@ -500,6 +500,7 @@ message GetFixturesRequest {
   optional string specifier = 9;
   optional string startDate = 10;
   optional string endDate = 11;
+  int32 clientId = 12;
 }
 
 message HighlightOutcomes {
