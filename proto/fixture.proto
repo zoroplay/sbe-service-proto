@@ -361,6 +361,7 @@ message FilterByMarketID {
 message FilterByMatchID {
   int32 matchID = 1; // matchID of a particular match
   int32 timeoffset = 2;
+  optional int32 clientId = 3;
 }
 
 message SportFilters {
@@ -500,7 +501,7 @@ message GetFixturesRequest {
   optional string specifier = 9;
   optional string startDate = 10;
   optional string endDate = 11;
-  int32 clientId = 12;
+  optional int32 clientId = 12;
 }
 
 message HighlightOutcomes {
