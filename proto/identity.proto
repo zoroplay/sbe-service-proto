@@ -157,7 +157,8 @@ service IdentityService {
   rpc FetchUserReferralId (FindUserIdRequest) returns (CommonResponseArray) {}
   rpc AddAndRemoveUser (AddAndRemoveUserRequest) returns (CommonResponseObj) {}
   rpc GetAffiliateIds (EmptyRequest) returns (CommonResponseArray) {}
-  rpc GetAffiliateUsers (AffiliateRequest) returns (CommonResponseObj) {}
+  rpc GetAffiliateUsers (AffiliateRequest) returns (AffiliateResponse) {}
+  rpc GetAffiliateData (AffiliateRequest) returns (CommonResponseObj) {}
   rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseObj) {}
 
 }
@@ -167,6 +168,26 @@ message AffiliateRequest {
   optional int32 affiliateId = 2;
   optional string startDate = 3;
   optional string endDate = 4;
+  optional int32 page = 5;
+  optional int32 limit = 6;
+}
+
+message Pagination {
+  int32 page = 1;
+  int32 limit = 2;
+  int32 total = 3;
+  int32 totalPages = 4;
+}
+
+message AffiliateResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated google.protobuf.Struct data = 4;
+  optional int32 totalUsers = 5;
+  optional int32 activeUsers = 6;
+  optional int32 dormantUsers = 7;
+  optional Pagination pagination = 8;
 }
 
 

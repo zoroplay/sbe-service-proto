@@ -107,6 +107,8 @@ service FixtureService {
   // Odds management methods
   rpc UpdateOdds (UpdateOddsRequest) returns (CommonResponse){}
   rpc UpdateEventStatus (UpdateEventStatusRequest) returns (CommonResponse){}
+  rpc GetClientOddsOverrides (GetClientOddsOverridesRequest) returns (GetClientOddsOverridesResponse){}
+  rpc RemoveClientOddsOverride (RemoveClientOddsOverrideRequest) returns (CommonResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -487,6 +489,7 @@ message GetHighlightsRequest {
   optional string search = 12;
   optional string favourite = 13;
   optional string userId = 14;
+  optional int32 clientId = 15;
 }
 
 message GetFixturesRequest {
@@ -810,4 +813,53 @@ message UpdateEventStatusRequest {
 enum UpdateType {
   STATUS = 0;
   HIGHLIGHT = 1;
+}
+
+// Get client odds overrides request/response messages
+message GetClientOddsOverridesRequest {
+  optional int32 clientID = 1;
+  optional int32 matchID = 2;
+  optional bool active = 3;
+  optional int32 limit = 4;
+  optional int32 offset = 5;
+}
+
+message ClientOddsOverride {
+  int32 id = 1;
+  int32 clientID = 2;
+  int32 matchID = 3;
+  int32 marketID = 4;
+  string outcomeID = 5;
+  string specifier = 6;
+  float customOdds = 7;
+  bool active = 8;
+  string created = 9;
+  string updated = 10;
+  optional string matchName = 11;
+  optional string homeTeam = 12;
+  optional string awayTeam = 13;
+  optional string matchDate = 14;
+  optional string tournamentName = 15;
+  optional int32 tournamentID = 16;
+  optional string sportName = 17;
+  optional int32 sportID = 18;
+  optional string categoryName = 19;
+  optional string marketName = 20;
+  optional string outcomeName = 21;
+}
+
+message GetClientOddsOverridesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated ClientOddsOverride overrides = 3;
+  int32 total = 4;
+}
+
+// Remove client odds override request
+message RemoveClientOddsOverrideRequest {
+  int32 clientID = 1;
+  int32 matchID = 2;
+  int32 marketID = 3;
+  string outcomeID = 4;
+  optional string specifier = 5;
 }
