@@ -95,6 +95,7 @@ message PayoutRequest {
   optional string startDate = 2;
   optional string endDate = 3;
   string type = 4;
+   int32 clientId = 5;
 }
 
 message Getdata {
