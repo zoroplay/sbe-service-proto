@@ -200,7 +200,7 @@ service WalletService {
 
 
 message OneReferralRequest {
-  int32 affiliateId = 1;
+  int32 referralId = 1;
   string startDate = 2;
   string endDate = 3;
 } 
