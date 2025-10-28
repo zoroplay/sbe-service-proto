@@ -61,7 +61,7 @@ service CommissionService {
   rpc ListAllAffiliateCommissions(ClientRequest) returns (CommonResponseObj) {}
 
 
-  rpc AffiliatePayOutCommissions(PaymentRequest) returns (CommonResponseArray) {}
+  rpc AffiliatePayOutCommissions(PayoutRequest) returns (CommonResponseArray) {}
 
 }
 
@@ -86,9 +86,16 @@ message PaymentRequest {
   int32 affiliateUserId = 1;
   optional string startDate = 2;
   optional string endDate = 3;
-  optional string type = 4;
+ 
 }
 
+
+message PayoutRequest {
+  repeated int32 affiliateIds = 1;
+  optional string startDate = 2;
+  optional string endDate = 3;
+  string type = 4;
+}
 
 message Getdata {
   int32 clientId = 1;
