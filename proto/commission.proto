@@ -60,6 +60,9 @@ service CommissionService {
 
   rpc ListAllAffiliateCommissions(ClientRequest) returns (CommonResponseObj) {}
 
+
+  rpc AffiliatePayOutCommissions(PaymentRequest) returns (CommonResponseArray) {}
+
 }
 
 message AffiliateIds {
