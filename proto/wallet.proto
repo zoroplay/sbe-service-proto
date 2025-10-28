@@ -188,6 +188,7 @@ service WalletService {
 
   rpc FirstDepositCommissionProcess(FirstDepositRequest) returns (CommonResponseArray) {}
   rpc GetReferralTransactions(ReferralTransactionRequest) returns (CommonResponseArray) {}
+  rpc GetOneReferralTransactions(OneReferralRequest) returns (CommonResponseArray) {}
 
   rpc RequestCommission(RequestCommissionDto) returns (CommonResponseObj) {}
   rpc FetchCommissionRequests(CommissionDataRequest) returns (CommonResponseObj) {}
@@ -196,6 +197,11 @@ service WalletService {
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
 }
+
+
+message OneReferralRequest {
+  int32 affiliateId = 1;
+} 
 
 message PayonusWebhookRequest {
     int32  clientId = 1;
