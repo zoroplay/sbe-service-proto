@@ -86,6 +86,7 @@ message PaymentRequest {
   int32 affiliateUserId = 1;
   optional string startDate = 2;
   optional string endDate = 3;
+  optional string type = 4;
 }
 
 
