@@ -201,6 +201,8 @@ service WalletService {
 
 message OneReferralRequest {
   int32 affiliateId = 1;
+  string startDate = 2;
+  string endDate = 3;
 } 
 
 message PayonusWebhookRequest {
