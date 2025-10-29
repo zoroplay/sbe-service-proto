@@ -209,8 +209,8 @@ message PayonusWebhookRequest {
     int32  clientId = 1;
     string  type = 2;
     string  signature = 3;
-    int64   timestamp = 4;
-    google.protobuf.Struct rawBody = 5;
+    optional int64   timestamp = 4;
+    string  rawBody = 5;
 }
 
 message UpdateAffiliateCommissionRequest {
