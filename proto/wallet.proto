@@ -210,8 +210,12 @@ message PayonusWebhookRequest {
     string  type = 2;
     string  signature = 3;
     optional int64   timestamp = 4;
-    string  rawBody = 5;
+    WebhookBody  rawBody = 5;
 }
+message WebhookBody {
+    string data = 1;
+}
+
 
 message UpdateAffiliateCommissionRequest {
   int32 clientId = 1;
