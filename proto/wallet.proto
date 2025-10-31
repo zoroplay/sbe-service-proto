@@ -188,6 +188,7 @@ service WalletService {
 
   rpc FirstDepositCommissionProcess(FirstDepositRequest) returns (CommonResponseArray) {}
   rpc GetReferralTransactions(ReferralTransactionRequest) returns (CommonResponseArray) {}
+  rpc GetOneReferralTransactions(OneReferralRequest) returns (CommonResponseArray) {}
 
   rpc RequestCommission(RequestCommissionDto) returns (CommonResponseObj) {}
   rpc FetchCommissionRequests(CommissionDataRequest) returns (CommonResponseObj) {}
@@ -197,13 +198,24 @@ service WalletService {
   rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
 }
 
+
+message OneReferralRequest {
+  int32 referralId = 1;
+  string startDate = 2;
+  string endDate = 3;
+} 
+
 message PayonusWebhookRequest {
     int32  clientId = 1;
     string  type = 2;
     string  signature = 3;
-    int64   timestamp = 4;
-    google.protobuf.Struct rawBody = 5;
+    optional int64   timestamp = 4;
+    WebhookBody  rawBody = 5;
 }
+message WebhookBody {
+    string data = 1;
+}
+
 
 message UpdateAffiliateCommissionRequest {
   int32 clientId = 1;
