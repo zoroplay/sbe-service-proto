@@ -63,6 +63,9 @@ service CommissionService {
 
   rpc AffiliatePayOutCommissions(PayoutRequest) returns (CommonResponseArray) {}
 
+
+  rpc SuperAgentCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+
 }
 
 message AffiliateIds {
