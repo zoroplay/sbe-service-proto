@@ -378,6 +378,7 @@ message PlaceBetRequest {
   optional bool useBonus = 17; 
   optional string userRole = 18;
   repeated Grouping Groupings = 19;
+  bool hasLive = 20;
 }
 
 message BetSlip {
@@ -531,6 +532,7 @@ message BetHistory {
   optional float minStake = 29;
   optional float minOdd = 30;
   repeated SystemBet systemBets = 31;
+  optional float minWinning = 32;
 }
 
 message BetHistoryResponse {

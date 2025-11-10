@@ -166,11 +166,12 @@ service IdentityService {
 
 message AffiliateRequest {
   int32 clientId = 1;
-  optional int32 affiliateId = 2;
+  optional string affiliateId = 2;
   optional string startDate = 3;
   optional string endDate = 4;
   optional int32 page = 5;
   optional int32 limit = 6;
+  optional string search = 7;
 }
 
 message Pagination {
@@ -954,7 +955,7 @@ message CreateUserRequest {
   optional int32 parentId = 20;
   optional float balance = 21;
   optional bool isTest = 22;
-  optional int32 affiliateId = 23;
+  optional string affiliateId = 23;
 }
 
 message CreateAgentRequest {
