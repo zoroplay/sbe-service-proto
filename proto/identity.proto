@@ -201,7 +201,7 @@ message AddAndRemoveUserRequest {
 }
  
 message FindUserIdRequest {
-  int32 affiliateId = 1;
+  string affiliateId = 1;
 }
 
 message ListBanksRequest {
