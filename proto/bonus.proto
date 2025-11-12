@@ -19,6 +19,8 @@ service BonusService {
 
   rpc CheckRegisterBonus (GetBonusRequest) returns (CommonResponseObj){}
 
+  rpc CheckAffiliateRegisterBonus (GetBonusRequest) returns (CommonResponseObj){}
+
   rpc SettleBet (SettleBetRequest) returns (CommonResponseObj){}
 
   rpc SearchBonus (GetBonusByClientID) returns (SearchBonusResponse){}
@@ -214,6 +216,7 @@ message CreateBonusResponse {
 message GetBonusRequest {
   int32 clientId = 1;
   optional string bonus_type = 2;
+  optional bool is_affiliate = 3;
 }
 
 message GetAffiliateBonusRequest {
