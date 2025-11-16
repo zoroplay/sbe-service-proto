@@ -53,7 +53,7 @@ service BettingService {
 }
 
 message ManualSettlementRequest {
-  int64 matchId = 1;
+  int32 matchId = 1;
   int32 ftHomeScore = 2;
   int32 ftAwayScore = 3;
   int32 htHomeScore = 4;
