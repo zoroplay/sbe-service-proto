@@ -68,7 +68,7 @@ service CommissionService {
 
   rpc PaySuperAgentCommission(SuperAgentCommissionData) returns (CommonResponseObj) {}
 
-  rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {
+  rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {}
 
 }
 
