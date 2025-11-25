@@ -81,8 +81,8 @@ message SuperAgentPayoutRequest {
   float commissionAmount = 3;
   float superAgentCommissionAmount = 4;
   string provider = 5;
-  string startDate = 6;
-  string endDate = 7;
+  string from = 6;
+  string to = 7;
   int32 commissionProfileId = 8;
   int32 clientId = 9;
 }
