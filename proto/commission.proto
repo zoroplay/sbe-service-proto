@@ -68,8 +68,17 @@ service CommissionService {
 
   rpc PaySuperAgentCommission(SuperAgentCommissionData) returns (CommonResponseObj) {}
 
+  rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {
+
 }
 
+message SuperAgentDataRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string from = 3;
+  string to = 4;
+  string provider = 5;
+}
 
 message SuperAgentCommissionData {
   repeated SuperAgentPayoutRequest data = 1;
