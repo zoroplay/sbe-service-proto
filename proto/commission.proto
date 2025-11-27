@@ -70,6 +70,8 @@ service CommissionService {
 
   rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {}
 
+  rpc AffiliateUsersCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
+
 }
 
 message SuperAgentDataRequest {
