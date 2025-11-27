@@ -161,7 +161,17 @@ service IdentityService {
   rpc GetAffiliateData (AffiliateRequest) returns (CommonResponseObj) {}
   rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
+  rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
 
+}
+
+
+
+message ArrayResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  repeated int32 data = 4;
 }
 
 message AffiliateRequest {

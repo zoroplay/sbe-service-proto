@@ -49,7 +49,15 @@ service BettingService {
   rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
   rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
+  rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
+}
 
+message ManualSettlementRequest {
+  int32 matchId = 1;
+  int32 ftHomeScore = 2;
+  int32 ftAwayScore = 3;
+  int32 htHomeScore = 4;
+  int32 htAwayScore = 5;
 }
 
 message ValidateSelectionRequest {
