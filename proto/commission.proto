@@ -66,7 +66,39 @@ service CommissionService {
 
   rpc SuperAgentCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
 
+  rpc PaySuperAgentCommission(SuperAgentCommissionData) returns (CommonResponseObj) {}
+
+  rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {}
+
+  
+
 }
+
+message SuperAgentDataRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string from = 3;
+  string to = 4;
+  string provider = 5;
+}
+
+message SuperAgentCommissionData {
+  repeated SuperAgentPayoutRequest data = 1;
+}
+
+message SuperAgentPayoutRequest {
+  int32 superAgentId = 1;
+  int32 totalRevenue = 2;
+  float commissionAmount = 3;
+  float superAgentCommissionAmount = 4;
+  string provider = 5;
+  string from = 6;
+  string to = 7;
+  int32 commissionProfileId = 8;
+  int32 clientId = 9;
+}
+
+
 
 message AffiliateIds {
   repeated int32 affiliateIds = 1;
@@ -165,7 +197,6 @@ message UserCommissionData {
 message DepositCommissionRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float amount = 4;
   string provider = 5;
   optional string depositCode = 6;
@@ -175,7 +206,6 @@ message DepositCommissionRequest {
 message PayoutCommissionRequestData {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float amount = 4;
   string provider = 5;
   string betId = 6;
@@ -185,7 +215,6 @@ message PayoutCommissionRequestData {
 message BetCommissionRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float stake = 4;
   string provider = 5;
   string eventType = 6;
