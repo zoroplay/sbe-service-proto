@@ -985,8 +985,8 @@ message CreateAgentRequest {
 message UpdateUserRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  string username = 3;
-  string password = 4;
+  optional string username = 3;
+  optional string password = 4;
   optional string email = 5;
   optional int32 roleId = 6;
   optional string firstName = 7;
@@ -1005,6 +1005,7 @@ message UpdateUserRequest {
   optional string trackingToken = 20;
   optional string parentId = 21;
   optional string lga = 22;
+  optional int32 status = 23;
 }
 
 // user
