@@ -913,6 +913,11 @@ message PoolFixture {
   double odds = 11;
   string matchTitle = 12;
   int32 tournamentID = 13;
+  string outcomeID = 14;
+  string outcomeName = 15;
+  string marketID = 16;
+  string marketName = 17;
+  string producerID = 18;
 }
 
 message GetTournamentFixturesResponse {
