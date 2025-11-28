@@ -197,7 +197,6 @@ message UserCommissionData {
 message DepositCommissionRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float amount = 4;
   string provider = 5;
   optional string depositCode = 6;
@@ -207,7 +206,6 @@ message DepositCommissionRequest {
 message PayoutCommissionRequestData {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float amount = 4;
   string provider = 5;
   string betId = 6;
@@ -217,7 +215,6 @@ message PayoutCommissionRequestData {
 message BetCommissionRequest {
   int32 clientId = 1;
   int32 userId = 2;
-  int32 commissionId = 3;
   float stake = 4;
   string provider = 5;
   string eventType = 6;
