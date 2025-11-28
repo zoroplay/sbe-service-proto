@@ -109,6 +109,13 @@ service FixtureService {
   rpc UpdateEventStatus (UpdateEventStatusRequest) returns (CommonResponse){}
   rpc GetClientOddsOverrides (GetClientOddsOverridesRequest) returns (GetClientOddsOverridesResponse){}
   rpc RemoveClientOddsOverride (RemoveClientOddsOverrideRequest) returns (CommonResponse){}
+
+  // Pool fixtures management methods
+  rpc GetUpcomingSoccerTournaments (GetUpcomingSoccerTournamentsRequest) returns (GetUpcomingSoccerTournamentsResponse){}
+  rpc GetTournamentFixtures (GetTournamentFixturesRequest) returns (GetTournamentFixturesResponse){}
+  rpc SavePoolFixtures (SavePoolFixturesRequest) returns (SavePoolFixturesResponse){}
+  rpc GetPoolFixtures (GetPoolFixturesRequest) returns (GetPoolFixturesResponse){}
+  rpc GetPoolWeeks (GetPoolWeeksRequest) returns (GetPoolWeeksResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -862,4 +869,121 @@ message RemoveClientOddsOverrideRequest {
   int32 marketID = 3;
   string outcomeID = 4;
   optional string specifier = 5;
+}
+
+// Pool fixtures management messages
+message GetUpcomingSoccerTournamentsRequest {
+  int32 clientID = 1;
+  optional int32 days = 2; // Number of days ahead to fetch tournaments (default: 7)
+}
+
+message TournamentInfo {
+  int32 tournamentID = 1;
+  string tournamentName = 2;
+  int32 categoryID = 3;
+  string categoryName = 4;
+  int32 sportID = 5;
+  string sportName = 6;
+  int32 fixtureCount = 7;
+}
+
+message GetUpcomingSoccerTournamentsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated TournamentInfo tournaments = 3;
+}
+
+message GetTournamentFixturesRequest {
+  int32 clientID = 1;
+  int32 tournamentID = 2;
+  optional int32 limit = 3; // Limit fixtures returned (default: 50)
+}
+
+message PoolFixture {
+  int32 id = 1;
+  int32 matchID = 2;
+  int32 gameID = 3;
+  string homeTeam = 4;
+  string awayTeam = 5;
+  string eventDate = 6;
+  string eventTime = 7;
+  int32 week = 8;
+  string weekNo = 9;
+  string schedule = 10;
+  double odds = 11;
+}
+
+message GetTournamentFixturesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated PoolFixture fixtures = 3;
+  int32 total = 4;
+}
+
+message PoolFixtureSelection {
+  int32 id = 1; // Auto-generated ID
+  int32 matchID = 2;
+  int32 gameID = 3;
+  string homeTeam = 4;
+  string awayTeam = 5;
+  string score = 6; // Expected score e.g "2-1"
+  string result = 7; // H (Home), A (Away), D (Draw)
+  string eventDate = 8;
+  string eventTime = 9;
+  string schedule = 10;
+  double odds = 11;
+  string status = 12; // Active, Cancelled, etc
+  int32 week = 13; // ISO week number (1-53)
+  string weekNo = 14; // Week label e.g "Week 45"
+}
+
+message SavePoolFixturesRequest {
+  int32 clientID = 1;
+  int32 year = 2; // Year (e.g., 2024)
+  int32 week = 3; // ISO week number (1-53)
+  repeated PoolFixtureSelection selections = 4; // Should be 49 fixtures
+}
+
+message SavePoolFixturesResponse {
+  bool success = 1;
+  string message = 2;
+  int32 savedCount = 3;
+  int32 year = 4;
+  int32 week = 5;
+}
+
+message GetPoolFixturesRequest {
+  int32 clientID = 1;
+  optional int32 year = 2; // Filter by year
+  optional int32 week = 3; // Filter by ISO week number
+  optional string status = 4; // Filter by status (default: all)
+}
+
+message GetPoolFixturesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated PoolFixtureSelection fixtures = 3;
+  int32 total = 4;
+  optional PoolWeekInfo weekInfo = 5;
+}
+
+// Pool week info messages
+message PoolWeekInfo {
+  int32 year = 1;
+  int32 week = 2; // ISO week number (1-53)
+  string weekNo = 3; // Week label e.g "Week 45, 2024"
+  int32 fixtureCount = 4; // Number of fixtures in this week
+  string status = 5; // Active, Closed, etc
+}
+
+message GetPoolWeeksRequest {
+  int32 clientID = 1;
+  optional int32 year = 2; // Filter by year (default: current year)
+}
+
+message GetPoolWeeksResponse {
+  bool success = 1;
+  string message = 2;
+  repeated PoolWeekInfo weeks = 3;
+  int32 total = 4;
 }
