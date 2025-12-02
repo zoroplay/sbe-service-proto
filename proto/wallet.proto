@@ -197,9 +197,9 @@ service WalletService {
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
   rpc AffiliateUsersCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
-  rpc AdminGetAffiliateReferralWithdrawals() returns (CommonResponseObj) {}
-  rpc AdminGetAffiliateReferralDeposits() returns (CommonResponseObj) {}
-  rpc AdminDailyAndMontlyAffiliateSummary() returns (CommonResponseObj) {}
+  rpc AdminGetAffiliateReferralWithdrawals(ClientAffiliateRequest) returns (CommonResponseObj) {}
+  rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
+  rpc AdminDailyAndMontlyAffiliateSummary(ClientAffiliateRequest) returns (CommonResponseObj) {}
 }
 
 message ClientAffiliateRequest {
