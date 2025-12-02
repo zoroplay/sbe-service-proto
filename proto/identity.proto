@@ -162,6 +162,7 @@ service IdentityService {
   rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
+  rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
 
 }
 
