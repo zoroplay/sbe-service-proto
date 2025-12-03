@@ -155,9 +155,18 @@ message AffiliateCommission {
   string type = 4;
   repeated FirstDeposit firstDeposit = 5;
   repeated RevenueShare revenueShare = 6;
-  repeated Hybrid hybrid = 7;
-  repeated Tiered tiered = 8;
-  optional int32 id = 9;
+  repeated DepositRange depositRange = 7;
+  repeated Hybrid hybrid = 8;
+  repeated Tiered tiered = 9;
+  optional int32 id = 10;
+}
+
+message DepositRange {
+  int32 affiliateCommissionId = 1;
+  float percentage = 2;
+  string durationValue = 3;
+  string durationUnit = 4;
+ 
 }
 
 message FirstDeposit {
