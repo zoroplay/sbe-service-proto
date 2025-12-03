@@ -166,6 +166,7 @@ message DepositRange {
   float percentage = 2;
   string durationValue = 3;
   string durationUnit = 4;
+  int32 maxDepositAmount = 5;
  
 }
 
