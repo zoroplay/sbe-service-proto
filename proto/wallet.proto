@@ -339,6 +339,8 @@ message PlayerCancelWithdrawalRequest{
 message PlayerRequest{
   int32 userId = 1;
   int32 clientId = 2;
+  optional string from = 3;
+  optional string to = 4;
 
 }
 
