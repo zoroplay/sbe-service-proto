@@ -200,6 +200,7 @@ service WalletService {
   rpc AdminGetAffiliateReferralWithdrawals(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminDailyAndMontlyAffiliateSummary(ClientAffiliateRequest) returns (CommonResponseObj) {}
+  rpc ListAffiliateTotalDepositsAndWithdrawals(DepositeWithdrawls) resturns (CommonResponseObj) {}
 }
 
 message ClientAffiliateRequest {
@@ -208,6 +209,13 @@ message ClientAffiliateRequest {
   int32 limit = 3;
   optional string from = 4;
   optional string to = 5;
+}
+
+message DepositeWithdrawls {
+  int32 clientId = 1;
+  int32 affiliateId =2;
+ optional string from = 3;
+  optional string to = 4; 
 }
 
 
