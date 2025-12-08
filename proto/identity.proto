@@ -200,7 +200,9 @@ message AffiliateResponse {
   optional int32 totalUsers = 5;
   optional int32 activeUsers = 6;
   optional int32 dormantUsers = 7;
-  optional Pagination pagination = 8;
+  optional int32 totalDepositAmount = 8;
+  optional int32 totalWithdrawAmount = 9;
+  optional Pagination pagination = 10;
 }
 
 
