@@ -200,7 +200,7 @@ service WalletService {
   rpc AdminGetAffiliateReferralWithdrawals(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminDailyAndMontlyAffiliateSummary(ClientAffiliateRequest) returns (CommonResponseObj) {}
-  rpc ListAffiliateTotalDepositsAndWithdrawals(DepositeWithdrawls) resturns (CommonResponseObj) {}
+  rpc ListAffiliateTotalDepositsAndWithdrawals(DepositeWithdrawls) returns (CommonResponseObj) {}
 }
 
 message ClientAffiliateRequest {
