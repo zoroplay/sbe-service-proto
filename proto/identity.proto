@@ -163,7 +163,31 @@ service IdentityService {
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
   rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
+  rpc GetAffiliatesOverview(AffiliateRequest) returns (AffiliateStatsResponse) {}
 
+}
+
+
+// Top affiliate information
+message TopAffiliate {
+  int32 affiliate_id = 1;
+  optional string username = 2;
+  int32 signup_count = 3;
+  optional int32 totalDeposit = 4;
+  optional int32 totalWithdraw = 5;
+}
+
+// Data payload for affiliate statistics
+message AffiliateStatsData {
+  int32 totalUsers = 1;
+  repeated TopAffiliate topAffiliates = 2;
+}
+
+// Response message for affiliate statistics
+message AffiliateStatsResponse {
+  bool success = 1;
+  string message = 2;
+  AffiliateStatsData data = 3;
 }
 
 
