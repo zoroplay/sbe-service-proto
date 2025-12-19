@@ -163,7 +163,7 @@ service IdentityService {
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
   rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
-  rpc GetAffiliatesOverview(AffiliateRequest) returns (AffiliateStatsResponse) {}
+  rpc GetAffiliatesOverview(AffiliateRequest) returns (CommonResponseObj) {}
 
 }
 
