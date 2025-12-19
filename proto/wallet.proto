@@ -204,7 +204,7 @@ service WalletService {
   rpc AdminAffiliateReferralDashboardData(AffiliateDashboardData) returns (CommonResponseObj) {}
 
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
-  rpc ListRetailTransactions(RetailDataRequest) returns (CommonResponseArray) {}
+  rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
 }
 
 message RetailDataRequest {
