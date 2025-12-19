@@ -201,7 +201,15 @@ service WalletService {
   rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminDailyAndMontlyAffiliateSummary(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc ListAffiliateTotalDepositsAndWithdrawals(DepositWithdrawals) returns (CommonResponseObj) {}
+  rpc AdminAffiliateReferralDashboardData(AffiliateDashboardData) returns (CommonResponseObj) {}
 }
+
+message AffiliateDashboardData {
+  int32 clientId = 1;
+  optional string from = 2;
+  optional string to = 3; 
+}
+
 
 message ClientAffiliateRequest {
   int32 clientId = 1;
