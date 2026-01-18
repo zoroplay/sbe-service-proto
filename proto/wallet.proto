@@ -205,6 +205,18 @@ service WalletService {
 
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
+
+  rpc OPayPayout(OPayPayoutRequest) returns (CommonResponseObj) {}
+
+}
+
+
+message OPayPayoutRequest {
+  int32 clientId = 1;
+  int32 amount = 2;
+  string accountNumber = 3;
+  string accountName = 4;
+  string bankCode = 5;
 }
 
 message RetailDataRequest {
