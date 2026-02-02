@@ -130,6 +130,7 @@ service WalletService {
 
   rpc  MtnmomoCallback (MtnmomoRequest) returns (WebhookResponse){}
   rpc  OpayCallback(OpayRequest) returns (OpayResponse) {}
+  rpc  ValidateOpayKey(ValidateOpayKeyRequest) returns (ValidateOpayKeyResponse) {}
   rpc  CorapayWebhook(CorapayWebhookRequest) returns (CorapayResponse) {}
 
 
@@ -574,6 +575,7 @@ message UpdatePaymentMethodRes {
   int32 status = 8;
   int32 for_disbursement = 9;
   int32 id = 10;
+  string live_key = 11;
 }
 
 message CorapayWebhookRequest {
@@ -1191,6 +1193,7 @@ message PaymentMethodRequest {
   int32 status = 8;
   int32 forDisbursement = 9;
   int32 id = 10;
+  string liveKey = 11;
 }
 
 message VerifyDepositRequest {
@@ -1254,6 +1257,7 @@ message PaymentMethod {
   int32 status = 8;
   int32 for_disbursement = 9;
   int32 id = 10;
+  string live_key = 11;
 }
 
 message CreateWalletRequest {
@@ -1567,4 +1571,14 @@ message MetaData {
   int32 lastPage = 4;
   int32 nextPage = 5;
   int32 prevPage = 6;
+}
+
+message ValidateOpayKeyRequest {
+  int32 clientId = 1;
+  string token = 2;
+}
+
+message ValidateOpayKeyResponse {
+  bool success = 1;
+  string message = 2;
 }
