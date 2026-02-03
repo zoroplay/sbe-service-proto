@@ -16,7 +16,7 @@ service WalletService {
   rpc CurrentReport(FetchReportRequest) returns (CommonResponseObj) {}
 
 
-  
+
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookFindAllExpense(EmptyRequest) returns (ExpenseRepeatedResponse) {}
@@ -206,6 +206,7 @@ service WalletService {
 
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
+  rpc OpayBankCodes(ClientRequest) returns (CommonResponseObj) {}
 
 }
 
@@ -455,21 +456,20 @@ message OverallGamesResponse {
 
 message ClientRequest {
   int32 clientId = 1;
- 
 }
 
 
 message FinancialPerformanceResponse {
-  bool success = 1;        
-  int32 status = 2;        
+  bool success = 1;
+  int32 status = 2;
   string message = 3;
   double totalDeposit = 4;
   double totalWithdrawal = 5;
 }
 
 message PlayerBalanceResponse {
-   bool success = 1;        
-   int32 status = 2;        
+   bool success = 1;
+   int32 status = 2;
    string message = 3;
    double totalOnlinePlayerBalance = 4;
    double totalOnlinePlayerBonus = 5;
