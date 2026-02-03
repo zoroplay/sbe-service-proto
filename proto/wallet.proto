@@ -206,8 +206,15 @@ service WalletService {
 
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
-  rpc OpayBankCodes(ClientRequest) returns (CommonResponseObj) {}
+  rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
 
+}
+
+
+message OpayBankCodesRequest {
+  int32 clientId = 1;
+  int32 accountNo = 2;
+  int32 bankCode = 3;
 }
 
 message RetailDataRequest {
