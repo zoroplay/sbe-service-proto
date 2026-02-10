@@ -70,8 +70,53 @@ service CommissionService {
 
   rpc SuperAgentData (SuperAgentDataRequest) returns (CommonResponseObj) {}
   rpc SuperAgentTotals(SuperAgentTotalsRequest) returns (CommonResponseObj) {}
-  
+
+
+
+  //////////////////////// PowerBonus ////////////////////////
+
+
+
+
+  rpc CreatePowerBonusConfiguration(PowerBonusConfiguration) returns (CommonResponseObj) {}
+  rpc UpdatePowerBonusConfiguration(PowerBonusConfiguration) returns (CommonResponseObj) {}
+  rpc GetPowerBonusConfigurations(GetCommissionsRequest) returns (CommonResponseArray) {}
+  rpc GetPowerBonusConfiguration(Getdata) returns (CommonResponseObj) {}
+  rpc DeletePowerBonusConfiguration(Getdata) returns (CommonResponseObj) {}
+
+  rpc AssignAgentToPowerBonus(AssignAgentToPowerBonusRequest) returns (CommonResponseObj) {}
 }
+
+
+///////////// PowerBonus ////////////////
+
+
+message AssignAgentToPowerBonusRequest {
+  int32 agentId = 1;
+  int32 powerBonusId = 2;
+  int32 clientId = 3;
+}
+
+message PowerBonusConfiguration {
+  optional int32 id = 1;
+  int32 clientId = 2;
+  string provider = 3;
+  double targetStake = 4;
+  string activePeriodStart = 5;
+  string activePeriodEnd = 6;
+  optional bool isActive = 7;
+  repeated PowerBonusTier tiers = 8;
+}
+
+message PowerBonusTier {
+  optional int32 id = 1;
+  double minSelections = 2;
+  double maxSelections = 3;
+  double rateLowMargin = 4;
+  double rateHighMargin = 5;
+}
+
+//////////////////////////////
 
 
 message SuperAgentTotalsRequest {
