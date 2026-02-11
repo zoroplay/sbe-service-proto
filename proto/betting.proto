@@ -50,6 +50,7 @@ service BettingService {
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
   rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
   rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
+  rpc GetMonthSummary (SalesReportRequest) returns (CommonResponseObj) {}
 }
 
 message ManualSettlementRequest {
