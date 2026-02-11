@@ -85,6 +85,7 @@ service CommissionService {
   rpc DeletePowerBonusConfiguration(Getdata) returns (CommonResponseObj) {}
 
   rpc AssignAgentToPowerBonus(AssignAgentToPowerBonusRequest) returns (CommonResponseObj) {}
+  rpc CalculatePowerBonusForAgent(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
 }
 
 
@@ -95,6 +96,7 @@ message AssignAgentToPowerBonusRequest {
   int32 agentId = 1;
   int32 powerBonusId = 2;
   int32 clientId = 3;
+  string provider = 4;
 }
 
 message PowerBonusConfiguration {
@@ -114,6 +116,13 @@ message PowerBonusTier {
   double maxSelections = 3;
   double rateLowMargin = 4;
   double rateHighMargin = 5;
+}
+
+message CalculatePowerBonusForAgentRequest {
+  int32 clientId = 1;
+  string provider = 2;
+  string from = 3;
+  string to = 4;
 }
 
 //////////////////////////////
