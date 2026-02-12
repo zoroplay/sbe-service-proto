@@ -71,6 +71,7 @@ service GamingService {
     rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
     rpc HandleSpribeCallback (SpribeCallbackRequest) returns (CallbackResponse) {}
     rpc HandleSmatVirtualCallback (SmatVirtualCallbackRequest) returns (CallbackResponse) {}
+    rpc SmatVirtualWebhook (SmatVirtualWebhookRequest) returns (CommonResponse) {}
 
     rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
     rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
@@ -131,6 +132,12 @@ message SmatVirtualCallbackRequest {
     optional string playerId = 4;
     optional string sessionId = 5;
 };
+
+message SmatVirtualWebhookRequest {
+  int32 clientId = 1;
+  optional string event = 2;
+  optional string body = 3;
+}
 
 message CreateBonusRequest {
     int32 clientId = 1;
