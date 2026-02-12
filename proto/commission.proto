@@ -75,9 +75,6 @@ service CommissionService {
 
   //////////////////////// PowerBonus ////////////////////////
 
-
-
-
   rpc CreatePowerBonusConfiguration(PowerBonusConfiguration) returns (CommonResponseObj) {}
   rpc UpdatePowerBonusConfiguration(PowerBonusConfiguration) returns (CommonResponseObj) {}
   rpc GetPowerBonusConfigurations(GetCommissionsRequest) returns (CommonResponseArray) {}
@@ -86,6 +83,8 @@ service CommissionService {
 
   rpc AssignAgentToPowerBonus(AssignAgentToPowerBonusRequest) returns (CommonResponseObj) {}
   rpc CalculatePowerBonusForAgent(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
+  rpc PowerBonusDashboard(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
+  rpc PayPowerBonus(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
 }
 
 
