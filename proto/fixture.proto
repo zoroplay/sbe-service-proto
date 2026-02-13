@@ -116,6 +116,13 @@ service FixtureService {
   rpc SavePoolFixtures (SavePoolFixturesRequest) returns (SavePoolFixturesResponse){}
   rpc GetPoolFixtures (GetPoolFixturesRequest) returns (GetPoolFixturesResponse){}
   rpc GetPoolWeeks (GetPoolWeeksRequest) returns (GetPoolWeeksResponse){}
+
+  /*
+  GetPrintFixtures - Retrieves fixtures based on selected sports, categories, and tournaments for print operations.
+  This method allows bulk fetching of fixtures across multiple tournaments with optional date filtering.
+  Used primarily for generating printable fixture lists for retail/POS operations.
+  */
+  rpc GetPrintFixtures (GetPrintFixturesRequest) returns (GetPrintFixturesResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -993,4 +1000,42 @@ message GetPoolWeeksResponse {
   string message = 2;
   repeated PoolWeekInfo weeks = 3;
   int32 total = 4;
+}
+
+// Print fixtures request/response messages
+/*
+GetPrintFixturesRequest - Request message for fetching fixtures for print operations
+Allows selecting multiple sports, categories, and tournaments in a nested structure
+with optional date filtering for flexible bulk fixture retrieval
+*/
+message GetPrintFixturesRequest {
+  // Selected sport with nested categories and tournaments
+  message SelectedTournament {
+    string tournament_id = 1; // Tournament ID to fetch fixtures for
+  }
+  
+  message SelectedCategory {
+    string category_id = 1; // Category ID
+    repeated SelectedTournament tournaments = 2; // List of tournaments under this category
+  }
+  
+  message SelectedSport {
+    string sport_id = 1; // Sport ID
+    repeated SelectedCategory categories = 2; // List of categories under this sport
+  }
+  
+  repeated SelectedSport selected = 1; // Array of selected sports with their categories and tournaments
+  optional string date_filter = 2; // Optional date filter (format: YYYY-MM-DD or "ALL")
+  optional int32 timeoffset = 4; // Optional timezone offset in hours
+}
+
+/*
+GetPrintFixturesResponse - Response message containing fixtures matching the print request
+Returns fixtures with basic information and outcomes/markets for print display
+*/
+message GetPrintFixturesResponse {
+  bool success = 1; // Whether the request was successful
+  string message = 2; // Response message
+  repeated FixturesWithOdds fixtures = 3; // Array of fixtures with odds for selected tournaments
+  int32 total = 4; // Total number of fixtures returned
 }
