@@ -5,6 +5,7 @@ import "google/protobuf/struct.proto";
 package commission;
 
 
+
 service CommissionService {
   rpc GetAgentUser(GetAgentUserRequest) returns (CommonResponseArray) {}
   rpc ListAgents(GetAgentUsersRequest) returns (CommonResponseObj) {}
@@ -84,12 +85,52 @@ service CommissionService {
   rpc AssignAgentToPowerBonus(AssignAgentToPowerBonusRequest) returns (CommonResponseObj) {}
   rpc CalculatePowerBonusForAgent(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
   rpc PowerBonusDashboard(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
-  rpc PayPowerBonus(CalculatePowerBonusForAgentRequest) returns (CommonResponseObj) {}
+  rpc PayPowerBonus(PayPowerBonusRequest) returns (CommonResponseObj) {}
+  rpc ListAgentPowerBonus(ListPowerBonusForAgent) returns (CommonResponseObj) {}
+  rpc GetOnePowerBonusAgent(GetOnePowerBonusForAgent) returns (CommonResponseObj) {}
+  
 }
 
 
 ///////////// PowerBonus ////////////////
 
+message ListPowerBonusForAgent {
+  int32 agentId = 1;
+  int32 clientId = 2;
+  
+}
+
+message GetOnePowerBonusForAgent {
+  int32 agentId = 1;
+  int32 clientId = 2;
+  int32 powerBonusId = 3;
+}
+
+message PowerBonusAgentItem {
+  int32 agentId = 1;
+  int32 clientId = 2;
+  int32 totalTickets = 3;
+  double totalStake = 4;
+  double totalWeightedStake = 5;
+  double avgSelections = 6;
+  double totalWinnings = 7;
+  double ggr = 8;
+  double ggrMargin = 9;
+  double rate = 10;
+  double grossBonus = 11;
+  double commissionDeducted = 12;
+  double netBonus = 13;
+  bool isEligible = 14;
+  string username = 15;
+}
+
+message PayPowerBonusRequest {
+  int32 clientId = 1;
+  string from = 2;
+  string to = 3;
+  string provider = 4;
+  repeated PowerBonusAgentItem agents = 5;
+}
 
 message AssignAgentToPowerBonusRequest {
   int32 agentId = 1;
@@ -122,6 +163,7 @@ message CalculatePowerBonusForAgentRequest {
   string provider = 2;
   string from = 3;
   string to = 4;
+  optional int32 agentId = 5;
 }
 
 //////////////////////////////
