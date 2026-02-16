@@ -136,7 +136,7 @@ message SmatVirtualCallbackRequest {
 message SmatVirtualWebhookRequest {
   int32 clientId = 1;
   optional string event = 2;
-  optional string body = 3;
+  optional string data = 3;
 }
 
 message CreateBonusRequest {
