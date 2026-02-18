@@ -207,10 +207,13 @@ service WalletService {
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
-  rpc PalmpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
+  rpc PalmpayBankCodes(PalmpayBankCode) returns (CommonResponseObj) {}
 
 }
 
+message PalmpayBankCode {
+  int32 clientId = 1;
+ }
 
 message OpayBankCodesRequest {
   int32 clientId = 1;
