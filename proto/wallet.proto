@@ -207,6 +207,7 @@ service WalletService {
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
+  rpc PalmpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
 
 }
 
