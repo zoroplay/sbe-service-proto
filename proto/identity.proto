@@ -308,6 +308,7 @@ message CreateBannerRequest {
   optional string tournament = 12;
   optional string event = 13;
   optional int32 id = 14;
+  optional string storyImage = 15;
 }
 
 
