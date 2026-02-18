@@ -273,6 +273,7 @@ message BasicUser {
 message ClientIdRequest {
   int32 clientId = 1;
   optional string slug = 2;
+  optional string query = 3;
 }
 
 message FindOneRequest {
