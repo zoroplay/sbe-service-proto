@@ -45,6 +45,10 @@ service NotificationService {
   rpc GetChatMessages (ChatIdRequest) returns (CommonResponseObj) {}
   rpc GetLastMessage (ChatIdRequest) returns (CommonResponseObj) {}
   rpc GetLastMessagesForChats (GetLastMessagesRequest) returns (CommonResponseObj) {}
+
+  // Push notification RPCs
+  rpc SavePushSubscription (SavePushSubscriptionRequest) returns (CommonResponseObj) {}
+  rpc SendNotificationToUser (SendNotificationToUserRequest) returns (SendNotificationToUserResponse) {}
 }
 
 
@@ -286,4 +290,37 @@ message CreateChatRequest {
 message GetLastMessagesRequest {
   repeated string chatIds  = 1;
   int32           clientId = 2;
+}
+
+// SavePushSubscription
+message SavePushSubscriptionRequest {
+  int32  userId    = 1;
+  int32  clientId  = 2;
+  string endpoint  = 3;
+  string p256dh    = 4;
+  string auth      = 5;
+  string platform  = 6; // WEB | ANDROID | IOS  (default: WEB)
+}
+
+// SendNotificationToUser
+message PushNotificationPayload {
+  string title  = 1;
+  string body   = 2;
+  string icon   = 3;
+  string badge  = 4;
+  string tag    = 5;
+  map<string, string> data = 6;
+}
+
+message SendNotificationToUserRequest {
+  int32                  userId       = 1;
+  PushNotificationPayload notification = 2;
+}
+
+message SendNotificationToUserResponse {
+  bool   success        = 1;
+  string message        = 2;
+  int32  successful     = 3;
+  int32  failed         = 4;
+  optional int32 notificationId = 5;
 }
