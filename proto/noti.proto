@@ -314,7 +314,8 @@ message PushNotificationPayload {
 
 message SendNotificationToUserRequest {
   int32                  userId       = 1;
-  PushNotificationPayload notification = 2;
+  int32                  clientId     = 2;
+  PushNotificationPayload notification = 3;
 }
 
 message SendNotificationToUserResponse {
