@@ -273,6 +273,7 @@ message BasicUser {
 message ClientIdRequest {
   int32 clientId = 1;
   optional string slug = 2;
+  optional string query = 3;
 }
 
 message FindOneRequest {
@@ -308,6 +309,7 @@ message CreateBannerRequest {
   optional string tournament = 12;
   optional string event = 13;
   optional int32 id = 14;
+  optional string storyImage = 15;
 }
 
 
