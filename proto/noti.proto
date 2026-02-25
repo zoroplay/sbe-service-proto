@@ -39,6 +39,7 @@ message CreateMessageRequest {
   optional int32 id = 6;
   optional string createdAt = 7;
   optional string updatedAt = 8;
+  optional string imageUrl = 9;
 }
 
 message FindOneMessage {
