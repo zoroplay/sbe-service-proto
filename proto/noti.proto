@@ -15,11 +15,11 @@ service NotificationService {
   rpc verifyOtp (VerifyOtpRequest) returns (SendSmsResponse);
   rpc GetDeliveryReport (DeliveryReportRequest) returns (DeliveryReportResponse);
 
-  rpc findOneMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc FindMessage (FindOneMessage) returns (CommonResponseObj) {}
   rpc FindAllMessages (ClientIdRequest) returns (CommonResponseObj) {}
-  rpc updateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
-  rpc deleteMessage (FindOneMessage) returns (CommonResponseObj) {}
-  rpc createMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+  rpc UpdateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+  rpc DeleteMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc CreateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
 
 
   rpc sendMessage (SendMessageRequest) returns (CommonResponseObj) {}
@@ -39,6 +39,7 @@ message CreateMessageRequest {
   optional int32 id = 6;
   optional string createdAt = 7;
   optional string updatedAt = 8;
+  optional string imageUrl = 9;
 }
 
 message FindOneMessage {

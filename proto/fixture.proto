@@ -116,6 +116,13 @@ service FixtureService {
   rpc SavePoolFixtures (SavePoolFixturesRequest) returns (SavePoolFixturesResponse){}
   rpc GetPoolFixtures (GetPoolFixturesRequest) returns (GetPoolFixturesResponse){}
   rpc GetPoolWeeks (GetPoolWeeksRequest) returns (GetPoolWeeksResponse){}
+
+  /*
+  GetPrintFixtures - Retrieves fixtures based on selected sports, categories, and tournaments for print operations.
+  This method allows bulk fetching of fixtures across multiple tournaments with optional date filtering.
+  Used primarily for generating printable fixture lists for retail/POS operations.
+  */
+  rpc GetPrintFixtures (GetPrintFixturesRequest) returns (GetPrintFixturesResponse){}
 }
 
 message ValidateSelectionRequests {
@@ -906,18 +913,15 @@ message PoolFixture {
   string homeTeam = 4;
   string awayTeam = 5;
   string eventDate = 6;
-  string eventTime = 7;
-  int32 week = 8;
-  string weekNo = 9;
-  string schedule = 10;
-  double odds = 11;
-  string matchTitle = 12;
-  int32 tournamentID = 13;
-  string outcomeID = 14;
-  string outcomeName = 15;
-  string marketID = 16;
-  string marketName = 17;
-  string producerID = 18;
+  int32 week = 7;
+  string weekNo = 8;
+  string matchTitle = 9;
+  int32 tournamentID = 10;
+  optional int32 outcomeID = 11;        // Draw outcome ID (always 2 = X)
+  optional string drawOutcomeName = 12; // Display name for the Draw outcome
+  optional int32 marketID = 13;         // Market ID (always 1 = 1X2)
+  optional int32 producerID = 14;
+  optional double drawOdds = 15;        // Current odds for the Draw outcome
 }
 
 message GetTournamentFixturesResponse {
@@ -927,28 +931,15 @@ message GetTournamentFixturesResponse {
   int32 total = 4;
 }
 
-message PoolFixtureSelection {
-  int32 id = 1; // Auto-generated ID
-  int32 matchID = 2;
-  int32 gameID = 3;
-  string homeTeam = 4;
-  string awayTeam = 5;
-  string score = 6; // Expected score e.g "2-1"
-  string result = 7; // H (Home), A (Away), D (Draw)
-  string eventDate = 8;
-  string eventTime = 9;
-  string schedule = 10;
-  double odds = 11;
-  string status = 12; // Active, Cancelled, etc
-  int32 week = 13; // ISO week number (1-53)
-  string weekNo = 14; // Week label e.g "Week 45"
+message PoolFixtureRef {
+  int32 matchID = 1;
 }
 
 message SavePoolFixturesRequest {
   int32 clientID = 1;
-  int32 year = 2; // Year (e.g., 2024)
-  int32 week = 3; // ISO week number (1-53)
-  repeated PoolFixtureSelection selections = 4; // Should be 49 fixtures
+  int32 year = 2;   
+  int32 week = 3;    
+  repeated PoolFixtureRef selections = 4; 
 }
 
 message SavePoolFixturesResponse {
@@ -960,32 +951,30 @@ message SavePoolFixturesResponse {
 }
 
 message GetPoolFixturesRequest {
-  int32 clientID = 1;
-  optional int32 year = 2; // Filter by year
-  optional int32 week = 3; // Filter by ISO week number
-  optional string status = 4; // Filter by status (default: all)
+  int32 clientID = 1;    
+  optional int32 year = 2;
+  int32 week = 3;         
 }
 
 message GetPoolFixturesResponse {
   bool success = 1;
   string message = 2;
-  repeated PoolFixtureSelection fixtures = 3;
-  int32 total = 4;
+      repeated FixturesWithOdds fixtures = 3; 
+      int32 total = 4;
   optional PoolWeekInfo weekInfo = 5;
 }
 
-// Pool week info messages
 message PoolWeekInfo {
   int32 year = 1;
-  int32 week = 2; // ISO week number (1-53)
-  string weekNo = 3; // Week label e.g "Week 45, 2024"
-  int32 fixtureCount = 4; // Number of fixtures in this week
-  string status = 5; // Active, Closed, etc
+  int32 week = 2; 
+  string weekNo = 3; 
+  int32 fixtureCount = 4;
+  string status = 5; 
 }
 
 message GetPoolWeeksRequest {
   int32 clientID = 1;
-  optional int32 year = 2; // Filter by year (default: current year)
+  optional int32 year = 2;
 }
 
 message GetPoolWeeksResponse {
@@ -993,4 +982,32 @@ message GetPoolWeeksResponse {
   string message = 2;
   repeated PoolWeekInfo weeks = 3;
   int32 total = 4;
+}
+
+
+message GetPrintFixturesRequest {
+  message SelectedTournament {
+    string tournament_id = 1; 
+  }
+  
+  message SelectedCategory {
+    string category_id = 1; 
+    repeated SelectedTournament tournaments = 2;
+  }
+  
+  message SelectedSport {
+    string sport_id = 1; 
+    repeated SelectedCategory categories = 2;
+  }
+  
+  repeated SelectedSport selected = 1; 
+  optional string date_filter = 2;
+  optional int32 timeoffset = 4;
+}
+
+message GetPrintFixturesResponse {
+  bool success = 1; 
+  string message = 2; 
+  repeated FixturesWithOdds fixtures = 3; 
+  int32 total = 4; 
 }
