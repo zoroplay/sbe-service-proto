@@ -113,6 +113,7 @@ service IdentityService {
   rpc calculateNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc getNetworkSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
+  rpc GetOnlineSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
   rpc getTrackierKeys(SingleItemRequest) returns (CommonResponseObj) {}
 
 
