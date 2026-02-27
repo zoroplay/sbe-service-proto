@@ -110,7 +110,8 @@ message MaxPayoutItem {
 
 message GetMaxPayoutRequest {
   int32 clientId = 1;
-  optional string period = 2;
+  string section = 2;
+  optional string period = 3;
 }
 
 message GetTicketsRequest {
