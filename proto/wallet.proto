@@ -71,8 +71,6 @@ service WalletService {
 
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
-  
-  
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
@@ -207,13 +205,13 @@ service WalletService {
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
-  rpc PalmpayBankCodes(PalmpayBankCode) returns (CommonResponseObj) {}
+  rpc ListBankCodes(BankCodeRequest) returns (CommonResponseObj) {}
 
 }
 
-message PalmpayBankCode {
+message BankCodeRequest {
   int32 clientId = 1;
- }
+}
 
 message OpayBankCodesRequest {
   int32 clientId = 1;
@@ -1377,6 +1375,7 @@ message VerifyBankAccountRequest {
   string accountNumber = 3;
   string bankCode = 4;
   string source = 5;
+  optional string bankName = 6;
 }
 
 message VerifyBankAccountResponse {
