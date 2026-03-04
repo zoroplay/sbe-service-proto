@@ -211,6 +211,7 @@ service WalletService {
 
 message BankCodeRequest {
   int32 clientId = 1;
+  string PaymentMethod = 2;
 }
 
 message OpayBankCodesRequest {
