@@ -207,6 +207,16 @@ service WalletService {
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
   rpc ListBankCodes(BankCodeRequest) returns (CommonResponseObj) {}
 
+  rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
+
+}
+
+message SayswitchWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  google.protobuf.Struct body = 4;
+  string signature = 5;
 }
 
 message BankCodeRequest {
