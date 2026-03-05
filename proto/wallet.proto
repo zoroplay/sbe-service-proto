@@ -1376,8 +1376,7 @@ message VerifyBankAccountRequest {
   string accountNumber = 3;
   string bankCode = 4;
   string source = 5;
-  optional string bankName = 6;
-  optional string accountName = 7;
+ 
 }
 
 message VerifyBankAccountResponse {
