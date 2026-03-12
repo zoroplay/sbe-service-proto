@@ -72,14 +72,17 @@ service WalletService {
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
+  rpc GetTrustBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (WalletResponse) {} 
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
+  rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
+  rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
