@@ -36,6 +36,7 @@ service BettingService {
   rpc DeletePlayerData(SettingsById) returns (CommonResponseObj) {}
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
   rpc GetAgentTotals (SalesReportRequest) returns (CommonResponseArray) {}
+  rpc GetCommissionTickets (SalesReportRequest) returns (CommonResponseArray) {}
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}

@@ -89,6 +89,7 @@ service WalletService {
   rpc ListBanks (EmptyRequest) returns (CommonResponseArray) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
+  rpc GetPaymentMethodsForPlayers (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
   rpc PaystackWebhook (PaystackWebhookRequest) returns (WebhookResponse) {}
   rpc MonnifyWebhook (MonnifyWebhookRequest) returns (WebhookResponse) {}
