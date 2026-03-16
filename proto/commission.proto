@@ -148,6 +148,8 @@ message PowerBonusConfiguration {
   string activePeriodEnd = 6;
   optional bool isActive = 7;
   repeated PowerBonusTier tiers = 8;
+  string createdAt = 9;
+  string updatedAt = 10;
 }
 
 message PowerBonusTier {
@@ -156,6 +158,8 @@ message PowerBonusTier {
   double maxSelections = 3;
   double rateLowMargin = 4;
   double rateHighMargin = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
 }
 
 message CalculatePowerBonusForAgentRequest {

@@ -15,11 +15,11 @@ service NotificationService {
   rpc verifyOtp (VerifyOtpRequest) returns (SendSmsResponse);
   rpc GetDeliveryReport (DeliveryReportRequest) returns (DeliveryReportResponse);
 
-  rpc findOneMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc FindMessage (FindOneMessage) returns (CommonResponseObj) {}
   rpc FindAllMessages (ClientIdRequest) returns (CommonResponseObj) {}
-  rpc updateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
-  rpc deleteMessage (FindOneMessage) returns (CommonResponseObj) {}
-  rpc createMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+  rpc UpdateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
+  rpc DeleteMessage (FindOneMessage) returns (CommonResponseObj) {}
+  rpc CreateMessage (CreateMessageRequest) returns (CommonResponseObj) {}
 
 
   rpc sendMessage (SendMessageRequest) returns (CommonResponseObj) {}
@@ -27,6 +27,28 @@ service NotificationService {
   rpc findUserMessages (GetUserNotificationsRequest) returns (CommonResponseObj) {}
   rpc updateUserMessage (FindOneMessage) returns (CommonResponseObj) {}
   rpc deleteUserMessage (FindOneMessage) returns (CommonResponseObj) {}
+
+    // Chat RPCs
+  rpc GetChatHistory (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetMessages (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetChats (GetChatsRequest) returns (CommonResponseObj) {}
+  rpc IsParticipant (ChatParticipantRequest) returns (IsParticipantResponse) {}
+  rpc LeaveChat (ChatParticipantRequest) returns (CommonResponseObj) {}
+  rpc SendChatMessage (SendChatMessageRequest) returns (CommonResponseObj) {}
+  rpc CreateAndSendMessage (CreateAndSendMessageRequest) returns (CommonResponseObj) {}
+  rpc MarkMessagesAsRead (ChatParticipantRequest) returns (CommonResponseObj) {}
+  rpc CreateDirectChat (CreateDirectChatRequest) returns (CommonResponseObj) {}
+  rpc GetParticipants (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc UpdateMessageStatus (UpdateMessageStatusRequest) returns (CommonResponseObj) {}
+  rpc UpdateStatus (UpdateStatusRequest) returns (CommonResponseObj) {}
+  rpc CreateChat (CreateChatRequest) returns (CommonResponseObj) {}
+  rpc GetChatMessages (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetLastMessage (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetLastMessagesForChats (GetLastMessagesRequest) returns (CommonResponseObj) {}
+
+  // Push notification RPCs
+  rpc SavePushSubscription (SavePushSubscriptionRequest) returns (CommonResponseObj) {}
+  rpc SendNotificationToUser (SendNotificationToUserRequest) returns (SendNotificationToUserResponse) {}
 }
 
 
@@ -39,6 +61,7 @@ message CreateMessageRequest {
   optional int32 id = 6;
   optional string createdAt = 7;
   optional string updatedAt = 8;
+  optional string imageUrl = 9;
 }
 
 message FindOneMessage {
@@ -190,4 +213,118 @@ message DeliveryReportResponse {
   string message = 4;
   string sender = 5;
   string messageId = 6;
+}
+
+
+
+// ── Chat message types ──────────────────────────────────────────────────────
+
+// Shared: any operation that only needs a chat + client scope
+message ChatIdRequest {
+  string chatId = 1;
+  int32  clientId = 2;
+}
+
+// GetChats
+message GetChatsRequest {
+  int32 userId   = 1;
+  int32 clientId = 2;
+}
+
+// IsParticipant / LeaveChat / MarkMessagesAsRead
+message ChatParticipantRequest {
+  string chatId  = 1;
+  int32  userId  = 2;
+  int32  clientId = 3;
+}
+
+// IsParticipant response (distinct because it carries a boolean)
+message IsParticipantResponse {
+  int32  status        = 1;
+  bool   isParticipant = 2;
+  string message       = 3;
+}
+
+// SendChatMessage
+message SendChatMessageRequest {
+  string chatId    = 1;
+  int32  senderId  = 2;
+  string content   = 3;
+  int32  clientId  = 4;
+}
+
+// CreateAndSendMessage
+message CreateAndSendMessageRequest {
+  int32  senderId      = 1;
+  string content       = 2;
+  int32  participantId = 3;
+  int32  clientId      = 4;
+}
+
+// CreateDirectChat
+message CreateDirectChatRequest {
+  int32 creatorId     = 1;
+  int32 participantId = 2;
+  int32 clientId      = 3;
+}
+
+// UpdateMessageStatus (bulk status transition by recipient)
+message UpdateMessageStatusRequest {
+  int32  recipientId = 1;
+  string fromStatus  = 2;
+  string toStatus    = 3;
+  int32  clientId    = 4;
+}
+
+// UpdateStatus (single message)
+message UpdateStatusRequest {
+  string messageId = 1;
+  string toStatus  = 2;
+}
+
+// CreateChat (group)
+message CreateChatRequest {
+  int32           creatorId      = 1;
+  repeated int32  participantIds = 2;
+  int32           clientId       = 3;
+}
+
+// GetLastMessagesForChats
+message GetLastMessagesRequest {
+  repeated string chatIds  = 1;
+  int32           clientId = 2;
+}
+
+// SavePushSubscription
+message SavePushSubscriptionRequest {
+  int32  userId    = 1;
+  int32  clientId  = 2;
+  string endpoint  = 3;
+  string p256dh    = 4;
+  string auth      = 5;
+  string platform  = 6; // WEB | ANDROID | IOS  (default: WEB)
+}
+
+// SendNotificationToUser
+message PushNotificationPayload {
+  string title  = 1;
+  string body   = 2;
+  string icon   = 3;
+  string badge  = 4;
+  string tag    = 5;
+  map<string, string> data = 6;
+}
+
+message SendNotificationToUserRequest {
+  int32                  userId       = 1;
+  int32                  clientId     = 2;
+  PushNotificationPayload notification = 3;
+}
+
+message SendNotificationToUserResponse {
+  bool   success        = 1;
+  string message        = 2;
+  int32  successful     = 3;
+  int32  failed         = 4;
+  optional int32 notificationId = 5;
 }

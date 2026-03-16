@@ -71,17 +71,18 @@ service WalletService {
 
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
-  
-  
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
+  rpc GetTrustBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (WalletResponse) {} 
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
+  rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
+  rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
@@ -208,9 +209,24 @@ service WalletService {
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
+  rpc ListBankCodes(BankCodeRequest) returns (CommonResponseObj) {}
+
+  rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
 
 }
 
+message SayswitchWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  google.protobuf.Struct body = 4;
+  string signature = 5;
+}
+
+message BankCodeRequest {
+  int32 clientId = 1;
+  string PaymentMethod = 2;
+}
 
 message OpayBankCodesRequest {
   int32 clientId = 1;
@@ -1374,6 +1390,7 @@ message VerifyBankAccountRequest {
   string accountNumber = 3;
   string bankCode = 4;
   string source = 5;
+ 
 }
 
 message VerifyBankAccountResponse {

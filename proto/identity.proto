@@ -113,6 +113,7 @@ service IdentityService {
   rpc calculateNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc payOutNormalBonus(PayNormalRequest) returns (PayNormalResponse) {}
   rpc getNetworkSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
+  rpc GetOnlineSalesReport(GetNetworkSalesRequest) returns (CommonResponseObj) {}
   rpc getTrackierKeys(SingleItemRequest) returns (CommonResponseObj) {}
 
 
@@ -273,6 +274,7 @@ message BasicUser {
 message ClientIdRequest {
   int32 clientId = 1;
   optional string slug = 2;
+  optional string query = 3;
 }
 
 message FindOneRequest {
@@ -308,6 +310,7 @@ message CreateBannerRequest {
   optional string tournament = 12;
   optional string event = 13;
   optional int32 id = 14;
+  optional string storyImage = 15;
 }
 
 
@@ -1263,12 +1266,18 @@ message ClientData {
 message SearchPlayerRequest {
   int32 clientId = 1;
   string searchKey = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
 }
 
 message SearchPlayerResponse {
   bool success = 1;
   string message = 2;
   repeated Player data = 3;
+  optional int32 page = 4;
+  optional int32 limit = 5;
+  optional int32 totalPages = 6;
+  optional int32 total = 7;
 }
 
 message Player {

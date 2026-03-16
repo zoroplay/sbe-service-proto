@@ -52,6 +52,8 @@ service BettingService {
   rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
   rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
   rpc GetMonthSummary (SalesReportRequest) returns (CommonResponseObj) {}
+  rpc SaveMaxPayoutByTicketLength (SaveMaxPayoutRequest) returns (CommonResponseObj) {}
+  rpc GetMaxPayoutByTicketLength (GetMaxPayoutRequest) returns (CommonResponseArray) {}
 }
 
 message ManualSettlementRequest {
@@ -93,6 +95,24 @@ message UserRiskSettingsRequest {
   int32 userId = 1;
   string inputs = 2;
   string period = 4;
+}
+
+message SaveMaxPayoutRequest {
+  int32 clientId = 1;
+  string section = 2;
+  string period = 3;
+  repeated MaxPayoutItem items = 4;
+}
+
+message MaxPayoutItem {
+  int32 ticketLength = 1;
+  string maxPayout = 2;
+}
+
+message GetMaxPayoutRequest {
+  int32 clientId = 1;
+  string section = 2;
+  optional string period = 3;
 }
 
 message GetTicketsRequest {
