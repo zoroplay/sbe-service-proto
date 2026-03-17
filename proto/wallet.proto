@@ -83,6 +83,7 @@ service WalletService {
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
+  rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
