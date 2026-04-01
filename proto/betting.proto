@@ -54,6 +54,33 @@ service BettingService {
   rpc GetMonthSummary (SalesReportRequest) returns (CommonResponseObj) {}
   rpc SaveMaxPayoutByTicketLength (SaveMaxPayoutRequest) returns (CommonResponseObj) {}
   rpc GetMaxPayoutByTicketLength (GetMaxPayoutRequest) returns (CommonResponseArray) {}
+
+  // segmentation
+  rpc GetUsersBySegment(GetUsersRequest) returns (GetUsersResponse);
+}
+
+message GetUsersRequest {
+  int64 client_id = 1;
+  string segment_code = 2;   // e.g. ACCA_LOVER, CHURN_RISK, HIGH_ROLLER, LIVE_SPECIALIST, LOSING_STREAK, SPORT_LOYALIST_SPORT, WINNING_STREAK
+  int32 limit = 3;           // e.g. 500
+  string cursor = 4;         // opaque pagination cursor
+  int64 assigned_after_unix = 5; // optional
+}
+
+message UserSegmentRow {
+  int64 client_id = 1;
+  int64 user_id = 2;
+  string segment_code = 3;
+  string username = 4;
+  int64 assigned_at_unix = 5;
+
+  // optional metadata
+  string metadata_json = 6;
+}
+
+message GetUsersResponse {
+  repeated UserSegmentRow users = 1;
+  string next_cursor = 2;
 }
 
 message ManualSettlementRequest {
