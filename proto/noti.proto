@@ -63,7 +63,7 @@ message CommonResponseObj{
 message SendMessageRequest {
   int32 clientId = 1;
   int32 messageId = 2;
-  string userId = 3;
+  optional string userId = 3;
 }
 
 
