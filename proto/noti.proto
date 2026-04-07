@@ -64,7 +64,8 @@ message CreateMessageRequest {
   string title = 1;
   int32 clientId = 2;
   string content = 3;
-  bool status = 4;
+  string segment = 4;
+  bool status = 5;
   optional int32 id = 6;
   optional string createdAt = 7;
   optional string updatedAt = 8;
