@@ -35,6 +35,8 @@ service CommissionService {
 
 
   rpc Totals(SalesReportRequest) returns (CommonResponseArray) {}
+  rpc SalesReport(SalesReportRequest) returns (CommonResponseArray) {}
+  rpc CommissionTotalsByRole(CommissionTotalsByRoleRequest) returns (CommonResponseObj) {}
 
   rpc DepositCommission(DepositCommissionRequest) returns (CommonResponseObj) {}
   rpc PayoutCommission(PayoutCommissionRequestData) returns (CommonResponseObj) {}
@@ -374,6 +376,15 @@ message SalesReportRequest {
   optional string from = 4;
   optional string to = 5;
   optional string productType = 6;
+}
+
+message CommissionTotalsByRoleRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string from = 3;
+  string to = 4;
+  optional string provider = 5;
+  optional string roleType = 6;
 }
 
 
