@@ -49,6 +49,13 @@ service NotificationService {
   // Push notification RPCs
   rpc SavePushSubscription (SavePushSubscriptionRequest) returns (CommonResponseObj) {}
   rpc SendNotificationToUser (SendNotificationToUserRequest) returns (SendNotificationToUserResponse) {}
+
+  // SMS Provider Settings CRUD
+  rpc CreateSmsProviderSetting (CreateSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc FindOneSmsProviderSetting (FindOneSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc FindAllSmsProviderSettings (FindAllSmsProviderSettingsRequest) returns (SmsProviderSettingsListResponse) {}
+  rpc UpdateSmsProviderSetting (UpdateSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc DeleteSmsProviderSetting (DeleteSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
 }
 
 
@@ -213,6 +220,71 @@ message DeliveryReportResponse {
   string message = 4;
   string sender = 5;
   string messageId = 6;
+}
+
+// ==================== SMS Provider Settings CRUD Messages ====================
+
+message CreateSmsProviderSettingRequest {
+  int32 clientId = 1;
+  string displayName = 2;
+  string gatewayName = 3;
+  string senderID = 4;
+  optional string apiKey = 5;
+  optional string username = 6;
+  optional string password = 7;
+  bool enable = 8;
+}
+
+message FindOneSmsProviderSettingRequest {
+  int32 id = 1;
+}
+
+message FindAllSmsProviderSettingsRequest {
+  int32 clientId = 1;
+}
+
+message UpdateSmsProviderSettingRequest {
+  int32 id = 1;
+  optional int32 clientId = 2;
+  optional string displayName = 3;
+  optional string gatewayName = 4;
+  optional string senderID = 5;
+  optional string apiKey = 6;
+  optional string username = 7;
+  optional string password = 8;
+  optional bool enable = 9;
+}
+
+message DeleteSmsProviderSettingRequest {
+  int32 id = 1;
+}
+
+message SmsProviderSettingData {
+  int32 id = 1;
+  int32 clientId = 2;
+  string displayName = 3;
+  string gatewayName = 4;
+  string senderID = 5;
+  string apiKey = 6;
+  string username = 7;
+  string password = 8;
+  bool status = 9;
+  string createdAt = 10;
+  string updatedAt = 11;
+}
+
+message SmsProviderSettingResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional SmsProviderSettingData data = 4;
+}
+
+message SmsProviderSettingsListResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated SmsProviderSettingData data = 4;
 }
 
 
