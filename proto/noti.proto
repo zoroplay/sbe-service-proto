@@ -93,6 +93,7 @@ message SendMessageRequest {
   int32 clientId = 1;
   int32 messageId = 2;
   optional string userId = 3;
+  optional string segment = 4;
 }
 
 
