@@ -94,7 +94,7 @@ message SendMessageRequest {
   int32 messageId = 2;
   optional string userId = 3;
   optional string segment = 4;
-  optional string message = 4;
+  optional string message = 5;
 }
 
 
