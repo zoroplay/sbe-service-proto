@@ -1124,9 +1124,9 @@ message ValidateResponse {
     int32 id = 1;
     string username = 2;
     optional string role = 3;
-    optional int32 clientId = 4;
   }
   optional User user = 3;
+  optional int32 clientId = 4;
 }
 
 message ValidateClientResponse {
