@@ -929,6 +929,7 @@ message GetTransactionsRequest {
   optional string keyword = 7;
   optional int32 limit = 8;
   int32  page = 9;
+  optional string walletAdjustment = 10;
 }
 
 message ProcessRetailTransaction {
@@ -1537,6 +1538,7 @@ message CommonResponseObj {
   string message = 2;
   int32 status = 3;
   optional google.protobuf.Struct data = 4;
+  optional int64 total = 5;
 }
 
 message CommonResponseArray {
