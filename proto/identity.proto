@@ -1118,15 +1118,16 @@ message ListTestAccountsRequest {
 }
 
 message ValidateResponse {
-  int32 status = 1;
-  string error = 2;
+  int32 clientId = 1;
+  int32 status = 2;
+  string error = 3;
   message User {
     int32 id = 1;
     string username = 2;
     optional string role = 3;
   }
   optional User user = 3;
-  optional int32 clientId = 4;
+  
 }
 
 message ValidateClientResponse {
