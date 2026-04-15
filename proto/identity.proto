@@ -20,6 +20,7 @@ service IdentityService {
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateToken (ValidateRequest) returns (CommonResponseObj) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
@@ -1124,7 +1125,6 @@ message ValidateResponse {
     int32 id = 1;
     string username = 2;
     optional string role = 3;
-    optional int32 clientId = 4;
   }
   optional User user = 3;
 }
