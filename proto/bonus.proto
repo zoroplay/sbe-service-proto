@@ -27,6 +27,8 @@ service BonusService {
 
   rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CommonResponseObj){}
 
+  rpc FetchUserActiveBonus (GetUserBonusRequest) returns (CommonResponseObj){}
+
   rpc SaveAccaBonus (SaveAccaBonusRequest) returns (CommonResponseObj){}
 
   rpc GetAccaBonuses (GetAllBonusRequest) returns (CommonResponseArray){}
