@@ -70,6 +70,8 @@ service BonusService {
   rpc GetCampaignBonus(GetBonusByClientID) returns (AllCampaignBonus){}
 
   rpc DeletePlayerData(GetBonusRequest) returns (EmptyResponse) {}
+
+  rpc AwardCompletedBonus(BonusRequest) returns (CommonResponseObj) {}
 }
 
 
