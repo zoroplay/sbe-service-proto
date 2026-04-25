@@ -87,7 +87,7 @@ service WalletService {
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
  // rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
-  rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
+  rpc AwardBonusWinning (CreditUserRequests) returns (WalletResponse) {} 
   //rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
   rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
@@ -1427,17 +1427,17 @@ message GetBalanceRequest {
 }
 
 // credit user request payload
-// message CreditUserRequest {
-//   int32 userId = 1;
-//   int32 clientId = 2;
-//   string amount = 3;
-//   string source = 4;
-//   string description = 5;
-//   string username = 6;
-//   string wallet = 7;
-//   string subject = 8;
-//   string channel = 9;
-// }
+message CreditUserRequests {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string amount = 3;
+  string source = 4;
+  string description = 5;
+  string username = 6;
+  string wallet = 7;
+  string subject = 8;
+  string channel = 9;
+}
 
 // credit user request payload
 // message DebitUserRequest {
