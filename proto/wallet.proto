@@ -16,13 +16,6 @@ service WalletService {
   rpc CurrentReport(FetchReportRequest) returns (CommonResponseObj) {}
 
 
-  rpc CheckWithdrawalUser (WithdrawalRequest) returns (WithdrawalResponse);
-  rpc CreditUser (CreditUserRequest) returns (CreditUserResponse);
-  rpc CancelBet (CancelBetRequest) returns (CancelBetResponse);
-  rpc DebitUser (DebitUserRequest) returns (DebitUserResponse);
-  rpc UserBalance (UserBalanceRequest) returns (UserBalanceResponse);
-  rpc Deposit (DepositRequest) returns (DepositResponse);
-
 
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
@@ -85,10 +78,10 @@ service WalletService {
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (WalletResponse) {} 
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
- // rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
+  rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
-  rpc AwardBonusWinning (CreditUserRequests) returns (WalletResponse) {} 
-  //rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
+  rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
+  rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
   rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
@@ -221,115 +214,6 @@ service WalletService {
 
   rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
 
-}
-
-
-message TransactionRequest {
-  int32 client_id = 1;
-  int64 profile_id = 2;
-  string account = 3;
-  int32 iscredit = 4;
-  string reference = 5;
-  double amount = 6;
-  double running_balance = 7;
-  string created_by = 8;
-  string status = 9;
-  string transaction_type = 10;
-  string transaction_desc = 11;
-  string partner_transaction_id = 12;
-  string third_party_conversation_id = 13;
-}
-
-message TransactionResponse {
-  bool success = 1;
-  string message = 2;
-}
-
-message WithdrawalRequest {
-  string type = 1;
-  string client_id = 2;
-  string user_id = 3;
-  double amount = 4;
-  string currency = 5;
-  string account_number = 6;
-  string bank_code = 7;
-  string source = 8;
-  string raw_text = 9;
-}
-
-message WithdrawalResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
-}
-
-message CreditUserRequest {
-  string token = 1;
-}
-
-message CreditUserResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
-  optional double balance = 4;
-}
-
-message CancelBetRequest {
-  string token = 1;
-}
-
-message CancelBetResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
-  optional double balance = 4;
-}
-
-message DebitUserRequest {
-  string user_id = 1;
-  string client_id = 2;
-  double amount = 3;
-  string source = 4;
-  string reference_id = 5;
-  string description = 6;
-  string user_name = 7;
-  string sport_type = 8;
-  string transaction_type = 9;
-  string channel = 10;
-}
-
-message DebitUserResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
-  optional double balance = 4;
-}
-
-message UserBalanceRequest {
-  string user_id = 1;
-  string client_id = 2;
-}
-
-message UserBalanceResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
-  double balance = 4;
-  double bonus_balance = 5;
-}
-
-message DepositRequest {
-  string client_id = 1;
-  string user_id = 2;
-  double amount = 3;
-  string currency = 4;
-  string source = 5;
-}
-
-message DepositResponse {
-  bool success = 1;
-  string message = 2;
-  bool user_exists = 3;
 }
 
 
@@ -517,12 +401,12 @@ message PlayerRequest{
 
 }
 
-// message TransactionRequest{
-//   int32 clientId = 1;
-//  repeated string productKeys = 2;
-//   int32 page = 3;
+message TransactionRequest{
+  int32 clientId = 1;
+ repeated string productKeys = 2;
+  int32 page = 3;
 
-// }
+}
 
 message PawapayPayoutRequest {
   int32 clientId = 1;
@@ -1427,7 +1311,7 @@ message GetBalanceRequest {
 }
 
 // credit user request payload
-message CreditUserRequests {
+message CreditUserRequest {
   int32 userId = 1;
   int32 clientId = 2;
   string amount = 3;
@@ -1440,17 +1324,17 @@ message CreditUserRequests {
 }
 
 // credit user request payload
-// message DebitUserRequest {
-//   int32 userId = 1;
-//   int32 clientId = 2;
-//   string amount = 3;
-//   string source = 4;
-//   string description = 5;
-//   string username = 6;
-//   string wallet = 7;
-//   string subject = 8;
-//   string channel = 9;
-// }
+message DebitUserRequest {
+  int32 userId = 1;
+  int32 clientId = 2;
+  string amount = 3;
+  string source = 4;
+  string description = 5;
+  string username = 6;
+  string wallet = 7;
+  string subject = 8;
+  string channel = 9;
+}
 
 message Wallet {
   int32 userId = 1;
@@ -1599,19 +1483,19 @@ message ListWithdrawalRequests {
 
 }
 
-// message WithdrawalRequest {
-//   int32 id = 1;
-//   int32 userId = 2;
-//   string username = 3;
-//   float amount = 4;
-//   string accountNumber = 5;
-//   string accountName = 6;
-//   string bankName = 7;
-//   string updatedBy = 8;
-//   int32 status = 9;
-//   string created = 10;
+message WithdrawalRequest {
+  int32 id = 1;
+  int32 userId = 2;
+  string username = 3;
+  float amount = 4;
+  string accountNumber = 5;
+  string accountName = 6;
+  string bankName = 7;
+  string updatedBy = 8;
+  int32 status = 9;
+  string created = 10;
   
-// }
+}
 
 message UserTransactionRequest {
   int32 clientId = 1;
