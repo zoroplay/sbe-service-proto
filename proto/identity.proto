@@ -16,6 +16,7 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc AdminViewLogin (AdminViewLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
@@ -1075,6 +1076,13 @@ message LoginRequest {
   string username = 2;
   string password = 3;
   optional string source = 4;
+}
+
+message AdminViewLoginRequest {
+  int32 clientId = 1;
+  string adminToken = 2;
+  optional int32 targetUserId = 3;
+  optional string targetUsername = 4;
 }
 
 message LoginResponse {
