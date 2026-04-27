@@ -16,6 +16,12 @@ service WalletService {
   rpc CurrentReport(FetchReportRequest) returns (CommonResponseObj) {}
 
 
+  rpc CheckWithdrawalUser (WithdrawalRequestGo) returns (WithdrawalResponse);
+  rpc CreditUserGo (CreditUserRequestGo) returns (CreditUserResponse);
+  rpc CancelBet (CancelBetRequest) returns (CancelBetResponse);
+  rpc DebitUserGo (DebitUserRequestGo) returns (DebitUserResponse);
+  rpc UserBalance (UserBalanceRequest) returns (UserBalanceResponse);
+  rpc Deposit (DepositRequest) returns (DepositResponse);
 
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
@@ -215,6 +221,98 @@ service WalletService {
   rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
 
 }
+
+message CreditUserRequestGo {
+  string token = 1;
+}
+
+message WithdrawalRequestGo {
+  string type = 1;
+  string client_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string currency = 5;
+  string account_number = 6;
+  string bank_code = 7;
+  string source = 8;
+  string raw_text = 9;
+}
+
+
+message DebitUserRequestGo {
+  string user_id = 1;
+  string client_id = 2;
+  double amount = 3;
+  string source = 4;
+  string reference_id = 5;
+  string description = 6;
+  string user_name = 7;
+  string sport_type = 8;
+  string transaction_type = 9;
+  string channel = 10;
+}
+
+message CreditUserResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+message DebitUserResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+
+message CancelBetRequest {
+  string token = 1;
+}
+
+message CancelBetResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+message WithdrawalResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+}
+
+message UserBalanceResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  double balance = 4;
+  double bonus_balance = 5;
+}
+
+
+
+message DepositRequest {
+  string client_id = 1;
+  string user_id = 2;
+  double amount = 3;
+  string currency = 4;
+  string source = 5;
+}
+
+message DepositResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+}
+
+message UserBalanceRequest {
+  string user_id = 1;
+  string client_id = 2;
+}
+
 
 
 message ClientId {
