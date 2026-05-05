@@ -8,6 +8,7 @@ service NotificationService {
   rpc SetReadNotifications (SetReadNotificationsRequest) returns (SetReadNotificationsResponse);
   rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
+  rpc DeleteAgentNotification (DeleteAgentNotificationRequest) returns (DeleteAgentNotificationResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
   rpc SendSms (SendSmsRequest) returns (SendSmsResponse);
@@ -105,9 +106,23 @@ message HandleNotificationsRequest {
 }
 message GetUserNotificationsRequest {
   int32 userId = 1;
+  /** When true, returns all non-deleted notifications (read and unread). Default false = unread only. */
+  optional bool includeRead = 2;
 }
 message SetReadNotificationsRequest {
   int32 id = 1;
+  /** When set, the service verifies the notification belongs to this user before marking read. */
+  optional int32 userId = 2;
+}
+
+message DeleteAgentNotificationRequest {
+  int32 id = 1;
+  int32 userId = 2;
+}
+
+message DeleteAgentNotificationResponse {
+  string message = 1;
+  bool status = 2;
 }
 
 
