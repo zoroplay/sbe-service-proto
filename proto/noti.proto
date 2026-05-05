@@ -103,6 +103,8 @@ message HandleNotificationsRequest {
   int32 userId = 1;
   string description = 2;
   string title = 3;
+  /** If non-empty, notifications are created for these user ids only. If empty, userId (field 1) is used as a single recipient. */
+  repeated int32 userIds = 4;
 }
 message GetUserNotificationsRequest {
   int32 userId = 1;
@@ -130,6 +132,8 @@ message HandleNotificationsResponse {
   string message = 1;
   bool   status = 2;
   optional Notifications data = 3;
+  /** All created notifications (same order as recipients). For one recipient, data matches dataList[0]. */
+  repeated Notifications dataList = 4;
 }
 
 message SetReadNotificationsResponse {
