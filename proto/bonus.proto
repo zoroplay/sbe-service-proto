@@ -95,6 +95,7 @@ message SaveAccaBonusRequest {
   message BonusItem {
     string ticketLength = 1;
     string bonus = 2;
+    string maxBonusAmount = 3;
   }
 
   repeated BonusItem items = 3;
