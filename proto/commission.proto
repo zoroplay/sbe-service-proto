@@ -29,6 +29,8 @@ service CommissionService {
   rpc SportBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc VirtualBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc GetGgrAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc GetMultipleAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc PaidCommission(PaidCommissionRequest) returns (CommonResponseObj) {}
   rpc ListOneUserCommissionProfile(UserCommissionData) returns (CommonResponseObj) {}
 
