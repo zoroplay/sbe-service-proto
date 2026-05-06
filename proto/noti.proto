@@ -8,6 +8,7 @@ service NotificationService {
   rpc SetReadNotifications (SetReadNotificationsRequest) returns (SetReadNotificationsResponse);
   rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
+  rpc DeleteAgentNotification (DeleteAgentNotificationRequest) returns (DeleteAgentNotificationResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
   rpc SendSms (SendSmsRequest) returns (SendSmsResponse);
@@ -102,12 +103,28 @@ message HandleNotificationsRequest {
   int32 userId = 1;
   string description = 2;
   string title = 3;
+  /** If non-empty, notifications are created for these user ids only. If empty, userId (field 1) is used as a single recipient. */
+  repeated int32 userIds = 4;
 }
 message GetUserNotificationsRequest {
   int32 userId = 1;
+  /** When true, returns all non-deleted notifications (read and unread). Default false = unread only. */
+  optional bool includeRead = 2;
 }
 message SetReadNotificationsRequest {
   int32 id = 1;
+  /** When set, the service verifies the notification belongs to this user before marking read. */
+  optional int32 userId = 2;
+}
+
+message DeleteAgentNotificationRequest {
+  int32 id = 1;
+  int32 userId = 2;
+}
+
+message DeleteAgentNotificationResponse {
+  string message = 1;
+  bool status = 2;
 }
 
 
@@ -115,6 +132,8 @@ message HandleNotificationsResponse {
   string message = 1;
   bool   status = 2;
   optional Notifications data = 3;
+  /** All created notifications (same order as recipients). For one recipient, data matches dataList[0]. */
+  repeated Notifications dataList = 4;
 }
 
 message SetReadNotificationsResponse {
