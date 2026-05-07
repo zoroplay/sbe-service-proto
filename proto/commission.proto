@@ -21,7 +21,7 @@ service CommissionService {
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc FlatCommission(FlatCommissionRequest) returns (CommonResponseObj) {}
-  rpc MultipleCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
+  rpc MultipleCommission(PayoutCommissionRequest) returns (CommonResponseObj) {} 
   rpc ProfitCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc SportCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc VirtualCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
