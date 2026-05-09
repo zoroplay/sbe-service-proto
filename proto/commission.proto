@@ -355,6 +355,7 @@ message PaidCommissionRequest {
   string provider = 4;
   int32 page = 5;
   optional int32 perPage = 8;
+  string commissionType = 6;
 }
 
 message FlatCommissionRequest {
