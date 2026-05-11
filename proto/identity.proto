@@ -16,10 +16,12 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc AdminViewLogin (AdminViewLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc ValidateToken (ValidateRequest) returns (CommonResponseObj) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
@@ -1076,6 +1078,13 @@ message LoginRequest {
   optional string source = 4;
 }
 
+message AdminViewLoginRequest {
+  int32 clientId = 1;
+  string adminToken = 2;
+  optional int32 targetUserId = 3;
+  optional string targetUsername = 4;
+}
+
 message LoginResponse {
   int32 status = 1;
   bool success = 2;
@@ -1266,12 +1275,18 @@ message ClientData {
 message SearchPlayerRequest {
   int32 clientId = 1;
   string searchKey = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
 }
 
 message SearchPlayerResponse {
   bool success = 1;
   string message = 2;
   repeated Player data = 3;
+  optional int32 page = 4;
+  optional int32 limit = 5;
+  optional int32 totalPages = 6;
+  optional int32 total = 7;
 }
 
 message Player {

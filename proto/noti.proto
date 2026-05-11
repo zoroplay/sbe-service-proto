@@ -8,6 +8,7 @@ service NotificationService {
   rpc SetReadNotifications (SetReadNotificationsRequest) returns (SetReadNotificationsResponse);
   rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
+  rpc DeleteAgentNotification (DeleteAgentNotificationRequest) returns (DeleteAgentNotificationResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
   rpc SendSms (SendSmsRequest) returns (SendSmsResponse);
@@ -27,6 +28,35 @@ service NotificationService {
   rpc findUserMessages (GetUserNotificationsRequest) returns (CommonResponseObj) {}
   rpc updateUserMessage (FindOneMessage) returns (CommonResponseObj) {}
   rpc deleteUserMessage (FindOneMessage) returns (CommonResponseObj) {}
+
+    // Chat RPCs
+  rpc GetChatHistory (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetMessages (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetChats (GetChatsRequest) returns (CommonResponseObj) {}
+  rpc IsParticipant (ChatParticipantRequest) returns (IsParticipantResponse) {}
+  rpc LeaveChat (ChatParticipantRequest) returns (CommonResponseObj) {}
+  rpc SendChatMessage (SendChatMessageRequest) returns (CommonResponseObj) {}
+  rpc CreateAndSendMessage (CreateAndSendMessageRequest) returns (CommonResponseObj) {}
+  rpc MarkMessagesAsRead (ChatParticipantRequest) returns (CommonResponseObj) {}
+  rpc CreateDirectChat (CreateDirectChatRequest) returns (CommonResponseObj) {}
+  rpc GetParticipants (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc UpdateMessageStatus (UpdateMessageStatusRequest) returns (CommonResponseObj) {}
+  rpc UpdateStatus (UpdateStatusRequest) returns (CommonResponseObj) {}
+  rpc CreateChat (CreateChatRequest) returns (CommonResponseObj) {}
+  rpc GetChatMessages (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetLastMessage (ChatIdRequest) returns (CommonResponseObj) {}
+  rpc GetLastMessagesForChats (GetLastMessagesRequest) returns (CommonResponseObj) {}
+
+  // Push notification RPCs
+  rpc SavePushSubscription (SavePushSubscriptionRequest) returns (CommonResponseObj) {}
+  rpc SendNotificationToUser (SendNotificationToUserRequest) returns (SendNotificationToUserResponse) {}
+
+  // SMS Provider Settings CRUD
+  rpc CreateSmsProviderSetting (CreateSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc FindOneSmsProviderSetting (FindOneSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc FindAllSmsProviderSettings (FindAllSmsProviderSettingsRequest) returns (SmsProviderSettingsListResponse) {}
+  rpc UpdateSmsProviderSetting (UpdateSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
+  rpc DeleteSmsProviderSetting (DeleteSmsProviderSettingRequest) returns (SmsProviderSettingResponse) {}
 }
 
 
@@ -35,7 +65,8 @@ message CreateMessageRequest {
   string title = 1;
   int32 clientId = 2;
   string content = 3;
-  bool status = 4;
+  string segment = 4;
+  bool status = 5;
   optional int32 id = 6;
   optional string createdAt = 7;
   optional string updatedAt = 8;
@@ -62,7 +93,9 @@ message CommonResponseObj{
 message SendMessageRequest {
   int32 clientId = 1;
   int32 messageId = 2;
-  string userId = 3;
+  optional string userId = 3;
+  optional string segment = 4;
+  optional string message = 5;
 }
 
 
@@ -70,12 +103,28 @@ message HandleNotificationsRequest {
   int32 userId = 1;
   string description = 2;
   string title = 3;
+  /** If non-empty, notifications are created for these user ids only. If empty, userId (field 1) is used as a single recipient. */
+  repeated int32 userIds = 4;
 }
 message GetUserNotificationsRequest {
   int32 userId = 1;
+  /** When true, returns all non-deleted notifications (read and unread). Default false = unread only. */
+  optional bool includeRead = 2;
 }
 message SetReadNotificationsRequest {
   int32 id = 1;
+  /** When set, the service verifies the notification belongs to this user before marking read. */
+  optional int32 userId = 2;
+}
+
+message DeleteAgentNotificationRequest {
+  int32 id = 1;
+  int32 userId = 2;
+}
+
+message DeleteAgentNotificationResponse {
+  string message = 1;
+  bool status = 2;
 }
 
 
@@ -83,6 +132,8 @@ message HandleNotificationsResponse {
   string message = 1;
   bool   status = 2;
   optional Notifications data = 3;
+  /** All created notifications (same order as recipients). For one recipient, data matches dataList[0]. */
+  repeated Notifications dataList = 4;
 }
 
 message SetReadNotificationsResponse {
@@ -165,6 +216,7 @@ message SendOtpRequest {
   string phoneNumber = 2;
   string operator = 3;
   optional string countryCode = 4;
+  optional string message = 5;
 }
 
 message VerifyOtpRequest {
@@ -191,4 +243,183 @@ message DeliveryReportResponse {
   string message = 4;
   string sender = 5;
   string messageId = 6;
+}
+
+// ==================== SMS Provider Settings CRUD Messages ====================
+
+message CreateSmsProviderSettingRequest {
+  int32 clientId = 1;
+  string displayName = 2;
+  string gatewayName = 3;
+  string senderID = 4;
+  optional string apiKey = 5;
+  optional string username = 6;
+  optional string password = 7;
+  bool enable = 8;
+}
+
+message FindOneSmsProviderSettingRequest {
+  int32 id = 1;
+}
+
+message FindAllSmsProviderSettingsRequest {
+  int32 clientId = 1;
+}
+
+message UpdateSmsProviderSettingRequest {
+  int32 id = 1;
+  optional int32 clientId = 2;
+  optional string displayName = 3;
+  optional string gatewayName = 4;
+  optional string senderID = 5;
+  optional string apiKey = 6;
+  optional string username = 7;
+  optional string password = 8;
+  optional bool enable = 9;
+}
+
+message DeleteSmsProviderSettingRequest {
+  int32 id = 1;
+}
+
+message SmsProviderSettingData {
+  int32 id = 1;
+  int32 clientId = 2;
+  string displayName = 3;
+  string gatewayName = 4;
+  string senderID = 5;
+  string apiKey = 6;
+  string username = 7;
+  string password = 8;
+  bool status = 9;
+  string createdAt = 10;
+  string updatedAt = 11;
+}
+
+message SmsProviderSettingResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional SmsProviderSettingData data = 4;
+}
+
+message SmsProviderSettingsListResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated SmsProviderSettingData data = 4;
+}
+
+
+
+// ── Chat message types ──────────────────────────────────────────────────────
+
+// Shared: any operation that only needs a chat + client scope
+message ChatIdRequest {
+  string chatId = 1;
+  int32  clientId = 2;
+}
+
+// GetChats
+message GetChatsRequest {
+  int32 userId   = 1;
+  int32 clientId = 2;
+}
+
+// IsParticipant / LeaveChat / MarkMessagesAsRead
+message ChatParticipantRequest {
+  string chatId  = 1;
+  int32  userId  = 2;
+  int32  clientId = 3;
+}
+
+// IsParticipant response (distinct because it carries a boolean)
+message IsParticipantResponse {
+  int32  status        = 1;
+  bool   isParticipant = 2;
+  string message       = 3;
+}
+
+// SendChatMessage
+message SendChatMessageRequest {
+  string chatId    = 1;
+  int32  senderId  = 2;
+  string content   = 3;
+  int32  clientId  = 4;
+}
+
+// CreateAndSendMessage
+message CreateAndSendMessageRequest {
+  int32  senderId      = 1;
+  string content       = 2;
+  int32  participantId = 3;
+  int32  clientId      = 4;
+}
+
+// CreateDirectChat
+message CreateDirectChatRequest {
+  int32 creatorId     = 1;
+  int32 participantId = 2;
+  int32 clientId      = 3;
+}
+
+// UpdateMessageStatus (bulk status transition by recipient)
+message UpdateMessageStatusRequest {
+  int32  recipientId = 1;
+  string fromStatus  = 2;
+  string toStatus    = 3;
+  int32  clientId    = 4;
+}
+
+// UpdateStatus (single message)
+message UpdateStatusRequest {
+  string messageId = 1;
+  string toStatus  = 2;
+}
+
+// CreateChat (group)
+message CreateChatRequest {
+  int32           creatorId      = 1;
+  repeated int32  participantIds = 2;
+  int32           clientId       = 3;
+}
+
+// GetLastMessagesForChats
+message GetLastMessagesRequest {
+  repeated string chatIds  = 1;
+  int32           clientId = 2;
+}
+
+// SavePushSubscription
+message SavePushSubscriptionRequest {
+  int32  userId    = 1;
+  int32  clientId  = 2;
+  string endpoint  = 3;
+  string p256dh    = 4;
+  string auth      = 5;
+  string platform  = 6; // WEB | ANDROID | IOS  (default: WEB)
+}
+
+// SendNotificationToUser
+message PushNotificationPayload {
+  string title  = 1;
+  string body   = 2;
+  string icon   = 3;
+  string badge  = 4;
+  string tag    = 5;
+  map<string, string> data = 6;
+}
+
+message SendNotificationToUserRequest {
+  int32                  userId       = 1;
+  int32                  clientId     = 2;
+  PushNotificationPayload notification = 3;
+}
+
+message SendNotificationToUserResponse {
+  bool   success        = 1;
+  string message        = 2;
+  int32  successful     = 3;
+  int32  failed         = 4;
+  optional int32 notificationId = 5;
 }

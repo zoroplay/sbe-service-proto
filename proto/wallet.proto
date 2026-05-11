@@ -16,6 +16,12 @@ service WalletService {
   rpc CurrentReport(FetchReportRequest) returns (CommonResponseObj) {}
 
 
+  rpc CheckWithdrawalUser (WithdrawalRequestGo) returns (WithdrawalResponse);
+  rpc CreditUserGo (CreditUserRequestGo) returns (CreditUserResponse);
+  rpc CancelBet (CancelBetRequest) returns (CancelBetResponse);
+  rpc DebitUserGo (DebitUserRequestGo) returns (DebitUserResponse);
+  rpc UserBalance (UserBalanceRequest) returns (UserBalanceResponse);
+  rpc Deposit (DepositRequest) returns (DepositResponse);
 
   rpc CashbookApproveExpense(CashbookApproveExpenseRequest) returns (ExpenseSingleResponse) {}
   rpc CashbookCreateExpense(CashbookCreateExpenseRequest) returns (ExpenseSingleResponse) {}
@@ -71,24 +77,27 @@ service WalletService {
 
   rpc FetchUsersWithdrawal (FetchUsersWithdrawalRequest) returns (CommonResponseArray) {}
 
-  
-  
   rpc GetBalance (GetBalanceRequest) returns (WalletResponse) {}
+  rpc GetTrustBalance (GetBalanceRequest) returns (WalletResponse) {}
   rpc CreateWallet (CreateWalletRequest) returns (WalletResponse) {} 
   rpc FetchBetRange (FetchBetRangeRequest) returns (FetchBetRangeResponse) {} 
   rpc FetchPlayerDeposit (FetchPlayerDepositRequest) returns (WalletResponse) {} 
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
+  rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
+  rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
+  rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
-  rpc ListBanks (EmptyRequest) returns (CommonResponseArray) {}
+  rpc ListBanks (ClientId) returns (CommonResponseArray) {}
   rpc GetTransactions (GetTransactionRequest) returns (GetTransactionResponse) {}
   rpc GetPaymentMethods (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
+  rpc GetPaymentMethodsForPlayers (GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {}
   rpc SavePaymentMethod (PaymentMethodRequest) returns (PaymentMethodResponse) {}
   rpc PaystackWebhook (PaystackWebhookRequest) returns (WebhookResponse) {}
   rpc MonnifyWebhook (MonnifyWebhookRequest) returns (WebhookResponse) {}
@@ -197,6 +206,7 @@ service WalletService {
   rpc FetchAffiliateEarnings(PlayerRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
+  rpc AlatPayWebhook (AlatPayWebhookRequest) returns (CommonResponseObj) {}
   rpc AffiliateUsersCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralWithdrawals(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
@@ -207,13 +217,121 @@ service WalletService {
   rpc ListRetailData(RetailDataRequest) returns (CommonResponseArray) {}
   rpc ListRetailClientTransactions(RetailDataRequest) returns (CommonResponseArray) {}
   rpc OpayBankCodes(OpayBankCodesRequest) returns (CommonResponseObj) {}
-  rpc PalmpayBankCodes(PalmpayBankCode) returns (CommonResponseObj) {}
+  rpc ListBankCodes(BankCodeRequest) returns (CommonResponseObj) {}
+
+  rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
 
 }
 
-message PalmpayBankCode {
+message CreditUserRequestGo {
+  string token = 1;
+}
+
+message WithdrawalRequestGo {
+  string type = 1;
+  string client_id = 2;
+  string user_id = 3;
+  double amount = 4;
+  string currency = 5;
+  string account_number = 6;
+  string bank_code = 7;
+  string source = 8;
+  string raw_text = 9;
+}
+
+
+message DebitUserRequestGo {
+  string user_id = 1;
+  string client_id = 2;
+  double amount = 3;
+  string source = 4;
+  string reference_id = 5;
+  string description = 6;
+  string user_name = 7;
+  string sport_type = 8;
+  string transaction_type = 9;
+  string channel = 10;
+}
+
+message CreditUserResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+message DebitUserResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+
+message CancelBetRequest {
+  string token = 1;
+}
+
+message CancelBetResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  optional double balance = 4;
+}
+
+message WithdrawalResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+}
+
+message UserBalanceResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+  double balance = 4;
+  double bonus_balance = 5;
+}
+
+
+
+message DepositRequest {
+  string client_id = 1;
+  string user_id = 2;
+  double amount = 3;
+  string currency = 4;
+  string source = 5;
+}
+
+message DepositResponse {
+  bool success = 1;
+  string message = 2;
+  bool user_exists = 3;
+}
+
+message UserBalanceRequest {
+  string user_id = 1;
+  string client_id = 2;
+}
+
+
+
+message ClientId {
   int32 clientId = 1;
- }
+}
+
+message SayswitchWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string event = 3;
+  google.protobuf.Struct body = 4;
+  string signature = 5;
+}
+
+message BankCodeRequest {
+  int32 clientId = 1;
+  string PaymentMethod = 2;
+}
 
 message OpayBankCodesRequest {
   int32 clientId = 1;
@@ -263,10 +381,12 @@ message PayonusWebhookRequest {
     string  type = 2;
     string  signature = 3;
     optional int64   timestamp = 4;
-    WebhookBody  rawBody = 5;
+    google.protobuf.Struct rawBody = 5;
 }
-message WebhookBody {
-    string data = 1;
+
+message AlatPayWebhookRequest {
+    int32 clientId = 1;
+    google.protobuf.Struct rawBody = 2;
 }
 
 
@@ -918,6 +1038,7 @@ message GetTransactionsRequest {
   optional string keyword = 7;
   optional int32 limit = 8;
   int32  page = 9;
+  optional string walletAdjustment = 10;
 }
 
 message ProcessRetailTransaction {
@@ -1378,6 +1499,7 @@ message VerifyBankAccountRequest {
   string accountNumber = 3;
   string bankCode = 4;
   string source = 5;
+ 
 }
 
 message VerifyBankAccountResponse {
@@ -1526,6 +1648,7 @@ message CommonResponseObj {
   string message = 2;
   int32 status = 3;
   optional google.protobuf.Struct data = 4;
+  optional int64 total = 5;
 }
 
 message CommonResponseArray {

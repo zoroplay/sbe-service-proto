@@ -27,6 +27,8 @@ service BonusService {
 
   rpc GetActiveUserBonus (CheckDepositBonusRequest) returns (CommonResponseObj){}
 
+  rpc FetchUserActiveBonus (GetUserBonusRequest) returns (CommonResponseObj){}
+
   rpc SaveAccaBonus (SaveAccaBonusRequest) returns (CommonResponseObj){}
 
   rpc GetAccaBonuses (GetAllBonusRequest) returns (CommonResponseArray){}
@@ -68,6 +70,8 @@ service BonusService {
   rpc GetCampaignBonus(GetBonusByClientID) returns (AllCampaignBonus){}
 
   rpc DeletePlayerData(GetBonusRequest) returns (EmptyResponse) {}
+
+  rpc AwardCompletedBonus(BonusRequest) returns (CommonResponseObj) {}
 }
 
 
@@ -91,6 +95,7 @@ message SaveAccaBonusRequest {
   message BonusItem {
     string ticketLength = 1;
     string bonus = 2;
+    string maxBonusAmount = 3;
   }
 
   repeated BonusItem items = 3;
@@ -261,9 +266,9 @@ message BonusResponse {
 message GetUserBonusRequest {
   int32 clientId = 1;
   int64 userId = 2;
-  string bonusType = 3;
-  int32 id = 4;
-  int32 status = 5;
+  optional string bonusType = 3;
+  optional int32 id = 4;
+  optional int32 status = 5;
 }
 
 message UserBetData {

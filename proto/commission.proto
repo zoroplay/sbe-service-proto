@@ -21,7 +21,7 @@ service CommissionService {
   rpc calculateCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
   rpc payoutCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc FlatCommission(FlatCommissionRequest) returns (CommonResponseObj) {}
-  rpc MultipleCommission(CalculateCommissionRequest) returns (CommonResponseObj) {}
+  rpc MultipleCommission(PayoutCommissionRequest) returns (CommonResponseObj) {} 
   rpc ProfitCommission(PayoutCommissionRequest) returns (CommonResponseObj) {}
   rpc SportCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc VirtualCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
@@ -29,12 +29,16 @@ service CommissionService {
   rpc SportBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc VirtualBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc GetGgrAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
+  rpc GetMultipleAgentsCommission(GetCommissionsRequestData) returns (CommonResponseObj) {}
   rpc PaidCommission(PaidCommissionRequest) returns (CommonResponseObj) {}
   rpc ListOneUserCommissionProfile(UserCommissionData) returns (CommonResponseObj) {}
 
 
 
   rpc Totals(SalesReportRequest) returns (CommonResponseArray) {}
+  rpc SalesReport(SalesReportRequest) returns (CommonResponseArray) {}
+  rpc CommissionTotalsByRole(CommissionTotalsByRoleRequest) returns (CommonResponseObj) {}
 
   rpc DepositCommission(DepositCommissionRequest) returns (CommonResponseObj) {}
   rpc PayoutCommission(PayoutCommissionRequestData) returns (CommonResponseObj) {}
@@ -351,6 +355,7 @@ message PaidCommissionRequest {
   string provider = 4;
   int32 page = 5;
   optional int32 perPage = 8;
+  string commissionType = 6;
 }
 
 message FlatCommissionRequest {
@@ -374,6 +379,15 @@ message SalesReportRequest {
   optional string from = 4;
   optional string to = 5;
   optional string productType = 6;
+}
+
+message CommissionTotalsByRoleRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string from = 3;
+  string to = 4;
+  optional string provider = 5;
+  optional string roleType = 6;
 }
 
 
