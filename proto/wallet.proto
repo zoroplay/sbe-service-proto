@@ -206,6 +206,7 @@ service WalletService {
   rpc FetchAffiliateEarnings(PlayerRequest) returns (CommonResponseObj) {}
   rpc FetchAffiliateCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc PayonusWebhook (PayonusWebhookRequest) returns (CommonResponseObj) {}
+  rpc AlatPayWebhook (AlatPayWebhookRequest) returns (CommonResponseObj) {}
   rpc AffiliateUsersCommissionSummary(PlayerRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralWithdrawals(ClientAffiliateRequest) returns (CommonResponseObj) {}
   rpc AdminGetAffiliateReferralDeposits(ClientAffiliateRequest) returns (CommonResponseObj) {}
@@ -381,6 +382,11 @@ message PayonusWebhookRequest {
     string  signature = 3;
     optional int64   timestamp = 4;
     google.protobuf.Struct rawBody = 5;
+}
+
+message AlatPayWebhookRequest {
+    int32 clientId = 1;
+    google.protobuf.Struct rawBody = 2;
 }
 
 
