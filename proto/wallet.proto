@@ -1304,6 +1304,7 @@ message CreditUserRequest {
   string wallet = 7;
   string subject = 8;
   string channel = 9;
+  string transactionId = 10;
 }
 
 // credit user request payload
