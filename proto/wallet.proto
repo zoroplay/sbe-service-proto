@@ -1439,6 +1439,10 @@ message DebitUserRequest {
   string wallet = 7;
   string subject = 8;
   string channel = 9;
+  // Optional caller-supplied idempotency key. If a debit with this
+  // transactionId has already been processed, the wallet service returns
+  // the prior result without re-debiting.
+  string transactionId = 10;
 }
 
 message Wallet {
