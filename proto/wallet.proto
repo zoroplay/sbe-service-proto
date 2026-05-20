@@ -5,6 +5,7 @@ import "google/protobuf/struct.proto";
 // import "cashbook.proto";
 
 package wallet;
+option go_package = "sports_engine_wallet/proto;pb";
 
 service WalletService {
   rpc CashbookVerifyFinalTransaction(FetchLastApprovedRequest) returns (CommonResponseObj) {}
@@ -1607,9 +1608,10 @@ message UserTransactionRequest {
   int32 userId = 2;
   string startDate = 3;
   string endDate = 4;
-  optional bool useArchive = 5;
-  optional int32 page = 6;
-  optional int32 limit = 7;
+  optional string search = 5;
+  optional bool useArchive = 6;
+  optional int32 page = 7;
+  optional int32 limit = 8;
   
 }
 
