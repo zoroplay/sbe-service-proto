@@ -175,7 +175,6 @@ message SalesReportRequest {
   optional string from = 4;
   optional string to = 5;
   optional string productType = 6;
-  repeated int32 userIds = 7;
 }
 
 message NetworkSalesRequest {
