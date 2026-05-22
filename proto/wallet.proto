@@ -1427,6 +1427,7 @@ message CreditUserRequest {
   string subject = 8;
   string channel = 9;
   string transactionId = 10;
+  optional string remark = 11;
 }
 
 // credit user request payload
@@ -1444,6 +1445,7 @@ message DebitUserRequest {
   // transactionId has already been processed, the wallet service returns
   // the prior result without re-debiting.
   string transactionId = 10;
+  optional string remark = 11;
 }
 
 message Wallet {
