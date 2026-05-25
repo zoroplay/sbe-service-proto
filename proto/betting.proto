@@ -169,12 +169,12 @@ message GetCommissionsRequest {
 }
 
 message SalesReportRequest {
-  int32 clientId = 1;
-  int32 userId = 2;
-  optional string role = 3;
-  optional string from = 4;
-  optional string to = 5;
-  optional string productType = 6;
+  int64 clientId = 1;
+  int64 userId = 2;
+  string role = 3;
+  string from = 4;
+  string to = 5;
+  string productType = 6;
 }
 
 message NetworkSalesRequest {
@@ -185,7 +185,7 @@ message NetworkSalesRequest {
 }
 
 message CommonResponseObj{
-  optional int32 status = 1;
+  optional int64 status = 1;
   optional bool success = 2;
   string message = 3;
   optional google.protobuf.Struct data = 4;
@@ -193,7 +193,7 @@ message CommonResponseObj{
 }
 
 message CommonResponseArray {
-  optional int32 status = 1;
+  optional int64 status = 1;
   optional bool success = 2;
   string message = 3;
   repeated google.protobuf.Struct data = 4;
