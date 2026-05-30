@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package crm;
+
+option go_package = "github.com/zoroplay/crm-service/internal/grpc/pb;crmpb";
+
+import "google/protobuf/struct.proto";
+
+// CrmService exposes the Sportsbook CRM backend to the API gateway.
+service CrmService {
+  // Campaign management
+  rpc CreateCampaign(CreateCampaignRequest) returns (CommonResponseObj);
+  rpc GetCampaign(GetCampaignRequest) returns (CommonResponseObj);
+  rpc ListCampaigns(ListCampaignsRequest) returns (CommonResponseObj);
+  rpc UpdateCampaign(UpdateCampaignRequest) returns (CommonResponseObj);
+
+  // Bonus lifecycle (FSM)
+  rpc TransitionBonusState(TransitionBonusStateRequest) returns (CommonResponseObj);
+  rpc ClaimBonus(ClaimBonusRequest) returns (CommonResponseObj);
+  rpc GetUserBonuses(GetUserBonusesRequest) returns (CommonResponseObj);
+
+  // Segmentation (AST compiler)
+  rpc CompileSegment(CompileSegmentRequest) returns (CompileSegmentResponse);
+  rpc PreviewSegmentCount(CompileSegmentRequest) returns (CommonResponseObj);
+
+  // Background jobs (bulk airdrop)
+  rpc StartBulkAirdrop(StartBulkAirdropRequest) returns (StartBulkAirdropResponse);
+  rpc GetJobStatus(GetJobStatusRequest) returns (CommonResponseObj);
+
+  // Analytics (materialized views)
+  rpc GetCampaignVolumeAnalytics(GetAnalyticsRequest) returns (CommonResponseObj);
+
+  // Rules engine (admin / test)
+  rpc EvaluateRules(EvaluateRulesRequest) returns (EvaluateRulesResponse);
+}
+
+message CommonResponseObj {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
+message CreateCampaignRequest {
+  string name = 1;
+  string status = 2;
+  double max_global_liability = 3;
+  string rules_json = 4;
+  string constraints_json = 5;
+  double target_wager_multiplier = 6;
+}
+
+message GetCampaignRequest {
+  string campaign_id = 1;
+}
+
+message ListCampaignsRequest {
+  optional string status = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message UpdateCampaignRequest {
+  string campaign_id = 1;
+  optional string name = 2;
+  optional string status = 3;
+  optional double max_global_liability = 4;
+  optional string rules_json = 5;
+  optional string constraints_json = 6;
+}
+
+message TransitionBonusStateRequest {
+  string bonus_id = 1;
+  string target_state = 2;
+}
+
+message ClaimBonusRequest {
+  string user_id = 1;
+  string campaign_id = 2;
+  string device_hash = 3;
+  double amount = 4;
+}
+
+message GetUserBonusesRequest {
+  string user_id = 1;
+  optional string status = 2;
+}
+
+message CompileSegmentRequest {
+  string query_ast_json = 1;
+}
+
+message CompileSegmentResponse {
+  bool success = 1;
+  string message = 2;
+  string where_clause = 3;
+  repeated string args = 4;
+}
+
+message StartBulkAirdropRequest {
+  string campaign_id = 1;
+  string query_ast_json = 2;
+  double bonus_amount = 3;
+  string bonus_name = 4;
+}
+
+message StartBulkAirdropResponse {
+  bool success = 1;
+  string message = 2;
+  string job_id = 3;
+}
+
+message GetJobStatusRequest {
+  string job_id = 1;
+}
+
+message GetAnalyticsRequest {
+  optional string campaign_id = 1;
+  optional string from_date = 2;
+  optional string to_date = 3;
+}
+
+message EvaluateRulesRequest {
+  string rules_json = 1;
+  string event_payload_json = 2;
+}
+
+message EvaluateRulesResponse {
+  bool matched = 1;
+  string message = 2;
+}
