@@ -86,10 +86,11 @@ service WalletService {
   rpc FetchDepositRange (FetchDepositRangeRequest) returns (FetchDepositRangeResponse) {} 
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
-  rpc CreditTrustBalance (CreditUserRequest) returns (WalletResponse) {}
+  rpc AdminCreditAgentTrustBalance (AdminTrustBalanceRequest) returns (WalletResponse) {}
+  rpc CreditTrustBalance (TrustBalanceRequest) returns (WalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
-  rpc DebitTrustBalance (DebitUserRequest) returns (WalletResponse) {}
+  rpc DebitTrustBalance (TrustBalanceRequest) returns (WalletResponse) {}
   rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
@@ -1448,6 +1449,21 @@ message DebitUserRequest {
   optional string remark = 11;
 }
 
+message TrustBalanceRequest {
+  double amount = 1;
+  int32 clientId = 2;
+  int32 userId = 3;
+  string username = 4;
+}
+
+message AdminTrustBalanceRequest {
+  double amount = 1;
+  double liabilityThreshold = 2;
+  int32 clientId = 3;
+  int32 userId = 4;
+  string username = 5;
+}
+
 message Wallet {
   int32 userId = 1;
   double balance = 2;
@@ -1457,6 +1473,7 @@ message Wallet {
   double virtualBonusBalance = 6;
   double casinoBonusBalance = 7;
   optional double commissionBalance = 8;
+  double liabilityThreshold = 9;
 }
 
 message InitiateDepositRequest {
