@@ -151,11 +151,13 @@ message CreateSegmentRequest {
 message GetSegmentRequest {
   string segment_id = 1;
   optional string code = 2;
+  int64 client_id = 3;
 }
 
 message ListSegmentsRequest {
   int32 limit = 1;
   int32 offset = 2;
+  int64 client_id = 3;
 }
 
 message UpdateSegmentRequest {
