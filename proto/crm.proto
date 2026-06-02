@@ -145,7 +145,7 @@ message CreateSegmentRequest {
   string description = 3;
   bool is_dynamic = 4;
   string rule_json = 5;
-  string client_id = 6;
+  int64 client_id = 6;
 }
 
 message GetSegmentRequest {
