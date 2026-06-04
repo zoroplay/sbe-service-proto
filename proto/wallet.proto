@@ -1487,7 +1487,7 @@ message TrustWallet {
   double availableBalance = 2;
   double trustBalance = 3;
   double liabilityThreshold = 4;
-  double amountUsed = 5;
+  optional double amountUsed = 5;
 }
 
 message InitiateDepositRequest {
