@@ -91,6 +91,7 @@ service WalletService {
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
   rpc DebitTrustBalance (TrustBalanceRequest) returns (TrustWalletResponse) {}
+  rpc AgentRepayTrust (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
@@ -1482,11 +1483,10 @@ message Wallet {
 
 message TrustWallet {
   int32 userId = 1;
-  double balance = 2;
-  double availableBalance = 3;
-  double trustBalance = 4;
-  double liabilityThreshold = 5;
-  double amountOwed = 6;
+  double availableBalance = 2;
+  double trustBalance = 3;
+  double liabilityThreshold = 4;
+  double amountUsed = 5;
 }
 
 message InitiateDepositRequest {
