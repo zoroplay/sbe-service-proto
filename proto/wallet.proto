@@ -94,6 +94,14 @@ service WalletService {
   rpc AgentRepayTrust (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc AdminSettleAgentTrust (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc ToggleWalletStatus(GetBalanceRequest) returns (WalletResponse) {}
+
+  // Trust Topup Request Flow
+  rpc RequestTrustTopup (RequestTrustTopupRequest) returns (TrustTopupResponse) {}
+  rpc ApproveTrustTopup (ApproveTrustTopupRequest) returns (TrustTopupResponse) {}
+  rpc RejectTrustTopup (RejectTrustTopupRequest) returns (TrustTopupResponse) {}
+  rpc ListTrustTopupRequests (ListTrustTopupRequestsReq) returns (TrustTopupListResponse) {}
+  rpc ListAgentTrustTopupRequests (ListAgentTrustTopupRequestsReq) returns (TrustTopupListResponse) {}
+
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
@@ -115,6 +123,7 @@ service WalletService {
   rpc DeletePlayerData (IdRequest) returns (CommonResponseObj) {}
   rpc GetUserAccounts (GetBalanceRequest) returns (GetUserAccountsResponse) {}
   rpc GetNetworkBalance (GetNetworkBalanceRequest) returns (GetNetworkBalanceResponse) {}
+  rpc GetAgentDashboard (GetNetworkBalanceRequest) returns (CommonResponseObj) {}
   rpc GetMoneyTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc GetSystemTransaction (GetTransactionsRequest) returns (CommonResponseObj) {}
   rpc UpdatePaymentMethod  (PaymentMethodRequest) returns (GetPaymentMethodResponse) {}
@@ -1488,6 +1497,76 @@ message TrustWallet {
   double trustBalance = 3;
   double liabilityThreshold = 4;
   optional double amountUsed = 5;
+  optional double amountOwed = 6;
+}
+
+// Trust Topup Request Messages
+message RequestTrustTopupRequest {
+  int32 clientId = 1;
+  int32 agentId = 2;
+  int32 superAgentId = 3;
+  double amount = 4;
+  string note = 5;
+}
+
+message ApproveTrustTopupRequest {
+  int32 clientId = 1;
+  int32 requestId = 2;
+  string note = 3;
+  int32 superAgentId = 4;
+}
+
+message RejectTrustTopupRequest {
+  int32 clientId = 1;
+  int32 requestId = 2;
+  string note = 3;
+  int32 superAgentId = 4;
+}
+
+message ListTrustTopupRequestsReq {
+  int32 clientId = 1;
+  int32 agentId = 2;
+  string status = 3;
+}
+
+message ListAgentTrustTopupRequestsReq {
+  int32 clientId = 1;
+  int32 agentId = 2;
+  string status = 3;
+}
+
+message TrustTopupRequestData {
+  int64 id = 1;
+  int32 clientId = 2;
+  int32 agentId = 3;
+  int32 superAgentId = 4;
+  double requestedAmount = 5;
+  double approvedAmount = 6;
+  double effectiveLiabilityThreshold = 7;
+  int32 status = 8;
+  string requestNote = 9;
+  string approvalNote = 10;
+  string requestedBy = 11;
+  string approvedBy = 12;
+  string approvedAt = 13;
+  string rejectedBy = 14;
+  string rejectedAt = 15;
+  string createdAt = 16;
+  string updatedAt = 17;
+}
+
+message TrustTopupResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional TrustTopupRequestData data = 4;
+}
+
+message TrustTopupListResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated TrustTopupRequestData data = 4;
 }
 
 message InitiateDepositRequest {
@@ -1649,7 +1728,8 @@ message UserTransactionRequest {
   optional bool useArchive = 6;
   optional int32 page = 7;
   optional int32 limit = 8;
-  
+  optional string type = 9;
+  optional string subject = 10;
 }
 
 message UserTransactionResponse {
