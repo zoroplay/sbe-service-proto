@@ -87,6 +87,7 @@ service WalletService {
   rpc FetchDepositCount (FetchDepositCountRequest) returns (FetchDepositCountResponse) {} 
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc AdminCreditAgentTrustBalance (AdminTrustBalanceRequest) returns (TrustWalletResponse) {}
+  rpc ListAgentTrustSettings (ClientId) returns (AgentTrustSettingsResponse) {}
   rpc CreditTrustBalance (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
@@ -1480,6 +1481,26 @@ message AdminTrustBalanceRequest {
   int32 clientId = 3;
   int32 userId = 4;
   string username = 5;
+}
+
+message AgentTrustSetting {
+  int32 userId = 1;
+  string username = 2;
+  int32 clientId = 3;
+  double trustBalance = 4;
+  double liabilityThreshold = 5;
+  double amountUsed = 6;
+  double amountOwed = 7;
+  int32 status = 8;
+  string createdAt = 9;
+  string updatedAt = 10;
+}
+
+message AgentTrustSettingsResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated AgentTrustSetting data = 4;
 }
 
 message Wallet {
