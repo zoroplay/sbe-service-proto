@@ -1525,7 +1525,6 @@ message TrustWallet {
 message RequestTrustTopupRequest {
   int32 clientId = 1;
   int32 agentId = 2;
-  int32 superAgentId = 3;
   double amount = 4;
   string note = 5;
 }
