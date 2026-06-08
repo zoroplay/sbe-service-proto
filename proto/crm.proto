@@ -146,6 +146,8 @@ message CreateSegmentRequest {
   bool is_dynamic = 4;
   string rule_json = 5;
   int64 client_id = 6;
+  string message = 7;
+  string bonus_id = 8;
 }
 
 message GetSegmentRequest {
@@ -167,6 +169,8 @@ message UpdateSegmentRequest {
   optional bool is_dynamic = 4;
   optional string rule_json = 5;
   int64 client_id = 6;
+  optional string message = 7;
+  optional string bonus_id = 8;
 }
 
 message DeleteSegmentRequest {
