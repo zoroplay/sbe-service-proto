@@ -1473,6 +1473,7 @@ message TrustBalanceRequest {
   int32 clientId = 2;
   int32 userId = 3;
   string username = 4;
+  string approvedBy = 5;
 }
 
 message AdminTrustBalanceRequest {
@@ -1481,6 +1482,7 @@ message AdminTrustBalanceRequest {
   int32 clientId = 3;
   int32 userId = 4;
   string username = 5;
+  string setBy = 6;
 }
 
 message AgentTrustSetting {
@@ -1494,6 +1496,8 @@ message AgentTrustSetting {
   int32 status = 8;
   string createdAt = 9;
   string updatedAt = 10;
+  string setBy = 11;
+  string approvedBy = 12;
 }
 
 message AgentTrustSettingsResponse {
@@ -1519,6 +1523,8 @@ message TrustWallet {
   double liabilityThreshold = 4;
   optional double amountUsed = 5;
   optional double amountOwed = 6;
+  string setBy = 7;
+  string approvedBy = 8;
 }
 
 // Trust Topup Request Messages
