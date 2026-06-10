@@ -88,6 +88,7 @@ service WalletService {
   rpc CreditUser (CreditUserRequest) returns (WalletResponse) {}
   rpc AdminCreditAgentTrustBalance (AdminTrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc ListAgentTrustSettings (ClientId) returns (AgentTrustSettingsResponse) {}
+  rpc ListAgentTrustActivityLogs (AgentTrustActivityLogRequest) returns (AgentTrustActivityLogResponse) {}
   rpc CreditTrustBalance (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
@@ -1505,6 +1506,38 @@ message AgentTrustSettingsResponse {
   int32 status = 2;
   string message = 3;
   repeated AgentTrustSetting data = 4;
+}
+
+message AgentTrustActivityLogRequest {
+  int32 clientId = 1;
+  int32 page = 2;
+  int32 perPage = 3;
+}
+
+message AgentTrustActivityLog {
+  int64 id = 1;
+  int32 clientId = 2;
+  int32 agentId = 3;
+  string username = 4;
+  string activity = 5;
+  string actionBy = 6;
+  double amount = 7;
+  double liabilityThreshold = 8;
+  double amountUsed = 9;
+  double amountOwed = 10;
+  string description = 11;
+  string createdAt = 12;
+}
+
+message AgentTrustActivityLogResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  repeated AgentTrustActivityLog data = 4;
+  int32 total = 5;
+  int32 page = 6;
+  int32 perPage = 7;
+  int32 lastPage = 8;
 }
 
 message Wallet {
