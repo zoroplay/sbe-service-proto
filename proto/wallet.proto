@@ -89,6 +89,7 @@ service WalletService {
   rpc AdminCreditAgentTrustBalance (AdminTrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc ListAgentTrustSettings (ClientId) returns (AgentTrustSettingsResponse) {}
   rpc ListAgentTrustActivityLogs (AgentTrustActivityLogRequest) returns (AgentTrustActivityLogResponse) {}
+  rpc GetAgentTrustTopupReminder (AgentTrustReminderRequest) returns (CommonResponseObj) {}
   rpc CreditTrustBalance (TrustBalanceRequest) returns (TrustWalletResponse) {}
   rpc AwardBonusWinning (CreditUserRequest) returns (WalletResponse) {} 
   rpc DebitUser (DebitUserRequest) returns (WalletResponse) {}
@@ -1538,6 +1539,29 @@ message AgentTrustActivityLogResponse {
   int32 page = 6;
   int32 perPage = 7;
   int32 lastPage = 8;
+}
+
+message AgentTrustReminderRequest {
+  int32 clientId = 1;
+  int32 agentId = 2;
+}
+
+message AgentTrustReminder {
+  reserved 3;
+  int32 clientId = 1;
+  int32 agentId = 2;
+  bool hasActiveTrust = 4;
+  double amountLeft = 5;
+  double trustBalance = 6;
+  string approvedAt = 7;
+  string dueAt = 8;
+  int64 secondsLeft = 9;
+  int64 hoursLeft = 10;
+  int32 daysLeft = 11;
+  bool isOverdue = 12;
+  int64 overdueSeconds = 13;
+  int64 overdueHours = 14;
+  int32 overdueDays = 15;
 }
 
 message Wallet {
