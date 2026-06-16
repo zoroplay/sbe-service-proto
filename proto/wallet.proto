@@ -1450,6 +1450,7 @@ message CreditUserRequest {
   string channel = 9;
   string transactionId = 10;
   optional string remark = 11;
+  string approvedBy = 12;
 }
 
 // credit user request payload
@@ -1468,6 +1469,7 @@ message DebitUserRequest {
   // the prior result without re-debiting.
   string transactionId = 10;
   optional string remark = 11;
+  string approvedBy = 12;
 }
 
 message TrustBalanceRequest {
