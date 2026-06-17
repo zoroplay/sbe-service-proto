@@ -241,6 +241,7 @@ service WalletService {
 
 message CreditUserRequestGo {
   string token = 1;
+  optional int64 betId = 2;
 }
 
 message WithdrawalRequestGo {
@@ -267,6 +268,7 @@ message DebitUserRequestGo {
   string sport_type = 8;
   string transaction_type = 9;
   string channel = 10;
+  optional int64 betId = 11;
 }
 
 message CreditUserResponse {
@@ -286,6 +288,7 @@ message DebitUserResponse {
 
 message CancelBetRequest {
   string token = 1;
+  optional int64 betId = 2;
 }
 
 message CancelBetResponse {
@@ -1815,6 +1818,8 @@ message UserTransactionRequest {
   optional int32 limit = 8;
   optional string type = 9;
   optional string subject = 10;
+  optional string approvedBy = 11;
+  optional string remark = 12;
 }
 
 message UserTransactionResponse {
@@ -1836,7 +1841,10 @@ message TransactionData {
   string channel = 9;
   int32 status = 10;
   string wallet = 11;
- 
+  optional string remarks = 12;
+  string approvedBy = 13;
+  optional string remark = 14;
+  optional int64 betId = 15;
 }
 
 message UpdateWithdrawalRequest {
