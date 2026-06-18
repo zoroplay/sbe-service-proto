@@ -513,6 +513,7 @@ message PlayerCancelWithdrawalRequest{
   int32 clientId = 2;
   int32 withdrawalId = 3;
   string comment = 4;
+  string updatedBy = 5;
 }
 
 
