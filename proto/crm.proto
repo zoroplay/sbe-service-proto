@@ -148,6 +148,7 @@ message CreateSegmentRequest {
   int64 client_id = 6;
   string message = 7;
   string bonus_id = 8;
+  double bonus_amount = 9;
 }
 
 message GetSegmentRequest {
@@ -171,6 +172,7 @@ message UpdateSegmentRequest {
   int64 client_id = 6;
   optional string message = 7;
   optional string bonus_id = 8;
+  optional double bonus_amount = 9;
 }
 
 message DeleteSegmentRequest {
