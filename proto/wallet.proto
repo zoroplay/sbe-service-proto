@@ -1918,6 +1918,7 @@ message MetaData {
   int32 lastPage = 4;
   int32 nextPage = 5;
   int32 prevPage = 6;
+  optional double totalAmount = 7;
 }
 
 message ValidateOpayKeyRequest {
