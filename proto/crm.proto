@@ -48,6 +48,9 @@ service CrmService {
 
   // Rules engine (admin / test)
   rpc EvaluateRules(EvaluateRulesRequest) returns (EvaluateRulesResponse);
+
+  // User-facing: abandoned betslip (frontend → gateway → CRM, before betting-service)
+  rpc ReportBetslipAbandoned(ReportBetslipAbandonedRequest) returns (CommonResponseObj);
 }
 
 message CommonResponseObj {
@@ -212,6 +215,8 @@ message CreateCampaignTriggerRequest {
   string message = 9;
   optional bool is_active = 10;
   int32 max_awards_per_user = 11;
+  // CASH (default) or PROFIT_BOOST
+  optional string reward_type = 12;
 }
 
 message GetCampaignTriggerRequest {
@@ -239,9 +244,21 @@ message UpdateCampaignTriggerRequest {
   optional string message = 9;
   optional bool is_active = 10;
   optional int32 max_awards_per_user = 11;
+  optional string reward_type = 12;
 }
 
 message DeleteCampaignTriggerRequest {
   string trigger_id = 1;
   int64 client_id = 2;
+}
+
+message ReportBetslipAbandonedRequest {
+  int64 client_id = 1;
+  string user_id = 2;
+  optional string username = 3;
+  int32 total_legs = 4;
+  double potential_payout = 5;
+  optional string session_id = 6;
+  optional string betslip_snapshot_json = 7;
+  optional string event_id = 8;
 }

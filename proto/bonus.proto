@@ -51,6 +51,8 @@ service BonusService {
 
   rpc AwardBonus (AwardBonusRequest) returns (UserBonusResponse){}
 
+  rpc AwardProfitBoost (AwardProfitBoostRequest) returns (UserBonusResponse){}
+
   rpc AssignAffiliateBonus (AssignBonusRequest) returns (CommonResponseObj){}
 
   rpc DeactivateUserBonus (BonusRequest) returns (CommonResponseObj){}
@@ -326,6 +328,15 @@ message AwardBonusRequest {
   optional float baseValue = 6;
   optional string promoCode = 7;
   optional int32 status = 8;
+}
+
+message AwardProfitBoostRequest {
+  int32 clientId = 1;
+  int32 bonusId = 2;
+  string userId = 3;
+  optional string username = 4;
+  optional string sessionId = 5;
+  optional string betslipSnapshotJson = 6;
 }
 
 message AssignBonusRequest {
