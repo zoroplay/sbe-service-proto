@@ -8,6 +8,8 @@ service NotificationService {
   rpc SetReadNotifications (SetReadNotificationsRequest) returns (SetReadNotificationsResponse);
   rpc GetUserNotifications (GetUserNotificationsRequest) returns (GetUserNotificationsResponse);
   rpc HandleNotifications (HandleNotificationsRequest) returns (HandleNotificationsResponse);
+  /** In-app notification + SMS for CRM campaign/segment bonus awards (uses per-client SMS provider). */
+  rpc NotifyCampaignAward (NotifyCampaignAwardRequest) returns (NotifyCampaignAwardResponse);
   rpc DeleteAgentNotification (DeleteAgentNotificationRequest) returns (DeleteAgentNotificationResponse);
   rpc SaveSettings (SaveSettingsRequest) returns (SaveSettingsResponse);
   rpc GetSettings (GetSettingsRequest) returns (GetSettingsResponse);
@@ -134,6 +136,22 @@ message HandleNotificationsResponse {
   optional Notifications data = 3;
   /** All created notifications (same order as recipients). For one recipient, data matches dataList[0]. */
   repeated Notifications dataList = 4;
+}
+
+message NotifyCampaignAwardRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string phoneNumber = 3;
+  string title = 4;
+  string message = 5;
+  optional string operator = 6;
+}
+
+message NotifyCampaignAwardResponse {
+  string message = 1;
+  bool status = 2;
+  optional Notifications inApp = 3;
+  bool smsSent = 4;
 }
 
 message SetReadNotificationsResponse {
