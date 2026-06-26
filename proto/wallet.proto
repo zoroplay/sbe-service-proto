@@ -362,6 +362,7 @@ message RetailDataRequest {
   optional int32 agentId = 2;
   optional string from = 3;
   optional string to = 4; 
+  optional int32 cashierId = 5;
 }
 
 message AffiliateDashboardData {

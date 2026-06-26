@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package virtualgaming;
+
+option go_package = "github.com/lukemakhanu/virtual-gaming-service/proto/virtual;virtualpb";
+
+// Read-only casino-bet reporting provided by virtual-gaming-service.
+service VirtualGamingReportService {
+  rpc FetchSettledCasinoBetSummaries(FetchSettledCasinoBetSummariesRequest)
+      returns (FetchSettledCasinoBetSummariesResponse);
+}
+
+message FetchSettledCasinoBetSummariesRequest {
+  repeated int64 cashier_ids = 1;
+  optional int64 provider_id = 2;
+  optional string from = 3;
+  optional string to = 4;
+}
+
+message SettledCasinoBetSummary {
+  int64 cashier_id = 1;
+  int64 settled_bets = 2;
+  double total_stake = 3;
+}
+
+message FetchSettledCasinoBetSummariesResponse {
+  repeated SettledCasinoBetSummary summaries = 1;
+}
