@@ -121,6 +121,7 @@ service WalletService {
   rpc ListWithdrawals (ListWithdrawalRequests) returns (CommonResponseObj) {}
   rpc ListDeposits (ListDepositRequests) returns (CommonResponseObj) {}
   rpc UserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
+  rpc ShopUserTransactions (UserTransactionRequest) returns (UserTransactionResponse) {}
   rpc UpdateWithdrawal (UpdateWithdrawalRequest) returns (CommonResponseObj) {}
   rpc GetPlayerWalletData (GetBalanceRequest) returns (PlayerWalletData) {}
   rpc DeletePlayerData (IdRequest) returns (CommonResponseObj) {}
@@ -1821,6 +1822,7 @@ message UserTransactionRequest {
   optional string subject = 10;
   optional string approvedBy = 11;
   optional string remark = 12;
+  optional int32 downlineUserId = 13;
 }
 
 message UserTransactionResponse {
