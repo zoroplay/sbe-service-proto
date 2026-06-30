@@ -7,6 +7,8 @@ package bonus;
 service BonusService {
   rpc fetchBonusReport (FetchReportRequest) returns (FetchReportResponse){}
 
+  rpc GetTotalBonusBalanceByProduct (GetBonusByClientID) returns (TotalBonusBalanceByProductResponse){}
+
   rpc CreateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
 
   rpc UpdateBonus (CreateBonusRequest) returns (CreateBonusResponse){}
@@ -498,6 +500,17 @@ message FetchReportResponse {
   string message = 1;
   bool status = 2;
   repeated PlayerBonusData data = 3;
+}
+
+message ProductBonusBalance {
+  string product = 1;
+  double totalBalance = 2;
+}
+
+message TotalBonusBalanceByProductResponse {
+  bool success = 1;
+  string message = 2;
+  repeated ProductBonusBalance data = 3;
 }
 
 message SettleBetRequest {
