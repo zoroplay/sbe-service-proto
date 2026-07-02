@@ -1165,6 +1165,7 @@ message ValidateResponse {
     int32 id = 1;
     string username = 2;
     optional string role = 3;
+    repeated int32 downliners = 4;
   }
   optional User user = 3;
 }
