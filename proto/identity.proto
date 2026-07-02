@@ -168,6 +168,11 @@ service IdentityService {
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
   rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
   rpc GetAffiliatesOverview(AffiliateRequest) returns (CommonResponseObj) {}
+  rpc GetReferralDashboard(ReferralOwnerRequest) returns (CommonResponseObj) {}
+  rpc CreateReferralCode(CreateReferralCodeRequest) returns (CommonResponseObj) {}
+  rpc GetReferralCodes(ReferralOwnerRequest) returns (CommonResponseObj) {}
+  rpc ValidateReferralCode(ReferralCodeRequest) returns (CommonResponseObj) {}
+  rpc GetReferralFriends(ReferralFriendsRequest) returns (CommonResponseObj) {}
 
   // User Import
   rpc ImportUsers (ImportUsersRequest) returns (ImportUsersResponse) {}
@@ -237,6 +242,32 @@ message AffiliateResponse {
   optional int32 totalDepositAmount = 8;
   optional int32 totalWithdrawAmount = 9;
   optional Pagination pagination = 10;
+}
+
+message ReferralOwnerRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message CreateReferralCodeRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string name = 3;
+  optional string code = 4;
+  optional double commissionRate = 5;
+}
+
+message ReferralCodeRequest {
+  int32 clientId = 1;
+  string code = 2;
+}
+
+message ReferralFriendsRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
+  optional string code = 5;
 }
 
 
@@ -1005,6 +1036,7 @@ message CreateUserRequest {
   optional float balance = 21;
   optional bool isTest = 22;
   optional int32 affiliateId = 23;
+  optional string referralCode = 24;
 }
 
 message CreateAgentRequest {
