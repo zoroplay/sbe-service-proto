@@ -1199,6 +1199,21 @@ message ValidateResponse {
     string username = 2;
     optional string role = 3;
     repeated int32 downliners = 4;
+    optional string code = 5;
+    optional int32 clientId = 6;
+    optional int32 roleId = 7;
+    optional string roleType = 8;
+    optional int32 status = 9;
+    optional string registered = 10;
+    optional string firstName = 11;
+    optional string lastName = 12;
+    optional string email = 13;
+    optional string phone = 14;
+    optional string gender = 15;
+    optional string city = 16;
+    optional string address = 17;
+    optional string country = 18;
+    optional string dateOfBirth = 19;
   }
   optional User user = 3;
 }
