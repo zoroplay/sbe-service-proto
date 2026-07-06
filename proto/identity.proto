@@ -22,12 +22,14 @@ service IdentityService {
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
   rpc ValidateToken (ValidateRequest) returns (CommonResponseObj) {}
+  rpc GetDownliners (GetAgentUsersRequest) returns (ArrayResponse) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
   rpc ToggleAccount (ValidateTestRequest) returns (ValidateTestResponse) {}
 
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
+  rpc GetUserDetailsV2 (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc GetUserLogs ( GetUserDetailsRequest ) returns ( GetUserLogResponse ) {}
   rpc CreateClient (ClientRequest) returns (CommonResponseObj) {}
   rpc CreatePermission (PermissionRequest) returns (CommonResponseObj) {}
@@ -166,10 +168,12 @@ service IdentityService {
   rpc GetSuperAgents (ClientIdRequest) returns (CommonResponseObj) {}
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
+  rpc GetRetailDownlineScope(GetAgentUsersRequest) returns (RetailDownlineScopeResponse) {}
   rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
   rpc GetAffiliatesOverview(AffiliateRequest) returns (CommonResponseObj) {}
   rpc GetReferralDashboard(ReferralOwnerRequest) returns (CommonResponseObj) {}
   rpc CreateReferralCode(CreateReferralCodeRequest) returns (CommonResponseObj) {}
+  rpc UpdateReferralCode(UpdateReferralCodeRequest) returns (CommonResponseObj) {}
   rpc GetReferralCodes(ReferralOwnerRequest) returns (CommonResponseObj) {}
   rpc ValidateReferralCode(ReferralCodeRequest) returns (CommonResponseObj) {}
   rpc GetReferralFriends(ReferralFriendsRequest) returns (CommonResponseObj) {}
@@ -255,6 +259,14 @@ message CreateReferralCodeRequest {
   optional string name = 3;
   optional string code = 4;
   optional double commissionRate = 5;
+}
+
+message UpdateReferralCodeRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  int32 codeId = 3;
+  string code = 4;
+  optional string name = 5;
 }
 
 message ReferralCodeRequest {
@@ -454,6 +466,27 @@ message GetNetworkSalesRequest {
   string from = 2;
   string to = 3;
   string product = 4;
+}
+
+message RetailDownlineGroup {
+  int32 agentId = 1;
+  repeated int32 cashierIds = 2;
+}
+
+message RetailDownlineScopeData {
+  int32 userId = 1;
+  string role = 2;
+  repeated int32 agentIds = 3;
+  repeated int32 cashierIds = 4;
+  repeated int32 allUserIds = 5;
+  repeated RetailDownlineGroup groups = 6;
+}
+
+message RetailDownlineScopeResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  RetailDownlineScopeData data = 4;
 }
 
 message DailyTransactionsRequest {
