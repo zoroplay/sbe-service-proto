@@ -185,6 +185,7 @@ service WalletService {
 
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
+  rpc SalesReport (SalesReportRequest) returns (CommonResponseObj) {}
   rpc OverallGames (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesOnline (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesRetail (DashboardRequest) returns (OverallGamesResponse) {}
@@ -589,6 +590,19 @@ message DashboardRequest {
   string rangeZ = 2;
   string from = 3;
   string to = 4;
+}
+
+message SalesReportRequest {
+  int32 client_id = 1;
+  int32 superAgentId = 2;
+  int32 shopUserId = 3;
+  string product = 4;
+  string rangeZ = 5;
+  string from = 6;
+  string to = 7;
+  int32 page = 8;
+  int32 limit = 9;
+  bool enablePaging = 10;
 }
 
 message ProductSummary {
