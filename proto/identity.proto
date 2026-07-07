@@ -22,7 +22,7 @@ service IdentityService {
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
   rpc Validate (ValidateRequest) returns (CommonResponseObj) {}
   rpc ValidateToken (ValidateRequest) returns (CommonResponseObj) {}
-  rpc GetDownliners (GetAgentUsersRequest) returns (ArrayResponse) {}
+  rpc GetDownliners (ValidateRequest) returns (ArrayResponse) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
