@@ -261,4 +261,5 @@ message ReportBetslipAbandonedRequest {
   optional string session_id = 6;
   optional string betslip_snapshot_json = 7;
   optional string event_id = 8;
+  optional string share_code = 9;
 }

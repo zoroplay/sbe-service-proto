@@ -55,6 +55,9 @@ service BonusService {
 
   rpc AwardProfitBoost (AwardProfitBoostRequest) returns (UserBonusResponse){}
 
+  // Chapter 8.8 — grant casino free rounds (spins inventory) to a single user.
+  rpc AwardFreeRounds (AwardFreeRoundsRequest) returns (UserBonusResponse){}
+
   rpc AssignAffiliateBonus (AssignBonusRequest) returns (CommonResponseObj){}
 
   rpc DeactivateUserBonus (BonusRequest) returns (CommonResponseObj){}
@@ -339,6 +342,19 @@ message AwardProfitBoostRequest {
   optional string username = 4;
   optional string sessionId = 5;
   optional string betslipSnapshotJson = 6;
+}
+
+// AwardFreeRounds mints a free_rounds user bonus and registers spins at the casino provider.
+message AwardFreeRoundsRequest {
+  int32 clientId = 1;
+  int32 bonusId = 2;
+  string userId = 3;
+  optional string username = 4;
+  // Optional overrides; template casino_spin_count / minimum_entry_amount used when unset.
+  optional int32 spinCount = 5;
+  optional float coinValue = 6;
+  // CRM idempotency key — duplicate awards with the same key are rejected safely.
+  optional string idempotencyKey = 7;
 }
 
 message AssignBonusRequest {
