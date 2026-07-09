@@ -152,13 +152,13 @@ message EvaluateRulesResponse {
 message CreateSegmentRequest {
   string code = 1;
   string name = 2;
-  string description = 3;
-  bool is_dynamic = 4;
-  string rule_json = 5;
+  optional string description = 3;
+  optional bool is_dynamic = 4;
+  optional string rule_json = 5;
   int64 client_id = 6;
-  string message = 7;
-  string bonus_id = 8;
-  double bonus_amount = 9;
+  optional string message = 7;
+  optional string bonus_id = 8;
+  optional double bonus_amount = 9;
 }
 
 message GetSegmentRequest {
