@@ -51,6 +51,12 @@ service CrmService {
 
   // User-facing: abandoned betslip (frontend → gateway → CRM, before betting-service)
   rpc ReportBetslipAbandoned(ReportBetslipAbandonedRequest) returns (CommonResponseObj);
+
+  // User-facing: upsert betslip activity when selections change (backend-owned abandonment)
+  rpc UpsertBetslipActivity(UpsertBetslipActivityRequest) returns (CommonResponseObj);
+
+  // User-facing: close betslip session when placed or cleared
+  rpc CloseBetslipSession(CloseBetslipSessionRequest) returns (CommonResponseObj);
 }
 
 message CommonResponseObj {
@@ -262,4 +268,21 @@ message ReportBetslipAbandonedRequest {
   optional string betslip_snapshot_json = 7;
   optional string event_id = 8;
   optional string share_code = 9;
+}
+
+message UpsertBetslipActivityRequest {
+  int64 client_id = 1;
+  string user_id = 2;
+  optional string username = 3;
+  string session_id = 4;
+  int32 total_legs = 5;
+  double potential_payout = 6;
+  optional string betslip_snapshot_json = 7;
+  optional string last_activity_at = 8;
+}
+
+message CloseBetslipSessionRequest {
+  int64 client_id = 1;
+  string session_id = 2;
+  string status = 3;
 }
