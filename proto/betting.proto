@@ -1,4 +1,5 @@
 syntax = "proto3";
+option go_package = "betting_service/app/grpc/betting";
 
 import "google/protobuf/struct.proto";
 
@@ -9,7 +10,7 @@ service BettingService {
   rpc UpdateSetting (Settings) returns (SettingsResponse) {}
   rpc GetSettingsByID (SettingsById) returns (SettingsResponse) {}
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
-  rpc CancelBet (BookingCode) returns (CommonResponseObj) {}
+  rpc CancelBet (BetID) returns (StatusResponse) {}
   rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
@@ -21,13 +22,14 @@ service BettingService {
   rpc SimulatedBetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
-  rpc GetProbabilityFromBetID(BetID) returns (Probability) {}
+  rpc GetProbabilityFromBetID(BetID) returns (BsProbability) {}
   rpc GetCoupon(FindBetRequest) returns (CommonResponseObj) {}
   rpc GamingActivity(GamingActivityRequest) returns (GamingActivityResponse) {}
   rpc GetVirtualBet(GetVirtualBetRequest) returns (GetVirtualBetResponse) {}
-  rpc GetVirtualBets(GetVirtualBetsRequest) returns (CommonResponseObj) {}
+  rpc GetVirtualBets(GetVirtualBetsRequest) returns (VirtualBetsResponse) {}
   rpc CashoutRequest(ProcessCashoutRequest) returns (ProcessCashoutResponse) {}
 
+  rpc AdminBetHistory(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetRetailBets(BetHistoryRequest) returns (CommonResponseObj) {}
   rpc GetRetailVBets(GetVirtualBetsRequest) returns (CommonResponseObj) {}
   rpc GetSalesReport(SalesReportRequest) returns (CommonResponseObj) {}
@@ -37,6 +39,7 @@ service BettingService {
   rpc GetCommissions (GetCommissionsRequest) returns (CommonResponseObj) {}
   rpc GetAgentTotals (SalesReportRequest) returns (CommonResponseArray) {}
   rpc GetCommissionTickets (SalesReportRequest) returns (CommonResponseObj) {}
+  rpc GetMonthSummary (SalesReportRequest) returns (CommonResponseObj) {}
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
@@ -46,14 +49,20 @@ service BettingService {
   rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveRiskSettings (SettingsRequest) returns (CommonResponseObj) {}
   rpc SaveUserRiskSettings (UserRiskSettingsRequest) returns (CommonResponseObj) {}
+  rpc SaveMaxPayoutByTicketLength (SaveMaxPayoutRequest) returns (CommonResponseObj) {}
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
   rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
   rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
   rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
-  rpc GetMonthSummary (SalesReportRequest) returns (CommonResponseObj) {}
-  rpc SaveMaxPayoutByTicketLength (SaveMaxPayoutRequest) returns (CommonResponseObj) {}
   rpc GetMaxPayoutByTicketLength (GetMaxPayoutRequest) returns (CommonResponseArray) {}
+
+  // mts response handlers
+  rpc BetAcceptedResponse(MTSResponse) returns (GeneralAck) {}
+  rpc BetCancelledResponse(MTSResponse) returns (GeneralAck) {}
+  rpc CancelBetAcceptedResponse(MTSResponse) returns (GeneralAck) {}
+  rpc CancelBetRejectedResponse(MTSResponse) returns (GeneralAck) {}
+  rpc MtsConnectionChangeResponse(MTSConnectionStatus) returns (GeneralAck) {}
 
   // segmentation
   rpc GetUsersBySegment(GetUsersRequest) returns (GetUsersResponse);
@@ -72,10 +81,11 @@ message UserSegmentRow {
   int64 user_id = 2;
   string segment_code = 3;
   string username = 4;
-  int64 assigned_at_unix = 5;
+  string email_address = 6;
+  int64 assigned_at_unix = 7;
 
   // optional metadata
-  string metadata_json = 6;
+  string metadata_json = 8;
 }
 
 message GetUsersResponse {
@@ -93,7 +103,7 @@ message ManualSettlementRequest {
 
 message ValidateSelectionRequest {
   message Selections {
-    int32 matchId = 1;
+    int64 matchId = 1;
     string marketId = 2;
     string outcomeId = 3;
     string specifier = 4;
@@ -102,24 +112,24 @@ message ValidateSelectionRequest {
 }
 
 message GetRiskSettingRequest {
-  int32 clientId = 1;
-  int32 userId = 2;
+  int64 clientId = 1;
+  int64 userId = 2;
 }
 
 message GetSettingsRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   string category = 2;
 }
 
 message SettingsRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   string inputs = 2;
   optional string category = 3;
   optional string period = 4;
 }
 
 message UserRiskSettingsRequest {
-  int32 userId = 1;
+  int64 userId = 1;
   string inputs = 2;
   string period = 4;
 }
@@ -143,13 +153,13 @@ message GetMaxPayoutRequest {
 }
 
 message GetTicketsRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int64 userId = 1;
+  int64 clientId = 2;
   string from = 3;
   string to = 4;
   string status = 5;
-  int32 page = 6;
-  int32 perPage = 7;
+  int64 page = 6;
+  int64 perPage = 7;
   string betslipId = 8;
   string username = 9;
   optional string gameId = 10;
@@ -161,11 +171,11 @@ message GetTicketsRequest {
 }
 
 message GetCommissionsRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   string provider = 2;
   string from = 3;
   string to = 4;
-  int32 page = 5;
+  int64 page = 5;
 }
 
 message SalesReportRequest {
@@ -201,25 +211,25 @@ message CommonResponseArray {
 }
 
 message GetVirtualBetsRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   optional string gameId = 2;
   optional string transactionId = 3;
   string from = 4;
   string to = 5;
   optional string status = 6;
-  int32 page = 7;
-  optional int32 perPage = 8;
+  int64 page = 7;
+  int64 perPage = 8;
   optional string username = 9;
-  optional int32 userId = 10;
+  optional int64 userId = 10;
 }
 
 message PaginationResponse {
   string message = 1;
-  int32 count = 2;
-  int32 currentPage = 3;
-  int32 nextPage = 4;
-  int32 prevPage = 5;
-  int32 lastPage = 6;
+  int64 count = 2;
+  int64 currentPage = 3;
+  int64 nextPage = 4;
+  int64 prevPage = 5;
+  int64 lastPage = 6;
   string data = 7;
 }
 
@@ -230,13 +240,13 @@ message SettleCasinoBetRequest {
 }
 
 message SettleVirtualBetRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int64 userId = 1;
+  int64 clientId = 2;
   float amount = 3;
   float jackpot = 4;
   string roundId = 5;
   string category = 6;
-  int32 gameCycleClosed = 7;
+  int64 gameCycleClosed = 7;
 }
 
 message SettleCasinoBetResponse {
@@ -250,8 +260,8 @@ message SettleVirtualBetResponse {
 }
 
 message PlaceVirtualBetRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int64 userId = 1;
+  int64 clientId = 2;
   string roundId= 3;
   string transactionId = 4;
   string transactionCategory = 5;
@@ -262,13 +272,13 @@ message PlaceVirtualBetRequest {
 
 message PlaceVirtualBetResponse {
   bool success = 1;
-  int32 status = 2;
+  int64 status = 2;
   string message = 3;
   optional VirtualBetData data = 4;
 }
 
 message GetVirtualBetRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   string gameId = 2;
   string transactionId = 3;
 }
@@ -281,21 +291,21 @@ message GetVirtualBetResponse {
 }
 
 message VirtualBetData {
-  int32 userId = 1;
-  int32 clientId = 2;
-  int32 betId = 3;
+  int64 userId = 1;
+  int64 clientId = 2;
+  int64 betId = 3;
   string roundId= 4;
   string transactionId = 5;
   string transactionCategory = 6;
   string gameId = 7;
   double stake = 8;
-  int32 gameCycleClosed = 9;
+  int64 gameCycleClosed = 9;
   string username = 10;
 }
 
 message PlaceCasinoBetRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int64 userId = 1;
+  int64 clientId = 2;
   string roundId= 3;
   string transactionId = 4;
   string gameId = 5;
@@ -307,8 +317,8 @@ message PlaceCasinoBetRequest {
   optional string cashierTransactionId =11;
   optional string username = 12;
   optional string betType = 13;
-  optional int32 bonusId = 14;
-  optional int32 roundDetails = 15;
+  optional int64 bonusId = 14;
+  optional int64 roundDetails = 15;
 }
 
 message CreditCasinoBetRequest {
@@ -321,27 +331,27 @@ message RollbackCasinoBetRequest {
 }
 
 message Settings {
-  int32 clientID = 1;
-  int32 taxOnStake = 2;
-  int32 taxOnWinning = 3;
-  int32 minimumStake = 4;
-  int32 maximumStake = 5;
-  int32 maximumWinning = 6;
-  int32 maximumSelections = 7;
-  int32 mtsLimitID = 8;
+  int64 clientID = 1;
+  int64 taxOnStake = 2;
+  int64 taxOnWinning = 3;
+  int64 minimumStake = 4;
+  int64 maximumStake = 5;
+  int64 maximumWinning = 6;
+  int64 maximumSelections = 7;
+  int64 mtsLimitID = 8;
   string currency = 9;
   string url = 10;
 }
 
 message SettingsResponse {
-  int32 clientID = 1;
+  int64 clientID = 1;
   float taxOnStake = 2;
   float taxOnWinning = 3;
   float minimumStake = 4;
   float maximumStake = 5;
   float maximumWinning = 6;
-  int32 maximumSelections = 7;
-  int32 mtsLimitID = 8;
+  int64 maximumSelections = 7;
+  int64 mtsLimitID = 8;
   string currency = 9;
   string url = 10;
   string created = 11;
@@ -349,7 +359,7 @@ message SettingsResponse {
 }
 
 message SettingsById {
-  int32 clientID = 1;
+  int64 clientID = 1;
 }
 
 message GetAll{
@@ -361,7 +371,7 @@ message AllSettingsResponse {
 }
 
 message BetID {
-  int32 betID = 1;
+  int64 betID = 1;
 }
 
 message GamingActivityRequest {
@@ -378,37 +388,37 @@ message GamingActivityRequest {
   string productType = 11;
   string source = 12;
   string groupBy = 13;
-  int32 clientID = 14;
+  int64 clientID = 14;
   string displayType = 15;
-  optional int32 userId = 16;
-  optional int32 ticketType = 17;
+  optional int64 userId = 16;
+  optional int64 ticketType = 17;
 }
 
 message GamingActivityResponse {
   bool success = 1;
-  int32 status = 2;
+  int64 status = 2;
   string message = 3;
   optional GamingActivity data = 4;
   string error = 5;
 }
 
 message UpdateBetRequest {
-  int32 betId = 1;
+  int64 betId = 1;
   string status = 2;
   string entityType = 3;
-  int32 clientId = 4;
-  optional int32 selectionId = 5;
+  int64 clientId = 4;
+  optional int64 selectionId = 5;
 }
 
 message UpdateBetResponse {
   bool success = 1;
-  int32 status = 2;
+  int64 status = 2;
   string message = 3;
 }
 
 message BookingCode {
   string betslipId = 1;
-  int32 clientId = 2;
+  int64 clientId = 2;
 }
 
 message StatusResponse {
@@ -417,8 +427,8 @@ message StatusResponse {
 
 message PlaceBetRequest {
   repeated BetSlip selections = 1;
-  int32 clientId = 2;
-  optional int32 userId = 3;
+  int64 clientId = 2;
+  optional int64 userId = 3;
   float stake = 4;
   string source = 5;
   string ipAddress = 6;
@@ -430,8 +440,8 @@ message PlaceBetRequest {
   float totalOdds = 12;
   string type = 13;
   repeated Combo combos = 14;
-  int32 isBooking = 15;
-  optional int32 bonusId = 16;
+  int64 isBooking = 15;
+  optional int64 bonusId = 16;
   optional bool useBonus = 17; 
   optional string userRole = 18;
   repeated Grouping Groupings = 19;
@@ -441,28 +451,28 @@ message PlaceBetRequest {
 message BetSlip {
   string eventName = 1;
   string eventType = 2;
-  int32 eventId = 3;
-  int32 producerId = 4;
-  int32 marketId = 5;
+  int64 eventId = 3;
+  int64 producerId = 4;
+  int64 marketId = 5;
   string marketName = 6;
   string specifier = 7;
   string outcomeId = 8;
   string outcomeName = 9;
   float odds = 10;
-  int32 sportId = 11;
+  int64 sportId = 11;
   string sport = 12;
   string tournament = 13;
   string category = 14;
-  int32 matchId = 15;
+  int64 matchId = 15;
   string awayTeam = 16;
   string homeTeam = 17;
   string type = 18;
   bool fixed = 19;
-  string selectionId = 20;
+  int64 selectionId = 20;
   string eventDate = 21;
   string eventPrefix = 22;
   optional bool isBonus = 23;
-  optional int32 id = 24;
+  optional int64 id = 24;
   optional string displayName = 25;
 }
 
@@ -494,85 +504,89 @@ message Grouping {
 
 message PlaceCasinoBetResponse {
   bool success = 1;
-  int32 status = 2;
+  int64 status = 2;
   string message = 3;
   optional CasinoBetData data = 4;
 }
 
 message CasinoBetData {
   string transactionId =1 ;
-  int32 balance = 2;
+  int64 balance = 2;
 
 }
 
 message PlaceBetResponse {
   bool success = 1;
-  int32 status = 2;
+  int64 status = 2;
   string message = 3;
   optional BetHistory data = 4;
   optional string events = 6;
 }
 
 message BetHistoryRequest {
-  int32 userId = 1;
-  int32 clientId = 2;
+  int64 userId = 1;
+  int64 clientId = 2;
   string from = 3;
   string to = 4;
   string status = 5;
-  int32 page = 6;
-  int32 perPage = 7;
+  int64 page = 6;
+  int64 perPage = 7;
   string betslipId = 8;
   string username = 9;
+  string betType = 10;
+  string source = 11;
+  string stakeType = 12;
+  optional int64 isBooked = 14;
 }
 
 message BetSlipHistory {
   string eventName = 1;
   string eventType = 2;
-  int32 eventId = 3;
-  int32 producerId = 4;
-  int32 marketId = 5;
+  int64 eventId = 3;
+  int64 producerId = 4;
+  int64 marketId = 5;
   string marketName = 6;
   string specifier = 7;
   string outcomeId = 8;
   string outcomeName = 9;
   float odds = 10;
-  int32 sportId = 11;
+  int64 sportId = 11;
   string status = 12;
   string statusDescription = 13;
-  int32 won = 14;
+  int64 won = 14;
   string type = 15;
   string sport = 16;
   string tournament = 17;
   string category = 18;
   string matchId = 19;
   string eventDate = 20;
-  string selectionId = 21;
+  int64 selectionId = 21;
   string eventPrefix = 22;
   string score = 23;
   string htScore = 24;
-  int32 id = 25;
+  int64 id = 25;
   float currentOdds = 26;
   string eventTime = 27;
   string matchStatus = 28;
-  int32 isLive = 29;
+  int64 isLive = 29;
 }
 
 message BetHistory {
   repeated BetSlipHistory selections = 1;
   float stake = 2;
   string created = 3;
-  int32 statusCode = 4;
+  int64 statusCode = 4;
   float cashOutAmount = 5;
   string statusDescription = 6;
   string source = 7;
   float totalOdd = 8;
   float possibleWin = 9;
-  int32 betType = 10;
+  int64 betType = 10;
   string betslipId = 11;
-  int32 totalSelections = 12;
+  int64 totalSelections = 12;
   string betCategory = 13;
-  int32 id = 14;
-  int32 userId = 15;
+  int64 id = 14;
+  int64 userId = 15;
   string username = 16;
   float winnings = 17;
   string eventType = 18;
@@ -582,8 +596,8 @@ message BetHistory {
   string markets = 22;
   string betCategoryDesc = 23;
   optional bool isBonusBet = 24;
-  optional int32 pendingGames = 25;
-  optional int32 paidOut = 26;
+  optional int64 pendingGames = 25;
+  optional int64 paidOut = 26;
   optional string paidAt = 27;
   optional bool isSim = 28;
   optional float minStake = 29;
@@ -594,18 +608,18 @@ message BetHistory {
 
 message BetHistoryResponse {
   repeated BetHistory bets = 1;
-  int32 lastPage = 2; // Last pagination page
-  int32 from = 3; // From data index
-  int32 to = 4; // to data index
-  int32 remainingRecords = 5; // how many records are remaining
-  int32 totalRecords = 6;
-  int32 totalStake = 7;
-  int32 currentPage = 8;
+  int64 lastPage = 2; // Last pagination page
+  int64 from = 3; // From data index
+  int64 to = 4; // to data index
+  int64 remainingRecords = 5; // how many records are remaining
+  int64 totalRecords = 6;
+  int64 totalStake = 7;
+  int64 currentPage = 8;
 }
 
 message ProbabilityBetSlipSelection {
   int64 eventId = 1;
-  int32 marketId = 2;
+  int64 marketId = 2;
   string marketName = 3;
   string specifier = 4;
   string outcomeId = 5;
@@ -615,7 +629,7 @@ message ProbabilityBetSlipSelection {
   float initialProbability = 9;
 }
 
-message Probability {
+message BsProbability {
   float probability = 1;
   float currentProbability = 2;
   float initialProbability = 3;
@@ -624,7 +638,7 @@ message Probability {
 }
 
 message FindBetRequest {
-  int32 clientId = 1;
+  int64 clientId = 1;
   string betslipId = 2;
 }
 
@@ -656,7 +670,7 @@ message GamingActivityBets {
 }
 
 message ProcessCashoutRequest {
-  int32 betId = 1;
+  int64 betId = 1;
   float amount = 2;
 }
 
@@ -664,6 +678,54 @@ message ProcessCashoutResponse {
   bool success = 1;
   string message = 2;
   optional float balance = 3;
+}
+
+message VirtualBet {
+  int64 id = 1;
+  int64 user_id = 2;
+  string username = 3;
+  float stake = 4;
+  float winnings = 5;
+  int64 status = 6;
+  string created_at = 7;
+}
+
+message VirtualBetTotals {
+  float total_stake = 1;
+  float total_winnings = 2;
+}
+
+message PaginatedVirtualBets {
+  repeated VirtualBet data = 1;
+  int64 count = 2;
+  int64 current_page = 3;
+  int64 next_page = 4;
+  int64 prev_page = 5;
+  int64 last_page = 6;
+  string message = 7;
+}
+
+message VirtualBetsResponse {
+  bool success = 1;
+  string message = 2;
+  VirtualBetTotals totals = 3;
+  PaginatedVirtualBets data = 4;
+}
+
+message MTSResponse {
+  int64 code = 1;
+  string description = 2;
+  string betID = 3;
+  string signature = 4;
+}
+
+message GeneralAck {
+  string description = 1;
+}
+
+message MTSConnectionStatus {
+  int64 status = 1;
+  string description = 2;
 }
 
 message SystemBetCombination {
