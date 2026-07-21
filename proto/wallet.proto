@@ -608,6 +608,8 @@ message SalesReportRequest {
 message ProductSummary {
   string product = 1;
   double turnover = 2;
+  // Sum of transactions matching the product's winning subjects.
+  double winnings = 8;
   string margin = 3;
   double ggr = 4;
   double bonusGiven = 5;
