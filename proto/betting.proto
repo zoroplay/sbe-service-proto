@@ -1,6 +1,5 @@
 syntax = "proto3";
 option go_package = "betting_service/app/grpc/betting";
-
 import "google/protobuf/struct.proto";
 
 package betting;
@@ -10,15 +9,16 @@ service BettingService {
   rpc UpdateSetting (Settings) returns (SettingsResponse) {}
   rpc GetSettingsByID (SettingsById) returns (SettingsResponse) {}
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
+
   rpc CancelBet (BetID) returns (StatusResponse) {}
-  rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
+//  rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
   rpc SettleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc CloseCasinoRound (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
-  rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
+//  rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc SimulatedBetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
@@ -43,7 +43,7 @@ service BettingService {
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
-  rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
+//  rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
 
   rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
@@ -53,9 +53,8 @@ service BettingService {
   rpc GetSettings (GetSettingsRequest) returns (CommonResponseArray) {}
   rpc GetGlobalVariables (GetSettingsRequest) returns (CommonResponseObj) {}
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
-  rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
-  rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
   rpc GetMaxPayoutByTicketLength (GetMaxPayoutRequest) returns (CommonResponseArray) {}
+  rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
 
   // mts response handlers
   rpc BetAcceptedResponse(MTSResponse) returns (GeneralAck) {}
@@ -66,39 +65,6 @@ service BettingService {
 
   // segmentation
   rpc GetUsersBySegment(GetUsersRequest) returns (GetUsersResponse);
-}
-
-message GetUsersRequest {
-  int64 client_id = 1;
-  string segment_code = 2;   // e.g. ACCA_LOVER, CHURN_RISK, HIGH_ROLLER, LIVE_SPECIALIST, LOSING_STREAK, SPORT_LOYALIST_SPORT, WINNING_STREAK
-  int32 limit = 3;           // e.g. 500
-  string cursor = 4;         // opaque pagination cursor
-  int64 assigned_after_unix = 5; // optional
-}
-
-message UserSegmentRow {
-  int64 client_id = 1;
-  int64 user_id = 2;
-  string segment_code = 3;
-  string username = 4;
-  string email_address = 6;
-  int64 assigned_at_unix = 7;
-
-  // optional metadata
-  string metadata_json = 8;
-}
-
-message GetUsersResponse {
-  repeated UserSegmentRow users = 1;
-  string next_cursor = 2;
-}
-
-message ManualSettlementRequest {
-  int32 matchId = 1;
-  int32 ftHomeScore = 2;
-  int32 ftAwayScore = 3;
-  int32 htHomeScore = 4;
-  int32 htAwayScore = 5;
 }
 
 message ValidateSelectionRequest {
@@ -238,7 +204,6 @@ message SettleCasinoBetRequest {
   double winnings = 2;
   optional string provider = 3;
 }
-
 message SettleVirtualBetRequest {
   int64 userId = 1;
   int64 clientId = 2;
@@ -442,10 +407,8 @@ message PlaceBetRequest {
   repeated Combo combos = 14;
   int64 isBooking = 15;
   optional int64 bonusId = 16;
-  optional bool useBonus = 17; 
+  optional bool useBonus = 17;
   optional string userRole = 18;
-  repeated Grouping Groupings = 19;
-  bool hasLive = 20;
 }
 
 message BetSlip {
@@ -478,28 +441,6 @@ message BetSlip {
 
 message Combo {
 
-}
-
-message Grouping {
-  int32 Combinations = 1;
-  int32 Grouping = 2;
-  float MaxBonus = 3;
-  float MaxBonusForUnit = 4;
-  float MaxPercentageBonus = 5;
-  float MaxWinForUnit = 6;
-  float MaxWinNet = 7;
-  float MinBonus = 8;
-  float MinBonusForUnit = 9;
-  float MinPercentageBonus = 10;
-  float MinWinForUnit = 11;
-  float MinWinNet = 12;
-  float NetStake = 13;
-  float NetStakeMaxWin = 14;
-  float NetStakeMinWin = 15;
-  float Stake = 16;
-  float StakeForCombination = 17;
-  float maxWin = 18;
-  float minWin = 19;
 }
 
 message PlaceCasinoBetResponse {
@@ -536,6 +477,7 @@ message BetHistoryRequest {
   string betType = 10;
   string source = 11;
   string stakeType = 12;
+  string eventType = 13;
   optional int64 isBooked = 14;
 }
 
@@ -600,10 +542,6 @@ message BetHistory {
   optional int64 paidOut = 26;
   optional string paidAt = 27;
   optional bool isSim = 28;
-  optional float minStake = 29;
-  optional float minOdd = 30;
-  repeated SystemBet systemBets = 31;
-  optional float minWinning = 32;
 }
 
 message BetHistoryResponse {
@@ -728,37 +666,27 @@ message MTSConnectionStatus {
   string description = 2;
 }
 
-message SystemBetCombination {
-  int32 id = 1;
-  int32 systemBetId = 2;
-  int32 betId = 3;
-  int32 clientId = 4;
-  int32 combinationNumber = 5;
-  repeated int32 selectionIds = 6;
-  float odds = 7;
-  float stake = 8;
-  float possibleWin = 9;
-  int32 status = 10;
-  float winnings = 11;
-  optional string settledAt = 12;
-  optional string settlementType = 13;
+message GetUsersRequest {
+  int64 client_id = 1;
+  string segment_code = 2;   // e.g. ACCA_LOVER, CHURN_RISK, HIGH_ROLLER, LIVE_SPECIALIST, LOSING_STREAK, SPORT_LOYALIST_SPORT, WINNING_STREAK
+  int32 limit = 3;           // e.g. 500
+  string cursor = 4;         // opaque pagination cursor
+  int64 assigned_after_unix = 5; // optional
 }
 
-message SystemBet {
-  int32 id = 1;
-  int32 clientId = 2;
-  int32 betId = 3;
-  int32 combinationSize = 4;
-  int32 numberOfCombos = 5;
-  optional string combined = 6;
-  optional float odds = 7;
-  optional float minStake = 8;
-  optional float maxWin = 9;
-  optional float maxBonus = 10;
-  float winnings = 11;
-  optional string games = 12;
-  int32 status = 13;
-  int32 wonCombinations = 14;
-  optional string settledDate = 15;
-  repeated SystemBetCombination combinations = 16;
+message UserSegmentRow {
+  int64 client_id = 1;
+  int64 user_id = 2;
+  string segment_code = 3;
+  string username = 4;
+  string email_address = 6;
+  int64 assigned_at_unix = 7;
+
+  // optional metadata
+  string metadata_json = 8;
+}
+
+message GetUsersResponse {
+  repeated UserSegmentRow users = 1;
+  string next_cursor = 2;
 }
