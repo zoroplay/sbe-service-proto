@@ -239,6 +239,7 @@ service WalletService {
   rpc ListBankCodes(BankCodeRequest) returns (CommonResponseObj) {}
 
   rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
+  rpc NovacWebhook (NovacWebhookRequest) returns (WebhookResponse) {}
 
 }
 
@@ -1950,4 +1951,12 @@ message ValidateOpayKeyRequest {
 message ValidateOpayKeyResponse {
   bool success = 1;
   string message = 2;
+}
+
+message NovacWebhookRequest {
+  int32 clientId = 1;
+  string reference = 2;
+  string notify = 3;
+  string notifyType = 4;
+  string body = 5;
 }

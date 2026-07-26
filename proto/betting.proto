@@ -11,14 +11,14 @@ service BettingService {
   rpc GetAllSettings (GetAll) returns (AllSettingsResponse) {}
 
   rpc CancelBet (BetID) returns (StatusResponse) {}
-//  rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
+  rpc PlaceBet (PlaceBetRequest) returns (PlaceBetResponse) {}
   rpc PlaceCasinoBet (PlaceCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc PlaceVirtualBet (PlaceVirtualBetRequest) returns (PlaceVirtualBetResponse) {}
   rpc SettleCasinoBet (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc CloseCasinoRound (SettleCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
   rpc SettleVirtualBet (SettleVirtualBetRequest) returns (SettleVirtualBetResponse) {}
   rpc CancelCasinoBet (RollbackCasinoBetRequest) returns (PlaceCasinoBetResponse) {}
-//  rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
+  rpc BetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc SimulatedBetHistory (BetHistoryRequest) returns (BetHistoryResponse) {}
   rpc FindBet (FindBetRequest) returns (CommonResponseObj) {}
   rpc UpdateBet (UpdateBetRequest) returns (UpdateBetResponse) {}
@@ -43,7 +43,7 @@ service BettingService {
 
   rpc TicketsReport (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc TaxReport (GetTicketsRequest) returns (CommonResponseObj) {}
-//  rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
+  rpc GetCodeHubTickets (GetTicketsRequest) returns (CommonResponseObj) {}
   rpc PayoutTicket (BetID) returns (CommonResponseObj) {}
 
   rpc SaveSettings (SettingsRequest) returns (CommonResponseObj) {}
@@ -55,6 +55,7 @@ service BettingService {
   rpc GetUserRiskSettings (GetRiskSettingRequest) returns (CommonResponseObj) {}
   rpc GetMaxPayoutByTicketLength (GetMaxPayoutRequest) returns (CommonResponseArray) {}
   rpc ValidateSelections (ValidateSelectionRequest) returns (CommonResponseObj) {}
+  rpc ManualSettlement (ManualSettlementRequest) returns (CommonResponseObj) {}
 
   // mts response handlers
   rpc BetAcceptedResponse(MTSResponse) returns (GeneralAck) {}
@@ -75,6 +76,14 @@ message ValidateSelectionRequest {
     string specifier = 4;
   }
   repeated Selections events = 1;
+}
+
+message ManualSettlementRequest {
+  int32 matchId = 1;
+  int32 ftHomeScore = 2;
+  int32 ftAwayScore = 3;
+  int32 htHomeScore = 4;
+  int32 htAwayScore = 5;
 }
 
 message GetRiskSettingRequest {
