@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
+
 package virtualgaming;
 
 option go_package = "github.com/lukemakhanu/virtual-gaming-service/proto/virtual;virtualpb";
@@ -25,4 +27,525 @@ message SettledCasinoBetSummary {
 
 message FetchSettledCasinoBetSummariesResponse {
   repeated SettledCasinoBetSummary summaries = 1;
+}
+
+// VirtualGamingService mirrors Nest GamingService RPCs for VGS (HTTP + gRPC).
+// Implemented in VGS this pass: promotions, tournaments, game keys.
+// Remaining RPCs are declared for contract parity and return Unimplemented until ported.
+service VirtualGamingService {
+  rpc CreateGame (CreateGameDto) returns (Game) {}
+  rpc FindAllGames (Empty) returns (Games) {}
+  rpc FetchGames (FetchGamesRequest) returns (CommonResponseArray) {}
+  rpc FetchGamesByName (FetchGamesRequest) returns (Games) {}
+  rpc AdminFetchGamesByName (FetchGamesRequest) returns (CommonResponse) {}
+  rpc SyncGames (SyncGameDto) returns (Games) {}
+  rpc FindOneGame (FindOneGameDto) returns (Game) {}
+  rpc UpdateGame (UpdateGameDto) returns (Game) {}
+  rpc RemoveGame (UpdateGameDto) returns (Game) {}
+  rpc SaveCategory (SaveCategoryRequest) returns (Category) {}
+  rpc FetchCategories (Empty) returns (Categories) {}
+
+  rpc addGameToCategories(AddGameToCategoriesDto) returns (Game) {}
+  rpc removeGameToCategories(AddGameToCategoriesDto) returns (Game) {}
+
+  rpc addTournamentGame(AddGameToTournamentDto) returns (TournamentResponse) {}
+  rpc removeTournamentGame(AddGameToTournamentDto) returns (Empty) {}
+
+  rpc findOneCategory (FindOneCategoryDto) returns (Category) {}
+  rpc updateCategory (SaveCategoryRequest) returns (Category) {}
+  rpc deleteCategory (FindOneCategoryDto) returns (Empty) {}
+  rpc RegisterBonus (Empty) returns (CommonResponse) {}
+
+  rpc findOneTournament (FindOneTournamentDto) returns (Tournament) {}
+  rpc FindAllTournaments (Empty) returns (Tournaments) {}
+  rpc updateTournament (CreateTournamentDto) returns (Tournament) {}
+  rpc deleteTournament (FindOneTournamentDto) returns (Empty) {}
+  rpc createTournament (CreateTournamentDto) returns (Tournament) {}
+
+  rpc CreateProvider (CreateProviderDto) returns (CommonResponse) {}
+  rpc UpdateProvider (CreateProviderDto) returns (CommonResponse) {}
+  rpc FindOneProvider (FindOneGameDto) returns (CommonResponse) {}
+  rpc RemoveProvider  (CreateProviderDto) returns (CommonResponse) {}
+  rpc FindAllProviders (Empty) returns (CommonResponse) {}
+  rpc FindAdminProviders (Empty) returns (CommonResponse) {}
+
+  rpc getGames (GetGamesRequest) returns (CommonResponseArray) {}
+
+  rpc CreatePromotion (CreatePromotionRequest) returns (Promotion);
+  rpc FindPromotions (GetPromotions) returns (Promotions) {}
+  rpc FindOnePromotion (FindOnePromotionDto) returns (Promotion) {}
+  rpc UpdatePromotion (CreatePromotionRequest) returns (Promotion) {}
+  rpc RemovePromotion  (FindOnePromotionDto) returns (Empty) {}
+
+  rpc HandleCasinoBonus (CreateBonusRequest) returns (CommonResponse){}
+
+  rpc AddGameKeys (CreateGameKeyRequest) returns (CommonResponse){}
+  rpc fetchGameKeys (GetKeysRequest) returns (CommonResponse){}
+  rpc deleteGameKeys (FindOneGameDto) returns (CommonResponse){}
+
+  rpc fetchBonusGames (BonusGameRequest) returns (CommonResponse){}
+
+  rpc HandleCasinoJackpot (SyncGameDto) returns (CommonResponse){}
+  rpc HandleCasinoJackpotWinners (SyncGameDto) returns (CommonResponse){}
+
+  rpc StartGame (StartGameDto) returns (StartGameResponse) {}
+  rpc QtechLobby (StartGameDto) returns (StartGameResponse) {}
+  rpc QueryGames (stream PaginationDto) returns (stream Games) {}
+  rpc HandleCallback (CallbackGameDto) returns (CallbackResponse) {}
+  rpc HandleQtechCallback (QtechCallbackRequest) returns (CallbackResponse) {}
+  rpc HandleSpribeCallback (SpribeCallbackRequest) returns (CallbackResponse) {}
+  rpc HandleSmatVirtualCallback (SmatVirtualCallbackRequest) returns (CallbackResponse) {}
+  rpc SmatVirtualWebhook (SmatVirtualWebhookRequest) returns (CommonResponse) {}
+
+  rpc XpressLogin (XpressRequest) returns (XpressResponse) {}
+  rpc XpressBalance (XpressRequest) returns (XpressResponse) {}
+  rpc XpressDebit (XpressRequest) returns (XpressResponse) {}
+  rpc XpressCredit (XpressRequest) returns (XpressResponse) {}
+  rpc XpressRollback (XpressRequest) returns (XpressResponse) {}
+  rpc XpressLogout (XpressRequest) returns (XpressResponse) {}
+
+  rpc StartSmatGame (StartDto) returns (StartGameResponse) {}
+}
+
+message GetGamesRequest {
+  optional int32 providerId = 1;
+  optional int32 categoryId = 2;
+  optional int32 page = 3;
+  optional int32 limit = 4;
+}
+
+message GetPromotions {
+  optional int32 clientId = 1;
+}
+
+message GetKeysRequest {
+  int32 clientId = 1;
+}
+
+message StartDto {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string token = 3;
+}
+
+message CreateGameKeyRequest {
+  int32 clientId = 1;
+  repeated GameKeyEntry keys = 2;
+}
+
+message GameKeyEntry {
+  string option = 1;
+  string value = 2;
+  string provider = 3;
+}
+
+message BonusGameRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+}
+
+message SmatVirtualCallbackRequest {
+  int32 clientId = 1;
+  optional string action = 2;
+  optional string body = 3;
+  optional string playerId = 4;
+  optional string sessionId = 5;
+}
+
+message SmatVirtualWebhookRequest {
+  int32 clientId = 1;
+  optional string event = 2;
+  optional string data = 3;
+}
+
+message CreateBonusRequest {
+  int32 clientId = 1;
+  string bonusType = 2;
+  optional string creditType = 3;
+  optional int32 duration = 4;
+  optional int32 minimumSelection = 5;
+  optional float minimumOddsPerEvent = 6;
+  optional float minimumTotalOdds = 7;
+  optional string applicableBetType = 8;
+  optional int32 maximumWinning = 9;
+  optional int32 bonusAmount = 10;
+  optional int32 status = 11;
+  optional string created = 12;
+  optional string updated = 13;
+  optional int32 id = 14;
+  optional int32 minimumLostGames = 15;
+  optional int32 rolloverCount = 16;
+  optional string name = 17;
+  optional float minimumEntryAmount = 18;
+  optional float maxAmount = 19;
+  optional string product = 20;
+  repeated string game_id = 21;
+  optional int32 casinoSpinCount = 22;
+  optional int32 providerId = 23;
+  optional int32 bonusId = 24;
+  repeated string userIds = 25;
+  optional string provider = 26;
+}
+
+message QtechCallbackRequest {
+  int32 clientId = 1;
+  string playerId = 2;
+  string gameId = 3;
+  string passkey = 4;
+  string walletSessionId = 5;
+  optional string body = 6;
+  string action = 7;
+}
+
+message SpribeCallbackRequest {
+  int32 clientId = 1;
+  string provider = 2;
+  optional string signature = 3;
+  optional string body = 4;
+  string action = 5;
+}
+
+message PaginationDto {
+  int32 page = 1;
+  int32 skip = 2;
+}
+
+message FetchGamesRequest {
+  int32 clientId = 1;
+  optional int32 categoryId = 2;
+  optional int32 providerId = 3;
+  optional string gameName = 4;
+}
+
+message Empty {}
+
+message SyncGameDto {
+  string provider = 1;
+  optional int32 clientId = 2;
+}
+
+message CallbackGameDto {
+  int32 clientId = 1;
+  string provider = 2;
+  optional string action = 3;
+  optional string method = 4;
+  google.protobuf.Struct header = 5;
+  optional string body = 6;
+  optional string path = 7;
+}
+
+message FindOneGameDto {
+  int32 id = 1;
+}
+
+message Games {
+  repeated Game games = 1;
+}
+
+message UpdateGameDto {
+  int32 id = 1;
+  string gameId = 2;
+  string title = 3;
+  string description = 4;
+  string url = 5;
+  string image_path = 6;
+  string banner_path = 7;
+  bool status = 8;
+  string type = 9;
+  int32 providerId = 10;
+  optional int32 priority = 11;
+}
+
+message CreateProviderDto {
+  optional int32 id = 1;
+  string slug = 2;
+  string name = 3;
+  string description = 4;
+  string imagePath = 5;
+  optional int32 status = 6;
+}
+
+message CreateGameDto {
+  string gameId = 1;
+  string title = 2;
+  string description = 3;
+  string url = 4;
+  string image_path = 5;
+  string banner_path = 6;
+  bool status = 7;
+  string type = 8;
+  int32 providerId = 9;
+  string bonusType = 10;
+}
+
+message StartGameDto {
+  int32 gameId = 1;
+  int32 clientId = 2;
+  int32 userId = 3;
+  string username = 4;
+  optional string email = 5;
+  optional string homeUrl = 6;
+  optional string depositUrl = 7;
+  optional bool demo = 8;
+  optional bool isMobile = 9;
+  optional string authCode = 10;
+  optional string balanceType = 11;
+  optional int32 bonusId = 12;
+  optional string language = 13;
+  optional bool isBonus = 14;
+  optional string bonusType = 15;
+  optional string type = 16;
+}
+
+message StartGameResponse {
+  string url = 1;
+}
+
+message Game {
+  int32 id = 1;
+  string gameId = 2;
+  string title = 3;
+  string description = 4;
+  string url = 5;
+  string imagePath = 6;
+  string bannerPath = 7;
+  bool status = 8;
+  string type = 9;
+  Provider provider = 10;
+  string createdAt = 11;
+  string updatedAt = 12;
+  repeated Category category = 13;
+}
+
+message Provider {
+  int32 id = 1;
+  string slug = 2;
+  string name = 3;
+  string description = 4;
+  string imagePath = 5;
+  optional Games games = 6;
+  optional string parentProvider = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
+}
+
+message CallbackResponse {
+  bool success = 1;
+  string message = 2;
+  optional int32 status = 3;
+  google.protobuf.Struct data = 4;
+}
+
+message Pagination {
+  optional int32 page = 1;
+  optional int32 limit = 2;
+  optional int32 total = 3;
+  optional int32 totalPages = 4;
+}
+
+message CommonResponseArray {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  repeated google.protobuf.Struct data = 4;
+  optional Pagination pagination = 5;
+}
+
+message XpressRequest {
+  int32 clientId = 1;
+  string action = 2;
+  optional string token = 3;
+  string gameId = 4;
+  string clientPlatform = 5;
+  string clientIp = 6;
+  string timestamp = 7;
+  string requestId = 8;
+  string siteId = 9;
+  string fingerprint = 10;
+  optional string sessionId = 11;
+  optional string currency = 12;
+  optional string group = 13;
+  optional string playerId = 14;
+  optional string gameCycle = 15;
+  optional string transactionId = 16;
+  optional float transactionAmount = 17;
+  optional string transactionCategory = 18;
+  optional bool gameCycleClosed = 19;
+  optional string transactionType = 20;
+}
+
+message XpressResponse {
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  optional XpressData data = 4;
+}
+
+message XpressData {
+  string playerId = 1;
+  string currency = 2;
+  string balance = 3;
+  string sessionId = 4;
+  string group = 5;
+  string timestamp = 6;
+  string requestId = 7;
+  string fingerprint = 8;
+  optional string playerNickname = 9;
+  optional string oldBalance = 10;
+  optional string gameCycle = 11;
+  optional string transactionId = 12;
+  optional float transactionAmount = 13;
+  optional string transactionCategory = 14;
+  optional string transactionType = 15;
+}
+
+message CommonResponse {
+  optional int32 status = 1;
+  optional bool success = 2;
+  string message = 3;
+  optional google.protobuf.Struct data = 4;
+}
+
+message SaveCategoryRequest {
+  int32 clientId = 1;
+  optional int32 id = 2;
+  string name = 3;
+  optional string imagePath = 4;
+  optional int32 priority = 5;
+  optional string status = 6;
+}
+
+message Category {
+  int32 id = 1;
+  string slug = 2;
+  string name = 3;
+  optional int32 priority = 4;
+  optional string status = 5;
+}
+
+message Categories {
+  repeated Category data = 1;
+}
+
+message FindOneCategoryDto {
+  int32 id = 1;
+}
+
+message Promotion {
+  int32 id = 1;
+  string title = 2;
+  string imageUrl = 3;
+  string content = 4;
+  string type = 5;
+  string startDate = 6;
+  string endDate = 7;
+  string status = 8;
+  optional string targetUrl = 9;
+  int32 clientId = 10;
+  string createdAt = 11;
+  string updatedAt = 12;
+}
+
+message CreatePromotionDto {
+  optional int32 id = 1;
+  string title = 2;
+  string imageUrl = 3;
+  string content = 4;
+  string startDate = 5;
+  string endDate = 6;
+  string type = 7;
+  optional string targetUrl = 8;
+  optional string file = 9;
+  int32 clientId = 10;
+  optional string status = 11;
+}
+
+message CreatePromotionRequest {
+  optional int32 id = 1;
+  CreatePromotionDto metadata = 2;
+  optional string file = 3;
+}
+
+message Promotions {
+  repeated Promotion data = 1;
+}
+
+// clientId scopes lookup so one client cannot access another's promotion by id.
+message FindOnePromotionDto {
+  int32 id = 1;
+  optional int32 clientId = 2;
+}
+
+message AddGameToCategoriesDto {
+  int32 gameId = 1;
+  repeated int32 categories = 2;
+}
+
+message AddGameToTournamentDto {
+  int32 tournamentId = 2;
+  repeated int32 gameId = 3;
+}
+
+message GameCategory {
+  int32 gameId = 1;
+  string gameTitle = 2;
+  int32 categoryId = 3;
+  string categoryName = 4;
+}
+
+message GameTournament {
+  int32 gameId = 1;
+  string gameTitle = 2;
+  int32 tournamentId = 3;
+  string tournamentTitle = 4;
+}
+
+message TournamentResponse {
+  repeated GameTournament gameTournament = 1;
+}
+
+message Tournament {
+  int32 id = 1;
+  string title = 2;
+  string imageUrl = 3;
+  string content = 4;
+  string type = 5;
+  string startDate = 6;
+  string endDate = 7;
+  string status = 8;
+  int32 categoryId = 9;
+}
+
+message CreateTournamentDto {
+  optional int32 id = 1;
+  string title = 2;
+  string imageUrl = 3;
+  string content = 4;
+  string startDate = 5;
+  string endDate = 6;
+  string type = 7;
+  optional int32 categoryId = 8;
+  optional string status = 9;
+}
+
+message Tournaments {
+  repeated Tournament data = 1;
+}
+
+message FindOneTournamentDto {
+  int32 id = 1;
+}
+
+message GameKey {
+  int32 id = 1;
+  int32 clientId = 2;
+  string provider = 3;
+  string option = 4;
+  string value = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+}
+
+message GameKeys {
+  repeated GameKey data = 1;
 }
