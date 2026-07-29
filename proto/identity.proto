@@ -47,7 +47,11 @@ service IdentityService {
   rpc UpdateDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
+  rpc BlockShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
   rpc SetElbetEnabled (SetElbetEnabledRequest) returns (CommonResponseObj) {}
+  rpc CreateElbetSession (CreateElbetSessionRequest) returns (ElbetSessionResponse) {}
+  rpc ValidateElbetSession (ValidateElbetSessionRequest) returns (ElbetSessionResponse) {}
+  rpc RevokeElbetSession (RevokeElbetSessionRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc DeleteUser (SingleItemRequest) returns (CommonResponseObj) {}
@@ -1119,6 +1123,38 @@ message SetElbetEnabledRequest {
   int32 isElbetEnabled = 3;
 }
 
+message CreateElbetSessionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string language = 3;
+  optional string accessToken = 4;
+}
+
+message ValidateElbetSessionRequest {
+  string token = 1;
+}
+
+message RevokeElbetSessionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string accessToken = 3;
+}
+
+message ElbetSessionResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional string token = 4;
+  optional int32 userId = 5;
+  optional int32 clientId = 6;
+  optional string username = 7;
+  optional string firstName = 8;
+  optional string lastName = 9;
+  optional string language = 10;
+  optional string expiresAt = 11;
+  optional string walletToken = 12;
+}
+
 // user
 message User {
   string userID = 1;
@@ -1641,4 +1677,8 @@ message DeleteClientDataResponse {
   int32 bets_deleted = 5;
   int32 bonuses_deleted = 6;
   repeated string errors = 7;
+}
+
+message BlockShopUserRequest {
+  int32 shopId = 1;
 }
