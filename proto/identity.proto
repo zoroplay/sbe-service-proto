@@ -48,6 +48,7 @@ service IdentityService {
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc BlockShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
+  rpc ActivateShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
   rpc SetElbetEnabled (SetElbetEnabledRequest) returns (CommonResponseObj) {}
   rpc CreateElbetSession (CreateElbetSessionRequest) returns (ElbetSessionResponse) {}
   rpc ValidateElbetSession (ValidateElbetSessionRequest) returns (ElbetSessionResponse) {}
