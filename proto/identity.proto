@@ -51,6 +51,9 @@ service IdentityService {
   rpc BlockShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
   rpc ActivateShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
   rpc SetElbetEnabled (SetElbetEnabledRequest) returns (CommonResponseObj) {}
+  rpc SetElbetShopMapping (SetElbetShopMappingRequest) returns (CommonResponseObj) {}
+  rpc SetElbetShopUserMapping (SetElbetShopUserMappingRequest) returns (CommonResponseObj) {}
+  rpc ResolveElbetShopMapping (ResolveElbetShopMappingRequest) returns (ElbetShopMappingResponse) {}
   rpc CreateElbetSession (CreateElbetSessionRequest) returns (ElbetSessionResponse) {}
   rpc ValidateElbetSession (ValidateElbetSessionRequest) returns (ElbetSessionResponse) {}
   rpc RevokeElbetSession (RevokeElbetSessionRequest) returns (CommonResponseObj) {}
@@ -1123,6 +1126,40 @@ message SetElbetEnabledRequest {
   int32 clientId = 1;
   int32 userId = 2;
   int32 isElbetEnabled = 3;
+}
+
+// Links an SBE Shop user to the Elbet shop/agency created for it.
+message SetElbetShopMappingRequest {
+  int32 clientId = 1;
+  int32 shopUserId = 2;
+  int32 elbetShopId = 3;
+  string elbetAgencyCode = 4;
+}
+
+// Links an Elbet-enabled cashier to the user account created in Elbet ShopApp.
+message SetElbetShopUserMappingRequest {
+  int32 clientId = 1;
+  int32 cashierUserId = 2;
+  int32 elbetShopUserId = 3;
+}
+
+// Resolve the external Elbet shop for a Shop user or one of its cashiers.
+message ResolveElbetShopMappingRequest {
+  int32 clientId = 1;
+  optional int32 shopUserId = 2;
+  optional int32 cashierUserId = 3;
+}
+
+message ElbetShopMappingResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional int32 shopUserId = 4;
+  optional int32 cashierUserId = 5;
+  optional int32 elbetShopId = 6;
+  optional string elbetAgencyCode = 7;
+  optional int32 elbetShopUserId = 8;
+  optional int32 isElbetEnabled = 9;
 }
 
 message CreateElbetSessionRequest {
