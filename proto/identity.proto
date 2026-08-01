@@ -16,6 +16,7 @@ service IdentityService {
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Logout (ValidateRequest) returns (CommonResponseObj) {}
   rpc AdminViewLogin (AdminViewLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
