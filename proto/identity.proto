@@ -1193,6 +1193,7 @@ message ElbetSessionResponse {
   optional string language = 10;
   optional string expiresAt = 11;
   optional string walletToken = 12;
+  optional int32 shopId = 13;
 }
 
 // user
