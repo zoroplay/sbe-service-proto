@@ -1438,6 +1438,9 @@ message CreateWalletRequest {
   string username = 3;
   optional float amount = 4;
   optional float bonus = 5;
+  optional int32 roleId = 6;
+  optional string role = 7;
+  optional string roleType = 8;
 }
 
 message WalletResponse {
