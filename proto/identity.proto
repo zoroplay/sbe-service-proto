@@ -1150,6 +1150,7 @@ message ResolveElbetShopMappingRequest {
   int32 clientId = 1;
   optional int32 shopUserId = 2;
   optional int32 cashierUserId = 3;
+  
 }
 
 message ElbetShopMappingResponse {
