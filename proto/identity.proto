@@ -521,6 +521,7 @@ message HandleTransferRequest {
   int32 fromUserId = 3;
   string toUsername = 4;
   int32 amount = 5;
+  optional string description = 6;
 }
 
 // Power Bonus
