@@ -12,6 +12,7 @@ service IdentityService {
   rpc HandlePin (HandlePinRequest) returns (CommonResponseObj) {}
 
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
+  rpc HandleShopTransfer (HandleShopTransferRequest) returns (CommonResponseObj) {}
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
@@ -522,6 +523,14 @@ message HandleTransferRequest {
   string toUsername = 4;
   int32 amount = 5;
   optional string description = 6;
+}
+
+message HandleShopTransferRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  double amount = 3;
+  string action = 4;
+  optional string description = 5;
 }
 
 // Power Bonus
@@ -1145,12 +1154,10 @@ message SetElbetShopUserMappingRequest {
   int32 elbetShopUserId = 3;
 }
 
-// Resolve the external Elbet shop for a Shop user or one of its cashiers.
 message ResolveElbetShopMappingRequest {
   int32 clientId = 1;
   optional int32 shopUserId = 2;
   optional int32 cashierUserId = 3;
-  
 }
 
 message ElbetShopMappingResponse {
@@ -1163,6 +1170,8 @@ message ElbetShopMappingResponse {
   optional string elbetAgencyCode = 7;
   optional int32 elbetShopUserId = 8;
   optional int32 isElbetEnabled = 9;
+  optional string cashierUsername = 10;
+  optional string shopUsername = 11;
 }
 
 message CreateElbetSessionRequest {

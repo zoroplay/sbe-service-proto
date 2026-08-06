@@ -135,6 +135,7 @@ service WalletService {
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ShopWalletTransfer (ShopWalletTransferRequest) returns (CommonResponseObj) {}
   rpc ValidateDepositCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopDeposit (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
@@ -186,6 +187,7 @@ service WalletService {
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
   rpc SalesReport (SalesReportRequest) returns (CommonResponseObj) {}
+  rpc CashierGgrReport (CashierGgrReportRequest) returns (CommonResponseObj) {}
   rpc OverallGames (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesOnline (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesRetail (DashboardRequest) returns (OverallGamesResponse) {}
@@ -604,6 +606,12 @@ message SalesReportRequest {
   int32 page = 8;
   int32 limit = 9;
   bool enablePaging = 10;
+}
+
+message CashierGgrReportRequest {
+  int32 client_id = 1;
+  int32 userId = 2;
+  string date = 3;
 }
 
 message ProductSummary {
@@ -1100,6 +1108,17 @@ message WalletTransferRequest {
   double amount = 6;
   optional string description = 7;
   string action = 8;
+}
+
+message ShopWalletTransferRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string username = 3;
+  double amount = 4;
+  string action = 5;
+  optional string description = 6;
+  optional string source = 7;
+  optional string channel = 8;
 }
 
 message ValidateTransactionRequest {
