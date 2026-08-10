@@ -192,6 +192,7 @@ service WalletService {
   rpc OverallGamesOnline (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesRetail (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesSport (DashboardRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesSimulation (DashboardRequest) returns (OverallGamesResponse) {}
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
 
 
