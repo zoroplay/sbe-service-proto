@@ -243,6 +243,7 @@ service WalletService {
 
   rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
   rpc NovacWebhook (NovacWebhookRequest) returns (WebhookResponse) {}
+  rpc ZenithWebhook (ZenithWebhookRequest) returns (CommonResponseObj) {}
 
 }
 
@@ -1984,4 +1985,9 @@ message NovacWebhookRequest {
   string notify = 3;
   string notifyType = 4;
   string body = 5;
+}
+
+message ZenithWebhookRequest {
+  int32 clientId = 1;
+  string request = 2;
 }
