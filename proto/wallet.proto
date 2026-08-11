@@ -1880,7 +1880,7 @@ message UserTransactionResponse {
 message TransactionData {
   int32 id = 1;
   string referenceNo = 2;
-  float amount = 3;
+  optional float amount = 3;
   float balance = 4;
   string subject = 5;
   string type = 6;
