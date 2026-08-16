@@ -203,6 +203,9 @@ message CreateBonusRequest {
   optional string endDate = 33;
   optional bool isAffiliate = 34;
   optional int32 affiliateId = 35;
+  // How long a user can use the bonus after award. "hours" or "days".
+  // startDate/endDate is the campaign window when the template can be awarded.
+  optional string durationUnit = 36;
   
   // optional int32 minimumMatches = 31;
   // optional int32 maximumLostGames = 32;

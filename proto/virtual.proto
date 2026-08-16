@@ -23,6 +23,8 @@ message SettledCasinoBetSummary {
   int64 cashier_id = 1;
   int64 settled_bets = 2;
   double total_stake = 3;
+  double total_winnings = 4;
+  double ggr = 5;
 }
 
 message FetchSettledCasinoBetSummariesResponse {
