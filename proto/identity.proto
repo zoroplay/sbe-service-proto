@@ -12,16 +12,19 @@ service IdentityService {
   rpc HandlePin (HandlePinRequest) returns (CommonResponseObj) {}
 
   rpc HandleTransfer (HandleTransferRequest) returns (CommonResponseObj) {}
+  rpc HandleShopTransfer (HandleShopTransferRequest) returns (CommonResponseObj) {}
 
   rpc Register (CreateUserRequest) returns (RegisterResponse) {}
   rpc RegisterAffiliate (CreateUserRequest) returns (RegisterResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Logout (ValidateRequest) returns (CommonResponseObj) {}
   rpc AdminViewLogin (AdminViewLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogin (XpressLoginRequest) returns (XpressLoginResponse) {}
   rpc ValidateAuthCode (XpressLoginRequest) returns (CommonResponseObj) {}
   rpc XpressGameLogout (SessionRequest) returns (XpressLoginResponse) {}
-  rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+  rpc Validate (ValidateRequest) returns (CommonResponseObj) {}
   rpc ValidateToken (ValidateRequest) returns (CommonResponseObj) {}
+  rpc ValidateAdminToken (ValidateRequest) returns (CommonResponseObj) {}
   rpc GetDownliners (ValidateRequest) returns (ArrayResponse) {}
   rpc ValidateGroupCode (GetClientRequest) returns (ValidateGroupCodeResponse) {}
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
@@ -47,6 +50,15 @@ service IdentityService {
   rpc UpdateDetails (UpdateUserRequest) returns (CommonResponseObj) {}
   rpc CreateRetailUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc UpdateRetailUser (UpdateUserRequest) returns (CommonResponseObj) {}
+  rpc BlockShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
+  rpc ActivateShopUserAndDownliners (BlockShopUserRequest) returns (CommonResponseObj) {}
+  rpc SetElbetEnabled (SetElbetEnabledRequest) returns (CommonResponseObj) {}
+  rpc SetElbetShopMapping (SetElbetShopMappingRequest) returns (CommonResponseObj) {}
+  rpc SetElbetShopUserMapping (SetElbetShopUserMappingRequest) returns (CommonResponseObj) {}
+  rpc ResolveElbetShopMapping (ResolveElbetShopMappingRequest) returns (ElbetShopMappingResponse) {}
+  rpc CreateElbetSession (CreateElbetSessionRequest) returns (ElbetSessionResponse) {}
+  rpc ValidateElbetSession (ValidateElbetSessionRequest) returns (ElbetSessionResponse) {}
+  rpc RevokeElbetSession (RevokeElbetSessionRequest) returns (CommonResponseObj) {}
   rpc CreateAdminUser (CreateUserRequest) returns (CommonResponseObj) {}
   rpc GetAdminUsers (ClientIdRequest) returns (CommonResponseArray) {}
   rpc DeleteUser (SingleItemRequest) returns (CommonResponseObj) {}
@@ -510,6 +522,15 @@ message HandleTransferRequest {
   int32 fromUserId = 3;
   string toUsername = 4;
   int32 amount = 5;
+  optional string description = 6;
+}
+
+message HandleShopTransferRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  double amount = 3;
+  string action = 4;
+  optional string description = 5;
 }
 
 // Power Bonus
@@ -1112,6 +1133,80 @@ message UpdateUserRequest {
   optional int32 status = 23;
 }
 
+message SetElbetEnabledRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  int32 isElbetEnabled = 3;
+}
+
+// Links an SBE Shop user to the Elbet shop/agency created for it.
+message SetElbetShopMappingRequest {
+  int32 clientId = 1;
+  int32 shopUserId = 2;
+  int32 elbetShopId = 3;
+  string elbetAgencyCode = 4;
+}
+
+// Links an Elbet-enabled cashier to the user account created in Elbet ShopApp.
+message SetElbetShopUserMappingRequest {
+  int32 clientId = 1;
+  int32 cashierUserId = 2;
+  int32 elbetShopUserId = 3;
+}
+
+message ResolveElbetShopMappingRequest {
+  int32 clientId = 1;
+  optional int32 shopUserId = 2;
+  optional int32 cashierUserId = 3;
+}
+
+message ElbetShopMappingResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional int32 shopUserId = 4;
+  optional int32 cashierUserId = 5;
+  optional int32 elbetShopId = 6;
+  optional string elbetAgencyCode = 7;
+  optional int32 elbetShopUserId = 8;
+  optional int32 isElbetEnabled = 9;
+  optional string cashierUsername = 10;
+  optional string shopUsername = 11;
+}
+
+message CreateElbetSessionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string language = 3;
+  optional string accessToken = 4;
+}
+
+message ValidateElbetSessionRequest {
+  string token = 1;
+}
+
+message RevokeElbetSessionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string accessToken = 3;
+}
+
+message ElbetSessionResponse {
+  bool success = 1;
+  int32 status = 2;
+  string message = 3;
+  optional string token = 4;
+  optional int32 userId = 5;
+  optional int32 clientId = 6;
+  optional string username = 7;
+  optional string firstName = 8;
+  optional string lastName = 9;
+  optional string language = 10;
+  optional string expiresAt = 11;
+  optional string walletToken = 12;
+  optional int32 shopId = 13;
+}
+
 // user
 message User {
   string userID = 1;
@@ -1634,4 +1729,8 @@ message DeleteClientDataResponse {
   int32 bets_deleted = 5;
   int32 bonuses_deleted = 6;
   repeated string errors = 7;
+}
+
+message BlockShopUserRequest {
+  int32 shopId = 1;
 }

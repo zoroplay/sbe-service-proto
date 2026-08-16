@@ -135,6 +135,7 @@ service WalletService {
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ShopWalletTransfer (ShopWalletTransferRequest) returns (CommonResponseObj) {}
   rpc ValidateDepositCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopDeposit (ProcessRetailTransaction) returns (CommonResponseObj) {}
   rpc ValidateWithdrawalCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
@@ -186,10 +187,12 @@ service WalletService {
   rpc FinancialPerformance (ClientRequest) returns (FinancialPerformanceResponse)  {}
   rpc PlayerBalances (ClientRequest) returns (PlayerBalanceResponse) {}
   rpc SalesReport (SalesReportRequest) returns (CommonResponseObj) {}
+  rpc CashierGgrReport (CashierGgrReportRequest) returns (CommonResponseObj) {}
   rpc OverallGames (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesOnline (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesRetail (DashboardRequest) returns (OverallGamesResponse) {}
   rpc OverallGamesSport (DashboardRequest) returns (OverallGamesResponse) {}
+  rpc OverallGamesSimulation (DashboardRequest) returns (OverallGamesResponse) {}
   rpc Statistics (StatisticsRequest) returns (StatisticsResponse) {}
 
 
@@ -240,6 +243,7 @@ service WalletService {
 
   rpc SayswitchWebhook (SayswitchWebhookRequest) returns (CommonResponseObj) {}
   rpc NovacWebhook (NovacWebhookRequest) returns (WebhookResponse) {}
+  rpc ZenithWebhook (ZenithWebhookRequest) returns (CommonResponseObj) {}
 
 }
 
@@ -604,6 +608,14 @@ message SalesReportRequest {
   int32 page = 8;
   int32 limit = 9;
   bool enablePaging = 10;
+}
+
+message CashierGgrReportRequest {
+  int32 client_id = 1;
+  int32 userId = 2;
+  string from = 3;
+  string to = 4;
+  optional bool isShop = 5;
 }
 
 message ProductSummary {
@@ -1102,6 +1114,17 @@ message WalletTransferRequest {
   string action = 8;
 }
 
+message ShopWalletTransferRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  optional string username = 3;
+  double amount = 4;
+  string action = 5;
+  optional string description = 6;
+  optional string source = 7;
+  optional string channel = 8;
+}
+
 message ValidateTransactionRequest {
   int32 clientId = 1;
   int32 userId = 2;
@@ -1438,6 +1461,9 @@ message CreateWalletRequest {
   string username = 3;
   optional float amount = 4;
   optional float bonus = 5;
+  optional int32 roleId = 6;
+  optional string role = 7;
+  optional string roleType = 8;
 }
 
 message WalletResponse {
@@ -1854,7 +1880,7 @@ message UserTransactionResponse {
 message TransactionData {
   int32 id = 1;
   string referenceNo = 2;
-  float amount = 3;
+  optional float amount = 3;
   float balance = 4;
   string subject = 5;
   string type = 6;
@@ -1959,4 +1985,9 @@ message NovacWebhookRequest {
   string notify = 3;
   string notifyType = 4;
   string body = 5;
+}
+
+message ZenithWebhookRequest {
+  int32 clientId = 1;
+  string request = 2;
 }
