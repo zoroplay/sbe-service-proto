@@ -30,6 +30,10 @@ service IdentityService {
   rpc ValidateClient (ValidateRequest) returns (ValidateClientResponse) {}
   rpc ListTestAccount (ListTestAccountsRequest) returns (CommonResponseObj) {}
   rpc ToggleAccount (ValidateTestRequest) returns (ValidateTestResponse) {}
+  rpc OrganizationLogin (OrganizationLoginRequest) returns (OrganizationLoginResponse) {}
+  rpc ValidateOrganizationToken (ValidateRequest) returns (CommonResponseObj) {}
+  rpc CreateOrganizationAdmin (CreateOrganizationAdminRequest) returns (CommonResponseObj) {}
+  rpc CreateOrganizationClient (CreateOrganizationClientRequest) returns (CommonResponseObj) {}
 
   rpc GetUserDetails (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
   rpc GetUserDetailsV2 (GetUserDetailsRequest) returns (GetUserDetailsResponse) {}
@@ -1267,6 +1271,40 @@ message GetUserDetailsResponse {
 // Validate
 message ValidateRequest {
   string token = 1;
+}
+
+message OrganizationLoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message OrganizationLoginResponse {
+  bool success = 1;
+  string message = 2;
+  optional string access_token = 3;
+  optional OrganizationUserData user = 4;
+  optional string error = 5;
+}
+
+message OrganizationUserData {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  string phone_number = 4;
+  string role = 5;
+}
+
+message CreateOrganizationAdminRequest {
+  string token = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+  string phone_number = 5;
+}
+
+message CreateOrganizationClientRequest {
+  string token = 1;
+  ClientRequest client = 2;
 }
 
 message ValidateTestRequest {
