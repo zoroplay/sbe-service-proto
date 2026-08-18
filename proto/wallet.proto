@@ -135,6 +135,11 @@ service WalletService {
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc CreateClientFundingRequest (ClientFundingRequest) returns (CommonResponseObj) {}
+  rpc ListClientFundingRequests (ListClientFundingRequestsRequest) returns (CommonResponseObj) {}
+  rpc ApproveClientFundingRequest (ApproveClientFundingRequestData) returns (CommonResponseObj) {}
+  rpc RejectClientFundingRequest (RejectClientFundingRequestData) returns (CommonResponseObj) {}
+  rpc TopUpClientWallet (TopUpClientWalletRequest) returns (CommonResponseObj) {}
   rpc ShopWalletTransfer (ShopWalletTransferRequest) returns (CommonResponseObj) {}
   rpc ValidateDepositCode (ValidateTransactionRequest) returns (CommonResponseObj) {}
   rpc ProcessShopDeposit (ProcessRetailTransaction) returns (CommonResponseObj) {}
@@ -1112,6 +1117,43 @@ message WalletTransferRequest {
   double amount = 6;
   optional string description = 7;
   string action = 8;
+}
+
+message ClientFundingRequest {
+  int32 clientId = 1;
+  int32 requestedById = 2;
+  string requestedBy = 3;
+  string requestedByRole = 4;
+  double amount = 5;
+  optional string note = 6;
+}
+
+message ListClientFundingRequestsRequest {
+  optional string status = 1;
+}
+
+message ApproveClientFundingRequestData {
+  int64 requestId = 1;
+  int32 approvedById = 2;
+  string approvedBy = 3;
+  string approvedByRole = 4;
+}
+
+message RejectClientFundingRequestData {
+  int64 requestId = 1;
+  int32 rejectedById = 2;
+  string rejectedBy = 3;
+  string rejectedByRole = 4;
+  optional string reason = 5;
+}
+
+message TopUpClientWalletRequest {
+  int32 clientId = 1;
+  double amount = 2;
+  int32 approvedById = 3;
+  string approvedBy = 4;
+  string approvedByRole = 5;
+  optional string note = 6;
 }
 
 message ShopWalletTransferRequest {
