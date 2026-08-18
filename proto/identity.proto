@@ -67,6 +67,10 @@ service IdentityService {
   rpc GetPaymentData (GetPaymentDataRequest) returns (GetPaymentDataResponse) {}
   rpc SearchPlayers (SearchPlayerRequest) returns (SearchPlayerResponse) {}
   rpc UpdateUserDetails (UpdateUserRequest) returns (CommonResponseObj) {}
+  rpc SetSelfExclusion (SelfExclusionRequest) returns (CommonResponseObj) {}
+  rpc GetSelfExclusionStatus (GetUserDetailsRequest) returns (CommonResponseObj) {}
+  rpc DeactivateAccount (DeactivateAccountRequest) returns (CommonResponseObj) {}
+  rpc ValidateGamingAccess (GetUserDetailsRequest) returns (CommonResponseObj) {}
   rpc GetUserByUsername (GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {}
   rpc OnlinePlayersReport (OnlinePlayersRequest) returns (PlayersListResponse) {}
   rpc RegistrationReport (RegistrationReportRequest) returns (PlayersListResponse) {}
@@ -1131,6 +1135,18 @@ message UpdateUserRequest {
   optional string parentId = 21;
   optional string lga = 22;
   optional int32 status = 23;
+}
+
+message SelfExclusionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  int32 days = 3;
+}
+
+message DeactivateAccountRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  string reason = 3;
 }
 
 message SetElbetEnabledRequest {
