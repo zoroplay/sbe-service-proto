@@ -106,6 +106,7 @@ service WalletService {
   rpc ListAgentTrustTopupRequests (ListAgentTrustTopupRequestsReq) returns (TrustTopupListResponse) {}
 
   rpc InititateDeposit (InitiateDepositRequest) returns (InitiateDepositResponse) {}
+  rpc GenerateVirtualAccount (InitiateDepositRequest) returns (InitiateDepositResponse) {}
   rpc VerifyDeposit (VerifyDepositRequest) returns (VerifyDepositResponse) {}
   rpc RequestWithdrawal (WithdrawRequest) returns (WithdrawResponse) {}
   rpc VerifyBankAccount (VerifyBankAccountRequest) returns (VerifyBankAccountResponse) {}
@@ -1761,6 +1762,10 @@ message InitiateDepositResponse {
   message Data {
     optional string link = 1;
     optional string transactionRef = 2;
+    optional string accountNumber = 3;
+    optional string accountName = 4;
+    optional string bankName = 5;
+    optional double amount = 6;
   }
   optional Data data = 3;
 }
