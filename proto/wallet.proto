@@ -136,6 +136,7 @@ service WalletService {
 
   // RETAIL SERVICES
   rpc WalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
+  rpc ClientAdminWalletTransfer (WalletTransferRequest) returns (CommonResponseObj) {}
   rpc CreateClientFundingRequest (ClientFundingRequest) returns (CommonResponseObj) {}
   rpc ListClientFundingRequests (ListClientFundingRequestsRequest) returns (CommonResponseObj) {}
   rpc ApproveClientFundingRequest (ApproveClientFundingRequestData) returns (CommonResponseObj) {}
