@@ -189,6 +189,7 @@ service IdentityService {
   rpc GetReferralUserIdsForCommission(FindUserIdRequest) returns (CommonResponseArray) {}
   rpc ListSuperAgentsUsers(GetAgentUsersRequest) returns (ArrayResponse) {}
   rpc GetRetailDownlineScope(GetAgentUsersRequest) returns (RetailDownlineScopeResponse) {}
+  rpc ResolveCashierShop(ResolveCashierShopRequest) returns (ResolveCashierShopResponse) {}
   rpc GetClientAffiliates(ClientIdRequest) returns (CommonResponseArray) {}
   rpc GetAffiliatesOverview(AffiliateRequest) returns (CommonResponseObj) {}
   rpc GetReferralDashboard(ReferralOwnerRequest) returns (CommonResponseObj) {}
@@ -507,6 +508,25 @@ message RetailDownlineScopeResponse {
   bool success = 2;
   string message = 3;
   RetailDownlineScopeData data = 4;
+}
+
+message ResolveCashierShopRequest {
+  int32 clientId = 1;
+  int32 cashierId = 2;
+}
+
+message CashierShopData {
+  int32 cashierId = 1;
+  int32 shopId = 2;
+  string cashierUsername = 3;
+  string shopUsername = 4;
+}
+
+message ResolveCashierShopResponse {
+  int32 status = 1;
+  bool success = 2;
+  string message = 3;
+  CashierShopData data = 4;
 }
 
 message DailyTransactionsRequest {
