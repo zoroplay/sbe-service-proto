@@ -198,6 +198,9 @@ service IdentityService {
   rpc GetReferralCodes(ReferralOwnerRequest) returns (CommonResponseObj) {}
   rpc ValidateReferralCode(ReferralCodeRequest) returns (CommonResponseObj) {}
   rpc GetReferralFriends(ReferralFriendsRequest) returns (CommonResponseObj) {}
+  rpc GetReferralCommissionSettings(ReferralCommissionSettingsRequest) returns (CommonResponseObj) {}
+  rpc UpsertReferralCommissionSettings(ReferralCommissionSettingsRequest) returns (CommonResponseObj) {}
+  rpc WithdrawReferralCommission(WithdrawReferralCommissionRequest) returns (CommonResponseObj) {}
 
   // User Import
   rpc ImportUsers (ImportUsersRequest) returns (ImportUsersResponse) {}
@@ -274,6 +277,16 @@ message ReferralOwnerRequest {
   int32 userId = 2;
 }
 
+message WithdrawReferralCommissionRequest {
+  int32 clientId = 1;
+  int32 userId = 2;
+  // Which commission bucket to withdraw from:
+  //   "totalPending"      -> commissionDeposit + commissionBet (default)
+  //   "commissionDeposit" -> only commissionDeposit
+  //   "commissionBet"     -> only commissionBet
+  optional string source = 3;
+}
+
 message CreateReferralCodeRequest {
   int32 clientId = 1;
   int32 userId = 2;
@@ -301,6 +314,15 @@ message ReferralFriendsRequest {
   optional int32 page = 3;
   optional int32 limit = 4;
   optional string code = 5;
+}
+
+message ReferralCommissionSettingsRequest {
+  int32 clientId = 1;
+  optional double depositRate = 2;
+  optional double betRate = 3;
+  optional double depositThreshold = 4;
+  optional double betThreshold = 5;
+  optional int32 status = 6;
 }
 
 
