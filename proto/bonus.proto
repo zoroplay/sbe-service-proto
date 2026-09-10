@@ -79,6 +79,33 @@ service BonusService {
   rpc DeletePlayerData(GetBonusRequest) returns (EmptyResponse) {}
 
   rpc AwardCompletedBonus(BonusRequest) returns (CommonResponseObj) {}
+
+  // Whether a promotion is allowed to be running, and who said so.
+  //
+  // No campaign without a cap, a dry run and a second approver. The cap and the
+  // daily ceiling were already built; these are the rest.
+  //
+  // Starting takes two people. Stopping takes one.
+  rpc SubmitPromotionForApproval(PromotionApprovalRequest) returns (CommonResponseObj) {}
+  rpc ApprovePromotion(PromotionApprovalRequest) returns (CommonResponseObj) {}
+  rpc WithdrawPromotion(PromotionApprovalRequest) returns (CommonResponseObj) {}
+
+  // What a promotion can cost, before anybody approves it. Read-only: it
+  // reserves no budget, writes no grant and touches no wallet.
+  rpc DryRunPromotion(PromotionApprovalRequest) returns (CommonResponseObj) {}
+}
+
+// Who is doing something to a promotion, and why.
+//
+// actorId and actorName come from the signed-in back-office user, never from the
+// request body — otherwise the second-approver rule is worth nothing, because the
+// author would simply send somebody else's id.
+message PromotionApprovalRequest {
+  int32 clientId = 1;
+  int32 bonusId = 2;
+  int32 actorId = 3;
+  string actorName = 4;
+  string reason = 5;
 }
 
 
